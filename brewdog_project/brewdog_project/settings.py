@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "brewdog_api.apps.BrewdogApiConfig",
     "rest_framework",
+    "frontend.apps.FrontendConfig",
 ]
 
 MIDDLEWARE = [
