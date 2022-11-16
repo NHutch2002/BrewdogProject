@@ -1,4 +1,4 @@
-## What does this merge request do and what's the reason for this?
+## What does this merge request do and what is the reason for it?
 Explain what this merge request does and the reason(s) it takes place. Include as much context as you think is needed to ensure everyone understands its purpose.
 
 ## Issue being resolved
