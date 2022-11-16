@@ -6,3 +6,11 @@ If this merge request closes an issue, include its link here.
 
 ## Screenshots (optional)
 Include screenshots (or screen recordings) if you think they're going to be helpful.
+
+## Checklist
+
+- [ ] I have self-reviewed my code.
+
+- [ ] I have commented in parts of the code that could be complicated.
+
+- [ ] No errors or warnings produced.
