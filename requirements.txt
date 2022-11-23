@@ -5,11 +5,18 @@ Install Django
 
 $ pip install pipenv
 $ pipenv shell
+$ pip3 install shell (if the line above doesn't work)
 $ pipenv install django
 $ django-admin startproject brewdog_project (only done once!)
 $ python manage.py startapp brewdog_project
+$ pip install django djangorestframework
 $ python manage.py migrate
 $ python manage.py runserver
+
+To run backend:
+$ python manage.py startapp brewdog_project
+$ python manage.py migrate
+pythong manage.py runserver
 
 Django should be available at: http://localhost:8000 
 
@@ -25,5 +32,7 @@ $ npm install @material-ui/core
 $ npm install --save react@16.8.0 react-dom@16.8.0
 $ npm install @babel/plugin-proposal-class-properties
 $ npm install react-router-dom
-- 
+
+To run frontend:
+$ npm run dev
 
