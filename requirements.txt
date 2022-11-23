@@ -1,6 +1,10 @@
 SH-15 downloads
 
 
+To set up an environment on Windows:
+$ python -m venv venv
+$ venv\Scripts\activate
+
 Install Django
 
 $ pip install pipenv
