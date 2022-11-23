@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CarbonCalculator from "./CarbonCalculator";
-import { BrowserRouter as Router, Route, Routes,Link, Redirect } from "react-router-dom"; 
 
 export default class HomePage extends Component { 
     constructor(props) {
@@ -9,14 +9,11 @@ export default class HomePage extends Component {
     
     render() {
         return (
-            <Router>
-                <Routes>
-                    <Route exact path="/">
-                        <p>This is the HomePage</p>
-                    </Route>
-                    <Route exact path="/carboncalculator" element={<CarbonCalculator/>} />
-                </Routes>
-            </Router>
+
+            <div>
+                <p>This is the HomePage</p>
+                <Link to="/carboncalculator">Carbon Calculator</Link>
+            </div>
         );   
     }
 }
