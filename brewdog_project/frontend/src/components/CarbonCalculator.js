@@ -4,10 +4,11 @@ export default class CarbonCalculator extends Component {
     constructor(props) {
         super(props);
     }
-    
-    render() {
-        return(
+    //create a function that stores all the html elements for the carbon calculator form
+    form() {
+        return (
             <div>
+                <a href="/">Home</a>
                 <div>
                     <h1>Carbon Footprint Calculator</h1>
                 </div>
@@ -60,9 +61,16 @@ export default class CarbonCalculator extends Component {
                     <input type="submit"/>
                     </form>   
                 </div>
+            </div>
+        );
+    }
 
-            </div>            
-
-             );
+    
+    render() {
+        return (
+            <div>
+                {this.form()}
+            </div>
+        );
     }
 }
