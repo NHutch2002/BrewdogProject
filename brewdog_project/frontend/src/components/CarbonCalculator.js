@@ -4,16 +4,21 @@ export default class CarbonCalculator extends Component {
     constructor(props) {
         super(props);
     }
-    //create a function that stores all the html elements for the carbon calculator form
+
+    style = theme => ({
+        toolbar: theme.mixins.toolbar,
+    });
+
     form() {
         return (
-            <div>
-                <a href="/">Home</a>
+            <div style={{marginTop: "125px"}}>
+                <div className={this.style.toolbar} />
                 <div>
                     <h1>Carbon Footprint Calculator</h1>
                 </div>
                 <div>
-                    <form method="post">
+                    <form action="http://127.0.0.1:8000" method="POST" credentials="include">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <div>
                         <h2>Energy Consumed</h2>
                         <div>
@@ -58,13 +63,36 @@ export default class CarbonCalculator extends Component {
                         </div>
                         
                     </div>
-                    <input type="submit"/>
+                    <input type="submit" value="Submit" onClick={this.onSubmit}/>
                     </form>   
                 </div>
             </div>
         );
     }
 
+    // onSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("Submitted");
+    //     //fetch the data from the form
+    //     const data = new FormData(e.target);
+    //     //send the data to the backend
+    //     fetch('http://', {
+    //         method: 'POST',
+    //         body: data,
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    //     //run the calculations
+    //     //return the results
+    //     data.forEach((value, key) => {
+            
+    //     });
+    // }
     
     render() {
         return (
