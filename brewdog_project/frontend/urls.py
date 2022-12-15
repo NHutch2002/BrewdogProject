@@ -8,4 +8,6 @@ urlpatterns = [
     path('howitworks', index),
     path('blog', index),
     path('login', index),
+    path('pledges', index),
+    path('actionplan', index),
 ]

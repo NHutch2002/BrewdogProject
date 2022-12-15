@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
 import React from "react";
-import { withRouter } from "react-router-dom";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
 import HumanIcon from "../../static/images/human_icon.png";
 import CalculatorIcon from "../../static/images/calculator_icon.png";
@@ -36,19 +35,48 @@ export default function NavBar() {
     }
 
     function handleCarbonCalculatorClick() {
-        setAnchorEl(null);
+        setAnchorEl2(null);
         window.location.href = "/carboncalculator";
+    }
+
+    function handlePledgesClick() {
+        setAnchorEl2(null);
+        window.location.href = "/pledges";
+    }
+
+    function handleActionPlanClick() {
+        setAnchorEl2(null);
+        window.location.href = "/actionplan";
+    }
+
+    // const muiStyles = {
+    //     toolbar: {
+    //         color: "white",
+    //         textColour: "black",
+    //     }
+    // }
+
+    const humanMenuStyling = {
+        position: "relative",
+        top: "40px",
+        height: "220px",
+    }
+
+    const calculatorMenuStyling = {
+        position: "relative",
+        top: "30px",
+        height: "250px",
     }
 
     return (
         <Grid container spacing={1}>
-            <AppBar>
+            <AppBar style={{backgroundColor: "#FFFFFF"}}>
             <Toolbar>
                 <Grid item xs={2} align="left">
-                    <Button color="inherit" href="/howitworks">How It Works</Button>
+                    <Button color="black" href="/howitworks">How It Works</Button>
                 </Grid>
                 <Grid item xs={2} align="left">
-                    <Button color="inherit" href="/blog">Blog</Button> 
+                    <Button color="black" href="/blog">Blog</Button> 
                 </Grid>
                 {/* <Button color="inherit" href="/carboncalculator">Carbon Calculator</Button>  */}
                 <Grid item xs={9} align="center">
@@ -67,6 +95,7 @@ export default function NavBar() {
                         <a><img src={CalculatorIcon} alt="Calculator Icon" height="75" width="75"/></a>                        
                     </IconButton>
                     <Menu
+                    style={calculatorMenuStyling}
                     id="simple-menu"
                     anchorEl={anchorEl2}
                     open={Boolean(anchorEl2)}
@@ -74,6 +103,8 @@ export default function NavBar() {
                     MenuListProps={{ onMouseLeave: handleSecondaryClose }}
                     >
                         <MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
+                        <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
+                        <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
                         <MenuItem onClick={handleSecondaryClose}>My results</MenuItem>
                     </Menu>
                 </Grid>
@@ -87,6 +118,7 @@ export default function NavBar() {
                         <a><img src={HumanIcon} alt="Human Icon" height="75" width="75"/></a>
                     </IconButton>
                     <Menu
+                    style={humanMenuStyling}
                     id="simple-menu"
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
