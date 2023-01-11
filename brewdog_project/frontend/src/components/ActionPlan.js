@@ -10,7 +10,7 @@ export default class ActionPlan extends Component {
     
     render() {
         return (
-        <div style={{marginTop: "125px"}}>
+        <div>
             <h1>Action Plan</h1>
         </div>
         );

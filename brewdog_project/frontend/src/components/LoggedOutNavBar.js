@@ -34,6 +34,16 @@ export default function NavBar() {
         window.location.href = "/login";
     }
 
+    function handleSignUpClick() {
+        setAnchorEl(null);
+        window.location.href = "/signup";
+    }
+
+    function handleMyAccountClick() {
+        setAnchorEl(null);
+        window.location.href = "/myaccount";
+    }
+
     function handleCarbonCalculatorClick() {
         setAnchorEl2(null);
         window.location.href = "/carboncalculator";
@@ -47,6 +57,11 @@ export default function NavBar() {
     function handleActionPlanClick() {
         setAnchorEl2(null);
         window.location.href = "/actionplan";
+    }
+
+    function handleMyResultsClick() {
+        setAnchorEl2(null);
+        window.location.href = "/myresults";
     }
 
     // const muiStyles = {
@@ -105,7 +120,7 @@ export default function NavBar() {
                         <MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
                         <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
                         <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
-                        <MenuItem onClick={handleSecondaryClose}>My results</MenuItem>
+                        <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
                     </Menu>
                 </Grid>
                 <Grid item xs ={2} align="right">
@@ -126,12 +141,14 @@ export default function NavBar() {
                     MenuListProps={{ onMouseLeave: handleClose }}
                     >
                         <MenuItem onClick={handleLoginClick}>Login</MenuItem>
-                        <MenuItem onClick={handleClose}>Sign Up</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
+                        <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem>
+                        <MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
                     </Menu>
                 </Grid>
             </Toolbar>
             </AppBar>
+            <div style={{marginTop: "125px"}}></div>
         </Grid>
+        
     );
 }

@@ -20,7 +20,7 @@ export class Login extends Component {
 
     render() {
         return (
-            <div style={{marginTop: "125px"}}>
+            <div>
                 <div className={this.style.toolbar} />
                 {/* <Menu>
                     <Container>

@@ -10,6 +10,9 @@ import HowItWorks from "./HowItWorks";
 import Login from "./Login";
 import Pledges from "./Pledges";
 import ActionPlan from "./ActionPlan";
+import MyResults from "./MyResults";
+import SignUp from "./SignUp";
+import MyAccount from "./MyAccount";
 
 export default class App extends Component {
   constructor(props) {
@@ -29,6 +32,9 @@ export default class App extends Component {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/pledges" element={<Pledges />} />
                 <Route exact path="/actionplan" element={<ActionPlan />} />
+                <Route exact path="/myresults" element={<MyResults />} />
+                <Route exact path="/signup" element={<SignUp />} />
+                <Route exact path="/myaccount" element={<MyAccount />} />
             </Routes>
         </Router>
       </div>

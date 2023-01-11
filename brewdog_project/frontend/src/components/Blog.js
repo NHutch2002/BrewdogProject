@@ -10,7 +10,7 @@ export default class Blog extends Component {
     
     render() {
         return (
-        <div style={{marginTop: "125px"}}>
+        <div>
             <h1>blog</h1>
         </div>
         );

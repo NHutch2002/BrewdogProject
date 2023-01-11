@@ -10,7 +10,7 @@ export default class Pledges extends Component {
     
     render() {
         return (
-        <div style={{marginTop: "125px"}}>
+        <div>
             <h1>Pledges</h1>
             <p>Here is where you can see your pledges</p>
             <p>Here is where you can make a pledge</p>

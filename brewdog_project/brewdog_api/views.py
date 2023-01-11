@@ -26,3 +26,14 @@ class CalculatorView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#view to get data of calculator and send to front end
+@method_decorator(api_view(['GET']), name='dispatch')
+@method_decorator(renderer_classes([JSONRenderer]), name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+class CalculatorGetView(APIView):
+    def get(self, request, format=None):
+        data = Calculator.objects.all()
+        serializer = CalculatorSerializer(data, many=True)
+        return Response(serializer.data)
+        

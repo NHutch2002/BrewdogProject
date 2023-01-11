@@ -11,7 +11,7 @@ export default class HomePage extends Component {
 
     render() {
         return (
-            <div style={{marginTop: "125px"}}>
+            <div>
                 <div className={this.style.toolbar} />
                 <h1>best home page ever</h1>
             </div>
