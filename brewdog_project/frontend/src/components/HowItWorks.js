@@ -11,7 +11,7 @@ export default class HowItWorks extends Component {
     render() {
         return (
         <div>
-            <h1>how it works</h1>
+            <h1>How it works</h1>
         </div>
         );
     }
