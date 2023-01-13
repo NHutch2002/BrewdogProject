@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Banner from "../../static/images/brewdog_banner.png";
-//import sytles from "../../static/css/home.css"; //THIS BREAKS THE CODE
+//import "../../static/css/home.css"; //THIS BREAKS THE CODE
 
 export default class HomePage extends Component { 
     constructor(props) {
