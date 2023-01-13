@@ -37,6 +37,8 @@ $ npm install --save react@17.0.2 react-dom@17.0.2
 $ npm install @babel/plugin-proposal-class-properties
 $ npm install react-router-dom
 $ npm install @mui/material @emotion/react @emotion/styled
+$ npm install --save-dev css-loader
+$ npm install --save-dev style-loader
 
 To run frontend:
 $ npm run dev
