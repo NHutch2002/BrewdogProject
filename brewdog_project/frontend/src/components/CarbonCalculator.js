@@ -12,7 +12,7 @@ export default class CarbonCalculator extends Component {
                     <h1>Carbon Footprint Calculator</h1>
                 </div>
                 <div>
-                    <form action="http://127.0.0.1:8000" method="POST" credentials="include">
+                    <form action="http://127.0.0.1:8000/brewdog/secondcalculator/" method="POST" credentials="include">
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <div>
                         <h2>Energy Consumed</h2>
@@ -46,15 +46,15 @@ export default class CarbonCalculator extends Component {
                         <div>
                             <h4>Solid Waste</h4>
                             <label>Bottles Recycling:</label>
-                            <input type="number" name="Bottles Recylcing"/><br/>
+                            <input type="number" name="BottleRecycling"/><br/>
                             <label>Aluminium Cans Recycling:</label>
-                            <input type="number" name="Aluminium Recycling"/><br/>
+                            <input type="number" name="AluminiumRecycling"/><br/>
                             <label>General Waste to Landfill:</label>
                             <input type="number" name="GWLandfill"/><br/>
                             <label>General Waste to Recylcing:</label>
-                            <input type="number" name="GWRecylcing"/><br/>
+                            <input type="number" name="GWRecycling"/><br/>
                             <label>Special Waste:</label>
-                            <input type="number" name="Special Waste"/><br/>
+                            <input type="number" name="SpecialWaste"/><br/>
                         </div>
                         
                     </div>
@@ -65,29 +65,10 @@ export default class CarbonCalculator extends Component {
         );
     }
 
-    // onSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("Submitted");
-    //     //fetch the data from the form
-    //     const data = new FormData(e.target);
-    //     //send the data to the backend
-    //     fetch('http://', {
-    //         method: 'POST',
-    //         body: data,
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     });
-    //     //run the calculations
-    //     //return the results
-    //     data.forEach((value, key) => {
-            
-    //     });
-    // }
+    onSubmit() {
+        window.location.href = "http://127.0.0.1:8000/myresults/";
+    }
+
     
     render() {
         return (

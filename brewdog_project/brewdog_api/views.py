@@ -15,11 +15,33 @@ class UserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-@method_decorator(api_view(['POST']), name='dispatch')
+
+class SecondCalculatorView(generics.CreateAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
+    def post(self, request, format=None):
+        serializer = CalculatorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, format=None):
+        data = Calculator.objects.all()
+        serializer = CalculatorSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+@method_decorator(api_view(['POST', 'GET']), name='dispatch')
 @method_decorator(renderer_classes([JSONRenderer]), name='dispatch')
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class CalculatorView(APIView):
     serializer_class = CalculatorSerializer
+    def get (self, request, format=None):
+        data = Calculator.objects.all()
+        serializer = CalculatorSerializer(data, many=True)
+        return Response(serializer.data)
+
     def post(self, request, format=None):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():

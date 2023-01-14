@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import React from "react";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
 import HumanIcon from "../../static/images/human_icon.png";
