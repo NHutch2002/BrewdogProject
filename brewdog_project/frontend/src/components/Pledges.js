@@ -4,9 +4,6 @@ export default class Pledges extends Component {
     constructor(props) {
         super(props);
     }
-    style = theme => ({
-        toolbar: theme.mixins.toolbar,
-    });
     
     render() {
         return (

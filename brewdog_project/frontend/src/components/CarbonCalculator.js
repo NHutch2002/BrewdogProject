@@ -5,14 +5,9 @@ export default class CarbonCalculator extends Component {
         super(props);
     }
 
-    style = theme => ({
-        toolbar: theme.mixins.toolbar,
-    });
-
     form() {
         return (
             <div>
-                <div className={this.style.toolbar} />
                 <div>
                     <h1>Carbon Footprint Calculator</h1>
                 </div>

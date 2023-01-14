@@ -4,9 +4,6 @@ export default class Blog extends Component {
     constructor(props) {
         super(props);
     }
-    style = theme => ({
-        toolbar: theme.mixins.toolbar,
-    });
     
     render() {
         return (

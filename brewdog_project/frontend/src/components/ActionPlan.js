@@ -4,9 +4,6 @@ export default class ActionPlan extends Component {
     constructor(props) {
         super(props);
     }
-    style = theme => ({
-        toolbar: theme.mixins.toolbar,
-    });
     
     render() {
         return (

@@ -14,10 +14,6 @@ export class Login extends Component {
         this.props.login(this.state.username, this.state.password);
     }
 
-    style = theme => ({
-        toolbar: theme.mixins.toolbar,
-    });
-
     render() {
         return (
             <div>
