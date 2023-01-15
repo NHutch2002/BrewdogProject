@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import index
 
+app_name = 'frontend'
 
 urlpatterns = [
     path('', index),
@@ -10,7 +11,7 @@ urlpatterns = [
     path('login', index),
     path('pledges', index),
     path('actionplan', index),
-    path('myresults', index),
+    path('myresults', index, name='myresults'),
     path('myaccount', index),
     path('signup', index),
 ]

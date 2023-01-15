@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 from rest_framework import generics, status
 from .models import User, Calculator
 from .serializers import UserSerializer, CalculatorSerializer
@@ -8,6 +9,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -23,9 +25,19 @@ class SecondCalculatorView(generics.CreateAPIView):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            #return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return HttpResponseRedirect(reverse('frontend:myresults'))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request, format=None):
+        data = Calculator.objects.all()
+        serializer = CalculatorSerializer(data, many=True)
+        return Response(serializer.data)
+
+#view to return data to front end 
+class ReturnDataView(generics.ListAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
     def get(self, request, format=None):
         data = Calculator.objects.all()
         serializer = CalculatorSerializer(data, many=True)
@@ -48,14 +60,3 @@ class CalculatorView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#view to get data of calculator and send to front end
-@method_decorator(api_view(['GET']), name='dispatch')
-@method_decorator(renderer_classes([JSONRenderer]), name='dispatch')
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class CalculatorGetView(APIView):
-    def get(self, request, format=None):
-        data = Calculator.objects.all()
-        serializer = CalculatorSerializer(data, many=True)
-        return Response(serializer.data)
-        
