@@ -1,8 +1,16 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default class CarbonCalculator extends Component {
     constructor(props) {
         super(props);
+        this.navigate = useNavigate();
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    handleSubmit(event) {
+        event.preventDefault();
+        this.navigate.push('/brewdog/secondcalculator/');
     }
 
     form() {
@@ -12,8 +20,8 @@ export default class CarbonCalculator extends Component {
                     <h1>Carbon Footprint Calculator</h1>
                 </div>
                 <div>
-                    <form action="http://127.0.0.1:8000/brewdog/secondcalculator/" method="POST" credentials="include">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <form method="POST" credentials="include">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <div>
                         <h2>Energy Consumed</h2>
                         <div>
@@ -58,17 +66,12 @@ export default class CarbonCalculator extends Component {
                         </div>
                         
                     </div>
-                    <input type="submit" value="Submit" onClick={this.onSubmit}/>
+                    <input type="submit" value="Submit" onClick={this.handleSubmit}/>
                     </form>   
                 </div>
             </div>
         );
     }
-
-    onSubmit() {
-        window.location.href = "http://127.0.0.1:8000/myresults/";
-    }
-
     
     render() {
         return (
