@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class MyResults extends Component {
     constructor(props) {
@@ -7,13 +8,10 @@ export default class MyResults extends Component {
             results: null
         }
     }
-    retrieveResults = () => {
-        fetch('brewdog/secondcalculator')
-        .then(response => response.json())
-        .then(data => {
-            this.setState({
-                results: data
-            })
+    componentDidMount() {
+      axios.get('/brewdog/secondcalculator/')
+        .then(res => {
+          this.setState({results: res.data});
         })
     }
     
@@ -22,28 +20,11 @@ export default class MyResults extends Component {
         <div>
             <h1>My Results</h1>
             {this.state.results ? this.state.results.map(result => {
-                <li>
-                    {result.MainsGas}
-                    {result.Fuel}
-                    {result.Oil}
-                    {result.Coal}
-                    {result.Wood}
-                    {result.GridElectricity}
-                    {result.Electricity}
-                    {result.WFLandfill}
-                    {result.WFReuse}
-                    {result.WFCharity}
-                    {result.BottleRecycling}
-                    {result.AluminiumRecycling}
-                    {result.GWLandfill}
-                    {result.GWRecycling}
-                    {result.SpecialWaste}
-                </li>
-            }) : null
+                <li>{result.data_name} : {result.data_value}</li>
+            }) : <div>Loading...</div>
             }
 
         </div>
         );
     }
 }
-
