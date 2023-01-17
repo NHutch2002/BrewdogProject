@@ -1,11 +1,10 @@
 SH-15 downloads
 
-
 To set up an environment on Windows:
 $ python -m venv venv
 $ venv\Scripts\activate
 
-Install Django
+INSTALL DJANGO
 
 $ pip install pipenv
 $ pipenv shell
@@ -25,20 +24,50 @@ pythong manage.py runserver
 Django should be available at: http://localhost:8000 
 
 
-Install React
+INSTALL REACT
 
 $ pip install django djangorestframework
 $ npm install react and node.js
 $ npm i webpack webpack-cli --save-dev
 $ npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
 $ npm i react react-dom --save-dev
-$ npm install @material-ui/core  
 $ npm install --save react@17.0.2 react-dom@17.0.2
+$ npm install @material-ui/core
 $ npm install @babel/plugin-proposal-class-properties
 $ npm install react-router-dom
 $ npm install @mui/material @emotion/react @emotion/styled
 $ npm install --save-dev css-loader
 $ npm install --save-dev style-loader
+$ npm install --save-dev file-loader
+$ npm install @mui/icons-material
+$ npm install @emotion/react
+$ npm install @emotion/styled
+$ npm install axios --save
+
+Create the following file: brewdog_project/frontend/babel.config.json
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+  }
+
+
+brewdog_project/frontend/package.json -> make sure the "scripts" part looks like this:
+ 
+"scripts": {
+   "dev": "webpack --mode development --watch",
+   "build": "webpack --mode production"
+ },
+  
 
 To run frontend:
 $ npm run dev
