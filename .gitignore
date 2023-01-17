@@ -24,7 +24,7 @@ node_modules/
 creds.js
  
 # Private Files
-*.json
+babel.config.json
 *.csv
 *.csv.gz
 *.tsv
