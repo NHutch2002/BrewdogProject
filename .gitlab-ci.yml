@@ -14,7 +14,7 @@ backend test project:
 frontend test project:
   stage: frontend test
   image: node:16
-  script: 
+  script:
     - cd brewdog_project/frontend/
     - npm install 
     - npm test
