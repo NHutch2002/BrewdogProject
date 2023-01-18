@@ -43,6 +43,8 @@ $ npm install @mui/icons-material
 $ npm install @emotion/react
 $ npm install @emotion/styled
 $ npm install axios --save
+$ npm install react-icons --save
+
 
 Create the following file: brewdog_project/frontend/babel.config.json
 {
