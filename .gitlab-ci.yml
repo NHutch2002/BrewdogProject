@@ -6,8 +6,9 @@ stages:
 
 backend test project:
   stage: backend test
-  image: pyhton:3.11.0
+  image: python:3.11.0
   script:  
+    - add-apt-repository
     - pip install pipenv
     - pipenv shell
     - pipenv install django
