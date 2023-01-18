@@ -11,9 +11,9 @@ backend test project:
     - pip install pipenv
     - pip3 install shell
     - pipenv install django
-    - cd brewdog_project/
     - pip install django djangorestframework
     - python manage.py startapp brewdog_project
+    - cd brewdog_project/
     - python manage.py migrate
     - python manage.py runserver
     - python manage.py test
