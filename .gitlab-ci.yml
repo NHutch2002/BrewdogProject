@@ -1,0 +1,36 @@
+stages:
+  - backend test
+  - frontend test
+  - build backend
+  - build frontend
+
+backend test project:
+  stage: backend test
+  image: node:16
+  script:  
+    - cd brewdog_project/
+    - python manage.py test
+
+frontend test project:
+  stage: frontend test
+  image: node:16
+  script: 
+    - cd brewdog_project/frontend/
+    - npm install 
+    - npm test
+
+build backend project:
+  stage: build backend
+  image: node:16
+  script:
+    - cd brewdog_project/
+    - python manage.py runserver
+
+build frontend project:
+  stage: build frontend
+  image: node:16
+  script:
+    - cd brewdog_project/frontend/
+    - npm install
+    - npm run build 
+
