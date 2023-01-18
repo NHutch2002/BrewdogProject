@@ -8,6 +8,9 @@ backend test project:
   stage: backend test
   image: node:16
   script:  
+    - apt-get update -q -y
+    - apt-get install -y python-pip
+    - python -V
     - pip install django
     - cd brewdog_project/
     - python manage.py test
