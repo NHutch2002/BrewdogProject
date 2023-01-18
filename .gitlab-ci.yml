@@ -8,6 +8,7 @@ backend test project:
   stage: backend test
   image: node:16
   script:  
+    - pip install django
     - cd brewdog_project/
     - python manage.py test
 
