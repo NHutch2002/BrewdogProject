@@ -12,6 +12,7 @@ backend test project:
     - apt-get install -y python-pip
     - python -V
     - pip install django
+    - python manage.py startapp brwedog_project
     - cd brewdog_project/
     - python manage.py test
 
