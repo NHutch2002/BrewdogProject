@@ -8,7 +8,6 @@ backend test project:
   stage: backend test
   image: python:3.11.0
   script:  
-    - add-apt-repository
     - pip install pipenv
     - pipenv shell
     - pipenv install django
