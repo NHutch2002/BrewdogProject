@@ -14,7 +14,7 @@ backend test project:
     - pip install django
     - cd brewdog_project/
     - pip install django djangorestframework
-    - python manage.py startapp brwedog_project
+    - python manage.py startapp brewdog_project
     - python manage.py migrate
     - python manage.py runserver
     - python manage.py test
