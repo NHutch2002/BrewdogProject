@@ -9,7 +9,7 @@ backend test project:
   image: pyhton:3.11.0
   script:  
     - pip install pipenv
-    - pipenv install shell
+    - pipenv shell
     - pipenv install django
     - cd brewdog_project/
     - pip install django djangorestframework
