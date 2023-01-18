@@ -7,7 +7,7 @@ stages:
 
 pre-testing project:
   stage: pre-testing
-  image: python 3.11.0
+  image: python:3.11.0
   script:
     - pip install pipenv
     - pip3 install shell
