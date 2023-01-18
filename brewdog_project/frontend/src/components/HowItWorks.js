@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "../../static/css/base.css";
+import "../../static/css/howitworks.css";
 
 export default class HowItWorks extends Component {
     constructor(props) {

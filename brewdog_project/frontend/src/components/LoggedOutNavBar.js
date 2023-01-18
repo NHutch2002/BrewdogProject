@@ -1,9 +1,8 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import React from "react";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
-import HumanIcon from "../../static/images/human_icon.png";
-import CalculatorIcon from "../../static/images/calculator_icon.png";
+import { VscAccount } from 'react-icons/vsc';
+import { HiCalculator } from 'react-icons/hi';
 
 
 export default function NavBar() {
@@ -94,7 +93,6 @@ export default function NavBar() {
                 <Grid item xs={2} align="left">
                     <Button color="black" href="/blog">Blog</Button> 
                 </Grid>
-                {/* <Button color="inherit" href="/carboncalculator">Carbon Calculator</Button>  */}
                 <Grid item xs={9} align="center">
                     <IconButton edge="start" color="inherit" aria-label="logo">
                         <a href="/"><img src={brewdogLogo} alt="Brewdog Logo" height="75" width="75"/></a>
@@ -108,7 +106,10 @@ export default function NavBar() {
                     onClick={handleSecondaryClick}
                     onMouseOver={handleSecondaryClick}
                     >
-                        <a><img src={CalculatorIcon} alt="Calculator Icon" height="75" width="75"/></a>                        
+                        <HiCalculator
+                        color="black"
+                        size="60px"
+                        />                    
                     </IconButton>
                     <Menu
                     style={calculatorMenuStyling}
@@ -131,7 +132,10 @@ export default function NavBar() {
                     onClick={handleClick}
                     onMouseOver={handleClick}
                     >
-                        <a><img src={HumanIcon} alt="Human Icon" height="75" width="75"/></a>
+                        <VscAccount
+                        color="black"
+                        size="50px"
+                        />
                     </IconButton>
                     <Menu
                     style={humanMenuStyling}

@@ -9,6 +9,7 @@
     "and": "^0.0.3",
     "axios": "^1.2.2",
     "node.js": "^0.0.1-security",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2"
   },
   "devDependencies": {
