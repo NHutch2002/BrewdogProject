@@ -11,7 +11,9 @@ backend test project:
     - apt-get update -q -y
     - apt-get install -y python-pip
     - python -V
-    - pip install django
+    - pip install pipenv
+    - pipenv shell
+    - pipenv install django
     - cd brewdog_project/
     - pip install django djangorestframework
     - python manage.py startapp brewdog_project
