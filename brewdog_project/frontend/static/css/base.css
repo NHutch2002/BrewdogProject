@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'NewGroteskSquareFIVEWEB';
+    src: url('../fonts/NewGroteskSquareFIVEWEB.woff2') format('woff2'),
+        url('../fonts/NewGroteskSquareFIVEWEB.woff') format('woff');
+}
+@font-face {
+    font-family: 'NewGroteskSquareFOURWEB';
+    src: url('../fonts/NewGroteskSquareFOURWEB.woff2') format('woff2'),
+        url('../fonts/NewGroteskSquareFOURWEB.woff') format('woff');
+}
+body{
+    font-family: 'NewGroteskSquareFOURWEB';
+}
+.title{
+    font-family: 'NewGroteskSquareFIVEWEB';
+    text-align: center;
+}
+.text{
+    text-align: left;
+    font-size: larger;
+    padding:0;
+    margin:0;
+}
