@@ -9,7 +9,7 @@ export default class MyResults extends Component {
         }
     }
     componentDidMount() {
-      axios.get('/brewdog/secondcalculator/')
+      axios.get('/brewdog/calculator/')
         .then(res => {
           this.setState({results: res.data});
         })
