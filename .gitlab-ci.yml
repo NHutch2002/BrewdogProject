@@ -12,7 +12,7 @@ backend test project:
     - apt-get install -y python-pip
     - python -V
     - pip install pipenv
-    - pipenv shell
+    - pip3 install shell
     - pipenv install django
     - cd brewdog_project/
     - pip install django djangorestframework
