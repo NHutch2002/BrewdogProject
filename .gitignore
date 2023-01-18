@@ -18,6 +18,9 @@ __pycache__/
 *.dat
 *password*
 *.httr-oauth*
+
+main.js
+main.js.LICENSE.txt
  
 # Private Node Modules
 node_modules/
