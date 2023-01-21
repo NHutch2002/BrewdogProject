@@ -13,7 +13,7 @@ def unique_company_email(company, email):
 class User(models.Model):
     name = models.CharField(max_length=50)
     company = models.CharField(max_length=50, unique=True)
-    email = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=50, unique=True)
     phone = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=50)
 
