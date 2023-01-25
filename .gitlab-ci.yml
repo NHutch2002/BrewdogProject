@@ -29,7 +29,12 @@ build backend project:
   stage: build backend
   image: python:3.11.0
   script:
+    - pip install pipenv
+    - pip3 install shell
+    - pipenv install django
+    - pip install django djangorestframework
     - cd brewdog_project/
+    - python manage.py migrate
     - python manage.py runserver
 
 build frontend project:
@@ -37,5 +42,7 @@ build frontend project:
   image: node:16
   script:
     - cd brewdog_project/frontend/
+    - npm install
+    - npm i react-scripts
     - npm run build 
 
