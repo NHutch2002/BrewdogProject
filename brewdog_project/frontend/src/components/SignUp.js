@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Stack, Grid } from '@mui/material';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -23,9 +24,10 @@ const SignUp = () => {
     return (
         <div>
             <div>
-            <h1>Sign up</h1>
+            <h1>Create Account</h1>
             <form method="POST" credentials="include" onSubmit={handleSubmit}>
                 <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                <Stack spacing={3} direction="column">
                 <label>
                     Name:
                     <input type="text" name="name" />
@@ -47,6 +49,7 @@ const SignUp = () => {
                     <input type="text" name="password" />
                 </label>
                 <input type="submit" value="Submit" />
+                </Stack>
             </form>
             </div>
         </div>

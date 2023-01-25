@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -8,20 +9,21 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(email, password);
         fetch('/brewdog/login/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
             credentials: 'include'
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    navigate.push('/carboncalculator');
+            .then(res => {
+                if (res.status === 200) {
+                    navigate('/carboncalculator');
                 } else {
-                    console.log(data);
+                    return res.json();
                 }
+            })
+            .then(data => {
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
@@ -29,7 +31,8 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form method="POST" credentials="include" onSubmit={handleSubmit}>
+        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
             <label>
                 Email:
                 <input
@@ -42,8 +45,6 @@ const Login = () => {
             <label>
                 Password:
                 <input
-                    // the required attirbute for the post request is a char field in the backend
-                    //set the type to the same as the backend
                     type="char"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
