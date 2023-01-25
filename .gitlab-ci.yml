@@ -43,5 +43,6 @@ build frontend project:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
-    - npm run build 
+    - npm install -D webpack-cli
+    - npm run build
 
