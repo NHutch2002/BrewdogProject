@@ -35,6 +35,8 @@ class User(models.Model):
         return self.password == password
 
 class Calculator(models.Model):
+    #user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    #created = models.DateTimeField(auto_now_add=True)
     MainsGas = models.IntegerField()
     Fuel = models.IntegerField()
     Oil = models.IntegerField()
