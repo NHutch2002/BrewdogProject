@@ -12,8 +12,8 @@ def unique_company_email(company, email):
 
 class User(models.Model):
     name = models.CharField(max_length=50)
-    company = models.CharField(max_length=50, unique=True)
-    email = models.CharField(max_length=50, unique=True)
+    company = models.CharField(max_length=50, unique=True, default="No company name added")
+    email = models.CharField(max_length=50, unique=True, blank=False)
     phone = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=50)
 

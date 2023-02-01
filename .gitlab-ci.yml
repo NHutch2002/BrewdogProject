@@ -1,11 +1,9 @@
 stages:
-  - backend test
-  - frontend test
-  - build backend
-  - build frontend    
+  - Test
+  - Build  
 
-backend test project:
-  stage: backend test
+Backend Test:
+  stage: Test
   image: python:3.11.0
   script:  
     - pip install pipenv
@@ -13,11 +11,10 @@ backend test project:
     - pipenv install django
     - pip install django djangorestframework
     - cd brewdog_project/
-    - python manage.py migrate
     - python manage.py test
 
-frontend test project:
-  stage: frontend test
+Frontend Test:
+  stage: Test
   image: node:16
   script:
     - cd brewdog_project/frontend/
@@ -25,17 +22,25 @@ frontend test project:
     - npm i react-scripts
     - npm test
 
-build backend project:
-  stage: build backend
+Backend Build:
+  stage: Build
   image: python:3.11.0
   script:
+    - pip install pipenv
+    - pip3 install shell
+    - pipenv install django
+    - pip install django djangorestframework
     - cd brewdog_project/
-    - python manage.py runserver
+    - python manage.py makemigrations
+    - python manage.py migrate
 
-build frontend project:
-  stage: build frontend
+Frontend Build:
+  stage: Build
   image: node:16
   script:
     - cd brewdog_project/frontend/
-    - npm run build 
+    - npm install
+    - npm i react-scripts
+    - npm install -D webpack-cli
+    - npm run build
 
