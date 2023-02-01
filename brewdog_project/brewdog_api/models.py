@@ -53,6 +53,23 @@ class Calculator(models.Model):
     GWRecycling = models.IntegerField()
     SpecialWaste = models.IntegerField()
 
+class CalculatorConstants(models.Model):
+    MainsGas = models.FloatField()
+    Fuel = models.FloatField()
+    Oil = models.FloatField()
+    Coal = models.FloatField()
+    Wood = models.FloatField()
+    GridElectricity = models.FloatField()
+    Electricity = models.FloatField()
+    WFLandfill = models.FloatField()
+    WFReuse = models.FloatField()
+    WFCharity = models.FloatField()
+    BottleRecycling = models.FloatField()
+    AluminiumRecycling = models.FloatField()
+    GWLandfill = models.FloatField()
+    GWRecycling = models.FloatField()
+    SpecialWaste = models.FloatField()
+
 
 
     def __str__(self):

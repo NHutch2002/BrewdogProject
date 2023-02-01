@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Calculator
+from .models import User, Calculator, CalculatorConstants
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,9 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("email", "password", "id")
+
+
+class CalculatorConstantsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CalculatorConstants
+        fields = ("MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling","AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste")

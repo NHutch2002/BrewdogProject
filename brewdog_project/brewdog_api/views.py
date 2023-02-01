@@ -1,13 +1,10 @@
 from django.shortcuts import render
 from django.urls import reverse
 from rest_framework import generics, status
-from .models import User, Calculator, EmailBackend
-from .serializers import UserSerializer, CalculatorSerializer, LoginSerializer
+from .models import User, Calculator, EmailBackend, CalculatorConstants
+from .serializers import UserSerializer, CalculatorSerializer, LoginSerializer, CalculatorConstantsSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.utils.decorators import method_decorator
-from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
@@ -60,4 +57,20 @@ class LoginView(APIView):
     def get(self, request, format=None):
         data = User.objects.all()
         serializer = LoginSerializer(data, many=True)
+        return Response(serializer.data)
+
+class CalculatorConstantsView(generics.CreateAPIView):
+    serializer_class = CalculatorConstantsSerializer
+    queryset = CalculatorConstants.objects.all()
+    def post(self, request, format=None):
+        serializer = CalculatorConstantsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            #return HttpResponseRedirect(reverse('frontend:myresults'))
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, format=None):
+        data = CalculatorConstants.objects.all()
+        serializer = CalculatorConstantsSerializer(data, many=True)
         return Response(serializer.data)
