@@ -1,27 +1,152 @@
-.picDiv{
-    width:100%;
-    max-width:80%;
-    margin:auto;
-    padding:0;
-    margin-top:0;
+body, html {
+    background-color: #111;
+    color: #EEE;
 }
-.textDiv{
-    width:100%;
-    margin:5%;
-    margin-top:0;
-}
-.row{
-    width:100%;
-    margin:0;
-}
-.pic{
-    width:100%;
-    padding:0;
+
+/* Landing styles */
+.landing_pic_container {
+    width: 100%;
     margin: auto;
+    margin-top: -100px;
+    padding: 0;
+    height: 96vh;
 }
-.bodycontent{
-    width:100%;
-    margin-top:0;
-    padding-left: 5%;
-    padding-right: 5%;
+.landing_pic {
+    -webkit-clip-path: polygon(5% 0, 100% 86%, 100% 0);
+    clip-path: polygon(5% 0, 100% 86%, 100% 0);
+    position: absolute;
+    filter: brightness(0.7);
+    z-index: 1;
+    transition: 800ms ease-in-out;
+    overflow: hidden;
+}
+.landing_pic:hover {
+    filter: brightness(0.9);
+    transform: scale(1.01);
+}
+.landing_title_container {
+    position: absolute;
+    z-index: 999;
+    top: 38%;
+    left: 12%;
+    transition: 800ms ease-in-out;
+}
+.landing_title_container:hover {
+    transform: scale(1.015);
+    filter: brightness(1.4);
+    cursor: default;
+}
+.landing_heading {
+    font-family: 'NewGroteskSquareFIVEWEB';
+    text-transform: uppercase;
+    font-size: 10vw;
+    font-weight: inherit;
+    line-height: 7.5vw;
+    letter-spacing: .03em;
+}
+#landing_blue_accent {
+    color: #34D19F;
+    text-shadow: 0 0 10px #34D19F;
+}
+.landing_subheading {
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 4vw;
+    font-family: 'NewGroteskSquareFOURWEB';
+}
+
+/* Text styles */
+.text_div {
+    margin: 0;
+    background-color: #EEE;
+    color: black;
+    padding: 40px 20vh;
+    border-radius: 4px;
+    font-family: Inter;
+    box-shadow: 0 0 6px #EEE;
+    overflow: auto;
+}
+.text {
+    text-align: justify;
+    line-height: 1.2em;
+}
+.text_heading {
+    margin-bottom: 40px;
+    background-color: #111;
+    text-transform: uppercase;
+    padding: 8px 8px 0 8px;
+    color: #EEE;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 60px;
+    box-shadow: 7px 7px 0 #34D19F;
+}
+.text_pic {
+    border-radius: 3px;
+}
+#intro_text {
+    float: left;
+    width: 48%;
+    margin-top: 40px;
+}
+.text_pic#pic_food_at_pub {
+    float: right;
+    width: 48%;
+    margin-top: 40px;
+}
+#other_text {
+    float: right;
+    width: 68%;
+    margin-bottom: 60px;
+}
+.text_pic#pic_other {
+    float: left;
+    width: 28%;
+    margin-bottom: 60px;
+}
+/* Calculator Section */
+.calculator_div {
+    margin: 0;
+    background-color: #34D19F;
+    color: black;
+    padding: 60px 20vh 80px 20vh;
+    border-radius: 4px;
+    font-family: Inter;
+    box-shadow: 0 0 6px #EEE;
+    overflow: auto;
+}
+.calculator_div .text_heading {
+    box-shadow: 7px 7px 0 #EEE;
+}
+#calculator_text {
+    float: left;
+    width: 56%;
+    margin-top: 40px;
+}
+.text_pic#pic_calculator {
+    float: right;
+    width: 36%;
+    margin-top: 40px;
+    color: #FF6452;
+}
+#calculator_text button {
+    text-align: center;
+    background-color: #FF6452;
+    border-radius: 6px;
+    color: white;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 28px;
+    text-transform: uppercase;
+    padding: 10px 10px 0 10px;
+    margin-top: 20px;
+    transition: 300ms ease-in-out;
+    box-sizing: none;
+    border: 2px solid white;
+    width: 30%;
+    word-spacing: 0.3em;
+}
+#calculator_text button:hover {
+    transform: scale(1.03);
+    background-color: #FF8875;
+    cursor: pointer;
 }
