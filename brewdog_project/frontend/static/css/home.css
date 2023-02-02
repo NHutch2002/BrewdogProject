@@ -12,12 +12,13 @@ body, html {
     height: 96vh;
 }
 .landing_pic {
-    -webkit-clip-path: polygon(5% 0, 100% 90%, 100% 0);
-    clip-path: polygon(5% 0, 100% 90%, 100% 0);
+    -webkit-clip-path: polygon(5% 0, 100% 86%, 100% 0);
+    clip-path: polygon(5% 0, 100% 86%, 100% 0);
     position: absolute;
     filter: brightness(0.7);
     z-index: 1;
     transition: 800ms ease-in-out;
+    overflow: hidden;
 }
 .landing_pic:hover {
     filter: brightness(0.9);

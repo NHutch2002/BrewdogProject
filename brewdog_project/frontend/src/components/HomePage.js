@@ -15,7 +15,7 @@ export default class HomePage extends Component {
             <div className="container-fluid" >
                     
                 <div className="landing_pic_container">
-                    <img className="landing_pic" src={Landing} alt="Brewdog Banner"/>
+                    <img className="landing_pic" width="94%" src={Landing} alt="Brewdog Banner"/>
                     <div className="landing_title_container">
                         <h1 className="landing_heading" >Planet First<br />Locals</h1>
                         <h2 className="landing_subheading"><a id="landing_blue_accent">How low can you go?</a></h2>
