@@ -1,30 +1,40 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default class MyResults extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            results: null
-        }
-    }
-    componentDidMount() {
-      axios.get('/brewdog/calculator/')
-        .then(res => {
-          this.setState({results: res.data});
+const MyResults = () => {
+    const navigate = useNavigate();
+    const [results, setResults] = useState([]);
+
+    useEffect(()=>{
+        fetch('/brewdog/calculator')
+        .then(response => response.json())
+        .then(data => {
+            setResults(data);
         })
-    }
+        .catch(error => {
+            console.log(navigate('/brewdog/calculator'))
+            console.log(error);
+        });
+    },[])
+
     
-    render() {
-        return (
+    return (
         <div>
             <h1>My Results</h1>
-            {this.state.results ? this.state.results.map(result => {
-                <li>{result.data_name} : {result.data_value}</li>
-            }) : <div>Loading...</div>
+            {
+                results ? 
+                results.map(result => {
+                    console.log(result);
+                    return(
+                    <li>Gas: {result.MainsGas}</li>
+                    );
+                }) 
+                : <div>Loading...</div>
             }
 
         </div>
-        );
-    }
+    );
+    
 }
+
+export default MyResults;
