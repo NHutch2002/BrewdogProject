@@ -64,13 +64,6 @@ export default function NavBar() {
         window.location.href = "/myresults";
     }
 
-    // const muiStyles = {
-    //     toolbar: {
-    //         color: "white",
-    //         textColour: "black",
-    //     }
-    // }
-
     const humanMenuStyling = {
         position: "relative",
         top: "40px",
