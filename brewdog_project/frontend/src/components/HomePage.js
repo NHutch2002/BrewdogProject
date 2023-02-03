@@ -15,7 +15,7 @@ export default class HomePage extends Component {
             <div className="container-fluid" >
                     
                 <div className="landing_pic_container">
-                    <img className="landing_pic" width="94%" src={Landing} alt="Brewdog Banner"/>
+                    <img className="landing_pic" src={Landing} alt="Brewdog Banner"/>
                     <div className="landing_title_container">
                         <h1 className="landing_heading" >Planet First<br />Locals</h1>
                         <h2 className="landing_subheading"><a id="landing_blue_accent">How low can you go?</a></h2>
@@ -68,7 +68,9 @@ export default class HomePage extends Component {
                         we have totally embraced the need to be a business that 
                         is future-ready and supportive of those who are ready to 
                         join us.</p>
-                        <button>&#9654; Launch</button>
+                        <form action="/carboncalculator">
+                            <button type="submit" value="&#9654; Launch">&#9654; Launch</button>
+                        </form>
                     </div>
                     <img className="text_pic" id="pic_calculator" src={Calculator} alt="Picture of a person using a calculator"/>
                 </div>

@@ -19,6 +19,7 @@ body, html {
     z-index: 1;
     transition: 800ms ease-in-out;
     overflow: hidden;
+    width:"94%";
 }
 .landing_pic:hover {
     filter: brightness(0.9);
