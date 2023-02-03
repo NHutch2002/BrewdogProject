@@ -1,6 +1,7 @@
 body, html {
     background-color: #111;
     color: #EEE;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 /* Landing styles */
