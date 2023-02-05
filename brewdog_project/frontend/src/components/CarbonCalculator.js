@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import {Grid, Stack} from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
-    let calculatorConstants = {};
-    const [totalResults, setTotalResults] = useState([]);
+    const [loadingConstants, setLoadingConstants] = useState(true);
+    const [calculatorConstants, setFinalConstants] = useState({});
+    const [totalResults, setTotalResults] = useState(0);
     const [MainsGas, setMainsGas] = useState(0);
     const [Fuel, setFuel] = useState(0);
     const [Oil, setOil] = useState(0);
@@ -37,22 +39,19 @@ const CarbonCalculator = () => {
     const [GWRecyclingResults, setGWRecyclingResults] = useState(0);
     const [SpecialWasteResults, setSpecialWasteResults] = useState(0);
 
-
-
-    const loadCalculatorConstants = () => {
+    useEffect(() => {
         fetch('/brewdog/calculatorconstants/')
-            .then(response => response.json())
-            .then(data => {
-            for(let i=0; i< Object.getOwnPropertyNames(data[0]).length; i++){
-                calculatorConstants[Object.getOwnPropertyNames(data[0])[i]] = data[0][Object.getOwnPropertyNames(data[0])[i]];
-            }})
-            .catch(error => console.error(error));
-    };
-    loadCalculatorConstants();
+          .then(response => response.json())
+          .then(data => {
+            setFinalConstants(data[0]);
+            setLoadingConstants(false);
+          })
+          .catch(error => console.error(error));
+      }, []);
 
     useEffect(() => {
         handleUpdateTotalResult();
-    },[]);
+    },[MainGasResults, FuelResults, OilResults, CoalResults, WoodResults, GridElectricityResults, ElectricityResults, WFLandfillResults, WFReuseResults, WFCharityResults, BottleRecyclingResults, AluminiumRecyclingResults, GWLandfillResults, GWRecyclingResults, SpecialWasteResults]);
 
     const handleUpdateIndividualResult  = (stateName, newValue) => {
         switch (stateName) {
@@ -124,7 +123,7 @@ const CarbonCalculator = () => {
 
     const handleUpdateTotalResult = () => {
         setTotalResults([
-            MainGasResults * calculatorConstants.MainsGas + FuelResults * calculatorConstants.Fuel + OilResults * calculatorConstants.Oil + CoalResults * calculatorConstants.Coal + WoodResults * calculatorConstants.Wood + GridElectricityResults * calculatorConstants.GridElectricity + ElectricityResults * calculatorConstants.Electricity + WFLandfillResults * calculatorConstants.WFLandfill + WFReuseResults * calculatorConstants.WFReuse + WFCharityResults * calculatorConstants.WFCharity + BottleRecyclingResults * calculatorConstants.BottleRecycling + AluminiumRecyclingResults * calculatorConstants.AluminiumRecycling + GWLandfillResults * calculatorConstants.GWLandfill + GWRecyclingResults * calculatorConstants.GWRecycling + SpecialWasteResults * calculatorConstants.SpecialWaste
+            MainGasResults + FuelResults + OilResults + CoalResults + WoodResults + GridElectricityResults + ElectricityResults + WFLandfillResults + WFReuseResults + WFCharityResults + BottleRecyclingResults + AluminiumRecyclingResults + GWLandfillResults + GWRecyclingResults + SpecialWasteResults
         ]);
     }
 
@@ -149,53 +148,161 @@ const CarbonCalculator = () => {
 
     return (
         <>
-        <h1>Carbon Footprint Calculator</h1>
-                <Stack direction="column" spacing={2}>
-                <form method="POST" credentials="include" onSubmit={handleSubmit}>
-                <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                <h2>Energy Consumed</h2>
-                    <h4>Heating and Other Fuel Use</h4>
-                    <Stack direction="row" spacing={2}>
-                        <Stack direction="column">
-                            <label>Mains Gas:</label>
-                            <input type="number" name="MainsGas" onChange={event => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/><br />
-                            <label>Fuel (Diesel):</label>
-                            <input type="number" name="Fuel" onChange={event => handleUpdateIndividualResult("Fuel", event.target.value)} value={Fuel}/><br/>
-                            <label>Oil:</label>
-                            <input type="number" name="Oil" onChange={event => handleUpdateIndividualResult("Oil", event.target.value)} value={Oil}/><br/>
-                            <label>Coal:</label>
-                            <input type="number" name="Coal" onChange={event => handleUpdateIndividualResult("Coal", event.target.value)} value={Coal}/><br/>
-                            <label>Wood:</label>
-                            <input type="number" name="Wood" onChange={event => handleUpdateIndividualResult("Wood", event.target.value)} value={Wood}/><br/>
-                            <label>Grid Electricity:</label>
-                            <input type="number" name="GridElectricity" onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity}/><br/>
-                            <label>Electricity (Low Carbon Supplier):</label>
-                            <input type="number" name="Electricity" onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity}/><br/>
-                        </Stack>
-                        </Stack>
-
-                            <h4>Food Waste</h4>
-                            <label>Waste Food to Landfill:</label>
-                            <input type="number" name="WFLandfill" onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill}/><br/>
-                            <label>Waste Food to Reuse/Composting:</label>
-                            <input type="number" name="WFReuse" onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse}/><br/>
-                            <label>Waste Food to Charity:</label>
-                            <input type="number" name="WFCharity" onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity}/><br/>
-                            <h4>Solid Waste</h4>
-                            <label>Bottles Recycling:</label>
-                            <input type="number" name="BottleRecycling" onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling}/><br/>
-                            <label>Aluminium Cans Recycling:</label>
-                            <input type="number" name="AluminiumRecycling" onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling}/><br/>
-                            <label>General Waste to Landfill:</label>
-                            <input type="number" name="GWLandfill" onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/><br/>
-                            <label>General Waste to Recylcing:</label>
-                            <input type="number" name="GWRecycling" onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/><br/>
-                            <label>Special Waste:</label>
-                            <input type="number" name="SpecialWaste" onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/><br/>
-
-                    <input type="submit" value="Submit"/>
-                    </form>   
-                </Stack>
+        <h1 
+        style={{textAlign: "center", marginTop: "20px", marginBottom: "20px"}}
+        >Carbon Footprint Calculator</h1>
+        {!loadingConstants && <CircularProgress style={{ margin: "0 auto", marginTop: "20px" }} /> &&
+        <Stack direction="column" spacing={2} style={{ margin: "0 auto", maxWidth: "500px" }}>
+        <form method="POST" credentials="include" onSubmit={handleSubmit}>
+          <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken" />
+          <Stack direction="row" spacing={2}>
+            <Stack direction="column">
+              <table style={{ width: "100%", textAlign: "center" }}>
+                <thead>
+                  <tr>
+                    <th>Carbon Source</th>
+                    <th>Input</th>
+                    <th>Constant</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Heating and Other Fuel use</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                  <tr>
+                    <td>Mains Gas:</td>
+                    <td>
+                      <input type="number" name="MainsGas" onChange={(event) => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/>
+                    </td>
+                    <td>{calculatorConstants.MainsGas}</td>
+                    <td>{MainGasResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Fuel (Diesel):</td>
+                    <td>
+                      <input type="number" name="Fuel" onChange={(event) => handleUpdateIndividualResult("Fuel", event.target.value) } value={Fuel}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Fuel}</td>
+                    <td>{FuelResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Oil:</td>
+                    <td>
+                      <input type="number" name="Oil" onChange={(event) => handleUpdateIndividualResult("Oil", event.target.value) } value={Oil}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Oil}</td>
+                    <td>{OilResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Coal:</td>
+                    <td>
+                      <input type="number" name="Coal" onChange={(event) => handleUpdateIndividualResult("Coal", event.target.value) } value={Coal}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Coal}</td>
+                    <td>{CoalResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Wood:</td>
+                    <td>
+                      <input type="number" name="Wood" onChange={(event) => handleUpdateIndividualResult("Wood", event.target.value) } value={Wood}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Wood}</td>
+                    <td>{WoodResults}</td>
+              </tr>
+              <tr>
+                <td><label>Grid Electricity:</label></td>
+                <td><input type="number" name="GridElectricity" onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity} /></td>
+                <td>{calculatorConstants.GridElectricity}</td>
+                <td>{GridElectricityResults}</td>
+              </tr>
+              <tr>
+                <td><label>Electricity (Low Carbon Supplier):</label></td>
+                <td><input type="number" name="Electricity" onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity} /></td>
+                <td>{calculatorConstants.Electricity}</td>
+                <td>{ElectricityResults}</td>
+              </tr>
+              <tr>
+                <td>Food Waste</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+              <tr>
+                <td><label>Waste Food to Landfill:</label></td>
+                <td><input type="number" name="WFLandfill" onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill} /></td>
+                <td>{calculatorConstants.WFLandfill}</td>
+                <td>{WFLandfillResults}</td>
+                </tr>
+                <tr>
+                <td><label>Waste Food to Reuse/Composting:</label></td>
+                <td><input type="number" name="WFReuse" onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse} /></td>
+                <td>{calculatorConstants.WFReuse}</td>
+                <td>{WFReuseResults}</td>
+                </tr>
+                <tr>
+                <td><label>Waste Food to Charity:</label></td>
+                <td><input type="number" name="WFCharity" onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity} /></td>
+                <td>{calculatorConstants.WFCharity}</td>
+                <td>{WFCharityResults}</td>
+                </tr>
+                <tr>
+                <td>Solid Waste</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <td><label>Bottles Recycling</label></td>
+                <td><input type="number" name="BottleRecycling" onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling} /></td>
+                <td>{calculatorConstants.BottleRecycling}</td>
+                <td>{BottleRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>Aluminium Cans Recucling </label></td>
+                <td><input type="number" name="AluminiumRecycling" onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling} /></td>
+                <td>{calculatorConstants.AluminiumRecycling}</td>
+                <td>{AluminiumRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>General Waste to Landfill</label></td>
+                <td><input type="number" name="GWLandfill" onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/></td>
+                <td>{calculatorConstants.GWLandfill}</td>
+                <td>{GWLandfillResults}</td>
+                </tr>
+                <tr>
+                <td><label>General Waste to Recycling</label></td>
+                <td><input type="number" name="GWRecycling" onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/></td>
+                <td>{calculatorConstants.GWRecycling}</td>
+                <td>{GWRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>Special Waste</label></td>
+                <td><input type="number" name="SpecialWaste" onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/></td>
+                <td>{calculatorConstants.SpecialWaste}</td>
+                <td>{SpecialWasteResults}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>{totalResults}</td>
+                    </tr>
+            </tbody>
+            </table>
+          </Stack>
+        </Stack>
+        <input type="submit" value="Submit"/>
+        </form>   
+    </Stack>
+        }
         </>
         );
     }
