@@ -10,6 +10,7 @@ body, html {
     margin-top: -100px;
     padding: 0;
     height: 96vh;
+    background-color: #111;
 }
 .landing_pic {
     -webkit-clip-path: polygon(5% 0, 100% 86%, 100% 0);
@@ -19,7 +20,7 @@ body, html {
     z-index: 1;
     transition: 800ms ease-in-out;
     overflow: hidden;
-    width:"94%";
+    width: 100%;
 }
 .landing_pic:hover {
     filter: brightness(0.9);
@@ -44,6 +45,7 @@ body, html {
     font-weight: inherit;
     line-height: 7.5vw;
     letter-spacing: .03em;
+    color: #EEE;
 }
 #landing_blue_accent {
     color: #34D19F;
@@ -59,7 +61,8 @@ body, html {
 
 /* Text styles */
 .text_div {
-    margin: 0;
+    margin: auto;
+    width: 80vw;
     background-color: #EEE;
     color: black;
     padding: 40px 20vh;
@@ -107,7 +110,8 @@ body, html {
 }
 /* Calculator Section */
 .calculator_div {
-    margin: 0;
+    margin: auto;
+    width: 80vw;
     background-color: #34D19F;
     color: black;
     padding: 60px 20vh 80px 20vh;

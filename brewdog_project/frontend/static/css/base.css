@@ -10,15 +10,15 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body{
+body {
     font-family: 'NewGroteskSquareFOURWEB';
 }
 
-.title{
+.title {
     font-family: 'NewGroteskSquareFIVEWEB';
 }
 
-.heading{
+.heading {
     font-family: 'NewGroteskSquareFIVEWEB';
     text-transform: uppercase;
     font-size: 3rem;
@@ -29,7 +29,7 @@ body{
     font-weight: inherit;
 }
 
-.subheading{
+.subheading {
     letter-spacing: .02em;
     line-height: 1.2;
     text-transform: uppercase;

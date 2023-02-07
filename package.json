@@ -8,6 +8,8 @@
     "@mui/material": "^5.11.4",
     "and": "^0.0.3",
     "axios": "^1.2.2",
+    "bootstrap": "^5.2.3",
+    "mdb-ui-kit": "^6.1.0",
     "node.js": "^0.0.1-security",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2",
