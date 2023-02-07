@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Stack, Grid } from '@mui/material';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Stack} from "@mui/material";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -8,18 +8,18 @@ const SignUp = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('/brewdog/user/', {
-            method: 'POST',
+        fetch("/brewdog/user/", {
+            method: "POST",
             body: data,
-            credentials: 'include'
+            credentials: "include"
         }).then(response => {
             if (response.ok) {
-                navigate('/carboncalculator');
+                navigate("/carboncalculator");
             } else {
                 console.log("Error");
             }
         });
-    }
+    };
 
     return (
         <div>
@@ -54,6 +54,6 @@ const SignUp = () => {
             </div>
         </div>
         );
-}
+};
 export default SignUp;
 

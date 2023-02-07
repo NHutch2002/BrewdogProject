@@ -1,8 +1,8 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
 import React from "react";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
-import { VscAccount } from 'react-icons/vsc';
-import { HiCalculator } from 'react-icons/hi';
+import { VscAccount } from "react-icons/vsc";
+import { HiCalculator } from "react-icons/hi";
 
 
 export default function NavBar() {
@@ -68,13 +68,13 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "220px",
-    }
+    };
 
     const calculatorMenuStyling = {
         position: "fixed",
         top: "50px",
         height: "250px",
-    }
+    };
 
     return (
         <Grid container spacing={1}>

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
@@ -7,18 +7,18 @@ const CarbonCalculator = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('/brewdog/calculator/', {
-            method: 'POST',
+        fetch("/brewdog/calculator/", {
+            method: "POST",
             body: data,
-            credentials: 'include'
+            credentials: "include"
         }).then(response => {
             if (response.ok) {
-                navigate('/myresults');
+                navigate("/myresults");
             } else {
                 console.log("Error");
             }
         });
-    }
+    };
 
     return (
         <div>
@@ -77,5 +77,5 @@ const CarbonCalculator = () => {
                 </div>
             </div>
         );
-    }
+    };
 export default CarbonCalculator;

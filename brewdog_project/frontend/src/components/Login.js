@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('/brewdog/login/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+        fetch("/brewdog/login/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
-            credentials: 'include'
+            credentials: "include"
         })
             .then(res => {
                 if (res.status === 200) {
-                    navigate('/carboncalculator');
+                    navigate("/carboncalculator");
                 } else {
                     return res.json();
                 }
@@ -54,7 +53,7 @@ const Login = () => {
             <button type="submit">Login</button>
         </form>
     );
-}
+};
 
 export default Login;
 

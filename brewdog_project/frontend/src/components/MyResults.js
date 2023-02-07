@@ -1,21 +1,21 @@
-import React, { Component, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyResults = () => {
     const navigate = useNavigate();
     const [results, setResults] = useState([]);
 
     useEffect(()=>{
-        fetch('/brewdog/calculator')
+        fetch("/brewdog/calculator")
         .then(response => response.json())
         .then(data => {
             setResults(data);
         })
         .catch(error => {
-            console.log(navigate('/brewdog/calculator'))
+            console.log(navigate("/brewdog/calculator"));
             console.log(error);
         });
-    },[])
+    },[]);
 
     
     return (
@@ -35,6 +35,6 @@ const MyResults = () => {
         </div>
     );
     
-}
+};
 
 export default MyResults;
