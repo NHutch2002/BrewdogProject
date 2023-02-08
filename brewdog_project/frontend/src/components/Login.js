@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
 import "../../static/css/login.css";
-import * as mdb from 'mdb-ui-kit';
 
 const Login = () => {
     const [email, setEmail] = useState('');
