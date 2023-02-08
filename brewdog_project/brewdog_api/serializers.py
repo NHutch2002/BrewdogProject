@@ -1,10 +1,27 @@
 from rest_framework import serializers
-from .models import User, Calculator
+from brewdog_api.models import Calculator, BrewdogUser
+from django.contrib.auth.models import User
+
+class BrewdogUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BrewdogUser
+        fields = ["company", "email", "phone"]
 
 class UserSerializer(serializers.ModelSerializer):
+    brewdogUser = BrewdogUserSerializer()
+    
     class Meta:
         model = User
-        fields = ("id", "name", "company", "email", "phone", "password")
+        fields = ["id", "username", "password", "brewdogUser"]
+        
+
+    def create(self, validated_data):
+        print("create here!")
+        brewdogUserData = validated_data.pop("brewdogUser")
+        user = User.objects.create(**validated_data)
+        brewdogUser = BrewdogUser.objects.create(user=user, **brewdogUserData)
+        return brewdogUser, user
+
 
 class CalculatorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,5 +30,5 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = BrewdogUser
         fields = ("email", "password", "id")

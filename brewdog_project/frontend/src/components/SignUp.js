@@ -16,9 +16,11 @@ const SignUp = () => {
             if (response.ok) {
                 navigate('/carboncalculator');
             } else {
-                console.log("Error");
+                response.text().then( text => { throw new Error(text) })
             }
-        });
+        }).catch( error => {
+            console.log("Error: " + error )
+        })
     }
 
     return (
@@ -30,7 +32,7 @@ const SignUp = () => {
                 <Stack spacing={3} direction="column">
                 <label>
                     Name:
-                    <input type="text" name="name" />
+                    <input type="text" name="username" />
                 </label>
                 <label>
                     Email:
