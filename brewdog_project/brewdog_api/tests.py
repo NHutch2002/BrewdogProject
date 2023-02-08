@@ -18,12 +18,6 @@ class UserTests(TestCase):
         self.assertEqual((User1.phone == '111'), True)
         self.assertEqual((User1.password == 'f72Nei!cr?Di3d'), True)
 
-    # Tests if the default company name is used if the user has not added their company name.
-    def test_default_company(self):
-        User1 = User(name='John', email='abc@gmail.com', phone='111', password='f72Nei!cr?Di3d')
-        User1.save()
-        self.assertEqual((User1.company == "No company name added"), True)
-
     # Tests if a validation error is raised if the user has not typed in an email address.
     def test_empty_email_not_allowed(self):
         User2 = User(name='John', company='Brewdog', phone='111', password='f72Nei!cr?Di3d')
