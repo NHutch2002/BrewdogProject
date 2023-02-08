@@ -1,8 +1,134 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import {Grid, Stack} from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
+    const [loadingConstants, setLoadingConstants] = useState(true);
+    const [calculatorConstants, setFinalConstants] = useState({});
+    const [totalResults, setTotalResults] = useState(0);
+    const [MainsGas, setMainsGas] = useState(0);
+    const [Fuel, setFuel] = useState(0);
+    const [Oil, setOil] = useState(0);
+    const [Coal, setCoal] = useState(0);
+    const [Wood, setWood] = useState(0);
+    const [GridElectricity, setGridElectricity] = useState(0);
+    const [Electricity, setElectricity] = useState(0);
+    const [WFLandfill, setWFLandfill] = useState(0);
+    const [WFReuse, setWFReuse] = useState(0);
+    const [WFCharity, setWFCharity] = useState(0);
+    const [BottleRecycling, setBottleRecycling] = useState(0);
+    const [AluminiumRecycling, setAluminiumRecycling] = useState(0);
+    const [GWLandfill, setGWLandfill] = useState(0);
+    const [GWRecycling, setGWRecycling] = useState(0);
+    const [SpecialWaste, setSpecialWaste] = useState(0);
+    const [MainGasResults, setMainGasResults] = useState(0);
+    const [FuelResults, setFuelResults] = useState(0);
+    const [OilResults, setOilResults] = useState(0);
+    const [CoalResults, setCoalResults] = useState(0);
+    const [WoodResults, setWoodResults] = useState(0);
+    const [GridElectricityResults, setGridElectricityResults] = useState(0);
+    const [ElectricityResults, setElectricityResults] = useState(0);
+    const [WFLandfillResults, setWFLandfillResults] = useState(0);
+    const [WFReuseResults, setWFReuseResults] = useState(0);
+    const [WFCharityResults, setWFCharityResults] = useState(0);
+    const [BottleRecyclingResults, setBottleRecyclingResults] = useState(0);
+    const [AluminiumRecyclingResults, setAluminiumRecyclingResults] = useState(0);
+    const [GWLandfillResults, setGWLandfillResults] = useState(0);
+    const [GWRecyclingResults, setGWRecyclingResults] = useState(0);
+    const [SpecialWasteResults, setSpecialWasteResults] = useState(0);
+
+    useEffect(() => {
+        fetch('/brewdog/calculatorconstants/')
+          .then(response => response.json())
+          .then(data => {
+            setFinalConstants(data[0]);
+            setLoadingConstants(false);
+          })
+          .catch(error => console.error(error));
+      }, []);
+
+    useEffect(() => {
+        handleUpdateTotalResult();
+    },[MainGasResults, FuelResults, OilResults, CoalResults, WoodResults, GridElectricityResults, ElectricityResults, WFLandfillResults, WFReuseResults, WFCharityResults, BottleRecyclingResults, AluminiumRecyclingResults, GWLandfillResults, GWRecyclingResults, SpecialWasteResults]);
+
+    const handleUpdateIndividualResult  = (stateName, newValue) => {
+        switch (stateName) {
+            case "MainsGas":
+                console.log("test", calculatorConstants);
+                setMainsGas(newValue);
+                setMainGasResults(newValue * calculatorConstants.MainsGas);
+                break;
+            case "Fuel":
+                setFuel(newValue);
+                setFuelResults(newValue * calculatorConstants.Fuel);
+                break;
+            case "Oil":
+                setOil(newValue);
+                setOilResults(newValue * calculatorConstants.Oil);
+                break;
+            case "Coal":
+                setCoal(newValue);
+                setCoalResults(newValue * calculatorConstants.Coal);
+                break;
+            case "Wood":
+                setWood(newValue);
+                setWoodResults(newValue * calculatorConstants.Wood);
+                break;
+            case "GridElectricity":
+                setGridElectricity(newValue);
+                setGridElectricityResults(newValue * calculatorConstants.GridElectricity);
+                break;
+            case "Electricity":
+                setElectricity(newValue);
+                setElectricityResults(newValue * calculatorConstants.Electricity);
+                break;
+            case "WFLandfill":
+                setWFLandfill(newValue);
+                setWFLandfillResults(newValue * calculatorConstants.WFLandfill);
+                break;
+            case "WFReuse":
+                setWFReuse(newValue);
+                setWFReuseResults(newValue * calculatorConstants.WFReuse);
+                break;
+            case "WFCharity":
+                setWFCharity(newValue);
+                setWFCharityResults(newValue * calculatorConstants.WFCharity);
+                break;
+            case "BottleRecycling":
+                setBottleRecycling(newValue);
+                setBottleRecyclingResults(newValue * calculatorConstants.BottleRecycling);
+                break;
+            case "AluminiumRecycling":
+                setAluminiumRecycling(newValue);
+                setAluminiumRecyclingResults(newValue * calculatorConstants.AluminiumRecycling);
+                break;
+            case "GWLandfill":
+                setGWLandfill(newValue);
+                setGWLandfillResults(newValue * calculatorConstants.GWLandfill);
+                break;
+            case "GWRecycling":
+                setGWRecycling(newValue);
+                setGWRecyclingResults(newValue * calculatorConstants.GWRecycling);
+                break;
+            case "SpecialWaste":
+                setSpecialWaste(newValue);
+                setSpecialWasteResults(newValue * calculatorConstants.SpecialWaste);
+                break;
+            default:
+                console.log("Error");
+        }
+    }
+
+    const handleUpdateTotalResult = () => {
+        setTotalResults([
+            MainGasResults + FuelResults + OilResults + CoalResults + WoodResults + GridElectricityResults + ElectricityResults + WFLandfillResults + WFReuseResults + WFCharityResults + BottleRecyclingResults + AluminiumRecyclingResults + GWLandfillResults + GWRecyclingResults + SpecialWasteResults
+        ]);
+    }
+
+
+
   
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,61 +147,205 @@ const CarbonCalculator = () => {
     }
 
     return (
-        <div>
-            <div>
-                <h1>Carbon Footprint Calculator</h1>
-            </div>
-            <div>
-                <form method="POST" credentials="include" onSubmit={handleSubmit}>
-                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                    <div>
-                        <h2>Energy Consumed</h2>
-                        <div>
-                            <h4>Heating and Other Fuel Use</h4>
-                            <label>Mains Gas:</label>
-                            <input type="number" name="MainsGas"/><br/>
-                            <label>Fuel (Diesel):</label>
-                            <input type="number" name="Fuel"/><br/>
-                            <label>Oil:</label>
-                            <input type="number" name="Oil"/><br/>
-                            <label>Coal:</label>
-                            <input type="number" name="Coal"/><br/>
-                            <label>Wood:</label>
-                            <input type="number" name="Wood"/><br/>
-                            <label>Grid Electricity:</label>
-                            <input type="number" name="GridElectricity"/><br/>
-                            <label>Electricity (Low Carbon Supplier):</label>
-                            <input type="number" name="Electricity"/><br/>
-                        </div>
-
-                        <div>
-                            <h4>Food Waste</h4>
-                            <label>Waste Food to Landfill:</label>
-                            <input type="number" name="WFLandfill"/><br/>
-                            <label>Waste Food to Reuse/Composting:</label>
-                            <input type="number" name="WFReuse"/><br/>
-                            <label>Waste Food to Charity:</label>
-                            <input type="number" name="WFCharity"/><br/>
-                        </div>
-                        <div>
-                            <h4>Solid Waste</h4>
-                            <label>Bottles Recycling:</label>
-                            <input type="number" name="BottleRecycling"/><br/>
-                            <label>Aluminium Cans Recycling:</label>
-                            <input type="number" name="AluminiumRecycling"/><br/>
-                            <label>General Waste to Landfill:</label>
-                            <input type="number" name="GWLandfill"/><br/>
-                            <label>General Waste to Recylcing:</label>
-                            <input type="number" name="GWRecycling"/><br/>
-                            <label>Special Waste:</label>
-                            <input type="number" name="SpecialWaste"/><br/>
-                        </div>
-                        
-                    </div>
-                    <input type="submit" value="Submit"/>
-                    </form>   
-                </div>
-            </div>
+        <>
+        <h1 
+        style={{textAlign: "center", 
+        marginTop: "20px", 
+        marginBottom: "20px"}}
+        >Carbon Footprint Calculator</h1>
+        {!loadingConstants && <CircularProgress style={{ margin: "0 auto",
+        marginTop: "20px" }} /> &&
+        <Stack direction="column" 
+        spacing={2} 
+        style={{ margin: "0 auto", 
+        maxWidth: "500px" }}>
+        <form method="POST" 
+        credentials="include" 
+        onSubmit={handleSubmit}>
+          <input type="hidden" 
+          name="csrfmiddlewaretoken" 
+          value="csrftoken" />
+          <Stack direction="row" 
+          spacing={2}>
+            <Stack direction="column">
+              <table style={{ width: "100%", 
+              textAlign: "center" }}>
+                <thead>
+                  <tr>
+                    <th>Carbon Source</th>
+                    <th>Input</th>
+                    <th>Constant</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Heating and Other Fuel use</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                  <tr>
+                    <td>Mains Gas:</td>
+                    <td>
+                      <input type="number" 
+                      name="MainsGas" 
+                      onChange={(event) => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/>
+                    </td>
+                    <td>{calculatorConstants.MainsGas}</td>
+                    <td>{MainGasResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Fuel (Diesel):</td>
+                    <td>
+                      <input type="number" 
+                      name="Fuel" 
+                      onChange={(event) => handleUpdateIndividualResult("Fuel", event.target.value) } value={Fuel}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Fuel}</td>
+                    <td>{FuelResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Oil:</td>
+                    <td>
+                      <input type="number" 
+                      name="Oil" 
+                      onChange={(event) => handleUpdateIndividualResult("Oil", event.target.value) } value={Oil}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Oil}</td>
+                    <td>{OilResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Coal:</td>
+                    <td>
+                      <input type="number" 
+                      name="Coal" 
+                      onChange={(event) => handleUpdateIndividualResult("Coal", event.target.value) } value={Coal}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Coal}</td>
+                    <td>{CoalResults}</td>
+                  </tr>
+                  <tr>
+                    <td>Wood:</td>
+                    <td>
+                      <input type="number" 
+                      name="Wood" 
+                      onChange={(event) => handleUpdateIndividualResult("Wood", event.target.value) } value={Wood}
+                      />
+                    </td>
+                    <td>{calculatorConstants.Wood}</td>
+                    <td>{WoodResults}</td>
+              </tr>
+              <tr>
+                <td><label>Grid Electricity:</label></td>
+                <td><input 
+                type="number" 
+                name="GridElectricity" 
+                onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity} /></td>
+                <td>{calculatorConstants.GridElectricity}</td>
+                <td>{GridElectricityResults}</td>
+              </tr>
+              <tr>
+                <td><label>Electricity (Low Carbon Supplier):</label></td>
+                <td><input type="number" name="Electricity" 
+                onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity} /></td>
+                <td>{calculatorConstants.Electricity}</td>
+                <td>{ElectricityResults}</td>
+              </tr>
+              <tr>
+                <td>Food Waste</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+              <tr>
+                <td><label>Waste Food to Landfill:</label></td>
+                <td><input type="number" 
+                name="WFLandfill" 
+                onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill} /></td>
+                <td>{calculatorConstants.WFLandfill}</td>
+                <td>{WFLandfillResults}</td>
+                </tr>
+                <tr>
+                <td><label>Waste Food to Reuse/Composting:</label></td>
+                <td><input type="number" 
+                name="WFReuse" 
+                onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse} /></td>
+                <td>{calculatorConstants.WFReuse}</td>
+                <td>{WFReuseResults}</td>
+                </tr>
+                <tr>
+                <td><label>Waste Food to Charity:</label></td>
+                <td><input type="number" 
+                name="WFCharity" 
+                onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity} /></td>
+                <td>{calculatorConstants.WFCharity}</td>
+                <td>{WFCharityResults}</td>
+                </tr>
+                <tr>
+                <td>Solid Waste</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <td><label>Bottles Recycling</label></td>
+                <td><input type="number" 
+                name="BottleRecycling" 
+                onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling} /></td>
+                <td>{calculatorConstants.BottleRecycling}</td>
+                <td>{BottleRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>Aluminium Cans Recucling </label></td>
+                <td><input type="number" 
+                name="AluminiumRecycling" 
+                onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling} /></td>
+                <td>{calculatorConstants.AluminiumRecycling}</td>
+                <td>{AluminiumRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>General Waste to Landfill</label></td>
+                <td><input type="number" 
+                name="GWLandfill" 
+                onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/></td>
+                <td>{calculatorConstants.GWLandfill}</td>
+                <td>{GWLandfillResults}</td>
+                </tr>
+                <tr>
+                <td><label>General Waste to Recycling</label></td>
+                <td><input type="number" 
+                name="GWRecycling" 
+                onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/></td>
+                <td>{calculatorConstants.GWRecycling}</td>
+                <td>{GWRecyclingResults}</td>
+                </tr>
+                <tr>
+                <td><label>Special Waste</label></td>
+                <td><input type="number" 
+                name="SpecialWaste" 
+                onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/></td>
+                <td>{calculatorConstants.SpecialWaste}</td>
+                <td>{SpecialWasteResults}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>{totalResults}</td>
+                    </tr>
+            </tbody>
+            </table>
+          </Stack>
+        </Stack>
+        <input type="submit" value="Submit"/>
+        </form>   
+    </Stack>
+        }
+        </>
         );
     }
 export default CarbonCalculator;
