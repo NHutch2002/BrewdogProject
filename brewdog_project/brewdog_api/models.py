@@ -22,6 +22,7 @@ def unique_company_email(company, email):
     else:
         return True
 
+
 class User(models.Model):
     USERNAME_FIELD = 'email'
     last_login = models.DateTimeField(blank=True, null=True)
@@ -34,9 +35,8 @@ class User(models.Model):
     def check_password(self, password):
         return self.password == password
 
+
 class Calculator(models.Model):
-    #user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    #created = models.DateTimeField(auto_now_add=True)
     MainsGas = models.IntegerField()
     Fuel = models.IntegerField()
     Oil = models.IntegerField()
@@ -52,6 +52,7 @@ class Calculator(models.Model):
     GWLandfill = models.IntegerField()
     GWRecycling = models.IntegerField()
     SpecialWaste = models.IntegerField()
+
 
 class CalculatorConstants(models.Model):
     MainsGas = models.FloatField()

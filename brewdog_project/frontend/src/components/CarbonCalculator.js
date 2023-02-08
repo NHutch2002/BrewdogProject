@@ -149,15 +149,27 @@ const CarbonCalculator = () => {
     return (
         <>
         <h1 
-        style={{textAlign: "center", marginTop: "20px", marginBottom: "20px"}}
+        style={{textAlign: "center", 
+        marginTop: "20px", 
+        marginBottom: "20px"}}
         >Carbon Footprint Calculator</h1>
-        {!loadingConstants && <CircularProgress style={{ margin: "0 auto", marginTop: "20px" }} /> &&
-        <Stack direction="column" spacing={2} style={{ margin: "0 auto", maxWidth: "500px" }}>
-        <form method="POST" credentials="include" onSubmit={handleSubmit}>
-          <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken" />
-          <Stack direction="row" spacing={2}>
+        {!loadingConstants && <CircularProgress style={{ margin: "0 auto",
+        marginTop: "20px" }} /> &&
+        <Stack direction="column" 
+        spacing={2} 
+        style={{ margin: "0 auto", 
+        maxWidth: "500px" }}>
+        <form method="POST" 
+        credentials="include" 
+        onSubmit={handleSubmit}>
+          <input type="hidden" 
+          name="csrfmiddlewaretoken" 
+          value="csrftoken" />
+          <Stack direction="row" 
+          spacing={2}>
             <Stack direction="column">
-              <table style={{ width: "100%", textAlign: "center" }}>
+              <table style={{ width: "100%", 
+              textAlign: "center" }}>
                 <thead>
                   <tr>
                     <th>Carbon Source</th>
@@ -176,7 +188,9 @@ const CarbonCalculator = () => {
                   <tr>
                     <td>Mains Gas:</td>
                     <td>
-                      <input type="number" name="MainsGas" onChange={(event) => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/>
+                      <input type="number" 
+                      name="MainsGas" 
+                      onChange={(event) => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/>
                     </td>
                     <td>{calculatorConstants.MainsGas}</td>
                     <td>{MainGasResults}</td>
@@ -184,7 +198,9 @@ const CarbonCalculator = () => {
                   <tr>
                     <td>Fuel (Diesel):</td>
                     <td>
-                      <input type="number" name="Fuel" onChange={(event) => handleUpdateIndividualResult("Fuel", event.target.value) } value={Fuel}
+                      <input type="number" 
+                      name="Fuel" 
+                      onChange={(event) => handleUpdateIndividualResult("Fuel", event.target.value) } value={Fuel}
                       />
                     </td>
                     <td>{calculatorConstants.Fuel}</td>
@@ -193,7 +209,9 @@ const CarbonCalculator = () => {
                   <tr>
                     <td>Oil:</td>
                     <td>
-                      <input type="number" name="Oil" onChange={(event) => handleUpdateIndividualResult("Oil", event.target.value) } value={Oil}
+                      <input type="number" 
+                      name="Oil" 
+                      onChange={(event) => handleUpdateIndividualResult("Oil", event.target.value) } value={Oil}
                       />
                     </td>
                     <td>{calculatorConstants.Oil}</td>
@@ -202,7 +220,9 @@ const CarbonCalculator = () => {
                   <tr>
                     <td>Coal:</td>
                     <td>
-                      <input type="number" name="Coal" onChange={(event) => handleUpdateIndividualResult("Coal", event.target.value) } value={Coal}
+                      <input type="number" 
+                      name="Coal" 
+                      onChange={(event) => handleUpdateIndividualResult("Coal", event.target.value) } value={Coal}
                       />
                     </td>
                     <td>{calculatorConstants.Coal}</td>
@@ -211,7 +231,9 @@ const CarbonCalculator = () => {
                   <tr>
                     <td>Wood:</td>
                     <td>
-                      <input type="number" name="Wood" onChange={(event) => handleUpdateIndividualResult("Wood", event.target.value) } value={Wood}
+                      <input type="number" 
+                      name="Wood" 
+                      onChange={(event) => handleUpdateIndividualResult("Wood", event.target.value) } value={Wood}
                       />
                     </td>
                     <td>{calculatorConstants.Wood}</td>
@@ -219,13 +241,17 @@ const CarbonCalculator = () => {
               </tr>
               <tr>
                 <td><label>Grid Electricity:</label></td>
-                <td><input type="number" name="GridElectricity" onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity} /></td>
+                <td><input 
+                type="number" 
+                name="GridElectricity" 
+                onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity} /></td>
                 <td>{calculatorConstants.GridElectricity}</td>
                 <td>{GridElectricityResults}</td>
               </tr>
               <tr>
                 <td><label>Electricity (Low Carbon Supplier):</label></td>
-                <td><input type="number" name="Electricity" onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity} /></td>
+                <td><input type="number" name="Electricity" 
+                onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity} /></td>
                 <td>{calculatorConstants.Electricity}</td>
                 <td>{ElectricityResults}</td>
               </tr>
@@ -237,19 +263,25 @@ const CarbonCalculator = () => {
                 </tr>
               <tr>
                 <td><label>Waste Food to Landfill:</label></td>
-                <td><input type="number" name="WFLandfill" onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill} /></td>
+                <td><input type="number" 
+                name="WFLandfill" 
+                onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill} /></td>
                 <td>{calculatorConstants.WFLandfill}</td>
                 <td>{WFLandfillResults}</td>
                 </tr>
                 <tr>
                 <td><label>Waste Food to Reuse/Composting:</label></td>
-                <td><input type="number" name="WFReuse" onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse} /></td>
+                <td><input type="number" 
+                name="WFReuse" 
+                onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse} /></td>
                 <td>{calculatorConstants.WFReuse}</td>
                 <td>{WFReuseResults}</td>
                 </tr>
                 <tr>
                 <td><label>Waste Food to Charity:</label></td>
-                <td><input type="number" name="WFCharity" onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity} /></td>
+                <td><input type="number" 
+                name="WFCharity" 
+                onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity} /></td>
                 <td>{calculatorConstants.WFCharity}</td>
                 <td>{WFCharityResults}</td>
                 </tr>
@@ -261,31 +293,41 @@ const CarbonCalculator = () => {
                 </tr>
                 <tr>
                 <td><label>Bottles Recycling</label></td>
-                <td><input type="number" name="BottleRecycling" onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling} /></td>
+                <td><input type="number" 
+                name="BottleRecycling" 
+                onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling} /></td>
                 <td>{calculatorConstants.BottleRecycling}</td>
                 <td>{BottleRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>Aluminium Cans Recucling </label></td>
-                <td><input type="number" name="AluminiumRecycling" onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling} /></td>
+                <td><input type="number" 
+                name="AluminiumRecycling" 
+                onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling} /></td>
                 <td>{calculatorConstants.AluminiumRecycling}</td>
                 <td>{AluminiumRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>General Waste to Landfill</label></td>
-                <td><input type="number" name="GWLandfill" onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/></td>
+                <td><input type="number" 
+                name="GWLandfill" 
+                onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/></td>
                 <td>{calculatorConstants.GWLandfill}</td>
                 <td>{GWLandfillResults}</td>
                 </tr>
                 <tr>
                 <td><label>General Waste to Recycling</label></td>
-                <td><input type="number" name="GWRecycling" onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/></td>
+                <td><input type="number" 
+                name="GWRecycling" 
+                onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/></td>
                 <td>{calculatorConstants.GWRecycling}</td>
                 <td>{GWRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>Special Waste</label></td>
-                <td><input type="number" name="SpecialWaste" onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/></td>
+                <td><input type="number" 
+                name="SpecialWaste" 
+                onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/></td>
                 <td>{calculatorConstants.SpecialWaste}</td>
                 <td>{SpecialWasteResults}</td>
                 </tr>

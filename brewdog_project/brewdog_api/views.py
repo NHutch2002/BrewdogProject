@@ -14,12 +14,14 @@ from django.contrib.auth import authenticate, login
 class UserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return HttpResponseRedirect(reverse('frontend:carboncalculator'))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request, format=None):
         data = User.objects.all()
         serializer = UserSerializer(data, many=True)
@@ -29,6 +31,7 @@ class UserView(generics.CreateAPIView):
 class CalculatorView(generics.CreateAPIView):
     serializer_class = CalculatorSerializer
     queryset = Calculator.objects.all()
+
     def post(self, request, format=None):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():
@@ -41,8 +44,10 @@ class CalculatorView(generics.CreateAPIView):
         serializer = CalculatorSerializer(data, many=True)
         return Response(serializer.data)
 
+
 class LoginView(APIView):
     serializer_class = LoginSerializer
+
     def post(self, request, format=None):
         email1 = request.data.get('email')
         password1 = request.data.get('password')
@@ -59,16 +64,18 @@ class LoginView(APIView):
         serializer = LoginSerializer(data, many=True)
         return Response(serializer.data)
 
+
 class CalculatorConstantsView(generics.CreateAPIView):
     serializer_class = CalculatorConstantsSerializer
     queryset = CalculatorConstants.objects.all()
+
     def post(self, request, format=None):
         serializer = CalculatorConstantsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-            #return HttpResponseRedirect(reverse('frontend:myresults'))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     def get(self, request, format=None):
         data = CalculatorConstants.objects.all()
