@@ -4,6 +4,6 @@ import App from './App';
 test('empty test', () => {
 });
 
-it("renders without crashing", () => {
-  shallow(<App />);
-});
+test('renders landing page', () => {
+  render(<App />);
+})
