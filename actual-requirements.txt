@@ -44,7 +44,37 @@ $ npm install @emotion/react
 $ npm install @emotion/styled
 $ npm install axios --save
 $ npm install react-icons --save
+$ npm init @eslint/config
 
+Create the following file: brewdog_project/frontend/.eslintrc.js
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"],
+        "react/react-in-jsx-scope":"off"
+    }
+}
+To run linting, go to frontend dictionary and run:$ npx eslint "src/components/**.js" --fix 
 
 Create the following file: brewdog_project/frontend/babel.config.json
 {
