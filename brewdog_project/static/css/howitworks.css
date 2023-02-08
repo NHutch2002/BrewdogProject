@@ -1,0 +1,48 @@
+h2{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.textDiv{
+    width:90%;
+    margin:5%;
+    margin-top:0;
+    display:block;
+}
+.row{
+    width:100%;
+    margin:0;
+    display:flex;
+    position:absolute;
+}
+.pic{
+    width:100%;
+    padding:0;
+    margin: auto;
+}
+.bodycontent{
+    width:100%;
+    margin-top:0;
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width:100%;
+    display:block;
+}
+.titleDiv{
+    width:100%;
+    display:block;
+}
+.text2{
+    text-align: right;
+    font-size: larger;
+    padding:0;
+    margin:0;
+}
+.title2{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align:right;
+}
+body{
+    margin: 5%;
+    display:block;
+}
