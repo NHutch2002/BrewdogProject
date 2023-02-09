@@ -78,7 +78,7 @@ export default function NavBar() {
 
     return (
         <Grid container spacing={1}>
-            <AppBar style={{backgroundColor: "#FFFFFF"}}>
+            <AppBar style={{backgroundColor: "white"}}>
             <Toolbar>
                 <Grid item xs={2} align="left">
                     <Button color="black" href="/howitworks">How It Works</Button>

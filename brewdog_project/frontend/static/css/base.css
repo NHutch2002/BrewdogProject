@@ -10,10 +10,13 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body {
+body, html {
     font-family: 'NewGroteskSquareFOURWEB';
+    background-color: #F6F6F6 !important;
 }
 
+
+/* Potentially unused - maybe delete??? */
 .title {
     font-family: 'NewGroteskSquareFIVEWEB';
 }
@@ -35,7 +38,7 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     color: black;
-    font-size: 1.6875rem;
+    font-size: 1.68751rem;
     font-family: 'NewGroteskSquareFOURWEB';
     text-align: center;
 }

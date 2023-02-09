@@ -1,6 +1,9 @@
 body, html {
-    background-color: #111;
     color: #EEE;
+    overflow-x: hidden;
+}
+.container-fluid {
+    background-color: #111;
 }
 
 /* Landing styles */
@@ -9,8 +12,7 @@ body, html {
     margin: auto;
     margin-top: -100px;
     padding: 0;
-    height: 96vh;
-    background-color: #111;
+    height: 100vh;
 }
 .landing_pic {
     -webkit-clip-path: polygon(5% 0, 100% 86%, 100% 0);
@@ -59,7 +61,7 @@ body, html {
     font-family: 'NewGroteskSquareFOURWEB';
 }
 
-/* Text styles */
+/* Content section styles */
 .text_div {
     margin: auto;
     width: 80vw;
@@ -110,7 +112,7 @@ body, html {
 }
 /* Calculator Section */
 .calculator_div {
-    margin: auto;
+    margin:auto;
     width: 80vw;
     background-color: #34D19F;
     color: black;

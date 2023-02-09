@@ -73,6 +73,7 @@ export default class HomePage extends Component {
                     </div>
                     <img className="text_pic" id="pic_calculator" src={Calculator} alt="Picture of a person using a calculator"/>
                 </div>
+                <br /><br />
 
 
             </div>
