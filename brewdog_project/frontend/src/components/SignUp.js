@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Grid } from '@mui/material';
 
+import "../../static/css/login.css";
+
 const SignUp = () => {
     const navigate = useNavigate();
 
