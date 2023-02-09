@@ -7,20 +7,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
-
-class EmailBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None, **kwargs):
-        try:
-            user = BrewdogUser.objects.get(email=email)
-            print(user)
-            if user.check_password(password):
-                return user
-            else:
-                return None
-        except BrewdogUser.DoesNotExist:
-            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
+# is this used?
 def unique_company_email(company, email):
     if BrewdogUser.objects.filter(company_name=company).exists():
         return False
@@ -29,11 +17,11 @@ def unique_company_email(company, email):
     else:
         return True
 
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_auth_token(sender, instance=None, created=False, **kwargs):
-#     if created:
-#         Token.objects.create(user=instance)
-#         print("token created!")
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+        print("token created!")
 
 
 class BrewdogUser(models.Model):
@@ -48,7 +36,7 @@ class BrewdogUser(models.Model):
         return self.password == password
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class Calculator(models.Model):

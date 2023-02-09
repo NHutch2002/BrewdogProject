@@ -19,8 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
         print("create here!")
         brewdogUserData = validated_data.pop("brewdogUser")
         user = User.objects.create(**validated_data)
+        user.set_password(user.password)
+        user.save()
         brewdogUser = BrewdogUser.objects.create(user=user, **brewdogUserData)
-        return brewdogUser, user
+        return user
 
 
 class CalculatorSerializer(serializers.ModelSerializer):
@@ -30,5 +32,5 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BrewdogUser
-        fields = ("email", "password", "id")
+        model = User
+        fields = ("id", "username", "password", "brewdogUser")

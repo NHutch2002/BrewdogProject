@@ -45,7 +45,7 @@ const Login = () => {
             <label>
                 Password:
                 <input
-                    type="char"
+                    type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
