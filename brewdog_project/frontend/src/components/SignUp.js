@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+/*import * as mdb from 'mdb-ui-kit'; // dont delete me*/
 
 import "../../static/css/useraccount.css";
 
@@ -30,7 +30,7 @@ const SignUp = () => {
 
             <h2>Create Account</h2>
 
-            <div class="form-outline mb-4 field_container">
+            <div className="form-outline mb-4 field_container">
                 <input type="text" name="name" id="signup-form-name" className="form-control form-input-field" />
                 <label className="form-label form-input-label" htmlFor="signup-form-name">Name</label>
             </div>

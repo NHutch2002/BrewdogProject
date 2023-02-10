@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+/*import * as mdb from 'mdb-ui-kit'; // dont delete me*/
 
 
 import "../../static/css/useraccount.css";
@@ -40,7 +40,7 @@ const Login = () => {
 
             <h2>Log In</h2>
 
-            <div class="form-outline mb-4 field_container">
+            <div className="form-outline mb-4 field_container">
                 <input type="email" id="login-form-email" className="form-control form-input-field" />
                 <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
             </div>
