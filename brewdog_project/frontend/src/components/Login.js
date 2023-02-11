@@ -15,19 +15,22 @@ const Login = () => {
             body: JSON.stringify({ email, password }),
             credentials: 'include'
         })
-            .then(res => {
-                if (res.status === 200) {
-                    navigate('/carboncalculator');
-                } else {
-                    return res.json();
-                }
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                throw new Error(`The status is ${res.status}`);
+            }
+        })
+        .then(data => {
+            console.log(data)
+            localStorage.setItem("token", data.token)
+            console.log("Token have been saved: " + data.token)
+            navigate('/carboncalculator');
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
 
     return (

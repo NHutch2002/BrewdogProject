@@ -75,7 +75,8 @@ class LoginView(APIView):
             if user.is_active:
                 login(request, user)
                 token, created = Token.objects.get_or_create(user=user)
-                return Response({'status': 'success', 'message': 'Login successful', 'token': token.key}, status=status.HTTP_200_OK)
+                print(token.key)
+                return Response({'status': 'success', 'message': 'Login successful', 'token': token.key }, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
         else:
