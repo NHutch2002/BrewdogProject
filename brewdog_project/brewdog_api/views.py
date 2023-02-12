@@ -82,27 +82,6 @@ class LoginView(APIView):
         else:
             return Response({'status': 'error', 'message': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
-    # def authenticate(self, request, email=None, password=None, **kwargs):
-    #     try:
-    #         brewdogUser = BrewdogUser.objects.get(email=email)
-    #         print(brewdogUser)
-    #         user = brewdogUser.user
-    #         print(user)
-    #         if user:
-    #             if user.check_password(password):
-    #                 return user
-    #             else:
-    #                 return Response({'error': 'Pass'}, status=status.HTTP_400_BAD_REQUEST)
-    #         else:
-    #             return None
-    #     except BrewdogUser.DoesNotExist:
-    #         return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-    # def get(self, request, format=None):
-    #     data = User.objects.all()
-    #     serializer = LoginSerializer(data, many=True)
-    #     return Response(serializer.data)
 
 # view to obtain a auth token for user
 class CustomAuthToken(ObtainAuthToken):

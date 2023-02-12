@@ -32,6 +32,12 @@ export default function NavBar() {
         window.location.href = "/signup";
     }
 
+    function handleLogOutClick() {
+        setAnchorEl(null);
+        localStorage.removeItem('token')
+        window.location.href = "/";
+    }
+
     function handleMyAccountClick() {
         setAnchorEl(null);
         window.location.href = "/myaccount";
@@ -141,7 +147,8 @@ export default function NavBar() {
                     >
                     {
                         isAuth() ?
-                         (<MenuItem onClick={handleMyAccountClick}>My account</MenuItem>)
+                         (<><MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                            <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
                         : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
                             <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )
                     }
