@@ -26,7 +26,7 @@ const Login = () => {
             console.log(data)
             localStorage.setItem("token", data.token)
             console.log("Token have been saved: " + data.token)
-            navigate('/carboncalculator');
+            navigate('/');
         })
         .catch(error => {
             console.log(error);
