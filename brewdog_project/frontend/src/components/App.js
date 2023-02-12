@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Routes, Link, Redirect } from "react-router-dom"; 
-import NavBar from "./LoggedOutNavBar";
+import NavBar from "./NavBar";
 import HomePage from "./HomePage";  
 import CarbonCalculator from "./CarbonCalculator";
 import Blog from "./Blog";
