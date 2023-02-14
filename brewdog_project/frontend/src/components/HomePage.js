@@ -46,7 +46,9 @@ export default class HomePage extends Component {
                 <div className="text_div">
                     <div id="other_text">
                         <h2 className="text_heading">Other Heading</h2>
-                        <p className="text">Animi et voluptatem qui sed dolores velit aperiam et. Laborum est corrupti aut sit excepturi qui modi. Illo qui illum ut molestiae quam ut. In dolore esse tempore et possimus vitae ea. Assumenda similique quaerat velit. Ipsam aut laudantium ullam quis enim quae dolorem placeat.</p>
+                        <p className="text">Animi et voluptatem qui sed dolores velit aperiam et. Laborum est corrupti 
+                        aut sit excepturi qui modi. Illo qui illum ut molestiae quam ut. In dolore esse tempore et possimus 
+                        vitae ea. Assumenda similique quaerat velit. Ipsam aut laudantium ullam quis enim quae dolorem placeat.</p>
                     </div>
                     <img className="text_pic" id="pic_other" src={FoodAtPub} alt="Picture of some food at a Brewdog pub"/>
                 </div>
@@ -54,14 +56,11 @@ export default class HomePage extends Component {
                 <div className="calculator_div">
                     <div id="calculator_text">
                         <h2 className="text_heading">Footprint Calculator</h2>
-                        <p className="text">This programme supports our clients to cut
-                        in cutting their carbon, by understanding their business emissions, including 
-                        their supply chains, and setting and achieving ambitious carbon reduction 
-                        targets.<br></br><br></br>
-                        Our aim is to build a network of dynamic and 
-                        proactive bar and restaurant innovators that are 
-                        committed to going as low carbon as they can, and 
-                        then some.<br></br><br></br>
+                        <p className="text">This programme helps our clients to reduce their carbon emissions,
+                        by understanding their business emissions and supply chain emissions. <br></br><br></br>
+                        Our aim is to build a network of dynamic and proactive bar and restaurant innovators that 
+                        are committed to going as low carbon as they can, and then some.
+                        <br></br><br></br>
                         Real innovation happens when individuals get 
                         inspired to look beyond business as usual and 
                         commit to doing things differently. Here at BrewDog, 
@@ -74,6 +73,7 @@ export default class HomePage extends Component {
                     </div>
                     <img className="text_pic" id="pic_calculator" src={Calculator} alt="Picture of a person using a calculator"/>
                 </div>
+                <br /><br />
 
 
             </div>

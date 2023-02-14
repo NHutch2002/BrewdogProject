@@ -10,15 +10,18 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body{
+body, html {
     font-family: 'NewGroteskSquareFOURWEB';
+    background-color: #F6F6F6 !important;
 }
 
-.title{
+
+/* Potentially unused - maybe delete??? */
+.title {
     font-family: 'NewGroteskSquareFIVEWEB';
 }
 
-.heading{
+.heading {
     font-family: 'NewGroteskSquareFIVEWEB';
     text-transform: uppercase;
     font-size: 3rem;
@@ -29,13 +32,13 @@ body{
     font-weight: inherit;
 }
 
-.subheading{
+.subheading {
     letter-spacing: .02em;
     line-height: 1.2;
     text-transform: uppercase;
     font-weight: 500;
     color: black;
-    font-size: 1.6875rem;
+    font-size: 1.68751rem;
     font-family: 'NewGroteskSquareFOURWEB';
     text-align: center;
 }

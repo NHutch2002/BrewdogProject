@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import * as mdb from 'mdb-ui-kit'; // dont delete me
+
+
+import "../../static/css/useraccount.css";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -31,30 +35,27 @@ const Login = () => {
     };
 
     return (
-        <form method="POST" credentials="include" onSubmit={handleSubmit}>
-        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-            </label>
-            <br />
-            <label>
-                Password:
-                <input
-                    type="char"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
-            </label>
-            <br />
-            <button type="submit">Login</button>
+
+        <form className="account_form">
+
+            <h2>Log In</h2>
+
+            <div class="form-outline mb-4 field_container">
+                <input type="email" id="login-form-email" className="form-control form-input-field" />
+                <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+            </div>
+
+            <div className="form-outline mb-4 field_container">
+                <input type="password" id="login-form-password" className="form-control form-input-field" />
+                <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+            </div>
+
+            <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
+
+            <button type="submit" className="btn btn-primary btn-block">Submit</button>
+
         </form>
     );
 }
 
 export default Login;
-

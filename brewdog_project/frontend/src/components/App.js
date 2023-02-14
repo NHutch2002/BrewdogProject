@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Route, Routes, Link, Redirect } from "react-router-dom"; 
+import { useNavigate, BrowserRouter as Router, Route, Routes, Link, Redirect } from "react-router-dom"; 
 import NavBar from "./LoggedOutNavBar";
 
 import HomePage from "./HomePage";  
@@ -41,3 +41,4 @@ export default class App extends Component {
     );
   }
 }
+

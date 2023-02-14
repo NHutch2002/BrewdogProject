@@ -78,13 +78,13 @@ export default function NavBar() {
 
     return (
         <Grid container spacing={1}>
-            <AppBar style={{backgroundColor: "#FFFFFF"}}>
+            <AppBar style={{backgroundColor: "white"}}>
             <Toolbar>
                 <Grid item xs={2} align="left">
-                    <Button color="black" href="/howitworks">How It Works</Button>
+                    <Button href="/howitworks">How It Works</Button>
                 </Grid>
                 <Grid item xs={2} align="left">
-                    <Button color="black" href="/blog">Blog</Button> 
+                    <Button href="/blog">Blog</Button> 
                 </Grid>
                 <Grid item xs={9} align="center">
                     <IconButton edge="start" color="inherit" aria-label="logo">
