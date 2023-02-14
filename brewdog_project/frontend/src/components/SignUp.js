@@ -18,21 +18,44 @@ const SignUp = () => {
             if (response.ok) {
                 navigate('/carboncalculator');
             } else {
-                console.log("Error");
+                response.text().then( text => { throw new Error(text) })
             }
-        });
+        }).catch( error => {
+            console.log("Error: " + error )
+        })
     }
 
 
     return (
-
-        <form className="account_form">
-
-            <h2>Create Account</h2>
-
-            <div class="form-outline mb-4 field_container">
-                <input type="text" name="name" id="signup-form-name" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-name">Name</label>
+        <div>
+            <div>
+            <h1>Create Account</h1>
+            <form method="POST" credentials="include" onSubmit={handleSubmit}>
+                <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                <Stack spacing={3} direction="column">
+                <label>
+                    Name:
+                    <input type="text" name="username" />
+                </label>
+                <label>
+                    Email:
+                    <input type="text" name="email" />
+                </label>
+                <label>
+                    Company:
+                    <input type="text" name="company" />
+                </label>
+                <label>
+                    Phone:
+                    <input type="text" name="phone" />
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="password" />
+                </label>
+                <input type="submit" value="Submit" />
+                </Stack>
+            </form>
             </div>
 
             <div className="form-outline mb-4 field_container">

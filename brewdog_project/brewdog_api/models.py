@@ -1,39 +1,42 @@
 from django.db import models
 from django.contrib.auth.backends import BaseBackend
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
-
-class EmailBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None, **kwargs):
-        try:
-            user = User.objects.get(email=email)
-            if user.check_password(password):
-                return user
-            else:
-                return None
-        except User.DoesNotExist:
-            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
-
+    
+# is this used?
 def unique_company_email(company, email):
-    if User.objects.filter(company_name=company).exists():
+    if BrewdogUser.objects.filter(company_name=company).exists():
         return False
-    elif User.objects.filter(email=email).exists():
+    elif BrewdogUser.objects.filter(email=email).exists():
         return False
     else:
         return True
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+        print("token created!")
 
-class User(models.Model):
-    USERNAME_FIELD = 'email'
+
+class BrewdogUser(models.Model):
+    #USERNAME_FIELD = 'email'
+    user = models.OneToOneField(User, related_name='brewdogUser', on_delete=models.CASCADE, unique=True)
     last_login = models.DateTimeField(blank=True, null=True)
-    name = models.CharField(max_length=50)
     company = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=50, unique=True)
     phone = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=50)
 
     def check_password(self, password):
         return self.password == password
+
+    def __str__(self):
+        return self.user.username
 
 
 class Calculator(models.Model):

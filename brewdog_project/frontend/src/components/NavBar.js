@@ -10,24 +10,17 @@ export default function NavBar() {
     const [anchorEl2, setAnchorEl2] = React.useState(null);
 
     function handleClick(event) {
-        if (anchorEl !== event.currentTarget) {
-          setAnchorEl(event.currentTarget);
-        }
+        if (anchorEl !== event.currentTarget) { setAnchorEl(event.currentTarget);}
     }
 
     function handleSecondaryClick(event) {
-        if (anchorEl2 !== event.currentTarget) {
-          setAnchorEl2(event.currentTarget);
+        if(isAuth()){
+            if (anchorEl2 !== event.currentTarget) { setAnchorEl2(event.currentTarget); }
         }
     }
 
-    function handleSecondaryClose() {
-        setAnchorEl2(null);
-    }
-    
-    function handleClose() {
-        setAnchorEl(null);
-    }
+    function handleSecondaryClose() { setAnchorEl2(null); }
+    function handleClose() { setAnchorEl(null); }
 
     function handleLoginClick() {
         setAnchorEl(null);
@@ -37,6 +30,12 @@ export default function NavBar() {
     function handleSignUpClick() {
         setAnchorEl(null);
         window.location.href = "/signup";
+    }
+
+    function handleLogOutClick() {
+        setAnchorEl(null);
+        localStorage.removeItem('token')
+        window.location.href = "/";
     }
 
     function handleMyAccountClick() {
@@ -76,6 +75,11 @@ export default function NavBar() {
         height: "250px",
     }
 
+    function isAuth(){
+        if(localStorage.token){ return true; }
+        else { return false; }
+    }
+
     return (
         <Grid container spacing={1}>
             <AppBar style={{backgroundColor: "white"}}>
@@ -94,7 +98,7 @@ export default function NavBar() {
                 <Grid item xs={2} align="right">
                     <IconButton 
                     edge="start" color="inherit" aria-label="calculator"
-                    aria-owns={anchorEl2 ? "simple-menu" : undefined}
+                    aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
                     onClick={handleSecondaryClick}
                     onMouseOver={handleSecondaryClick}
@@ -112,10 +116,13 @@ export default function NavBar() {
                     onClose={handleSecondaryClose}
                     MenuListProps={{ onMouseLeave: handleSecondaryClose }}
                     >
-                        <MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
-                        <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
-                        <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
-                        <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
+                        {
+                            isAuth() ? (<><MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
+                                        <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
+                                        <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
+                                        <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem></>)
+                            : <></>
+                        }
                     </Menu>
                 </Grid>
                 <Grid item xs ={2} align="right">
@@ -138,9 +145,13 @@ export default function NavBar() {
                     onClose={handleClose}
                     MenuListProps={{ onMouseLeave: handleClose }}
                     >
-                        <MenuItem onClick={handleLoginClick}>Login</MenuItem>
-                        <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem>
-                        <MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                    {
+                        isAuth() ?
+                         (<><MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                            <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
+                        : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
+                            <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )
+                    }
                     </Menu>
                 </Grid>
             </Toolbar>

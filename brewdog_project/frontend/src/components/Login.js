@@ -19,41 +19,46 @@ const Login = () => {
             body: JSON.stringify({ email, password }),
             credentials: 'include'
         })
-            .then(res => {
-                if (res.status === 200) {
-                    navigate('/carboncalculator');
-                } else {
-                    return res.json();
-                }
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                throw new Error(`The status is ${res.status}`);
+            }
+        })
+        .then(data => {
+            console.log(data)
+            localStorage.setItem("token", data.token)
+            console.log("Token have been saved: " + data.token)
+            navigate('/');
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
 
     return (
-
-        <form className="account_form">
-
-            <h2>Log In</h2>
-
-            <div class="form-outline mb-4 field_container">
-                <input type="email" id="login-form-email" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-            </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="password" id="login-form-password" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-            </div>
-
-            <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
-
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
-
+        <form method="POST" credentials="include" onSubmit={handleSubmit}>
+        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+            <label>
+                Email:
+                <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+            </label>
+            <br />
+            <label>
+                Password:
+                <input
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                />
+            </label>
+            <br />
+            <button type="submit">Login</button>
         </form>
     );
 }
