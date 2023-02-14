@@ -64,22 +64,15 @@ export default function NavBar() {
         window.location.href = "/myresults";
     }
 
-    // const muiStyles = {
-    //     toolbar: {
-    //         color: "white",
-    //         textColour: "black",
-    //     }
-    // }
-
     const humanMenuStyling = {
-        position: "relative",
-        top: "40px",
+        position: "fixed",
+        top: "50px",
         height: "220px",
     }
 
     const calculatorMenuStyling = {
-        position: "relative",
-        top: "30px",
+        position: "fixed",
+        top: "50px",
         height: "250px",
     }
 
@@ -126,7 +119,7 @@ export default function NavBar() {
                     </Menu>
                 </Grid>
                 <Grid item xs ={2} align="right">
-                    <IconButton edge="start" color="inherit" aria-label="human"
+                    <IconButton color="inherit" aria-label="human"
                     aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
                     onClick={handleClick}
