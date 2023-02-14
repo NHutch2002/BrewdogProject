@@ -1,18 +1,6 @@
 from django.db import models
-from django.contrib.auth.backends import BaseBackend
-from rest_framework import status
-from rest_framework.response import Response
 
-class EmailBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None, **kwargs):
-        try:
-            user = User.objects.get(email=email)
-            if user.check_password(password):
-                return user
-            else:
-                return None
-        except User.DoesNotExist:
-            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+# Create your models here.
 
 def unique_company_email(company, email):
     if User.objects.filter(company_name=company).exists():
@@ -23,20 +11,13 @@ def unique_company_email(company, email):
         return True
 
 class User(models.Model):
-    USERNAME_FIELD = 'email'
-    last_login = models.DateTimeField(blank=True, null=True)
     name = models.CharField(max_length=50)
-    company = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=50, unique=True)
+    company = models.CharField(max_length=50, unique=True, default="No company name added")
+    email = models.CharField(max_length=50, unique=True, blank=False)
     phone = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=50)
 
-    def check_password(self, password):
-        return self.password == password
-
 class Calculator(models.Model):
-    #user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    #created = models.DateTimeField(auto_now_add=True)
     MainsGas = models.IntegerField()
     Fuel = models.IntegerField()
     Oil = models.IntegerField()

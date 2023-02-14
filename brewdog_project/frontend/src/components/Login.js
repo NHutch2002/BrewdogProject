@@ -1,60 +1,23 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Menu, Container } from '@material-ui/core';
 
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+export default class Login extends Component {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        fetch('/brewdog/login/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-            credentials: 'include'
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    navigate('/carboncalculator');
-                } else {
-                    return res.json();
-                }
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-
-    return (
-        <form method="POST" credentials="include" onSubmit={handleSubmit}>
-        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-            </label>
-            <br />
-            <label>
-                Password:
-                <input
-                    type="char"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
-            </label>
-            <br />
-            <button type="submit">Login</button>
-        </form>
-    );
+    render() {
+        return (
+            <div>
+                <h1>Login</h1>
+                <form method="POST" credentials="include">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <div>
+                        <label>Username:</label>
+                        <input type="text" name="username"/><br/>
+                        <label>Password:</label>
+                        <input type="password" name="password"/><br/>
+                        <input type="submit" value="Login"/>
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
-
-export default Login;
-
