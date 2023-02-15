@@ -142,6 +142,7 @@ const CarbonCalculator = () => {
         fetch('/brewdog/calculator/', {
             method: 'POST',
             body: data,
+            headers : {"Authorization": "Token "+localStorage.token },
             credentials: 'include'
         }).then(response => {
             if (response.ok) {
