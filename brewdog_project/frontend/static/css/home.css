@@ -82,7 +82,7 @@ body, html {
     margin-bottom: 40px;
     background-color: #111;
     text-transform: uppercase;
-    padding: 8px 8px 0 8px;
+    padding: 20px 20px 0 8px;
     color: #EEE;
     font-family: 'NewGroteskSquareFOURWEB';
     font-size: 60px;
@@ -103,14 +103,19 @@ body, html {
 }
 #other_text {
     float: right;
-    width: 68%;
+    width: 58%;
     margin-bottom: 60px;
 }
 .text_pic#pic_other {
     float: left;
-    width: 28%;
+    width: 38%;
     margin-bottom: 60px;
 }
+
+.text_heading#heading_right_adjusted {
+    text-align: right!important;
+}
+
 /* Calculator Section */
 .calculator_div {
     margin:auto;
