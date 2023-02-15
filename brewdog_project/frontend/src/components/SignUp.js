@@ -17,7 +17,7 @@ const SignUp = () => {
             credentials: 'include'
         }).then(response => {
             if (response.ok) {
-                navigate('/carboncalculator');
+                navigate('/login');
             } else {
                 response.text().then( text => { throw new Error(text) })
             }

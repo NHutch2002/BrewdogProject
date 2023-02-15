@@ -100,30 +100,13 @@ export default function NavBar() {
                     edge="start" color="inherit" aria-label="calculator"
                     aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
-                    onClick={handleSecondaryClick}
-                    onMouseOver={handleSecondaryClick}
+                    onClick={ handleCarbonCalculatorClick }
                     >
                         <HiCalculator
                         color="black"
                         size="60px"
                         />                    
                     </IconButton>
-                    <Menu
-                    style={calculatorMenuStyling}
-                    id="simple-menu"
-                    anchorEl={anchorEl2}
-                    open={Boolean(anchorEl2)}
-                    onClose={handleSecondaryClose}
-                    MenuListProps={{ onMouseLeave: handleSecondaryClose }}
-                    >
-                        {
-                            isAuth() ? (<><MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
-                                        <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
-                                        <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
-                                        <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem></>)
-                            : <></>
-                        }
-                    </Menu>
                 </Grid>
                 <Grid item xs ={2} align="right">
                     <IconButton color="inherit" aria-label="human"
@@ -148,6 +131,7 @@ export default function NavBar() {
                     {
                         isAuth() ?
                          (<><MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                         <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
                             <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
                         : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
                             <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )

@@ -30,13 +30,14 @@ export default class App extends Component {
                 <Route exact path="/" element={<HomePage />} />
                 <Route exact path="/howitworks" element={<HowItWorks />} />
                 <Route exact path="/blog" element={<Blog />} />
+                <Route exact path="/carboncalculator" element={<CarbonCalculator/>} />
 
                 <Route element={<HideIfLoggedInRoutes />} >
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/signup" element={<SignUp />} />
                 </Route>
                 <Route element={<ProtectRoutes />} >
-                  <Route exact path="/carboncalculator" element={<CarbonCalculator/>} />
+                  
                   <Route exact path="/myaccount" element={<MyAccount />} />
                   <Route exact path="/pledges" element={<Pledges />} />
                   <Route exact path="/actionplan" element={<ActionPlan />} />

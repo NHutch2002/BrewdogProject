@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loadingConstants, setLoadingConstants] = useState(true);
     const [calculatorConstants, setFinalConstants] = useState({});
     const [totalResults, setTotalResults] = useState(0);
@@ -47,6 +48,14 @@ const CarbonCalculator = () => {
             setLoadingConstants(false);
           })
           .catch(error => console.error(error));
+          function isAuth(){
+            if(localStorage.token){ 
+              setIsAuthenticated(true);
+            } else {
+              setIsAuthenticated(false);
+            }
+        }
+        isAuth()
       }, []);
 
     useEffect(() => {
@@ -153,8 +162,7 @@ const CarbonCalculator = () => {
         marginTop: "20px", 
         marginBottom: "20px"}}
         >Carbon Footprint Calculator</h1>
-        {!loadingConstants && <CircularProgress style={{ margin: "0 auto",
-        marginTop: "20px" }} /> &&
+        {isAuthenticated ? (
         <Stack direction="column" 
         spacing={2} 
         style={{ margin: "0 auto", 
@@ -344,7 +352,19 @@ const CarbonCalculator = () => {
         <input type="submit" value="Submit"/>
         </form>   
     </Stack>
-        }
+        ) : (
+        <>
+          <p
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "green",
+              textAlign: "center",
+            }}
+          >
+            To access the Carbon Calculator, please <a href="/login">login</a> or <a href="/signup">register</a></p>
+        </>
+        )}
         </>
         );
     }
