@@ -73,8 +73,7 @@ export default function NavBar() {
     const calculatorMenuStyling = {
         position: "fixed",
         top: "50px",
-        height: "250px",
-        backgroundColor:'red'
+        height: "250px"
     }
 
     return (
@@ -106,8 +105,7 @@ export default function NavBar() {
                         />                    
                     </IconButton>
                     <Menu
-                    /*style={calculatorMenuStyling}*/
-                    style={{position: "fixed",top: "50px",height: "250px"}}
+                    style={calculatorMenuStyling}
                     id="simple-menu"
                     anchorEl={anchorEl2}
                     open={Boolean(anchorEl2)}
