@@ -38,25 +38,27 @@ const Login = () => {
     };
 
     return (
-        <form class="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
-            <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-            <h2>Log In</h2>
+        <div class="flex-container">
+            <form class="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                <h2>Log In</h2>
 
-            <div class="form-outline mb-4 field_container">
-                <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-                <input type="email" id="login-form-email" className="form-control form-input-field" />
-            </div>
+                <div class="form-outline mb-4 field_container">
+                    <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+                    <input type="email" id="login-form-email" className="form-control form-input-field" />
+                </div>
 
-            <div className="form-outline mb-4 field_container">
-                <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-                <input type="password" id="login-form-password" className="form-control form-input-field" />
-            </div>
+                <div className="form-outline mb-4 field_container">
+                    <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+                    <input type="password" id="login-form-password" className="form-control form-input-field" />
+                </div>
 
-            <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
+                <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
 
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" className="btn btn-primary btn-block">Submit</button>
 
-        </form>
+            </form>
+        </div>
     );
 }
 
