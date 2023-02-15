@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+/*import * as mdb from 'mdb-ui-kit'; // dont delete me*/
 
 
 import "../../static/css/useraccount.css";
