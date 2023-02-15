@@ -10,8 +10,12 @@ form.account_form {
     padding: 30px;
     padding-top: 8vh;
 }
+
+form.account_form .form-label{
+    margin-bottom: 1px;
+}
+
 form.account_form .field_container {
-    border: 1px solid #DDD;
     margin: 23.25px 0;
 }
 form.account_form .field_container > .form-input-field:focus {
@@ -38,19 +42,19 @@ form.account_form h2 {
 }
 form.account_form button[type="submit"] {
     font-size: large;
-    background-color: black;
+    background-color: black!important;
     border-radius: 20px;
     box-shadow: none;
     margin-bottom: 20px;
     transition: 0.2s ease-in-out;
 }
 form.account_form button[type="submit"]:hover {
-    background-color: black;
+    background-color: black!important;
     box-shadow: none;
     transform: scale(1.01);
 }
-form button[type="submit"]:active {
-    background-color: #34D19F !important;
+form.account_form button[type="submit"].btn-primary.btn-block:active {
+    background-color: #34D19F!important;
 }
 form.account_form p {
     margin-top: 30px;
