@@ -1,6 +1,7 @@
 body, html {
     color: #EEE;
     overflow-x: hidden;
+    overflow-y:scroll;
 }
 .container-fluid {
     background-color: #111;
