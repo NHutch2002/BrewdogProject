@@ -72,7 +72,7 @@ export default function NavBar() {
     const calculatorMenuStyling = {
         position: "fixed",
         top: "50px",
-        height: "250px",
+        height: "250px"
     }
 
     function isAuth(){
@@ -82,13 +82,13 @@ export default function NavBar() {
 
     return (
         <Grid container spacing={1}>
-            <AppBar style={{backgroundColor: "white"}}>
+            <AppBar style={{backgroundColor: "#FFFFFF"}}>
             <Toolbar>
                 <Grid item xs={2} align="left">
-                    <Button href="/howitworks">How It Works</Button>
+                    <Button  href="/howitworks">How It Works</Button>
                 </Grid>
                 <Grid item xs={2} align="left">
-                    <Button href="/blog">Blog</Button> 
+                    <Button  href="/blog">Blog</Button> 
                 </Grid>
                 <Grid item xs={9} align="center">
                     <IconButton edge="start" color="inherit" aria-label="logo">
