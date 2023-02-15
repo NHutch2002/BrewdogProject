@@ -12,14 +12,6 @@ export default function NavBar() {
     function handleClick(event) {
         if (anchorEl !== event.currentTarget) { setAnchorEl(event.currentTarget);}
     }
-
-    function handleSecondaryClick(event) {
-        if(isAuth()){
-            if (anchorEl2 !== event.currentTarget) { setAnchorEl2(event.currentTarget); }
-        }
-    }
-
-    function handleSecondaryClose() { setAnchorEl2(null); }
     function handleClose() { setAnchorEl(null); }
 
     function handleLoginClick() {
@@ -48,16 +40,6 @@ export default function NavBar() {
         window.location.href = "/carboncalculator";
     }
 
-    function handlePledgesClick() {
-        setAnchorEl2(null);
-        window.location.href = "/pledges";
-    }
-
-    function handleActionPlanClick() {
-        setAnchorEl2(null);
-        window.location.href = "/actionplan";
-    }
-
     function handleMyResultsClick() {
         setAnchorEl2(null);
         window.location.href = "/myresults";
@@ -67,12 +49,6 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "220px",
-    }
-
-    const calculatorMenuStyling = {
-        position: "fixed",
-        top: "50px",
-        height: "250px"
     }
 
     function isAuth(){

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {Grid, Stack} from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
+import {Stack} from "@mui/material";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [loadingConstants, setLoadingConstants] = useState(true);
     const [calculatorConstants, setFinalConstants] = useState({});
     const [totalResults, setTotalResults] = useState(0);
     const [MainsGas, setMainsGas] = useState(0);
@@ -45,7 +43,6 @@ const CarbonCalculator = () => {
           .then(response => response.json())
           .then(data => {
             setFinalConstants(data[0]);
-            setLoadingConstants(false);
           })
           .catch(error => console.error(error));
           function isAuth(){

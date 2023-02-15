@@ -8,8 +8,6 @@ import CarbonCalculator from "./CarbonCalculator";
 import Blog from "./Blog";
 import HowItWorks from "./HowItWorks";
 import Login from "./Login";
-import Pledges from "./Pledges";
-import ActionPlan from "./ActionPlan";
 import MyResults from "./MyResults";
 import SignUp from "./SignUp";
 import MyAccount from "./MyAccount";
@@ -39,8 +37,6 @@ export default class App extends Component {
                 <Route element={<ProtectRoutes />} >
                   
                   <Route exact path="/myaccount" element={<MyAccount />} />
-                  <Route exact path="/pledges" element={<Pledges />} />
-                  <Route exact path="/actionplan" element={<ActionPlan />} />
                   <Route exact path="/myresults" element={<MyResults />} />
                 </Route>
             </Routes>
