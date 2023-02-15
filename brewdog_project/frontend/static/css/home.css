@@ -1,6 +1,9 @@
 body, html {
     color: #EEE;
-    overflow: hidden; /* Hide horizontal scrollbar */
+    overflow: hidden;
+}
+.container-fluid {
+    background-color: #111;
 }
 
 /* Landing styles */

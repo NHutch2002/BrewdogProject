@@ -74,17 +74,18 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "250px",
+        backgroundColor:'red'
     }
 
     return (
         <Grid container spacing={1}>
-            <AppBar style={{backgroundColor: "white"}}>
+            <AppBar style={{backgroundColor: "#FFFFFF"}}>
             <Toolbar>
                 <Grid item xs={2} align="left">
-                    <Button href="/howitworks">How It Works</Button>
+                    <Button color="black" href="/howitworks">How It Works</Button>
                 </Grid>
                 <Grid item xs={2} align="left">
-                    <Button href="/blog">Blog</Button> 
+                    <Button color="black" href="/blog">Blog</Button> 
                 </Grid>
                 <Grid item xs={9} align="center">
                     <IconButton edge="start" color="inherit" aria-label="logo">
@@ -105,7 +106,8 @@ export default function NavBar() {
                         />                    
                     </IconButton>
                     <Menu
-                    style={calculatorMenuStyling}
+                    /*style={calculatorMenuStyling}*/
+                    style={{position: "fixed",top: "50px",height: "250px"}}
                     id="simple-menu"
                     anchorEl={anchorEl2}
                     open={Boolean(anchorEl2)}
