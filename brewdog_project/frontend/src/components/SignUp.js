@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {Stack} from '@mui/material';
 import * as mdb from 'mdb-ui-kit'; // dont delete me
 
+
 import "../../static/css/useraccount.css";
 
 const SignUp = () => {
@@ -29,9 +30,9 @@ const SignUp = () => {
 
     return (
         <>
-            <div class="flex-container">
+            <div className="flex-container">
                 
-                <form class="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Create Account</h2>
                     <div className="form-outline mb-2 field_container">

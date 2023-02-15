@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-/*import * as mdb from 'mdb-ui-kit'; // dont delete me*/
+import Landing from "../../static/images/tree.jpeg"
 
 
 import "../../static/css/useraccount.css";
@@ -38,26 +38,28 @@ const Login = () => {
     };
 
     return (
-        <div class="flex-container">
-            <form class="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
-                <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                <h2>Log In</h2>
+        <div>
+            <div className="flex-container">
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <h2>Log In</h2>
 
-                <div class="form-outline mb-4 field_container">
-                    <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-                    <input type="email" id="login-form-email" className="form-control form-input-field" />
-                </div>
+                    <div class="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+                        <input type="email" id="login-form-email" className="form-control form-input-field" />
+                    </div>
 
-                <div className="form-outline mb-4 field_container">
-                    <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-                    <input type="password" id="login-form-password" className="form-control form-input-field" />
-                </div>
+                    <div className="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+                        <input type="password" id="login-form-password" className="form-control form-input-field" />
+                    </div>
 
-                <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
+                    <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
 
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
 
-            </form>
+                </form>
+            </div>
         </div>
     );
 }
