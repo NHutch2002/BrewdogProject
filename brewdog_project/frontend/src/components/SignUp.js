@@ -27,7 +27,7 @@ const SignUp = () => {
 
 
     return (
-        <div>
+        <>
             <div>
             <h1>Create Account</h1>
             <form method="POST" credentials="include" onSubmit={handleSubmit}>
@@ -87,7 +87,7 @@ const SignUp = () => {
 
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
 
-        </form>
+        </>
     );
 }
 
