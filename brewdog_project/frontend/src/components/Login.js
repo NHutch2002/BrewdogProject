@@ -54,9 +54,9 @@ const Login = () => {
                         <input type="password" id="login-form-password" className="form-control form-input-field" />
                     </div>
 
-                    <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
 
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Don't have an account?<br/>Create one <a href="/signup"><strong>here</strong></a>.</p>
 
                 </form>
             </div>

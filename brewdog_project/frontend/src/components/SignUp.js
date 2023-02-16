@@ -65,9 +65,10 @@ const SignUp = () => {
                         <input type="password" name="confirm-password" id="signup-form-confirm-password" className="form-control form-input-field" />
                     </div>
 
-                    <p>Already have an account?<br/>Login <a href="/login">here</a>.</p>
 
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Already have an account?<br/>Login <a href="/login"><strong>here</strong></a>.</p>
+
                 </form>
             </div>
         </>
