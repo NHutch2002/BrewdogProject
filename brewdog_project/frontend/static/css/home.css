@@ -69,7 +69,7 @@ body, html {
     color: black;
     padding: 20px 5vw;
     border-radius: 4px;
-    /* font-family: Inter; */
+    font-family: Inter;
     box-shadow: 0 0 6px #EEE;
     overflow: auto;
 }
