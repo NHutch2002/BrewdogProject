@@ -1,24 +1,33 @@
-/*@import '~mdb-ui-kit/css/mdb.min.css'; /* dont delete me */
-
 /* Account forms (login, signup) styles */
+.flex-container {
+    height:80vh;
+    display: flex;
+    align-items: center;
+}
+
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25 )), url("http://127.0.0.1:8000/static/frontend/827a61fd8f5838e739b1b44b1fb3ec53.jpeg");
+    background-size: 100vw;
+}
+
 form.account_form {
     background-color: white;
     width: 350px;
     border-radius: 6px;
     box-shadow: 0 0 16px #AAA;
-    margin: 40px auto 60px auto;
-    padding: 30px;
-    padding-top: 8vh;
+    margin: 0 auto 0px auto;
+    padding: 25px;
 }
-form.account_form .field_container {
-    border: 1px solid #DDD;
-    margin: 23.25px 0;
+
+form.account_form .form-label{
+    margin-bottom: 1px;
 }
+
 form.account_form .field_container > .form-input-field:focus {
     border: 1px solid black;
 }
 form.account_form h2 {
-    margin-bottom: 50px;
+    margin: 20px 0;
     background-color: #111;
     text-transform: uppercase;
     padding: 8px 8px 0 8px;
@@ -38,23 +47,23 @@ form.account_form h2 {
 }
 form.account_form button[type="submit"] {
     font-size: large;
-    background-color: black;
+    background-color: black!important;
     border-radius: 20px;
     box-shadow: none;
     margin-bottom: 20px;
     transition: 0.2s ease-in-out;
 }
 form.account_form button[type="submit"]:hover {
-    background-color: black;
+    background-color: black!important;
     box-shadow: none;
     transform: scale(1.01);
 }
-form button[type="submit"]:active {
-    background-color: #34D19F !important;
+form.account_form button[type="submit"].btn-primary.btn-block:active {
+    background-color: #34D19F!important;
 }
 form.account_form p {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 14px;
     transition: 0.4s ease-in-out;
     line-height: 1.4em;
@@ -76,4 +85,9 @@ form.account_form p a {
 }
 form.account_form p a:hover {
     color: gray;
+}
+.background_pic {
+    display:inline;
+    width:100vw;
+    filter: brightness(0.8);
 }
