@@ -12,14 +12,6 @@ export default function NavBar() {
     function handleClick(event) {
         if (anchorEl !== event.currentTarget) { setAnchorEl(event.currentTarget);}
     }
-
-    function handleSecondaryClick(event) {
-        if(isAuth()){
-            if (anchorEl2 !== event.currentTarget) { setAnchorEl2(event.currentTarget); }
-        }
-    }
-
-    function handleSecondaryClose() { setAnchorEl2(null); }
     function handleClose() { setAnchorEl(null); }
 
     function handleLoginClick() {
@@ -48,16 +40,6 @@ export default function NavBar() {
         window.location.href = "/carboncalculator";
     }
 
-    function handlePledgesClick() {
-        setAnchorEl2(null);
-        window.location.href = "/pledges";
-    }
-
-    function handleActionPlanClick() {
-        setAnchorEl2(null);
-        window.location.href = "/actionplan";
-    }
-
     function handleMyResultsClick() {
         setAnchorEl2(null);
         window.location.href = "/myresults";
@@ -67,12 +49,6 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "220px",
-    }
-
-    const calculatorMenuStyling = {
-        position: "fixed",
-        top: "50px",
-        height: "250px"
     }
 
     function isAuth(){
@@ -100,30 +76,13 @@ export default function NavBar() {
                     edge="start" color="inherit" aria-label="calculator"
                     aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
-                    onClick={handleSecondaryClick}
-                    onMouseOver={handleSecondaryClick}
+                    onClick={ handleCarbonCalculatorClick }
                     >
                         <HiCalculator
                         color="black"
                         size="60px"
                         />                    
                     </IconButton>
-                    <Menu
-                    style={calculatorMenuStyling}
-                    id="simple-menu"
-                    anchorEl={anchorEl2}
-                    open={Boolean(anchorEl2)}
-                    onClose={handleSecondaryClose}
-                    MenuListProps={{ onMouseLeave: handleSecondaryClose }}
-                    >
-                        {
-                            isAuth() ? (<><MenuItem onClick={handleCarbonCalculatorClick}>Carbon Calculator</MenuItem>
-                                        <MenuItem onClick={handlePledgesClick}>Pledges</MenuItem>
-                                        <MenuItem onClick={handleActionPlanClick}>Action Plan</MenuItem>
-                                        <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem></>)
-                            : <></>
-                        }
-                    </Menu>
                 </Grid>
                 <Grid item xs ={2} align="right">
                     <IconButton color="inherit" aria-label="human"
@@ -148,6 +107,7 @@ export default function NavBar() {
                     {
                         isAuth() ?
                          (<><MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                         <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
                             <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
                         : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
                             <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )

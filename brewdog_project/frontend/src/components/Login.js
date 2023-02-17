@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+import Landing from "../../static/images/tree.jpeg"
 
 
 import "../../static/css/useraccount.css";
@@ -38,28 +38,29 @@ const Login = () => {
     };
 
     return (
-        <form method="POST" credentials="include" onSubmit={handleSubmit}>
-        <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-            </label>
-            <br />
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
-            </label>
-            <br />
-            <button type="submit">Login</button>
-        </form>
+        <div>
+            <div className="flex-container">
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <h2>Log In</h2>
+
+                    <div class="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" />
+                    </div>
+
+                    <div className="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" />
+                    </div>
+
+
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Don't have an account?<br/>Create one <a href="/signup"><strong>here</strong></a>.</p>
+
+                </form>
+            </div>
+        </div>
     );
 }
 
