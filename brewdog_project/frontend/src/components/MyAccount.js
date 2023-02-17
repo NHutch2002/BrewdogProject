@@ -2,13 +2,22 @@ import React, { Component, useState, useEffect } from 'react';
 
 function MyAccount() {
     const [username, setUserName] = React.useState();
+    const [dirtyUsername, setDirtyUsername] = React.useState(false);
     const [email, setEmail] = React.useState();
+    const [dirtyEmail, setDirtyEmail] = React.useState(false);
     const [password, setPassword] = React.useState();
+    const [pass , setPass] = React.useState();
+    const [confirmPassword, setConfirmPassword] = React.useState();
     const [company, setCompany] = React.useState();
+    const [dirtyCompany, setDirtyCompany] = React.useState(false);
     const [phone, setPhone] = React.useState();
+    const [dirtyPhone, setDirtyPhone] = React.useState(false);
     const [editMode, setEditMode] = React.useState(false);
+    const [passwordMode, setPasswordMode] = React.useState(false);
+    const [cancelSave, setCancelSave] = React.useState(false);
 
     useEffect(() => {
+        setCancelSave(false);
         fetch('/brewdog/user/', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' , id: localStorage.getItem("user")},
@@ -27,13 +36,29 @@ function MyAccount() {
             setPassword(data[0].password);
             setCompany(data[0].brewdogUser.company);
             setPhone(data[0].brewdogUser.phone);
+            setDirtyUsername(data[0].username);
+            setDirtyEmail(data[0].brewdogUser.email);
+            setDirtyCompany(data[0].brewdogUser.company);
+            setDirtyPhone(data[0].brewdogUser.phone);
         })
         .catch(error => {
             console.log(error);
         });
-    }, []);
+    }, [cancelSave]);
 
     const handleSubmit = (event) => {
+        setCancelSave(true);
+        if (pass !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+        if (username === dirtyUsername && email === dirtyEmail && company === dirtyCompany && phone === dirtyPhone && pass === undefined) {
+            alert("No changes made");
+            return;
+        }
+        if ( pass !== undefined && pass !== "" && pass !== null) {
+            setPassword(pass);
+        }
         event.preventDefault();
         let brewdogUser = {
             email: email,
@@ -49,8 +74,13 @@ function MyAccount() {
         })
         .then(res => {
             if (res.status === 200) {
+                alert("Changes saved");
+                setEditMode(false);
+                setCancelSave(false);
+                setPasswordMode(false);
                 return res.json();
             } else {
+                alert("Error: " + res.status);
                 throw new Error(`The status is ${res.status}`);
             }
         })
@@ -65,15 +95,7 @@ function MyAccount() {
     return (
         <>
             <h1>My Account</h1>
-            {!editMode ? (
-                <>
-            <p>Username: {username}</p>
-            <p>Email: {email}</p>
-            <p>Company: {company}</p>
-            <p>Phone: {phone}</p>
-            <button onClick={() => setEditMode(true)}>Edit</button>
-            </>
-            ) : (
+            {editMode && !passwordMode ? (
             <>
             <form method="POST" credentials="include" onSubmit={handleSubmit}>
             <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
@@ -115,8 +137,54 @@ function MyAccount() {
                 <br />
                 <button type="submit">Save</button>
             </form>
-            <button onClick={() => setEditMode(false)}>Cancel</button>
+            <button onClick={() => {
+            setCancelSave(true);
+            setEditMode(false);
+            }}>Cancel</button>
             </>
+            ) : passwordMode && !editMode ? (
+            <>
+            <form method="POST" credentials="include" onSubmit={handleSubmit}>
+            <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                <label>
+                    New Password:
+                    <input
+                        type="password"
+                        value={pass}
+                        onChange={e => setPass(e.target.value)}
+                    />
+                </label>
+                <br />
+                <label>
+                    Confirm Password:
+                    <input
+
+                        type="password"
+                        value={confirmPassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
+                    />
+                </label>
+                <br />
+                <button type="submit">Save</button>
+            </form>
+            <button onClick={() => {
+            setCancelSave(true);
+            setEditMode(false);
+            setPasswordMode(false);
+            }}>Cancel</button>
+            </>
+            ) : (
+                <>
+                <p>Username: {dirtyUsername}</p>
+                <p>Email: {dirtyEmail}</p>
+                <p>Company: {dirtyCompany}</p>
+                <p>Phone: {dirtyPhone}</p>
+                <button onClick={() => setEditMode(true)}>Edit</button>
+                <button onClick={() => {
+                setEditMode(false);
+                setPasswordMode(true);
+                }}>Change Password</button>
+                </>
             )}
         </>
     );
