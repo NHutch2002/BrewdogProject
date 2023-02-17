@@ -3,16 +3,19 @@ h2{
     padding-bottom: 0;
 }
 .textDiv{
-    width:90%;
+    width:75%;
     margin:5%;
     margin-top:0;
     display:block;
+    background-color: #EEE;
 }
 .row{
     width:100%;
     margin:0;
     display:flex;
+    justify-content: center;
     position:absolute;
+    background-color: #111;
 }
 .pic{
     width:100%;
@@ -29,20 +32,36 @@ h2{
 }
 .titleDiv{
     width:100%;
-    display:block;
+    display:flex;
+    justify-content: center;
+}
+.text{
+    float:left;
+    margin:0;
+    width:48vw;
 }
 .text2{
+    float: right;
     text-align: right;
-    font-size: larger;
-    padding:0;
     margin:0;
+    width:48vw;
 }
-.title2{
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-align:right;
+.how-it-works.title{
+    text-align: center;
+    margin: 40px 0 40px 0;
+    background-color: #111;
+    text-transform: uppercase;
+    padding: 20px 10vw 0 10vw;
+    color: #EEE;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 60px;
+    box-shadow: 7px 7px 0 #34D19F;
 }
 body{
     margin: 5%;
     display:block;
+}
+.how-it-works.image{
+    float: right;
+    width: 10vw;
 }
