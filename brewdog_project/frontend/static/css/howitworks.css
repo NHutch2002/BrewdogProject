@@ -4,14 +4,20 @@ h2{
 }
 .textDiv{
     width:75%;
-    margin:5%;
-    margin-top:5%;
-    padding-bottom: 5%;
-    padding-top: 5%;
+    margin-left:5%;
+    margin-right: 5%;
+    padding-top: 4%;
+    padding-bottom: 4%;
     display:block;
     background-color: #EEE;
     box-shadow: 0 0 6px #EEE;
-    border-radius: 4px;
+    border-radius: 500px;
+}
+.textDiv.top{
+    margin-top: 75px;
+}
+.textDiv.bottom{
+    margin-bottom: 75px;
 }
 .row{
     width:100%;
@@ -38,6 +44,7 @@ h2{
     width:100%;
     display:flex;
     justify-content: center;
+    word-spacing: 0.4rem;
 }
 .how-it-works.text{
     font-family: Inter;
@@ -54,13 +61,13 @@ h2{
 }
 .how-it-works.title{
     text-align: center;
-    margin: 40px 0 40px 0;
+    margin: 0px 0 20px 0;
     background-color: #111;
     text-transform: uppercase;
-    padding: 20px 10vw 0 10vw;
+    padding: 10px 2vw 0 2vw;
     color: #EEE;
     font-family: 'NewGroteskSquareFOURWEB';
-    font-size: 60px;
+    font-size: 45px;
     box-shadow: 7px 7px 0 #34D19F;
 }
 body{
@@ -93,4 +100,19 @@ body{
     flex-direction: column;
     height: 100%;
     float:right;
+}
+
+.how-it-works.dashed-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.how-it-works.lines{
+    color:white;
+    font-size: 8px;
+    line-height: 2;
+    
 }

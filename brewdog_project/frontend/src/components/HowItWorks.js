@@ -18,9 +18,9 @@ export default class HowItWorks extends Component {
         return (
             <div className="container-fluid bodycontent"  >
                 <div className="row">
-                    <div className="textDiv">
+                    <div className="textDiv top">
                         <div className="titleDiv">
-                            <h2 className="how-it-works title">Stage 1</h2>
+                            <h2 className="how-it-works title top">Step 1 - Team Commitment</h2>
                         </div>
                         <div className="how-it-works stage-div">
                             <img className="how-it-works image-right" src={HowItWorks1} alt="Handshake Image"></img>
@@ -32,8 +32,13 @@ export default class HowItWorks extends Component {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div className="how-it-works dashed-line">
+                        <h6 className="how-it-works lines">|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br></h6>
+                    </div>
+                    <div className="textDiv">
                         <div className="titleDiv">
-                            <h2 className="how-it-works title">Stage 2</h2>
+                            <h2 className="how-it-works title">Step 2 - Gathering Information</h2>
                         </div>
                         <div className="how-it-works stage-div">
                             <img className="how-it-works image-left" src={HowItWorks2} alt="Thinking Image"></img>
@@ -45,8 +50,13 @@ export default class HowItWorks extends Component {
                                 etc. or by cost (£).</p>
                             </div>
                         </div>
+                    </div>
+                    <div className="how-it-works dashed-line">
+                        <h6 className="how-it-works lines">|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br></h6>
+                    </div>
+                    <div className="textDiv">
                         <div className="titleDiv">
-                            <h2 className="how-it-works title">Stage 3</h2>
+                            <h2 className="how-it-works title">Step 3 - Complete the Calculator</h2>
                         </div>
                         <div className="how-it-works stage-div">
                             <img className="how-it-works image-right" src={HowItWorks3} alt="Box Image"></img>
@@ -56,8 +66,13 @@ export default class HowItWorks extends Component {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div className="how-it-works dashed-line">
+                        <h6 className="how-it-works lines">|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br></h6>
+                    </div>
+                    <div className="textDiv">                  
                         <div className="titleDiv">
-                            <h2 className="how-it-works title">Stage 4</h2>
+                            <h2 className="how-it-works title">Step 4 - Make the Pledge</h2>
                         </div>
                         <div className="how-it-works stage-div">
                             <img className="how-it-works image-left" src={HowItWorks4} alt="Target Image"></img>
@@ -68,8 +83,13 @@ export default class HowItWorks extends Component {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div className="how-it-works dashed-line">
+                        <h6 className="how-it-works lines">|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br>|<br></br></h6>
+                    </div>
+                    <div className="textDiv bottom">
                         <div className="titleDiv">
-                            <h2 className="how-it-works title">Stage 5</h2>
+                            <h2 className="how-it-works title">Step 5 - Get an Action Plan</h2>
                         </div>
                         <div className="how-it-works stage-div">
                             <img className="how-it-works image-right" src={HowItWorks5} alt="People Image"></img>
