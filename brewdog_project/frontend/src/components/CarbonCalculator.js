@@ -59,82 +59,11 @@ const CarbonCalculator = () => {
         handleUpdateTotalResult();
     },[MainGasResults, FuelResults, OilResults, CoalResults, WoodResults, GridElectricityResults, ElectricityResults, WFLandfillResults, WFReuseResults, WFCharityResults, BottleRecyclingResults, AluminiumRecyclingResults, GWLandfillResults, GWRecyclingResults, SpecialWasteResults]);
 
-    const handleUpdateIndividualResult  = (stateName, newValue) => {
-        switch (stateName) {
-            case "MainsGas":
-                console.log("test", calculatorConstants);
-                setMainsGas(newValue);
-                setMainGasResults(newValue * calculatorConstants.MainsGas);
-                break;
-            case "Fuel":
-                setFuel(newValue);
-                setFuelResults(newValue * calculatorConstants.Fuel);
-                break;
-            case "Oil":
-                setOil(newValue);
-                setOilResults(newValue * calculatorConstants.Oil);
-                break;
-            case "Coal":
-                setCoal(newValue);
-                setCoalResults(newValue * calculatorConstants.Coal);
-                break;
-            case "Wood":
-                setWood(newValue);
-                setWoodResults(newValue * calculatorConstants.Wood);
-                break;
-            case "GridElectricity":
-                setGridElectricity(newValue);
-                setGridElectricityResults(newValue * calculatorConstants.GridElectricity);
-                break;
-            case "Electricity":
-                setElectricity(newValue);
-                setElectricityResults(newValue * calculatorConstants.Electricity);
-                break;
-            case "WFLandfill":
-                setWFLandfill(newValue);
-                setWFLandfillResults(newValue * calculatorConstants.WFLandfill);
-                break;
-            case "WFReuse":
-                setWFReuse(newValue);
-                setWFReuseResults(newValue * calculatorConstants.WFReuse);
-                break;
-            case "WFCharity":
-                setWFCharity(newValue);
-                setWFCharityResults(newValue * calculatorConstants.WFCharity);
-                break;
-            case "BottleRecycling":
-                setBottleRecycling(newValue);
-                setBottleRecyclingResults(newValue * calculatorConstants.BottleRecycling);
-                break;
-            case "AluminiumRecycling":
-                setAluminiumRecycling(newValue);
-                setAluminiumRecyclingResults(newValue * calculatorConstants.AluminiumRecycling);
-                break;
-            case "GWLandfill":
-                setGWLandfill(newValue);
-                setGWLandfillResults(newValue * calculatorConstants.GWLandfill);
-                break;
-            case "GWRecycling":
-                setGWRecycling(newValue);
-                setGWRecyclingResults(newValue * calculatorConstants.GWRecycling);
-                break;
-            case "SpecialWaste":
-                setSpecialWaste(newValue);
-                setSpecialWasteResults(newValue * calculatorConstants.SpecialWaste);
-                break;
-            default:
-                console.log("Error");
-        }
-    }
-
     const handleUpdateTotalResult = () => {
         setTotalResults([
             MainGasResults + FuelResults + OilResults + CoalResults + WoodResults + GridElectricityResults + ElectricityResults + WFLandfillResults + WFReuseResults + WFCharityResults + BottleRecyclingResults + AluminiumRecyclingResults + GWLandfillResults + GWRecyclingResults + SpecialWasteResults
         ]);
     }
-
-
-
   
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -146,7 +75,8 @@ const CarbonCalculator = () => {
             credentials: 'include'
         }).then(response => {
             if (response.ok) {
-                navigate('/myresults');
+              alert("Your results have been saved!");
+              navigate('/myresults');
             } else {
                 console.log("Error");
             }
@@ -196,7 +126,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="MainsGas" 
-                      onChange={(event) => handleUpdateIndividualResult("MainsGas", event.target.value)} value={MainsGas}/>
+                      onChange={(event) => {setMainsGas(event.target.value); setMainGasResults(event.target.value * calculatorConstants.MainsGas);}} value={MainsGas} />
                     </td>
                     <td>{calculatorConstants.MainsGas}</td>
                     <td>{MainGasResults}</td>
@@ -206,7 +136,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Fuel" 
-                      onChange={(event) => handleUpdateIndividualResult("Fuel", event.target.value) } value={Fuel}
+                      onChange={(event) => {setFuel(event.target.value); setFuelResults(event.target.value * calculatorConstants.Fuel);}} value={Fuel}
                       />
                     </td>
                     <td>{calculatorConstants.Fuel}</td>
@@ -217,7 +147,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Oil" 
-                      onChange={(event) => handleUpdateIndividualResult("Oil", event.target.value) } value={Oil}
+                      onChange={(event) => {setOil(event.target.value); setOilResults(event.target.value * calculatorConstants.Oil);}} value={Oil}
                       />
                     </td>
                     <td>{calculatorConstants.Oil}</td>
@@ -228,7 +158,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Coal" 
-                      onChange={(event) => handleUpdateIndividualResult("Coal", event.target.value) } value={Coal}
+                      onChange={(event) => {setCoal(event.target.value); setCoalResults(event.target.value * calculatorConstants.Coal);}} value={Coal}
                       />
                     </td>
                     <td>{calculatorConstants.Coal}</td>
@@ -239,7 +169,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Wood" 
-                      onChange={(event) => handleUpdateIndividualResult("Wood", event.target.value) } value={Wood}
+                      onChange={(event) => {setWood(event.target.value); setWoodResults(event.target.value * calculatorConstants.Wood);}} value={Wood}
                       />
                     </td>
                     <td>{calculatorConstants.Wood}</td>
@@ -250,14 +180,16 @@ const CarbonCalculator = () => {
                 <td><input 
                 type="number" 
                 name="GridElectricity" 
-                onChange={event => handleUpdateIndividualResult("GridElectricity", event.target.value)} value={GridElectricity} /></td>
+                onChange={event => {setGridElectricity(event.target.value); setGridElectricityResults(event.target.value * calculatorConstants.GridElectricity);}} value={GridElectricity}
+                /></td>
                 <td>{calculatorConstants.GridElectricity}</td>
                 <td>{GridElectricityResults}</td>
               </tr>
               <tr>
                 <td><label>Electricity (Low Carbon Supplier):</label></td>
                 <td><input type="number" name="Electricity" 
-                onChange={event => handleUpdateIndividualResult("Electricity", event.target.value)} value={Electricity} /></td>
+                onChange={event => {setElectricity(event.target.value); setElectricityResults(event.target.value * calculatorConstants.Electricity)}} value={Electricity} 
+                /></td>
                 <td>{calculatorConstants.Electricity}</td>
                 <td>{ElectricityResults}</td>
               </tr>
@@ -271,7 +203,8 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Landfill:</label></td>
                 <td><input type="number" 
                 name="WFLandfill" 
-                onChange={event => handleUpdateIndividualResult("WFLandfill", event.target.value)} value={WFLandfill} /></td>
+                onChange={event => {setWFLandfill(event.target.value); setWFLandfillResults(event.target.value * calculatorConstants.WFLandfill)}} value={WFLandfill}
+                /></td>
                 <td>{calculatorConstants.WFLandfill}</td>
                 <td>{WFLandfillResults}</td>
                 </tr>
@@ -279,7 +212,8 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Reuse/Composting:</label></td>
                 <td><input type="number" 
                 name="WFReuse" 
-                onChange={event => handleUpdateIndividualResult("WFReuse", event.target.value)} value={WFReuse} /></td>
+                onChange={event => {setWFReuse(event.target.value); setWFReuseResults(event.target.value * calculatorConstants.WFReuse)}} value={WFReuse}
+                /></td>
                 <td>{calculatorConstants.WFReuse}</td>
                 <td>{WFReuseResults}</td>
                 </tr>
@@ -287,7 +221,8 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Charity:</label></td>
                 <td><input type="number" 
                 name="WFCharity" 
-                onChange={event => handleUpdateIndividualResult("WFCharity", event.target.value)} value={WFCharity} /></td>
+                onChange={event => {setWFCharity(event.target.value); setWFCharityResults(event.target.value * calculatorConstants.WFCharity)}} value={WFCharity}
+                /></td>
                 <td>{calculatorConstants.WFCharity}</td>
                 <td>{WFCharityResults}</td>
                 </tr>
@@ -301,7 +236,8 @@ const CarbonCalculator = () => {
                 <td><label>Bottles Recycling</label></td>
                 <td><input type="number" 
                 name="BottleRecycling" 
-                onChange={event => handleUpdateIndividualResult("BottleRecycling", event.target.value)} value={BottleRecycling} /></td>
+                onChange={event => {setBottleRecycling(event.target.value); setBottleRecyclingResults(event.target.value * calculatorConstants.BottleRecycling)}} value={BottleRecycling}
+                /></td>
                 <td>{calculatorConstants.BottleRecycling}</td>
                 <td>{BottleRecyclingResults}</td>
                 </tr>
@@ -309,7 +245,8 @@ const CarbonCalculator = () => {
                 <td><label>Aluminium Cans Recucling </label></td>
                 <td><input type="number" 
                 name="AluminiumRecycling" 
-                onChange={event => handleUpdateIndividualResult("AluminiumRecycling", event.target.value)} value={AluminiumRecycling} /></td>
+                onChange={event => {setAluminiumRecycling(event.target.value); setAluminiumRecyclingResults(event.target.value * calculatorConstants.AluminiumRecycling)}} value={AluminiumRecycling}
+                /></td>
                 <td>{calculatorConstants.AluminiumRecycling}</td>
                 <td>{AluminiumRecyclingResults}</td>
                 </tr>
@@ -317,7 +254,8 @@ const CarbonCalculator = () => {
                 <td><label>General Waste to Landfill</label></td>
                 <td><input type="number" 
                 name="GWLandfill" 
-                onChange={event => handleUpdateIndividualResult("GWLandfill", event.target.value)} value={GWLandfill}/></td>
+                onChange={event => {setGWLandfill(event.target.value); setGWLandfillResults(event.target.value * calculatorConstants.GWLandfill)}} value={GWLandfill}
+                /></td>
                 <td>{calculatorConstants.GWLandfill}</td>
                 <td>{GWLandfillResults}</td>
                 </tr>
@@ -325,7 +263,8 @@ const CarbonCalculator = () => {
                 <td><label>General Waste to Recycling</label></td>
                 <td><input type="number" 
                 name="GWRecycling" 
-                onChange={event => handleUpdateIndividualResult("GWRecycling", event.target.value)} value={GWRecycling}/></td>
+                onChange={event => {setGWRecycling(event.target.value); setGWRecyclingResults(event.target.value * calculatorConstants.GWRecycling)}} value={GWRecycling}
+                /></td>
                 <td>{calculatorConstants.GWRecycling}</td>
                 <td>{GWRecyclingResults}</td>
                 </tr>
@@ -333,7 +272,8 @@ const CarbonCalculator = () => {
                 <td><label>Special Waste</label></td>
                 <td><input type="number" 
                 name="SpecialWaste" 
-                onChange={event => handleUpdateIndividualResult("SpecialWaste", event.target.value)} value={SpecialWaste}/></td>
+                onChange={event => {setSpecialWaste(event.target.value); setSpecialWasteResults(event.target.value * calculatorConstants.SpecialWaste)}} value={SpecialWaste}
+                /></td>
                 <td>{calculatorConstants.SpecialWaste}</td>
                 <td>{SpecialWasteResults}</td>
                 </tr>
