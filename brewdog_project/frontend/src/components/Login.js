@@ -29,7 +29,6 @@ const Login = () => {
         .then(data => {
             console.log(data)
             localStorage.setItem("token", data.token)
-            localStorage.setItem("user", data.user)
             console.log("Token have been saved: " + data.token)
             navigate('/');
         })
@@ -47,17 +46,17 @@ const Login = () => {
 
                     <div class="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-                        <input type="email" value={email}  onChange={e => setEmail(e.target.value)}  id="login-form-email" className="form-control form-input-field" />
+                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" />
                     </div>
 
                     <div className="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} id="login-form-password" className="form-control form-input-field" />
+                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" />
                     </div>
 
-                    <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
 
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Don't have an account?<br/>Create one <a href="/signup"><strong>here</strong></a>.</p>
 
                 </form>
             </div>
