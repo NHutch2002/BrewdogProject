@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
     
 # is this used?
 def unique_company_email(company, email):
@@ -40,39 +42,68 @@ class BrewdogUser(models.Model):
 
 
 class Calculator(models.Model):
-    MainsGas = models.IntegerField()
-    Fuel = models.IntegerField()
-    Oil = models.IntegerField()
-    Coal = models.IntegerField()
-    Wood = models.IntegerField()
-    GridElectricity = models.IntegerField()
-    Electricity = models.IntegerField()
-    WFLandfill = models.IntegerField()
-    WFReuse = models.IntegerField()
-    WFCharity = models.IntegerField()
-    BottleRecycling = models.IntegerField()
-    AluminiumRecycling = models.IntegerField()
-    GWLandfill = models.IntegerField()
-    GWRecycling = models.IntegerField()
-    SpecialWaste = models.IntegerField()
+    MainsGas = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Fuel = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Oil = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Coal = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Wood = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GridElectricity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Electricity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFLandfill = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFReuse = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFCharity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    BottleRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    AluminiumRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GWLandfill = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GWRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    SpecialWaste = models.IntegerField(validators=[
+            MinValueValidator(0)])
 
 
 class CalculatorConstants(models.Model):
-    MainsGas = models.FloatField()
-    Fuel = models.FloatField()
-    Oil = models.FloatField()
-    Coal = models.FloatField()
+    MainsGas = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Fuel = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Oil = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Coal = models.FloatField(validators=[
+            MinValueValidator(0)])
     Wood = models.FloatField()
-    GridElectricity = models.FloatField()
-    Electricity = models.FloatField()
-    WFLandfill = models.FloatField()
-    WFReuse = models.FloatField()
-    WFCharity = models.FloatField()
-    BottleRecycling = models.FloatField()
-    AluminiumRecycling = models.FloatField()
-    GWLandfill = models.FloatField()
-    GWRecycling = models.FloatField()
-    SpecialWaste = models.FloatField()
+    GridElectricity = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Electricity = models.FloatField(validators=[
+            MinValueValidator(0)])
+    WFLandfill = models.FloatField(validators=[
+            MinValueValidator(0)])
+    WFReuse = models.FloatField(validators=[
+            MinValueValidator(0)])
+    WFCharity = models.FloatField(validators=[
+            MinValueValidator(0)])
+    BottleRecycling = models.FloatField(validators=[
+            MinValueValidator(0)])
+    AluminiumRecycling = models.FloatField(validators=[
+            MinValueValidator(0)])
+    GWLandfill = models.FloatField(validators=[
+            MinValueValidator(0)])
+    GWRecycling = models.FloatField(validators=[
+            MinValueValidator(0)])
+    SpecialWaste = models.FloatField(validators=[
+            MinValueValidator(0)])
 
 
 
