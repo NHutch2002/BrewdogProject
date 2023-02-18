@@ -1,7 +1,7 @@
 from django.urls import reverse
 from rest_framework import generics, status
 from brewdog_api.models import BrewdogUser, Calculator, CalculatorConstants
-from brewdog_api.serializers import BrewdogUserSerializer, CalculatorSerializer, LoginSerializer, UserSerializer, CalculatorConstantsSerializer
+from brewdog_api.serializers import BrewdogUserSerializer, UserUpdateSerializer, CalculatorSerializer, LoginSerializer, UserSerializer, CalculatorConstantsSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authentication import TokenAuthentication
@@ -41,6 +41,20 @@ class UserView(generics.CreateAPIView):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
+    def put(self, request, format=None):
+        userData = {}
+        for key, value in request.data.items():
+            userData[key] = value
+        user = User.objects.get(id=request.data.get('id'))
+        brewdogUser = BrewdogUser.objects.get(email=user.brewdogUser.email)
+        brewdogUserSerializer = BrewdogUserSerializer(brewdogUser, data=userData["brewdogUser"])
+        userData.pop("brewdogUser")
+        userSerializer = UserUpdateSerializer(user, data=userData)
+        if brewdogUserSerializer.is_valid() and userSerializer.is_valid():
+            brewdogUserSerializer.save()
+            userSerializer.save()
+            return Response("User updated successfully", status=status.HTTP_200_OK)
+        return Response(f"{brewdogUserSerializer.errors}, {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
 class CalculatorView(generics.CreateAPIView):
     authentication_classes = (TokenAuthentication,)
@@ -77,7 +91,7 @@ class LoginView(APIView):
                 login(request, user)
                 token, created = Token.objects.get_or_create(user=user)
                 print(token.key)
-                return Response({'status': 'success', 'message': 'Login successful', 'token': token.key }, status=status.HTTP_200_OK)
+                return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
         else:
