@@ -177,23 +177,39 @@ const CarbonCalculator = () => {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        fetch('/brewdog/calculator/', {
-            method: 'POST',
-            body: data,
-            headers : {"Authorization": "Token "+localStorage.token },
-            credentials: 'include'
-        }).then(response => {
-            if (response.ok) {
-              alert("Your results have been saved!");
-              navigate('/myresults');
-            } else {
-                console.log(response);
-                console.log(response.status);
-                console.log(response.statusText);
-            }
-        });
+      event.preventDefault();
+      if ( MainsGas === 0 || Fuel === 0 || Oil === 0 || Coal === 0 || Wood === 0 || GridElectricity === 0 || Electricity === 0 || WFLandfill === 0 || WFReuse === 0 || WFCharity === 0 || BottleRecycling === 0 || AluminiumRecycling === 0 || GWLandfill === 0 || GWRecycling === 0 || SpecialWaste === 0 || BeefLamb === 0 || OtherMeat === 0 || LobsterFarmedPrawn === 0 || Fish === 0 || MilkYogurt === 0 || Cheese === 0 || LocalFruitVegetables === 0 || FreightFruitVegetables === 0 || OtherDriedFood === 0 || BeerKegs === 0 || BeerCans === 0 || BeerBottles === 0 || LowBeerKegs === 0 || LowBeerCans === 0 || LowBeerBottles === 0 || SoftDrinks === 0 || Wine === 0 || Spirits === 0 || CompanyGoodsDelivery === 0 || ContractedGoodsDelivery === 0 || Travel === 0 || UKFlights === 0 || InternationalFlights === 0 || StaffCommute === 0 || KitchenEquipment === 0 || BuildingRepair === 0 || CleaningProducts === 0 || ITMarketing === 0 || MainsWater === 0 || Sewage === 0) {
+        window.alert("Please fill in all fields");
+        return;
+      }
+      if(window.confirm("Are you sure you want to submit your data?")){
+        console.log("Submitted");
+      } else {
+        return;
+      }
+      const data = new FormData(event.target);
+      firstData.forEach((value, key) => {
+        data.append(key, value);
+      });
+      secondData.forEach((value, key) => {
+        data.append(key, value);
+      });
+      fetch('/brewdog/calculator/', {
+          method: 'POST',
+          body: data,
+          headers : {"Authorization": "Token "+localStorage.token },
+          credentials: 'include'
+      }).then(response => {
+          if (response.ok) {
+            console.log(response);
+            alert("Your results have been saved!");
+            navigate('/myresults/');
+          } else {
+              console.log(response);
+              console.log(response.status);
+              console.log(response.statusText);
+          }
+      });
     }
 
     return (
