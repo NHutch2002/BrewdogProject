@@ -4,11 +4,16 @@ import {Stack} from "@mui/material";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [calculatorConstants, setFinalConstants] = useState({});
+    
     const [firstView, setFirstView] = useState(true);
     const [secondView, setSecondView] = useState(false);
     const [thirdView, setThirdView] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [calculatorConstants, setFinalConstants] = useState({});
+    
+    const [firstData, setFirstData] = useState([]);
+    const [secondData, setSecondData] = useState([]);
+    
     const [firstTotalResults, setFirstTotalResults] = useState(0);
     const [secondTotalResults, setSecondTotalResults] = useState(0);
     const [thirdTotalResults, setThirdTotalResults] = useState(0);
@@ -153,6 +158,20 @@ const CarbonCalculator = () => {
         handleUpdateTotalResultOnThirdPage();
     },[CompanyGoodsDeliveryResults, ContractedGoodsDeliveryResults, TravelResults, UKFlightsResults, InternationalFlightsResults, StaffCommuteResults, KitchenEquipmentResults, BuildingRepairResults, CleaningProductsResults, ITMarketingResults, MainsWaterResults, SewageResults]);
 
+    const handlePage1Submit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      setFirstData(data);
+      console.log(firstData);
+    }
+    
+    const handlePage2Submit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      setSecondData(data);
+      console.log(secondData);
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -160,6 +179,8 @@ const CarbonCalculator = () => {
         console.log(data.get('Fuel'));
         console.log(data.get('Fish'));
         console.log(data.get('Sewage'));
+        console.log(firstData);
+        console.log(secondData);
         fetch('/brewdog/calculator/', {
             method: 'POST',
             body: data,
@@ -191,7 +212,7 @@ const CarbonCalculator = () => {
         maxWidth: "500px" }}>
         <form method="POST" 
         credentials="include" 
-        onSubmit={handleSubmit}>
+        onSubmit={handlePage1Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
@@ -381,7 +402,7 @@ const CarbonCalculator = () => {
             </table>
           </Stack>
         </Stack>
-        <button onClick={() => {
+        <button type="submit" onClick={() => {
           setFirstView(false);
           setSecondView(true);
           setThirdView(false);
@@ -396,7 +417,7 @@ const CarbonCalculator = () => {
         maxWidth: "500px" }}>
         <form method="POST" 
         credentials="include" 
-        onSubmit={handleSubmit}>
+        onSubmit={handlePage2Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
@@ -624,13 +645,13 @@ const CarbonCalculator = () => {
                     <td></td>
                     <td>{secondTotalResults}</td>
                   </tr>
-                  <button onClick={() => {
+                  <button type="button" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <button onClick={() => {
+                  <button type="submit" onClick={() => {
                     setFirstView(false);
                     setSecondView(false);
                     setThirdView(true);
@@ -820,7 +841,7 @@ const CarbonCalculator = () => {
                           <td></td>
                           <td>{thirdTotalResults}</td>
                         </tr>
-                        <button onClick={() => {
+                        <button type="button" onClick={() => {
                           setFirstView(false);
                           setSecondView(true);
                           setThirdView(false);
