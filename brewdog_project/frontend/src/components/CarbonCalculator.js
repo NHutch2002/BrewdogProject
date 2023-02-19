@@ -162,25 +162,23 @@ const CarbonCalculator = () => {
       event.preventDefault();
       const data = new FormData(event.target);
       setFirstData(data);
-      console.log(firstData);
+      setFirstView(false);
+      setSecondView(true);
+      setThirdView(false);
     }
     
     const handlePage2Submit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
       setSecondData(data);
-      console.log(secondData);
+      setFirstView(false);
+      setSecondView(false);
+      setThirdView(true);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        console.log(data.get('MainsGas'));
-        console.log(data.get('Fuel'));
-        console.log(data.get('Fish'));
-        console.log(data.get('Sewage'));
-        console.log(firstData);
-        console.log(secondData);
         fetch('/brewdog/calculator/', {
             method: 'POST',
             body: data,
@@ -402,11 +400,7 @@ const CarbonCalculator = () => {
             </table>
           </Stack>
         </Stack>
-        <button type="submit" onClick={() => {
-          setFirstView(false);
-          setSecondView(true);
-          setThirdView(false);
-          }}>Next</button>
+        <input type="submit" value="Next" />
         </form>   
     </Stack>
         ) : secondView ? (
@@ -651,12 +645,8 @@ const CarbonCalculator = () => {
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <button type="submit" onClick={() => {
-                    setFirstView(false);
-                    setSecondView(false);
-                    setThirdView(true);
-                  }
-                  }>Next</button>
+                  <input type="submit"
+                  value="Next" />
                 </tbody>
               </table>
             </Stack>
