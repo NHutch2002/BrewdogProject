@@ -10,9 +10,18 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+.MuiGrid-spacing-xs-1{
+    height:84px;
+}
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary.mui-fixed.MuiPaper-elevation4{
+    padding: 0%!important;
+}
+
 body, html {
     font-family: 'NewGroteskSquareFOURWEB';
     background-color: #F6F6F6 !important;
+    padding: 0%!important;
 }
 
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {Grid, Stack} from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
+import {Stack} from "@mui/material";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
-    const [loadingConstants, setLoadingConstants] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [calculatorConstants, setFinalConstants] = useState({});
     const [totalResults, setTotalResults] = useState(0);
     const [MainsGas, setMainsGas] = useState(0);
@@ -44,9 +43,16 @@ const CarbonCalculator = () => {
           .then(response => response.json())
           .then(data => {
             setFinalConstants(data[0]);
-            setLoadingConstants(false);
           })
           .catch(error => console.error(error));
+          function isAuth(){
+            if(localStorage.token){ 
+              setIsAuthenticated(true);
+            } else {
+              setIsAuthenticated(false);
+            }
+        }
+        isAuth()
       }, []);
 
     useEffect(() => {
@@ -127,15 +133,13 @@ const CarbonCalculator = () => {
         ]);
     }
 
-
-
-  
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
         fetch('/brewdog/calculator/', {
             method: 'POST',
             body: data,
+            headers : {"Authorization": "Token "+localStorage.token },
             credentials: 'include'
         }).then(response => {
             if (response.ok) {
@@ -153,8 +157,7 @@ const CarbonCalculator = () => {
         marginTop: "20px", 
         marginBottom: "20px"}}
         >Carbon Footprint Calculator</h1>
-        {!loadingConstants && <CircularProgress style={{ margin: "0 auto",
-        marginTop: "20px" }} /> &&
+        {isAuthenticated ? (
         <Stack direction="column" 
         spacing={2} 
         style={{ margin: "0 auto", 
@@ -344,7 +347,19 @@ const CarbonCalculator = () => {
         <input type="submit" value="Submit"/>
         </form>   
     </Stack>
-        }
+        ) : (
+        <>
+          <p
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "green",
+              textAlign: "center",
+            }}
+          >
+            To access the Carbon Calculator, please <a href="/login">login</a> or <a href="/signup">register</a></p>
+        </>
+        )}
         </>
         );
     }

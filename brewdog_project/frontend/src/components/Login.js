@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+import Landing from "../../static/images/tree.jpeg"
 
 
 import "../../static/css/useraccount.css";
@@ -19,42 +19,48 @@ const Login = () => {
             body: JSON.stringify({ email, password }),
             credentials: 'include'
         })
-            .then(res => {
-                if (res.status === 200) {
-                    navigate('/carboncalculator');
-                } else {
-                    return res.json();
-                }
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                throw new Error(`The status is ${res.status}`);
+            }
+        })
+        .then(data => {
+            console.log(data)
+            localStorage.setItem("token", data.token)
+            console.log("Token have been saved: " + data.token)
+            navigate('/');
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
 
     return (
+        <div>
+            <div className="flex-container">
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <h2>Log In</h2>
 
-        <form className="account_form">
+                    <div class="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" />
+                    </div>
 
-            <h2>Log In</h2>
+                    <div className="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" />
+                    </div>
 
-            <div class="form-outline mb-4 field_container">
-                <input type="email" id="login-form-email" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Don't have an account?<br/>Create one <a href="/signup"><strong>here</strong></a>.</p>
+
+                </form>
             </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="password" id="login-form-password" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-            </div>
-
-            <p>Don't have an account?<br/>Create one <a href="/signup">here</a>.</p>
-
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
-
-        </form>
+        </div>
     );
 }
 

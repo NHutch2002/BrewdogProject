@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Stack} from '@mui/material';
 import * as mdb from 'mdb-ui-kit'; // dont delete me
+
 
 import "../../static/css/useraccount.css";
 
@@ -16,55 +18,60 @@ const SignUp = () => {
             credentials: 'include'
         }).then(response => {
             if (response.ok) {
-                navigate('/carboncalculator');
+                navigate('/login');
             } else {
-                console.log("Error");
+                response.text().then( text => { throw new Error(text) })
             }
-        });
+        }).catch( error => {
+            console.log("Error: " + error )
+        })
     }
 
 
     return (
+        <>
+            <div className="flex-container">
+                
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <h2>Create Account</h2>
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-username">Username</label>
+                        <input type="text" name="username" id="signup-form-username" className="form-control form-input-field" />
+                    </div>
 
-        <form className="account_form">
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-email">Email address</label>
+                        <input type="email" name="email" id="signup-form-email" className="form-control form-input-field" />
+                    </div>
 
-            <h2>Create Account</h2>
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-company">Company</label>
+                        <input type="text" name="company" id="signup-form-company" className="form-control form-input-field" />
+                    </div>
 
-            <div class="form-outline mb-4 field_container">
-                <input type="text" name="name" id="signup-form-name" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-name">Name</label>
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-phone-number">Phone number</label>
+                        <input type="text" name="phone" id="signup-form-phone" className="form-control form-input-field" />
+                    </div>
+
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-password">Password</label>
+                        <input type="password" name="password" id="signup-form-password" className="form-control form-input-field" />
+                    </div>
+
+                    <div className="form-outline mb-2 field_container">
+                        <label className="form-label form-input-label" htmlFor="signup-form-confirm-password">Confirm password</label>
+                        <input type="password" name="confirm-password" id="signup-form-confirm-password" className="form-control form-input-field" />
+                    </div>
+
+
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Already have an account?<br/>Login <a href="/login"><strong>here</strong></a>.</p>
+
+                </form>
             </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="email" name="email" id="signup-form-email" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-email">Email address</label>
-            </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="text" name="company" id="signup-form-company" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-company">Company</label>
-            </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="text" name="phone" id="signup-form-phone" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-phone-number">Phone number</label>
-            </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="password" name="email" id="signup-form-password" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-password">Password</label>
-            </div>
-
-            <div className="form-outline mb-4 field_container">
-                <input type="password" name="confirm-password" id="signup-form-confirm-password" className="form-control form-input-field" />
-                <label className="form-label form-input-label" htmlFor="signup-form-confirm-password">Confirm password</label>
-            </div>
-
-            <p>Already have an account?<br/>Login <a href="/login">here</a>.</p>
-
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
-
-        </form>
+        </>
     );
 }
 
