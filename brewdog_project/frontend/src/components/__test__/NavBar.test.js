@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor, getByTestId } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import NavBar from '../NavBar';
 
 test("header bar renders correctly", () => {
