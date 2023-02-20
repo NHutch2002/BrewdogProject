@@ -30,7 +30,7 @@ class CalculatorTests(TestCase):
         self.assertEqual((Calc.Fuel == 10), True)
         self.assertEqual((Calc.Oil == 10), True)
         self.assertEqual((Calc.Coal == 10), True)
-        self.assertEqual((Calc.Wood == 10), True)N
+        self.assertEqual((Calc.Wood == 10), True)
         self.assertEqual((Calc.GridElectricity == 10), True)
         self.assertEqual((Calc.Electricity == 10), True)
         self.assertEqual((Calc.WFLandfill == 10), True)
