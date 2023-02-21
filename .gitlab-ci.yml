@@ -1,27 +1,6 @@
 stages:
-  - Test
   - Build  
-
-Backend Test:
-  stage: Test
-  image: python:3.11.0
-  script:  
-    - pip install pipenv
-    - pip3 install shell
-    - pipenv install django
-    - pip install django djangorestframework
-    - cd brewdog_project/
-    - python manage.py test
-
-Frontend Test:
-  stage: Test
-  image: node:16
-  script:
-    - cd brewdog_project/frontend/
-    - npm install
-    - npm i react-scripts
-    - npm install mb-ui-kit
-    - npm test
+  - Test
 
 Backend Build:
   stage: Build
@@ -42,7 +21,25 @@ Frontend Build:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
-    - npm install mb-ui-kit
     - npm install -D webpack-cli
     - npm run build
 
+Backend Test:
+  stage: Test
+  image: python:3.11.0
+  script:  
+    - pip install pipenv
+    - pip3 install shell
+    - pipenv install django
+    - pip install django djangorestframework
+    - cd brewdog_project/
+    - python manage.py test
+
+Frontend Test:
+  stage: Test
+  image: node:16
+  script:
+    - cd brewdog_project/frontend/
+    - npm install
+    - npm i react-scripts
+    - npm test
