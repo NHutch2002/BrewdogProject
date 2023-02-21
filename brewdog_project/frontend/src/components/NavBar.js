@@ -106,7 +106,7 @@ export default function NavBar() {
                     >
                     {
                         isAuth() ?
-                         (<><MenuItem onClick={handleMyAccountClick}>My account</MenuItem>
+                         (<><MenuItem onClick={handleMyAccountClick}>My Account</MenuItem>
                          <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
                             <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
                         : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>

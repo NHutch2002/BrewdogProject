@@ -20,6 +20,7 @@ Frontend Test:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
+    - npm install mb-ui-kit
     - npm test
 
 Backend Build:
@@ -41,6 +42,7 @@ Frontend Build:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
+    - npm install mb-ui-kit
     - npm install -D webpack-cli
     - npm run build
 

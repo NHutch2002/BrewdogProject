@@ -133,9 +133,6 @@ const CarbonCalculator = () => {
         ]);
     }
 
-
-
-  
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);

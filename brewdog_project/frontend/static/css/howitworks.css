@@ -3,16 +3,29 @@ h2{
     padding-bottom: 0;
 }
 .textDiv{
-    width:90%;
-    margin:5%;
-    margin-top:0;
+    width:75%;
+    margin-left:5%;
+    margin-right: 5%;
+    padding-top: 4%;
+    padding-bottom: 4%;
     display:block;
+    background-color: #EEE;
+    box-shadow: 0 0 6px #EEE;
+    border-radius: 500px;
+}
+.textDiv.top{
+    margin-top: 75px;
+}
+.textDiv.bottom{
+    margin-bottom: 75px;
 }
 .row{
     width:100%;
     margin:0;
     display:flex;
+    justify-content: center;
     position:absolute;
+    background-color: #111;
 }
 .pic{
     width:100%;
@@ -29,20 +42,77 @@ h2{
 }
 .titleDiv{
     width:100%;
-    display:block;
+    display:flex;
+    justify-content: center;
+    word-spacing: 0.4rem;
 }
-.text2{
-    text-align: right;
-    font-size: larger;
-    padding:0;
+.how-it-works.text{
+    font-family: Inter;
+    float:left;
     margin:0;
+    width: 35vw;
 }
-.title2{
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-align:right;
+.how-it-works.text2{
+    font-family: Inter;
+    float: right;
+    text-align: right;
+    margin:0;
+    width: 35vw;
+}
+.how-it-works.title{
+    text-align: center;
+    margin: 0px 0 20px 0;
+    background-color: #111;
+    text-transform: uppercase;
+    padding: 10px 2vw 0 2vw;
+    color: #EEE;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 45px;
+    box-shadow: 7px 7px 0 #34D19F;
 }
 body{
     margin: 5%;
     display:block;
+}
+.how-it-works.image-right{
+    float: right;
+    width: 10vw;
+}
+.how-it-works.image-left{
+    float: left;
+    width: 10vw;
+}
+.how-it-works.stage-div{
+    margin:0 10vw 0 10vw;
+    height: 20vh;
+}
+.how-it-works.centering-left{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    float:left;
+}
+
+.how-it-works.centering-right{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    float:right;
+}
+
+.how-it-works.dashed-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.how-it-works.lines{
+    color:white;
+    font-size: 8px;
+    line-height: 2;
+    
 }
