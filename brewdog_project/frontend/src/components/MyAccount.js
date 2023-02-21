@@ -47,6 +47,7 @@ function MyAccount() {
     }, [cancelSave]);
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         setCancelSave(true);
         if (pass !== confirmPassword) {
             alert("Passwords do not match");
@@ -59,7 +60,7 @@ function MyAccount() {
         if ( pass !== undefined && pass !== "" && pass !== null) {
             setPassword(pass);
         }
-        event.preventDefault();
+    
         let brewdogUser = {
             email: email,
             company: company,
