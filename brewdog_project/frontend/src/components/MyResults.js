@@ -5,17 +5,23 @@ const MyResults = () => {
     const navigate = useNavigate();
     const [results, setResults] = useState([]);
 
-    useEffect(()=>{
-        fetch('/brewdog/calculator')
+    useEffect( () => {
+        console.log(localStorage.token)
+        fetch('/brewdog/calculator', {
+            method: 'GET',
+            headers : {"Authorization": "Token "+ localStorage.token },
+            credentials: 'include'
+        })
         .then(response => response.json())
         .then(data => {
             setResults(data);
+            console.log(data);
         })
         .catch(error => {
-            console.log(navigate('/brewdog/calculator'))
+        
             console.log(error);
         });
-    },[])
+    });
 
     
     return (

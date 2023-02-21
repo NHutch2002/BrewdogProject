@@ -26,7 +26,7 @@ export default class HomePage extends Component {
                 <div className="text_div">
                     <div id="intro_text">
                         <h2 className="text_heading">Planet First Locals</h2>
-                        <p className="text">This programme supports our clients to cut
+                        <p className="text">This programme supports our clients
                         in cutting their carbon, by understanding their business emissions, including 
                         their supply chains, and setting and achieving ambitious carbon reduction 
                         targets.<br></br><br></br>
@@ -70,7 +70,7 @@ export default class HomePage extends Component {
                         is future-ready and supportive of those who are ready to 
                         join us.</p>
                         <form action="/carboncalculator">
-                            <button type="submit" value="&#9654; Launch">&#9654; Launch</button>
+                            <button type="submit" data-testid="launch_button" value="&#9654; Launch">&#9654; Get Started</button>
                         </form>
                     </div>
                     <img className="text_pic" id="pic_calculator" src={Calculator} alt="Picture of a person using a calculator"/>

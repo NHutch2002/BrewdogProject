@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
     
 # is this used?
 def unique_company_email(company, email):
@@ -88,10 +90,14 @@ class Calculator(models.Model):
     
 
 class CalculatorConstants(models.Model):
-    MainsGas = models.FloatField()
-    Fuel = models.FloatField()
-    Oil = models.FloatField()
-    Coal = models.FloatField()
+    MainsGas = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Fuel = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Oil = models.FloatField(validators=[
+            MinValueValidator(0)])
+    Coal = models.FloatField(validators=[
+            MinValueValidator(0)])
     Wood = models.FloatField()
     GridElectricity = models.FloatField()
     Electricity = models.FloatField()
