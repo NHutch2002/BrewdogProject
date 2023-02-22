@@ -21,7 +21,7 @@ const MyResults = () => {
         
             console.log(error);
         });
-    });
+    }, []);
 
     
     return (
