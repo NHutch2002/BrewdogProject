@@ -42,6 +42,8 @@ class BrewdogUser(models.Model):
 
 
 class Calculator(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateField(auto_now_add=True)
     MainsGas = models.IntegerField(validators=[
             MinValueValidator(0)])
     Fuel = models.IntegerField(validators=[

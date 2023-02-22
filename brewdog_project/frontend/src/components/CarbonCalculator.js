@@ -136,6 +136,7 @@ const CarbonCalculator = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
+        data.append("user", localStorage.user_id )
         fetch('/brewdog/calculator/', {
             method: 'POST',
             body: data,
