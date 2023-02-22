@@ -21,22 +21,12 @@ const MyResults = () => {
         
             console.log(error);
         });
-    });
+    }, []);
 
     
     return (
         <div>
             <h1>My Results</h1>
-            {
-                results ? 
-                results.map(result => {
-                    console.log(result);
-                    return(
-                    <li>Gas: {result.MainsGas}</li>
-                    );
-                }) 
-                : <div>Loading...</div>
-            }
 
         </div>
     );
