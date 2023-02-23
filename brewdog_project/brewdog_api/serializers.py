@@ -33,7 +33,8 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Calculator
-        fields = ("id", "user", "created", "MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling","AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste")
+        fields = ("id", "user", "created","MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling","AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste",
+                  "CompanyGoodsDelivery", "ContractedGoodsDelivery", "Travel", "UKFlights", "InternationalFlights", "StaffCommute", "BeefLamb", "OtherMeat", "LobsterFarmedPrawn", "Fish", "MilkYogurt", "Cheese", "LocalFruitVegetables", "FreightFruitVegetables", "OtherDriedFood", "BeerKegs", "BeerCans", "BeerBottles", "LowBeerKegs", "LowBeerCans", "LowBeerBottles", "SoftDrinks", "Wine", "Spirits", "KitchenEquipment", "BuildingRepair", "CleaningProducts", "ITMarketing", "MainsWater", "Sewage")
 
 
 class LoginSerializer(serializers.ModelSerializer):
@@ -47,4 +48,5 @@ class CalculatorConstantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CalculatorConstants
-        fields = ("MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling","AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste")
+        fields = ("MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling","AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste",
+        "CompanyGoodsDelivery", "ContractedGoodsDelivery", "Travel", "UKFlights", "InternationalFlights", "StaffCommute", "BeefLamb", "OtherMeat", "LobsterFarmedPrawn", "Fish", "MilkYogurt", "Cheese", "LocalFruitVegetables", "FreightFruitVegetables", "OtherDriedFood", "BeerKegs", "BeerCans", "BeerBottles", "LowBeerKegs", "LowBeerCans", "LowBeerBottles", "SoftDrinks", "Wine", "Spirits", "KitchenEquipment", "BuildingRepair", "CleaningProducts", "ITMarketing", "MainsWater", "Sewage")

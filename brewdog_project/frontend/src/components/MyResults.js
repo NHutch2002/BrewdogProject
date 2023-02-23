@@ -40,6 +40,7 @@ const MyResults = () => {
             padding: "20px 0"
         }}>
             <h1>My Results</h1>
+<<<<<<< HEAD
             <div className="results">
             {
                 results ? 
@@ -53,6 +54,9 @@ const MyResults = () => {
                 : <div>Loading...</div>
             }
             </div>
+=======
+
+>>>>>>> dev
         </div>
     );
     

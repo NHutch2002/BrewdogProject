@@ -74,7 +74,37 @@ class Calculator(models.Model):
             MinValueValidator(0)])
     SpecialWaste = models.IntegerField(validators=[
             MinValueValidator(0)])
-
+    CompanyGoodsDelivery = models.IntegerField()
+    ContractedGoodsDelivery = models.IntegerField()
+    Travel = models.IntegerField()
+    UKFlights = models.IntegerField()
+    InternationalFlights = models.IntegerField()
+    StaffCommute = models.IntegerField()
+    BeefLamb = models.IntegerField()
+    OtherMeat = models.IntegerField()
+    LobsterFarmedPrawn = models.IntegerField()
+    Fish = models.IntegerField()
+    MilkYogurt = models.IntegerField()
+    Cheese = models.IntegerField()
+    LocalFruitVegetables = models.IntegerField()
+    FreightFruitVegetables = models.IntegerField()
+    OtherDriedFood = models.IntegerField()
+    BeerKegs = models.IntegerField()
+    BeerCans = models.IntegerField()
+    BeerBottles = models.IntegerField()
+    LowBeerKegs = models.IntegerField()
+    LowBeerCans = models.IntegerField()
+    LowBeerBottles = models.IntegerField()
+    SoftDrinks = models.IntegerField()
+    Wine = models.IntegerField()
+    Spirits = models.IntegerField()
+    KitchenEquipment = models.IntegerField()
+    BuildingRepair = models.IntegerField()
+    CleaningProducts = models.IntegerField()
+    ITMarketing = models.IntegerField()
+    MainsWater = models.IntegerField()
+    Sewage = models.IntegerField()
+    
 
 class CalculatorConstants(models.Model):
     MainsGas = models.FloatField(validators=[
@@ -86,26 +116,46 @@ class CalculatorConstants(models.Model):
     Coal = models.FloatField(validators=[
             MinValueValidator(0)])
     Wood = models.FloatField()
-    GridElectricity = models.FloatField(validators=[
-            MinValueValidator(0)])
-    Electricity = models.FloatField(validators=[
-            MinValueValidator(0)])
-    WFLandfill = models.FloatField(validators=[
-            MinValueValidator(0)])
-    WFReuse = models.FloatField(validators=[
-            MinValueValidator(0)])
-    WFCharity = models.FloatField(validators=[
-            MinValueValidator(0)])
-    BottleRecycling = models.FloatField(validators=[
-            MinValueValidator(0)])
-    AluminiumRecycling = models.FloatField(validators=[
-            MinValueValidator(0)])
-    GWLandfill = models.FloatField(validators=[
-            MinValueValidator(0)])
-    GWRecycling = models.FloatField(validators=[
-            MinValueValidator(0)])
-    SpecialWaste = models.FloatField(validators=[
-            MinValueValidator(0)])
+    GridElectricity = models.FloatField()
+    Electricity = models.FloatField()
+    WFLandfill = models.FloatField()
+    WFReuse = models.FloatField()
+    WFCharity = models.FloatField()
+    BottleRecycling = models.FloatField()
+    AluminiumRecycling = models.FloatField()
+    GWLandfill = models.FloatField()
+    GWRecycling = models.FloatField()
+    SpecialWaste = models.FloatField()
+    CompanyGoodsDelivery = models.FloatField()
+    ContractedGoodsDelivery = models.FloatField()
+    Travel = models.FloatField()
+    UKFlights = models.FloatField()
+    InternationalFlights = models.FloatField()
+    StaffCommute = models.FloatField()
+    BeefLamb = models.FloatField()
+    OtherMeat = models.FloatField()
+    LobsterFarmedPrawn = models.FloatField()
+    Fish = models.FloatField()
+    MilkYogurt = models.FloatField()
+    Cheese = models.FloatField()
+    LocalFruitVegetables = models.FloatField()
+    FreightFruitVegetables = models.FloatField()
+    OtherDriedFood = models.FloatField()
+    BeerKegs = models.FloatField()
+    BeerCans = models.FloatField()
+    BeerBottles = models.FloatField()
+    LowBeerKegs = models.FloatField()
+    LowBeerCans = models.FloatField()
+    LowBeerBottles = models.FloatField()
+    SoftDrinks = models.FloatField()
+    Wine = models.FloatField()
+    Spirits = models.FloatField()
+    KitchenEquipment = models.FloatField()
+    BuildingRepair = models.FloatField()
+    CleaningProducts = models.FloatField()
+    ITMarketing = models.FloatField()
+    MainsWater = models.FloatField()
+    Sewage = models.FloatField()
 
 
 
