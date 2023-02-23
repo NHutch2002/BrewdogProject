@@ -17,7 +17,6 @@ function MyAccount() {
     const [cancelSave, setCancelSave] = React.useState(false);
 
     useEffect(() => {
-        setCancelSave(false);
         fetch('/brewdog/user/', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' , id: localStorage.getItem("user")},
@@ -44,11 +43,11 @@ function MyAccount() {
         .catch(error => {
             console.log(error);
         });
+        setCancelSave(false);
     }, [cancelSave]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setCancelSave(true);
         if (pass !== confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -60,7 +59,6 @@ function MyAccount() {
         if ( pass !== undefined && pass !== "" && pass !== null) {
             setPassword(pass);
         }
-    
         let brewdogUser = {
             email: email,
             company: company,
@@ -75,9 +73,12 @@ function MyAccount() {
         })
         .then(res => {
             if (res.status === 200) {
-                alert("Changes saved");
+                setDirtyUsername(username);
+                setDirtyEmail(email);
+                setDirtyCompany(company);
+                setDirtyPhone(phone);
+                alert("Changes saved successfully");
                 setEditMode(false);
-                setCancelSave(false);
                 setPasswordMode(false);
                 return res.json();
             } else {
