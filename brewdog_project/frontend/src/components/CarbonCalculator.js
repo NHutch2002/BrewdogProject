@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import {Stack} from "@mui/material";
+import "../../static/css/base.css";
+import "../../static/css/calculator.css";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
@@ -209,28 +211,23 @@ const CarbonCalculator = () => {
     }
 
     return (
-        <>
-        <h1 
-        style={{textAlign: "center", 
-        marginTop: "20px", 
-        marginBottom: "20px"}}
+        <div className="container-fluid bodycontent">
+        <h1 className="title"
         >Carbon Footprint Calculator</h1>
         {isAuthenticated && firstView ? (
         <Stack direction="column" 
         spacing={2} 
-        style={{ margin: "0 auto", 
-        maxWidth: "500px" }}>
+        className="stack">
         <form method="POST" 
         credentials="include" 
         onSubmit={handlePage1Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
-          <Stack direction="row" 
+          <Stack className="table-div" direction="row" 
           spacing={2}>
             <Stack direction="column">
-              <table style={{ width: "100%", 
-              textAlign: "center" }}>
+              <table className="table">
                 <thead>
                   <tr>
                     <th>Carbon Source</th>
@@ -241,10 +238,7 @@ const CarbonCalculator = () => {
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Heating and Other Fuel use</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colSpan="4" className="table-title">Heating and Other Fuel use</td>
                     </tr>
                   <tr>
                     <td>Mains Gas:</td>
@@ -319,10 +313,7 @@ const CarbonCalculator = () => {
                 <td>{ElectricityResults}</td>
               </tr>
               <tr>
-                <td>Food Waste</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td colSpan="4" className="table-title">Food Waste</td>
                 </tr>
               <tr>
                 <td><label>Waste Food to Landfill:</label></td>
@@ -352,10 +343,7 @@ const CarbonCalculator = () => {
                 <td>{WFCharityResults}</td>
                 </tr>
                 <tr>
-                <td>Solid Waste</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td colSpan="4" className="table-title">Solid Waste</td>
                 </tr>
                 <tr>
                 <td><label>Bottles Recycling</label></td>
@@ -403,35 +391,31 @@ const CarbonCalculator = () => {
                 <td>{SpecialWasteResults}</td>
                 </tr>
                 <tr>
-                    <td>Page 1 Total</td>
-                    <td></td>
-                    <td></td>
+                    <td colSpan="3" className="table-title total">Page 1 Total</td>
                     <td>{firstTotalResults}</td>
                     </tr>
             </tbody>
             </table>
           </Stack>
         </Stack>
-        <input type="submit" value="Next" />
+        <button type="submit" className="btn btn-primary btn-block ripple-effect">Next</button>
         </form>   
     </Stack>
         ) : secondView ? (
           <>
           <Stack direction="column" 
         spacing={2} 
-        style={{ margin: "0 auto", 
-        maxWidth: "500px" }}>
+        className="stack">
         <form method="POST" 
         credentials="include" 
         onSubmit={handlePage2Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
-          <Stack direction="row" 
+          <Stack className="table-div" direction="row" 
           spacing={2}>
             <Stack direction="column">
-              <table style={{ width: "100%", 
-              textAlign: "center" }}>
+              <table className="table">
                 <thead>
                   <tr>
                   <th>Carbon Source</th>
@@ -442,10 +426,7 @@ const CarbonCalculator = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Food and Drink</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colSpan="4" className="table-title">Food and Drink</td>
                   </tr>
                   <tr>
                     <td>Beef and Lamb</td>
@@ -646,21 +627,20 @@ const CarbonCalculator = () => {
                     <td>{SpiritsResults}</td>
                   </tr>
                   <tr>
-                    <td>Page 2 Total</td>
-                    <td></td>
-                    <td></td>
+                    <td colSpan="3" className="table-title total">Page 2 Total</td>
                     <td>{secondTotalResults}</td>
                   </tr>
-                  <button type="button" onClick={() => {
+                </tbody>
+              </table>
+              <div className="btn-group">
+              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <input type="submit"
-                  value="Next" />
-                </tbody>
-              </table>
+                  <button type="submit" id="btn2" className="btn btn-primary btn-block ripple-effect">Next</button>
+                  </div> 
             </Stack>
           </Stack>
         </form>
@@ -670,19 +650,17 @@ const CarbonCalculator = () => {
               <>
               <Stack direction="column"
               spacing={2}
-              style={{ margin: "0 auto",
-              maxWidth: "500px" }}>
+              className="stack">
               <form method="POST"
               credentials="include"
               onSubmit={handleSubmit}>
                 <input type="hidden"
                 name="csrfmiddlewaretoken"
                 value="csrftoken" />
-                <Stack direction="row"
+                <Stack className="table-div" direction="row"
                 spacing={2}>
                   <Stack direction="column">
-                    <table style={{ width: "100%",
-                    textAlign: "center" }}>
+                    <table className="table">
                       <thead>
                         <tr>
                         <th>Carbon Source</th>
@@ -694,10 +672,7 @@ const CarbonCalculator = () => {
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Transport and Distribution</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td colSpan="4" className="table-title">Transport and Distribution</td>
                         </tr>
                         <tr>
                           <td>Goods and Deliveries (Company owned)</td>
@@ -766,10 +741,7 @@ const CarbonCalculator = () => {
                           <td>{StaffCommuteResults}</td>
                         </tr>
                         <tr>
-                          <td>Other</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td colSpan="4" className="table-title">Other</td>
                         </tr>
                         <tr>
                           <td>Kitchen equipment assets</td>
@@ -838,20 +810,20 @@ const CarbonCalculator = () => {
                           <td>{SewageResults}</td>
                         </tr>
                         <tr>
-                          <td>Page 3 Total</td>
-                          <td></td>
-                          <td></td>
+                          <td colSpan="3" className="table-title total">Page 3 Total</td>
                           <td>{thirdTotalResults}</td>
                         </tr>
-                        <button type="button" onClick={() => {
-                          setFirstView(false);
-                          setSecondView(true);
-                          setThirdView(false);
-                        }
-                        }>Back</button>
-                        <input type="submit" value="Submit" />
                         </tbody>
                         </table>
+                        <div className="btn-group">
+              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+                    setFirstView(false);
+                    setSecondView(true);
+                    setThirdView(false);
+                  }
+                  }>Back</button>
+                  <button type="submit" id="btn2" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                  </div>
                         </Stack>
                         </Stack>
                         </form>
@@ -870,7 +842,7 @@ const CarbonCalculator = () => {
             To access the Carbon Calculator, please <a href="/login">login</a> or <a href="/signup">register</a></p>
         </>
         )}
-        </>
+        </div>
         );
     }
 export default CarbonCalculator;
