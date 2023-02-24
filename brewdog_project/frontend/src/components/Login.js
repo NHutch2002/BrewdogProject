@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import Landing from "../../static/images/tree.jpeg"
 
 
 import "../../static/css/useraccount.css";
@@ -45,7 +44,7 @@ const Login = () => {
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Log In</h2>
 
-                    <div class="form-outline mb-4 field_container">
+                    <div className="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
                         <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" />
                     </div>
