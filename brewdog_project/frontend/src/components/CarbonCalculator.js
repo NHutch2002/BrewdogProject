@@ -180,6 +180,12 @@ const CarbonCalculator = () => {
 
     const handleSubmit = (event) => {
       event.preventDefault();
+
+      if (firstTotalResults[0] === 0 && secondTotalResults[0] === 0 && thirdTotalResults[0] === 0) {
+        alert("Please enter data into at least one field before submitting.");
+        return;
+      }
+
       if(window.confirm("Are you sure you want to submit your data?")){
         console.log("Submitted");
       } else {
@@ -203,9 +209,10 @@ const CarbonCalculator = () => {
             alert("Your results have been saved!");
             navigate('/myresults/');
           } else {
-              console.log(response);
-              console.log(response.status);
-              console.log(response.statusText);
+            window.alert("Something went wrong, please try again." + response.status);
+            console.log(response);
+            console.log(response.status);
+            console.log(response.statusText);
           }
       });
     }
