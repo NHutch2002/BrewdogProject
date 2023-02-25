@@ -119,7 +119,10 @@ const CarbonCalculator = () => {
           .then(data => {
             setFinalConstants(data[0]);
           })
-          .catch(error => console.error(error));
+          .catch(error => {{
+            console.log(error);
+            alert('Error loading constants, please try again later');
+          }});
           function isAuth(){
             if(localStorage.token){ 
               setIsAuthenticated(true);

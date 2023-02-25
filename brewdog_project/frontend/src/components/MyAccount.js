@@ -26,6 +26,7 @@ function MyAccount() {
             if (res.status === 200) {
                 return res.json();
             } else {
+                window.alert("Failed to fetch data, please try again later");
                 throw new Error(`The status is ${res.status}`);
             }
         })
