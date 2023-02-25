@@ -8,7 +8,6 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -33,8 +32,8 @@ class UserView(generics.CreateAPIView):
             if userSerializer.is_valid():
                 user = userSerializer.save()
                 return HttpResponseRedirect(reverse('frontend:carboncalculator'))
-            return Response(f"Error: UserSerializer serializers not valid - {userSerializer.errors}, {userSerializer.data}", status=status.HTTP_400_BAD_REQUEST)
-        return Response(f"Error: BrewdogUserSerializer serializers not valid - {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+            return Response(f"Error: Invalid details- {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+        return Response(f"Error: Invalid details- {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, format=None):
         users = User.objects.all()
@@ -129,4 +128,3 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
-
