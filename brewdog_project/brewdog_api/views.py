@@ -92,9 +92,9 @@ class LoginView(APIView):
                 print(token.key)
                 return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
             else:
-                return Response({'error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'Error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'status': 'error', 'message': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'Error': ' Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class CalculatorConstantsView(generics.CreateAPIView):

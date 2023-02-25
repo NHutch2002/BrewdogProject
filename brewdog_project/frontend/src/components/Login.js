@@ -21,9 +21,13 @@ const Login = () => {
         })
         .then(res => {
             if (res.status === 200) {
+                window.alert("Login successful!");
                 return res.json();
             } else {
-                throw new Error(`The status is ${res.status}`);
+                res.text().then(text => {{
+                    window.alert(text);
+                    throw new Error(text);
+                }});
             }
         })
         .then(data => {
@@ -47,12 +51,12 @@ const Login = () => {
 
                     <div class="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" />
+                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" />
+                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" required/>
                     </div>
 
 
