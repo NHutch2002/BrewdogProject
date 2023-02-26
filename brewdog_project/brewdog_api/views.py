@@ -35,10 +35,14 @@ class UserView(generics.CreateAPIView):
             return Response(f"Error: Invalid details- {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
         return Response(f"Error: Invalid details- {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        if id:
+            data = User.objects.get(id=id)
+            print(data)
+            serializer = UserSerializer(data)
+            print(serializer.data)
+            return Response(serializer.data)
 
     def put(self, request, format=None):
         userData = {}
@@ -53,7 +57,7 @@ class UserView(generics.CreateAPIView):
             brewdogUserSerializer.save()
             userSerializer.save()
             return Response("User updated successfully", status=status.HTTP_200_OK)
-        return Response(f"{brewdogUserSerializer.errors}, {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+        return Response(f"Details already exist- {brewdogUserSerializer.errors},{userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
 class CalculatorView(generics.CreateAPIView):
     authentication_classes = (TokenAuthentication,)

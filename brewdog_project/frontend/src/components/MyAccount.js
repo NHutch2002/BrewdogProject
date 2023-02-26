@@ -17,9 +17,10 @@ function MyAccount() {
     const [cancelSave, setCancelSave] = React.useState(false);
 
     useEffect(() => {
-        fetch('/brewdog/user/', {
+        const id = localStorage.getItem("user");
+        fetch(`/brewdog/user/?id=${id}`, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' , id: localStorage.getItem("user")},
+            headers: { 'Content-Type': 'application/json'},
             credentials: 'include'
         })
         .then(res => {
@@ -31,15 +32,16 @@ function MyAccount() {
             }
         })
         .then(data => {
-            setUserName(data[0].username);
-            setEmail(data[0].brewdogUser.email);
-            setPassword(data[0].password);
-            setCompany(data[0].brewdogUser.company);
-            setPhone(data[0].brewdogUser.phone);
-            setDirtyUsername(data[0].username);
-            setDirtyEmail(data[0].brewdogUser.email);
-            setDirtyCompany(data[0].brewdogUser.company);
-            setDirtyPhone(data[0].brewdogUser.phone);
+            console.log(data);
+            setUserName(data.username);
+            setEmail(data.brewdogUser.email);
+            setPassword(data.password);
+            setCompany(data.brewdogUser.company);
+            setPhone(data.brewdogUser.phone);
+            setDirtyUsername(data.username);
+            setDirtyEmail(data.brewdogUser.email);
+            setDirtyCompany(data.brewdogUser.company);
+            setDirtyPhone(data.brewdogUser.phone);
         })
         .catch(error => {
             console.log(error);
@@ -83,8 +85,10 @@ function MyAccount() {
                 setPasswordMode(false);
                 return res.json();
             } else {
-                alert("Error: " + res.status);
-                throw new Error(`The status is ${res.status}`);
+                res.text().then(text => {{
+                    window.alert(text);
+                    throw new Error(`Error: ${text}`);
+                }});
             }
         })
         .then(data => {
