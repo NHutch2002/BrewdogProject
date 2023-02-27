@@ -1,4 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
+import "../../static/css/useraccount.css";
+import "../../static/css/myaccount.css";
 
 function MyAccount() {
     const [username, setUserName] = React.useState();
@@ -101,98 +103,72 @@ function MyAccount() {
 
     return (
         <>
-            <h1>My Account</h1>
+        <div>
             {editMode && !passwordMode ? (
             <>
-            <form method="POST" credentials="include" onSubmit={handleSubmit}>
-            <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                <label>
-                    Username:
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={e => setUserName(e.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    Email:
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    Company:
-                    <input
-                        type="text"
-                        value={company}
-                        onChange={e => setCompany(e.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    Phone:
-                    <input
-                        type="text"
-                        value={phone}
-                        onChange={e => setPhone(e.target.value)}
-                    />
-                </label>
-                <br />
-                <button type="submit">Save</button>
-            </form>
-            <button onClick={() => {
-            setCancelSave(true);
-            setEditMode(false);
-            }}>Cancel</button>
+            <div className='flex-container'>
+                <form className="my_account account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <h2>Edit Details</h2>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>Username:</label>
+                        <input className='form-control form-input-field'  type="text" value={username} onChange={e => setUserName(e.target.value)}/>  
+                    </div>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>Email:</label>
+                        <input className='form-control form-input-field' type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>Company:</label>
+                        <input className='form-control form-input-field' type="text" value={company} onChange={e => setCompany(e.target.value)}/>
+                    </div>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>Phone:</label>
+                        <input className='form-control form-input-field' type="text" value={phone} onChange={e => setPhone(e.target.value)}/>
+                    </div>
+                    <button className='my_account btn btn-primary btn-block ripple-effect' type="submit">Update</button> 
+                    <button className='my_account btn btn-primary btn-block ripple-effect' onClick={() => {setCancelSave(true); setEditMode(false);}}>Cancel</button>
+                </form>
+               
+            </div>
             </>
             ) : passwordMode && !editMode ? (
             <>
-            <form method="POST" credentials="include" onSubmit={handleSubmit}>
-            <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                <label>
-                    New Password:
-                    <input
-                        type="password"
-                        value={pass}
-                        onChange={e => setPass(e.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    Confirm Password:
-                    <input
-
-                        type="password"
-                        value={confirmPassword}
-                        onChange={e => setConfirmPassword(e.target.value)}
-                    />
-                </label>
-                <br />
-                <button type="submit">Save</button>
-            </form>
-            <button onClick={() => {
-            setCancelSave(true);
-            setEditMode(false);
-            setPasswordMode(false);
-            }}>Cancel</button>
+            <div className='flex-container'>
+                <form className="my_account account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <h2>Change Password</h2>
+                <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>New Password:</label>
+                        <input className='form-control form-input-field' type="password" value={pass} onChange={e => setPass(e.target.value)}/>
+                    </div>
+                    <div className='form-outline mb-2 field_container'>
+                        <label className='form-label form-input-label'>Confirm Password:</label>
+                        <input className='form-control form-input-field' type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
+                    </div>
+                <button className='my_account btn btn-primary btn-block ripple-effect' type="submit">Update</button>
+                <button className='my_account btn btn-primary btn-block ripple-effect' onClick={() => {setCancelSave(true); setEditMode(false); setPasswordMode(false);}}>Cancel</button>
+                </form>
+                </div>
             </>
             ) : (
-                <>
-                <p>Username: {dirtyUsername}</p>
-                <p>Email: {dirtyEmail}</p>
-                <p>Company: {dirtyCompany}</p>
-                <p>Phone: {dirtyPhone}</p>
-                <button onClick={() => setEditMode(true)}>Edit</button>
-                <button onClick={() => {
-                setEditMode(false);
-                setPasswordMode(true);
-                }}>Change Password</button>
-                </>
+                <div className="my_account flex-container">
+                    <div className='my_account account_form'>
+                        <h2 className="my_account existing_fields_heading">My Account</h2>
+                        <p className='my_account existing_fields'><strong>Username</strong>: {dirtyUsername}</p>
+                        <p className='my_account existing_fields'><strong>Email</strong>: {dirtyEmail}</p>
+                        <p className='my_account existing_fields'><strong>Company:</strong> {dirtyCompany}</p>
+                        <p className='my_account existing_fields'><strong>Phone:</strong> {dirtyPhone}</p>
+                        <button className='my_account btn btn-primary btn-block ripple-effect existing_fields' onClick={() => setEditMode(true)}>Edit</button>
+                        <button className='my_account btn btn-primary btn-block ripple-effect' onClick={() => {
+                        setEditMode(false);
+                        setPasswordMode(true);
+                        }}>Change Password</button>
+                    </div>
+                </div>
+
             )}
+            </div>
         </>
     );
 }
