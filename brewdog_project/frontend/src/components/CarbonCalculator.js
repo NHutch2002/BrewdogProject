@@ -255,10 +255,11 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="MainsGas" 
+                      data-testid="mainsGasInput"
                       onChange={(event) => {setMainsGas(event.target.value); setMainGasResults(event.target.value * calculatorConstants.MainsGas);}} value={MainsGas} />
                     </td>
-                    <td>{calculatorConstants.MainsGas}</td>
-                    <td>{MainGasResults}</td>
+                    <td data-testid="mainsGasConstant">{calculatorConstants.MainsGas}</td>
+                    <td data-testid="mainsGasResult">{MainGasResults}</td>
                   </tr>
                   <tr>
                     <td>Fuel (Diesel):</td>
