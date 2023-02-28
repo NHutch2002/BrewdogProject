@@ -16,7 +16,7 @@
         "bootstrap-css-only": "^4.4.1",
         "fontawesome-free": "^1.0.4",
         "mdb-ui-kit": "^6.1.0",
-        "mdbreact": "^4.6.1",
+        "mdbreact": "^5.1.0",
         "node.js": "^0.0.1-security",
         "react-icons": "^4.7.1",
         "react-router-dom": "^6.8.1",
