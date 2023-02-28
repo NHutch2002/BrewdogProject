@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "brewdog_api.apps.BrewdogApiConfig",
     "rest_framework",
+    "rest_framework.authtoken",
     "frontend.apps.FrontendConfig",
 ]
 
@@ -73,6 +74,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "brewdog_project.wsgi.application"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 
 # Database

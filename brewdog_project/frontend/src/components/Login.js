@@ -1,23 +1,71 @@
-import React, { Component } from 'react';
-import { Menu, Container } from '@material-ui/core';
+import React, { useState } from 'react';
+import { render } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default class Login extends Component {
 
-    render() {
-        return (
-            <div>
-                <h1>Login</h1>
-                <form method="POST" credentials="include">
+import "../../static/css/useraccount.css";
+
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch('/brewdog/login/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+            credentials: 'include'
+        })
+        .then(res => {
+            if (res.status === 200) {
+                window.alert("Login successful!");
+                return res.json();
+            } else {
+                res.text().then(text => {{
+                    window.alert(text);
+                    throw new Error(text);
+                }});
+            }
+        })
+        .then(data => {
+            console.log(data)
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", data.user);
+            console.log("Token have been saved: " + data.token)
+            navigate('/');
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
+
+    return (
+        <div>
+            <div className="flex-container">
+                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" name="username"/><br/>
-                        <label>Password:</label>
-                        <input type="password" name="password"/><br/>
-                        <input type="submit" value="Login"/>
+                    <h2>Log In</h2>
+
+                    <div className="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
+                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" required/>
                     </div>
+
+                    <div className="form-outline mb-4 field_container">
+                        <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
+                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" required/>
+                    </div>
+
+
+                    <button type="submit" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                    <p>Don't have an account?<br/>Create one <a href="/signup"><strong>here</strong></a>.</p>
+
                 </form>
             </div>
-        )
-    }
+        </div>
+    );
 }
+
+export default Login;
