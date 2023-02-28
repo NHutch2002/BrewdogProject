@@ -5,7 +5,7 @@ app_name = 'frontend'
 
 urlpatterns = [
     path('', index),
-    path('carboncalculator', index, name='carboncalculator'),
+    path('carboncalculator', index),
     path('howitworks', index),
     path('blog', index),
     path('login', index),
