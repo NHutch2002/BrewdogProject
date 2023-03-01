@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 
 
 import "../../static/css/useraccount.css";
@@ -12,27 +12,27 @@ const SignUp = () => {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        if (data.get('password') !== data.get('confirm-password')) {
+        if (data.get("password") !== data.get("confirm-password")) {
             window.alert("Passwords do not match");
             return;
         }
 
-        fetch('/brewdog/user/', {
-            method: 'POST',
+        fetch("/brewdog/user/", {
+            method: "POST",
             body: data,
-            credentials: 'include'
+            credentials: "include"
         }).then(response => {
             if (response.ok) {
-                navigate('/login');
+                navigate("/login");
             } else {
                 response.text().then( text => {{ 
                     window.alert(text);
-                    throw new Error(text); }})
+                    throw new Error(text); }});
             }
         }).catch( error => {
-            console.log("Error: " + error )
-        })
-    }
+            console.log("Error: " + error );
+        });
+    };
 
 
     return (
@@ -80,7 +80,7 @@ const SignUp = () => {
             </div>
         </>
     );
-}
+};
 
 export default SignUp;
 

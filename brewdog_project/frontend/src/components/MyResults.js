@@ -1,16 +1,16 @@
-import React, { Component, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyResults = () => {
     const navigate = useNavigate();
     const [results, setResults] = useState([]);
 
     useEffect( () => {
-        console.log(localStorage.token)
-        fetch('/brewdog/calculator', {
-            method: 'GET',
+        console.log(localStorage.token);
+        fetch("/brewdog/calculator", {
+            method: "GET",
             headers : {"Authorization": "Token "+ localStorage.token },
-            credentials: 'include'
+            credentials: "include"
         })
         .then(response => response.json())
         .then(data => {
@@ -31,6 +31,6 @@ const MyResults = () => {
         </div>
     );
     
-}
+};
 
 export default MyResults;

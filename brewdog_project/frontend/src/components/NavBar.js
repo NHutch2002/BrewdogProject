@@ -1,8 +1,8 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
 import React from "react";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
-import { VscAccount } from 'react-icons/vsc';
-import { HiCalculator } from 'react-icons/hi';
+import { VscAccount } from "react-icons/vsc";
+import { HiCalculator } from "react-icons/hi";
 
 
 export default function NavBar() {
@@ -26,7 +26,7 @@ export default function NavBar() {
 
     function handleLogOutClick() {
         setAnchorEl(null);
-        localStorage.removeItem('token')
+        localStorage.removeItem("token");
         window.location.href = "/";
     }
 
@@ -49,7 +49,7 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "220px",
-    }
+    };
 
     function isAuth(){
         if(localStorage.token){ return true; }

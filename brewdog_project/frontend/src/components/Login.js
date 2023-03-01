@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 import "../../static/css/useraccount.css";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('/brewdog/login/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+        fetch("/brewdog/login/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
-            credentials: 'include'
+            credentials: "include"
         })
         .then(res => {
             if (res.status === 200) {
@@ -30,11 +29,11 @@ const Login = () => {
             }
         })
         .then(data => {
-            console.log(data)
+            console.log(data);
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", data.user);
-            console.log("Token have been saved: " + data.token)
-            navigate('/');
+            console.log("Token have been saved: " + data.token);
+            navigate("/");
         })
         .catch(error => {
             console.log(error);
@@ -66,6 +65,6 @@ const Login = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Login;

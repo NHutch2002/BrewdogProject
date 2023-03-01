@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useEffect } from "react";
 import "../../static/css/useraccount.css";
 import "../../static/css/myaccount.css";
 
@@ -21,9 +21,9 @@ function MyAccount() {
     useEffect(() => {
         const id = localStorage.getItem("user");
         fetch(`/brewdog/user/?id=${id}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json'},
-            credentials: 'include'
+            method: "GET",
+            headers: { "Content-Type": "application/json"},
+            credentials: "include"
         })
         .then(res => {
             if (res.status === 200) {
@@ -68,13 +68,13 @@ function MyAccount() {
             email: email,
             company: company,
             phone: phone
-        }
-        const id = localStorage.getItem("user")
-        fetch('/brewdog/user/', {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' , id: localStorage.getItem("user")},
+        };
+        const id = localStorage.getItem("user");
+        fetch("/brewdog/user/", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user")},
             body: JSON.stringify({ username, password, brewdogUser, id }),
-            credentials: 'include'
+            credentials: "include"
         })
         .then(res => {
             if (res.status === 200) {
@@ -94,7 +94,7 @@ function MyAccount() {
             }
         })
         .then(data => {
-            console.log(data)
+            console.log(data);
         })
         .catch(error => {
             console.log(error);

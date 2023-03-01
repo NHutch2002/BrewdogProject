@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "../../static/css/base.css";
 import "../../static/css/howitworks.css";
-import HowItWorks1 from "../../static/images/howitworks1.png"
-import HowItWorks2 from "../../static/images/howitworks2.png"
-import HowItWorks3 from "../../static/images/howitworks3.png"
-import HowItWorks4 from "../../static/images/howitworks4.png"
-import HowItWorks5 from "../../static/images/howitworks5.png"
+import HowItWorks1 from "../../static/images/howitworks1.png";
+import HowItWorks2 from "../../static/images/howitworks2.png";
+import HowItWorks3 from "../../static/images/howitworks3.png";
+import HowItWorks4 from "../../static/images/howitworks4.png";
+import HowItWorks5 from "../../static/images/howitworks5.png";
 
 
 
