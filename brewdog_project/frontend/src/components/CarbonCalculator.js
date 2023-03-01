@@ -229,7 +229,6 @@ const CarbonCalculator = () => {
         spacing={2} 
         className="stack">
         <form method="POST" 
-        credentials="include" 
         onSubmit={handlePage1Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
@@ -417,8 +416,7 @@ const CarbonCalculator = () => {
           <Stack direction="column" 
         spacing={2} 
         className="stack">
-        <form method="POST" 
-        credentials="include" 
+        <form method="POST"  
         onSubmit={handlePage2Submit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
@@ -663,7 +661,6 @@ const CarbonCalculator = () => {
               spacing={2}
               className="stack">
               <form method="POST"
-              credentials="include"
               onSubmit={handleSubmit}>
                 <input type="hidden"
                 name="csrfmiddlewaretoken"

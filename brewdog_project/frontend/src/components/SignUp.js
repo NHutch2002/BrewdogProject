@@ -39,7 +39,7 @@ const SignUp = () => {
         <>
             <div className="flex-container">
                 
-                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="account_form" method="POST" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Create Account</h2>
                     <div className="form-outline mb-2 field_container">

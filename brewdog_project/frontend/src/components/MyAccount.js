@@ -107,7 +107,7 @@ function MyAccount() {
             {editMode && !passwordMode ? (
             <>
             <div className='flex-container'>
-                <form className="my_account account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="my_account account_form" method="POST" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Edit Details</h2>
                     <div className='form-outline mb-2 field_container'>
@@ -135,7 +135,7 @@ function MyAccount() {
             ) : passwordMode && !editMode ? (
             <>
             <div className='flex-container'>
-                <form className="my_account account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="my_account account_form" method="POST" onSubmit={handleSubmit}>
                 <h2>Change Password</h2>
                 <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <div className='form-outline mb-2 field_container'>

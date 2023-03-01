@@ -43,7 +43,7 @@ const Login = () => {
     return (
         <div>
             <div className="flex-container">
-                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="account_form" method="POST" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Log In</h2>
 
