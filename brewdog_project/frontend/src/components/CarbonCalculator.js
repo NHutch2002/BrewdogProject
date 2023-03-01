@@ -645,7 +645,7 @@ const CarbonCalculator = () => {
                 </tbody>
               </table>
               <div className="btn-group">
-              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
@@ -828,7 +828,7 @@ const CarbonCalculator = () => {
                         </tbody>
                         </table>
                         <div className="btn-group">
-              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(false);
                     setSecondView(true);
                     setThirdView(false);
