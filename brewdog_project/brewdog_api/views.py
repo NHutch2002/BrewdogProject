@@ -60,8 +60,8 @@ class UserView(generics.CreateAPIView):
         return Response(f"Details already exist- {brewdogUserSerializer.errors},{userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
 class CalculatorView(generics.CreateAPIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
     serializer_class = CalculatorSerializer
     queryset = Calculator.objects.all()
 
@@ -69,7 +69,7 @@ class CalculatorView(generics.CreateAPIView):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponseRedirect(reverse('frontend:myresults'))
+            return Response(serializer.data.get('id'), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):

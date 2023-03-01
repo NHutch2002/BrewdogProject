@@ -31,7 +31,6 @@ const MyResults = () => {
         } else {
             element.classList.add("active");
         }
-        console.log(element);
     }
     
     const getCategoryTotals = (result) => {
@@ -44,7 +43,6 @@ const MyResults = () => {
         for (let category in categoryTotals) {
             total += categoryTotals[category]
         }
-        console.log(categoryTotals)
         return [categoryTotals, total]
     }
 
@@ -53,11 +51,9 @@ const MyResults = () => {
             <h1 className="title">My Results</h1>
             <div id="results">       
             {
-                results ? 
+                results.length > 0 ? 
                 results.map(result => {
                     let [categoryTotals, total] = getCategoryTotals(result)
-                    //console.log(result);
-                    console.log(categoryTotals, total);
                     return(
                     <div className="result-entry">
                         <div className="result-summary">
@@ -66,6 +62,7 @@ const MyResults = () => {
                             <IconButton color="inherit" onClick={(e) => handleClick(e)}>
                                 <IoIosArrowDropdownCircle color="#34D19F" size="25px" />
                             </IconButton>
+                            <a href="#" onClick={() => navigate(`/myresults/${result.id}`)}>View</a>
                         </div>
                         <div className="result-details">
                             {
@@ -81,7 +78,7 @@ const MyResults = () => {
                     </div>
                     );
                 }) 
-                : <div>Loading...</div>
+                : <div>No results to display</div>
             }     
             </div>
         </div>
