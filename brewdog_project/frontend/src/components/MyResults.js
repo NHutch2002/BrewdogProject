@@ -6,7 +6,6 @@ const MyResults = () => {
     const [results, setResults] = useState([]);
 
     useEffect( () => {
-        console.log(localStorage.token)
         fetch('/brewdog/calculator', {
             method: 'GET',
             headers : {"Authorization": "Token "+ localStorage.token },
@@ -15,19 +14,49 @@ const MyResults = () => {
         .then(response => response.json())
         .then(data => {
             setResults(data);
-            console.log(data);
         })
         .catch(error => {
-        
             console.log(error);
         });
     }, []);
-
     
-    return (
-        <div>
-            <h1>My Results</h1>
+    const getCategoryTotals = (result) => {
+        let categoryTotals = {
+            "Heating and Other Fuel use" : result.MainsGas + result.Fuel + result.Oil + result.Coal + result.Wood + result.GridElectricity + result.Electricity,
+            "Food Waste" : result.WFLandfill + result.WFLandfill + result.WFCharity,
+            "Solid Waste" : result.BottleRecycling + result.AluminiumRecycling + result.GWLandfill + result.GWRecycling + result.SpecialWaste
+        }
+        let total = 0
+        for (let category in categoryTotals) {
+            total += categoryTotals[category]
+        }
+        return categoryTotals, total
+    }
 
+    return (
+        <div style={{
+            width: "80vw",
+            margin: "0 auto",
+            padding: "20px 0"
+        }}>
+            <h1>My Results</h1>
+<<<<<<< HEAD
+            <div className="results">
+            {
+                results ? 
+                results.map(result => {
+                    let categoryTotals, total = getCategoryTotals(result)
+                    console.log(categoryTotals, total);
+                    return(
+                    <div>Total: {total}</div>
+                    );
+                }) 
+                : <div>Loading...</div>
+            }
+            </div>
+=======
+
+>>>>>>> dev
         </div>
     );
     

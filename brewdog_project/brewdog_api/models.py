@@ -42,21 +42,38 @@ class BrewdogUser(models.Model):
 
 
 class Calculator(models.Model):
-    MainsGas = models.IntegerField()
-    Fuel = models.IntegerField()
-    Oil = models.IntegerField()
-    Coal = models.IntegerField()
-    Wood = models.IntegerField()
-    GridElectricity = models.IntegerField()
-    Electricity = models.IntegerField()
-    WFLandfill = models.IntegerField()
-    WFReuse = models.IntegerField()
-    WFCharity = models.IntegerField()
-    BottleRecycling = models.IntegerField()
-    AluminiumRecycling = models.IntegerField()
-    GWLandfill = models.IntegerField()
-    GWRecycling = models.IntegerField()
-    SpecialWaste = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateField(auto_now_add=True)
+    MainsGas = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Fuel = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Oil = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Coal = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Wood = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GridElectricity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    Electricity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFLandfill = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFReuse = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    WFCharity = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    BottleRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    AluminiumRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GWLandfill = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    GWRecycling = models.IntegerField(validators=[
+            MinValueValidator(0)])
+    SpecialWaste = models.IntegerField(validators=[
+            MinValueValidator(0)])
     CompanyGoodsDelivery = models.IntegerField()
     ContractedGoodsDelivery = models.IntegerField()
     Travel = models.IntegerField()

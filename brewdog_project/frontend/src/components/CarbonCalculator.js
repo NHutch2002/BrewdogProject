@@ -201,6 +201,7 @@ const CarbonCalculator = () => {
       secondData.forEach((value, key) => {
         data.append(key, value);
       });
+      data.append("user", localStorage.user_id )
       fetch('/brewdog/calculator/', {
           method: 'POST',
           body: data,
