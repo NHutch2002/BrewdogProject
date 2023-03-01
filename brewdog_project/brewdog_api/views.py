@@ -8,7 +8,6 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -33,13 +32,17 @@ class UserView(generics.CreateAPIView):
             if userSerializer.is_valid():
                 user = userSerializer.save()
                 return HttpResponseRedirect(reverse('frontend:carboncalculator'))
-            return Response(f"Error: UserSerializer serializers not valid - {userSerializer.errors}, {userSerializer.data}", status=status.HTTP_400_BAD_REQUEST)
-        return Response(f"Error: BrewdogUserSerializer serializers not valid - {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+            return Response(f"Error: Invalid details- {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+        return Response(f"Error: Invalid details- {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        if id:
+            data = User.objects.get(id=id)
+            print(data)
+            serializer = UserSerializer(data)
+            print(serializer.data)
+            return Response(serializer.data)
 
     def put(self, request, format=None):
         userData = {}
@@ -54,7 +57,7 @@ class UserView(generics.CreateAPIView):
             brewdogUserSerializer.save()
             userSerializer.save()
             return Response("User updated successfully", status=status.HTTP_200_OK)
-        return Response(f"{brewdogUserSerializer.errors}, {userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+        return Response(f"Details already exist- {brewdogUserSerializer.errors},{userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
 class CalculatorView(generics.CreateAPIView):
     authentication_classes = (TokenAuthentication,)
@@ -93,9 +96,9 @@ class LoginView(APIView):
                 print(token.key)
                 return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
             else:
-                return Response({'error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'Error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'status': 'error', 'message': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'Error': ' Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class CalculatorConstantsView(generics.CreateAPIView):
@@ -129,4 +132,3 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
-
