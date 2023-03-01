@@ -132,3 +132,13 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
+    
+class IndividualCalculatorView(generics.CreateAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        data = Calculator.objects.get(id=id)
+        serializer = CalculatorSerializer(data)
+        return Response(serializer.data)
