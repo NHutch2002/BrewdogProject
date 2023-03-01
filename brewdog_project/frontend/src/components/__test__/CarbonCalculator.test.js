@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import CarbonCalculator from '../CarbonCalculator'
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -48,25 +48,85 @@ test('renders inputted value for MainsGas field', async () => {
     expect(mainsGasInput).toHaveValue(5);
 })
 
-test('renders MainsGas and Fuel constants', async () => {
+test('renders MainsGas constant', async () => {
     localStorage.token = true;
     render(
-        <MockCalculator 
-        />
+        <MockCalculator />
     );
-    expect(0.22).toBeInTheDocument;
-    expect(3.86).toBeInTheDocument;
+    const mainsGasConstant = await screen.findByTestId("mainsGasConstant");
+    expect(mainsGasConstant).toBeInTheDocument;
 })
 
  test('renders correct result value for MainsGas field', async () => {
     localStorage.token = true;
     render(
-        <MockCalculator 
-        />
+        <MockCalculator />
     );
     const mainsGasInput = screen.getByTestId("mainsGasInput");
     fireEvent.change(mainsGasInput, { target: { value: 5 } });
     expect(1.1).toBeInTheDocument;
 })
 
- 
+  test('renders result for MainsGas field', async () => {
+    localStorage.token = true;
+    render(
+        <MockCalculator />
+    );
+    const mainsGasInput = screen.getByTestId("mainsGasInput");
+    fireEvent.change(mainsGasInput, { target: { value: 5 } });
+    const mainsGasResult = await screen.findByTestId("mainsGasResult");
+    expect(mainsGasResult).toBeInTheDocument;
+})
+
+test('renders second page of calculator when the next button is clicked', async() => {
+    localStorage.token = true;
+    render(
+        <MockCalculator />
+    );
+    const nextButton = await screen.findByTestId("nextButton");
+    fireEvent.click(nextButton);
+    const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
+    expect(beefAndLambConstant).toBeVisible;
+})
+
+test('renders third page of calculator when the next button is clicked twice', async() => {
+    localStorage.token = true;
+    render(
+        <MockCalculator />
+    );
+    const nextButton = await screen.findByTestId("nextButton");
+    fireEvent.click(nextButton);
+    const nextButton2 = await screen.findByTestId("nextButton2");
+    fireEvent.click(nextButton2);
+    const CompanyGoodsDeliveryConstant = await screen.findByTestId("CompanyGoodsDeliveryConstant");
+    expect(CompanyGoodsDeliveryConstant).toBeVisible;
+})
+
+test('renders first page of calculator when the back button is clicked in second page', async() => {
+    localStorage.token = true;
+    render(
+        <MockCalculator />
+    );
+    const nextButton = await screen.findByTestId("nextButton");
+    fireEvent.click(nextButton);
+    const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
+    const backButton = await screen.findByTestId("backButton");
+    fireEvent.click(backButton);
+    const mainsGasConstant = await screen.findByTestId("mainsGasConstant");
+    expect(mainsGasConstant).toBeVisible;
+})
+
+test('renders second page of calculator when the back button is clicked in third page', async() => {
+    localStorage.token = true;
+    render(
+        <MockCalculator />
+    );
+    const nextButton = await screen.findByTestId("nextButton");
+    fireEvent.click(nextButton);
+    const nextButton2 = await screen.findByTestId("nextButton2");
+    fireEvent.click(nextButton2);
+    const backButton = await screen.findByTestId("backButton3");
+    fireEvent.click(backButton);
+    const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
+    expect(beefAndLambConstant).toBeVisible;
+})

@@ -70,7 +70,7 @@ export default class HomePage extends Component {
                         is future-ready and supportive of those who are ready to 
                         join us.</p>
                         <form action="/carboncalculator">
-                            <button type="submit" data-testid="launch_button" value="&#9654; Launch">&#9654; Get Started</button>
+                            <button type="click" data-testid="launch_button" value="&#9654; Launch">&#9654; Get Started</button>
                         </form>
                     </div>
                     <img className="text_pic" id="pic_calculator" src={Calculator} alt="Picture of a person using a calculator"/>
