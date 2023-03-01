@@ -31,13 +31,8 @@ const Login = () => {
         })
         .then(data => {
             console.log(data)
-<<<<<<< HEAD
-            localStorage.setItem("token", data.token)
-            localStorage.setItem("user_id", data.user)
-=======
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", data.user);
->>>>>>> dev
             console.log("Token have been saved: " + data.token)
             navigate('/');
         })
