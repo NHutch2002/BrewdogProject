@@ -10,15 +10,27 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body{
-    font-family: 'NewGroteskSquareFOURWEB';
+.MuiGrid-spacing-xs-1{
+    height:84px;
 }
 
-.title{
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary.mui-fixed.MuiPaper-elevation4{
+    padding: 0%!important;
+}
+
+body, html {
+    font-family: 'NewGroteskSquareFOURWEB';
+    background-color: #F6F6F6 !important;
+    padding: 0%!important;
+}
+
+
+/* Potentially unused - maybe delete??? */
+.title {
     font-family: 'NewGroteskSquareFIVEWEB';
 }
 
-.heading{
+.heading {
     font-family: 'NewGroteskSquareFIVEWEB';
     text-transform: uppercase;
     font-size: 3rem;
@@ -29,13 +41,13 @@ body{
     font-weight: inherit;
 }
 
-.subheading{
+.subheading {
     letter-spacing: .02em;
     line-height: 1.2;
     text-transform: uppercase;
     font-weight: 500;
     color: black;
-    font-size: 1.6875rem;
+    font-size: 1.68751rem;
     font-family: 'NewGroteskSquareFOURWEB';
     text-align: center;
 }

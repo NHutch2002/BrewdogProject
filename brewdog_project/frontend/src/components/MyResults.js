@@ -5,32 +5,28 @@ const MyResults = () => {
     const navigate = useNavigate();
     const [results, setResults] = useState([]);
 
-    useEffect(()=>{
-        fetch("/brewdog/calculator")
+    useEffect( () => {
+        console.log(localStorage.token);
+        fetch("/brewdog/calculator", {
+            method: "GET",
+            headers : {"Authorization": "Token "+ localStorage.token },
+            credentials: "include"
+        })
         .then(response => response.json())
         .then(data => {
             setResults(data);
+            console.log(data);
         })
         .catch(error => {
-            console.log(navigate("/brewdog/calculator"));
+        
             console.log(error);
         });
-    },[]);
+    }, []);
 
     
     return (
         <div>
             <h1>My Results</h1>
-            {
-                results ? 
-                results.map(result => {
-                    console.log(result);
-                    return(
-                    <li>Gas: {result.MainsGas}</li>
-                    );
-                }) 
-                : <div>Loading...</div>
-            }
 
         </div>
     );

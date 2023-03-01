@@ -45,6 +45,8 @@ $ npm install @emotion/styled
 $ npm install axios --save
 $ npm install react-icons --save
 $ npm init @eslint/config
+$ npm install --save mdbreact
+$ npm install --save-dev @testing-library/jest-dom
 
 Create the following file: brewdog_project/frontend/.eslintrc.js
 module.exports = {

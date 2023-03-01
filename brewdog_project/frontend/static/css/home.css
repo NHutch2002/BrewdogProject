@@ -1,7 +1,9 @@
 body, html {
-    background-color: #111;
     color: #EEE;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-x: hidden;
+}
+.container-fluid {
+    background-color: #111;
 }
 
 /* Landing styles */
@@ -10,7 +12,7 @@ body, html {
     margin: auto;
     margin-top: -100px;
     padding: 0;
-    height: 96vh;
+    height: 100vh;
 }
 .landing_pic {
     -webkit-clip-path: polygon(5% 0, 100% 86%, 100% 0);
@@ -20,7 +22,7 @@ body, html {
     z-index: 1;
     transition: 800ms ease-in-out;
     overflow: hidden;
-    width:"94%";
+    width: 100%;
 }
 .landing_pic:hover {
     filter: brightness(0.9);
@@ -45,6 +47,7 @@ body, html {
     font-weight: inherit;
     line-height: 7.5vw;
     letter-spacing: .03em;
+    color: #EEE;
 }
 #landing_blue_accent {
     color: #34D19F;
@@ -58,12 +61,13 @@ body, html {
     font-family: 'NewGroteskSquareFOURWEB';
 }
 
-/* Text styles */
+/* Content section styles */
 .text_div {
-    margin: 0;
+    margin: auto;
+    width: 80vw;
     background-color: #EEE;
     color: black;
-    padding: 40px 20vh;
+    padding: 20px 5vw;
     border-radius: 4px;
     font-family: Inter;
     box-shadow: 0 0 6px #EEE;
@@ -77,11 +81,12 @@ body, html {
     margin-bottom: 40px;
     background-color: #111;
     text-transform: uppercase;
-    padding: 8px 8px 0 8px;
+    padding: 20px 20px 0 8px;
     color: #EEE;
     font-family: 'NewGroteskSquareFOURWEB';
     font-size: 60px;
     box-shadow: 7px 7px 0 #34D19F;
+    word-spacing: 0.4rem;
 }
 .text_pic {
     border-radius: 3px;
@@ -98,17 +103,23 @@ body, html {
 }
 #other_text {
     float: right;
-    width: 68%;
+    width: 58%;
     margin-bottom: 60px;
 }
 .text_pic#pic_other {
     float: left;
-    width: 28%;
+    width: 38%;
     margin-bottom: 60px;
 }
+
+.text_heading#heading_right_adjusted {
+    text-align: right!important;
+}
+
 /* Calculator Section */
 .calculator_div {
-    margin: 0;
+    margin:auto;
+    width: 80vw;
     background-color: #34D19F;
     color: black;
     padding: 60px 20vh 80px 20vh;
@@ -133,18 +144,18 @@ body, html {
 }
 #calculator_text button {
     text-align: center;
-    background-color: #FF6452;
-    border-radius: 6px;
+    background-color: #111;
+    border-radius: 40px;
     color: white;
     font-family: 'NewGroteskSquareFOURWEB';
     font-size: 28px;
     text-transform: uppercase;
-    padding: 10px 10px 0 10px;
+    padding: 5px 5px 0 5px;
     margin-top: 20px;
     transition: 300ms ease-in-out;
     box-sizing: none;
     border: 2px solid white;
-    width: 30%;
+    width: 40%;
     word-spacing: 0.3em;
 }
 #calculator_text button:hover {
