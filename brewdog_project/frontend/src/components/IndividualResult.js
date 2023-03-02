@@ -1,9 +1,9 @@
 import React, {useState, useEffect } from 'react';
-import { useNavigate, useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import {Stack} from '@mui/material';
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie,Cell} from 'recharts';
 
 const IndividualResult = () => {
-    const navigate = useNavigate();
     const {resultId} = useParams();
 
     const [result, setResult] = useState([]);
@@ -51,10 +51,46 @@ const IndividualResult = () => {
         setOther(categoryTotals.Other);
     }
 
+    const data = [
+        {
+            name: 'Heat and Fuel Use', Total: heatingFuelUse,
+        },
+        {
+            name: 'Food Waste', Total: foodWaste,
+        },
+        {
+            name: 'Solid Waste', Total: solidWaste,
+        },
+        {
+            name: 'Food & Drink', Total: foodDrink,
+        },
+        {
+            name: 'Transport & Distribution', Total: transportDistribution,
+        },
+        {
+            name: 'Other', Total: other,
+        },
+    ];
+
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#000000'];
+
+    const RADIAN = Math.PI / 180;
+
+    const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent}) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x  = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    }
+
     return (
         <>
         <h1>Individual Result</h1>
-        <p>{result.created}</p>
+        <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
             <Stack direction="row" spacing={10}>
                 <Stack direction="column" spacing={2}>
                     <Stack direction="column" spacing={2}>
@@ -121,9 +157,42 @@ const IndividualResult = () => {
                         <p>Sewage: {result.Sewage}</p>
                     </Stack>
                 </Stack>
-                <Stack direction="column" spacing={2}>
-                        <p>Second column, insert bar chart here</p>
-                        <p>Lessgooo</p>
+                <Stack direction="column" spacing={30}>
+                    <Stack direction="column" spacing={2}>
+                        <BarChart
+                            width={1000}
+                            height={500}
+                            data={data}
+                            margin={{
+                                top: 5, right: 20, left: 20, bottom: 5,
+                            }}
+                        >
+                            <XAxis dataKey="name" />
+                            <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Total" fill="#8884d8" />
+                        </BarChart>
+                    </Stack>
+                    <Stack direction="column" spacing={2}>
+                        <PieChart width={730} height={500}>
+                            <Pie
+                                data={data}
+                                dataKey="Total"
+                                nameKey="name"
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={renderCustomizedLabel}
+                                outerRadius={200}
+                                fill="#8884d8"
+                                >
+                                {data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                            </Pie>
+                            <Tooltip />
+                            <Legend />
+                        </PieChart>
+                    </Stack>
                 </Stack>
             </Stack>
         </>
