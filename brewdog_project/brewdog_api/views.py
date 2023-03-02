@@ -69,7 +69,7 @@ class CalculatorView(generics.CreateAPIView):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data.get('id'), status=status.HTTP_201_CREATED)
+            return Response({'id': serializer.data.get('id')}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
