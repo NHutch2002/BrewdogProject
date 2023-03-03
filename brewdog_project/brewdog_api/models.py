@@ -1,47 +1,51 @@
 from django.db import models
-from django.contrib.auth.backends import BaseBackend
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from rest_framework import status
-from rest_framework.response import Response
-from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
-    
-# is this used?
-def unique_company_email(company, email):
-    if BrewdogUser.objects.filter(company_name=company).exists():
-        return False
-    elif BrewdogUser.objects.filter(email=email).exists():
-        return False
-    else:
-        return True
+from django.core.validators import MinValueValidator
+
+from rest_framework.authtoken.models import Token
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_auth_token(instance=None, created=False, **kwargs):
+    """Create a token for a new user."""
+
     if created:
         Token.objects.create(user=instance)
         print("token created!")
 
 
 class BrewdogUser(models.Model):
-    #USERNAME_FIELD = 'email'
-    user = models.OneToOneField(User, related_name='brewdogUser', on_delete=models.CASCADE, unique=True)
+    """BrewdogUser model.
+
+    This model is used to store the data from the BrewdogUser.
+    """
+
+    user = models.OneToOneField(User, related_name='brewdogUser',
+                                on_delete=models.CASCADE, unique=True)
     last_login = models.DateTimeField(blank=True, null=True)
     company = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=50, unique=True)
     phone = models.CharField(max_length=50, unique=True)
 
     def check_password(self, password):
+        """Check the password of the user."""
+
         return self.password == password
 
     def __str__(self):
+        """Return the name of the brewdog user."""
+
         return self.user.username
 
 
 class Calculator(models.Model):
+    """Calculator model.
+
+    This model is used to store the data from the calculator.
+    """
+
     MainsGas = models.IntegerField()
     Fuel = models.IntegerField()
     Oil = models.IntegerField()
@@ -87,9 +91,13 @@ class Calculator(models.Model):
     ITMarketing = models.IntegerField()
     MainsWater = models.IntegerField()
     Sewage = models.IntegerField()
-    
 
 class CalculatorConstants(models.Model):
+    """CalculatorConstants model.
+
+    This model is used to store the constants for each field from the calculator.
+    """
+
     MainsGas = models.FloatField(validators=[
             MinValueValidator(0)])
     Fuel = models.FloatField(validators=[
@@ -140,7 +148,7 @@ class CalculatorConstants(models.Model):
     MainsWater = models.FloatField()
     Sewage = models.FloatField()
 
-
-
     def __str__(self):
+        """Return the name of the calculator constant."""
+
         return self.name
