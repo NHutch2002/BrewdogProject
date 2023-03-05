@@ -13,36 +13,28 @@ const MockCalculator = () => {
 } 
 
 test('renders logged out carbon calculator page', () => {
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const register = screen.getByText("register");
     expect(register).toBeInTheDocument;
 })
 
 test('renders logged in carbon calculator page', () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const heating = screen.getByText("Heating and Other Fuel use");
     expect(heating).toBeInTheDocument;
 })
 
 test('renders initial value for MainsGas field', async () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const mainsGasInput = screen.getByTestId("mainsGasInput");
     expect(mainsGasInput).toHaveValue(0);
 })
 
 test('renders inputted value for MainsGas field', async () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const mainsGasInput = screen.getByTestId("mainsGasInput");
     fireEvent.change(mainsGasInput, { target: { value: 5 } });
     expect(mainsGasInput).toHaveValue(5);
@@ -50,18 +42,14 @@ test('renders inputted value for MainsGas field', async () => {
 
 test('renders MainsGas constant', async () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const mainsGasConstant = await screen.findByTestId("mainsGasConstant");
     expect(mainsGasConstant).toBeInTheDocument;
 })
 
  test('renders correct result value for MainsGas field', async () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const mainsGasInput = screen.getByTestId("mainsGasInput");
     fireEvent.change(mainsGasInput, { target: { value: 5 } });
     expect(1.1).toBeInTheDocument;
@@ -69,9 +57,7 @@ test('renders MainsGas constant', async () => {
 
   test('renders result for MainsGas field', async () => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const mainsGasInput = screen.getByTestId("mainsGasInput");
     fireEvent.change(mainsGasInput, { target: { value: 5 } });
     const mainsGasResult = await screen.findByTestId("mainsGasResult");
@@ -80,9 +66,7 @@ test('renders MainsGas constant', async () => {
 
 test('renders second page of calculator when the next button is clicked', async() => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const nextButton = await screen.findByTestId("nextButton");
     fireEvent.click(nextButton);
     const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
@@ -91,9 +75,7 @@ test('renders second page of calculator when the next button is clicked', async(
 
 test('renders third page of calculator when the next button is clicked twice', async() => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const nextButton = await screen.findByTestId("nextButton");
     fireEvent.click(nextButton);
     const nextButton2 = await screen.findByTestId("nextButton2");
@@ -104,9 +86,7 @@ test('renders third page of calculator when the next button is clicked twice', a
 
 test('renders first page of calculator when the back button is clicked in second page', async() => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const nextButton = await screen.findByTestId("nextButton");
     fireEvent.click(nextButton);
     const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
@@ -118,9 +98,7 @@ test('renders first page of calculator when the back button is clicked in second
 
 test('renders second page of calculator when the back button is clicked in third page', async() => {
     localStorage.token = true;
-    render(
-        <MockCalculator />
-    );
+    render(<MockCalculator />);
     const nextButton = await screen.findByTestId("nextButton");
     fireEvent.click(nextButton);
     const nextButton2 = await screen.findByTestId("nextButton2");
@@ -130,3 +108,17 @@ test('renders second page of calculator when the back button is clicked in third
     const beefAndLambConstant = await screen.findByTestId("beefAndLambConstant");
     expect(beefAndLambConstant).toBeVisible;
 })
+
+test('checks whether an alert appears if the user tries to submit the calculations without filling in all the fields', async() => {
+    localStorage.token = true;
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    render(<MockCalculator />);
+    const nextButton = await screen.findByTestId("nextButton");
+    fireEvent.click(nextButton);
+    const nextButton2 = await screen.findByTestId("nextButton2");
+    fireEvent.click(nextButton2);
+    const submitButton = await screen.findByRole("button", { name: "Submit" });
+    fireEvent.submit(submitButton);
+    expect(window.alert).toHaveBeenCalledWith("Please enter data into at least one field before submitting.");
+    window.alert.mockRestore();
+});
