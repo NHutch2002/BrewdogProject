@@ -1,5 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../../static/css/myresults.css";
+import { IconButton } from '@material-ui/core';
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+
 
 const MyResults = () => {
     const navigate = useNavigate();
@@ -19,6 +23,15 @@ const MyResults = () => {
             console.log(error);
         });
     }, []);
+
+    const handleClick = (e) => {
+        let element = e.target.closest(".result-entry");
+        if(element.classList.contains("active")) {
+            element.classList.remove("active");
+        } else {
+            element.classList.add("active");
+        }
+    }
     
     const getCategoryTotals = (result) => {
         let categoryTotals = {
@@ -30,33 +43,44 @@ const MyResults = () => {
         for (let category in categoryTotals) {
             total += categoryTotals[category]
         }
-        return categoryTotals, total
+        return [categoryTotals, total]
     }
 
     return (
-        <div style={{
-            width: "80vw",
-            margin: "0 auto",
-            padding: "20px 0"
-        }}>
-            <h1>My Results</h1>
-<<<<<<< HEAD
-            <div className="results">
+        <div className="container-fluid bodycontent">
+            <h1 className="title">My Results</h1>
+            <div id="results">       
             {
-                results ? 
+                results.length > 0 ? 
                 results.map(result => {
-                    let categoryTotals, total = getCategoryTotals(result)
-                    console.log(categoryTotals, total);
+                    let [categoryTotals, total] = getCategoryTotals(result)
                     return(
-                    <div>Total: {total}</div>
+                    <div className="result-entry">
+                        <div className="result-summary">
+                            <p>Date Created: {result.created}</p>
+                            <p>Total: {total}</p>
+                            <IconButton color="inherit" onClick={(e) => handleClick(e)}>
+                                <IoIosArrowDropdownCircle color="#34D19F" size="25px" />
+                            </IconButton>
+                            <a href="#" onClick={() => navigate(`/myresults/${result.id}`)}>View</a>
+                        </div>
+                        <div className="result-details">
+                            {
+                                Object.keys(categoryTotals).map(category => {
+                                    return(
+                                        <div className="category-details">
+                                            <p>{category}: {categoryTotals[category]}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
                     );
                 }) 
-                : <div>Loading...</div>
-            }
+                : <div>No results to display</div>
+            }     
             </div>
-=======
-
->>>>>>> dev
         </div>
     );
     

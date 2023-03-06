@@ -201,7 +201,7 @@ const CarbonCalculator = () => {
       secondData.forEach((value, key) => {
         data.append(key, value);
       });
-      data.append("user", localStorage.user_id )
+      data.append("user", localStorage.user);
       fetch('/brewdog/calculator/', {
           method: 'POST',
           body: data,
@@ -211,13 +211,22 @@ const CarbonCalculator = () => {
           if (response.ok) {
             console.log(response);
             alert("Your results have been saved!");
-            navigate('/myresults/');
+            return response.json();
           } else {
             window.alert("Something went wrong, please try again." + response.status);
             console.log(response);
             console.log(response.status);
             console.log(response.statusText);
           }
+      })
+      .then(data => {
+        console.log(data);
+        console.log(data['id']);
+        navigate(`/myresults/${data['id']}`);
+      })
+      .catch(error => {
+        console.log(error);
+        alert('Error saving data, please try again later');
       });
     }
 
@@ -410,7 +419,7 @@ const CarbonCalculator = () => {
             </table>
           </Stack>
         </Stack>
-        <button type="submit" className="btn btn-primary btn-block ripple-effect">Next</button>
+        <button type="submit" className="btn btn-primary firtsbtn btn-block ripple-effect">Next</button>
         </form>   
     </Stack>
         ) : secondView ? (
@@ -645,7 +654,7 @@ const CarbonCalculator = () => {
                 </tbody>
               </table>
               <div className="btn-group">
-              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
@@ -828,7 +837,7 @@ const CarbonCalculator = () => {
                         </tbody>
                         </table>
                         <div className="btn-group">
-              <button type="submit" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(false);
                     setSecondView(true);
                     setThirdView(false);

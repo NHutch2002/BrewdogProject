@@ -16,7 +16,8 @@
 form{
     width:100%;
 }
-.stack{    margin-right: 10%;
+.stack{    
+    margin-right: 10%;
     margin-left: 10%;
     align-items: center;
 }
@@ -56,25 +57,41 @@ form{
     padding-bottom:20px;
     /* transition: 0.2s ease-in-out; */
 }
-.btn[type="submit"]:hover {
+.btn[type="button"]{
+    font-size: large;
+    background-color: #34D19F!important;
+    border-radius: 20px;
+    box-shadow: none;
+    margin-top: 20px;
+    padding-bottom:20px;
+}
+.btn:hover {
     background-color: white!important;
-    color:#111;
+    color:#111!important;
     box-shadow: none;
     transform: scale(1.01);
 }
-.btn[type="submit"].btn-primary.btn-block.ripple-effect:active {
+.btn.btn-primary.btn-block.ripple-effect:active {
     background-color: #34D19F!important;
     height:54px!important;
     margin-top: 20px;
     padding: 0.84rem 2.14rem;
     margin:20px;
 }
-
+.btn[type="button"].btn-primary.btn-block.ripple-effect {
+    height:54px!important;
+    margin: 20px;
+    margin-right: 40px;
+    padding: 0.84rem 2.14rem;
+}
 .btn[type="submit"].btn-primary.btn-block.ripple-effect {
     height:54px!important;
-    margin-top: 20px;
-    margin-bottom:20px;
+    margin: 20px;
+    margin-left:40px;
     padding: 0.84rem 2.14rem;
+}
+.firtsbtn{
+    margin-left:0!important;
 }
 .btn-group button:not(:last-child) {
     border-right: 20px; /* Prevent double borders */

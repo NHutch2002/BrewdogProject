@@ -11,7 +11,9 @@ Backend Build:
     - pipenv install django
     - pip install django djangorestframework
     - cd brewdog_project/
+    - python manage.py makemigrations brewdog_api
     - python manage.py makemigrations
+    - python manage.py migrate brewdog_api
     - python manage.py migrate
 
 Frontend Build:
@@ -33,6 +35,10 @@ Backend Test:
     - pipenv install django
     - pip install django djangorestframework
     - cd brewdog_project/
+    - python manage.py makemigrations brewdog_api
+    - python manage.py makemigrations
+    - python manage.py migrate brewdog_api
+    - python manage.py migrate
     - python manage.py test
 
 Frontend Test:
