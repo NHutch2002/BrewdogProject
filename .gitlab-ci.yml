@@ -2,13 +2,20 @@ stages:
   - Build  
   - Test
 
-default:
+default Backend:
   stage: .pre
+  image: python:3.11.0
   script:
     - pip install pipenv
     - pip3 install shell
     - pipenv install django
     - pip install django djangorestframework
+    
+
+default Frontend:
+  stage: .pre
+  image: node:16
+  script:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
