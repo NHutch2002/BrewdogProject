@@ -2,7 +2,7 @@ stages:
   - Build  
   - Test
 
-default Backend:
+default:
   stage: .pre
   image: python:3.11.0
   script:
@@ -12,7 +12,7 @@ default Backend:
     - pip install django djangorestframework
     
 
-default Frontend:
+default:
   stage: .pre
   image: node:16
   script:
