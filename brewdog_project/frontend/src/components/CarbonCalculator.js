@@ -265,6 +265,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="MainsGas" 
+                      min="0"
                       data-testid="mainsGasInput"
                       onChange={(event) => {setMainsGas(event.target.value); setMainGasResults(event.target.value * calculatorConstants.MainsGas);}} value={MainsGas} />
                     </td>
@@ -276,6 +277,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Fuel" 
+                      min="0"
                       onChange={(event) => {setFuel(event.target.value); setFuelResults(event.target.value * calculatorConstants.Fuel);}} value={Fuel}
                       />
                     </td>
@@ -287,6 +289,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Oil" 
+                      min="0"
                       onChange={(event) => {setOil(event.target.value); setOilResults(event.target.value * calculatorConstants.Oil);}} value={Oil}
                       />
                     </td>
@@ -298,6 +301,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Coal" 
+                      min="0"
                       onChange={(event) => {setCoal(event.target.value); setCoalResults(event.target.value * calculatorConstants.Coal);}} value={Coal}
                       />
                     </td>
@@ -309,6 +313,7 @@ const CarbonCalculator = () => {
                     <td>
                       <input type="number" 
                       name="Wood" 
+                      min="0"
                       onChange={(event) => {setWood(event.target.value); setWoodResults(event.target.value * calculatorConstants.Wood);}} value={Wood}
                       />
                     </td>
@@ -320,6 +325,7 @@ const CarbonCalculator = () => {
                 <td><input 
                 type="number" 
                 name="GridElectricity" 
+                min="0"
                 onChange={event => {setGridElectricity(event.target.value); setGridElectricityResults(event.target.value * calculatorConstants.GridElectricity);}} value={GridElectricity}
                 /></td>
                 <td>{calculatorConstants.GridElectricity}</td>
@@ -327,7 +333,7 @@ const CarbonCalculator = () => {
               </tr>
               <tr>
                 <td><label>Electricity (Low Carbon Supplier):</label></td>
-                <td><input type="number" name="Electricity" 
+                <td><input type="number" name="Electricity" min="0" 
                 onChange={event => {setElectricity(event.target.value); setElectricityResults(event.target.value * calculatorConstants.Electricity)}} value={Electricity} 
                 /></td>
                 <td>{calculatorConstants.Electricity}</td>
@@ -340,6 +346,7 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Landfill:</label></td>
                 <td><input type="number" 
                 name="WFLandfill" 
+                min="0"
                 onChange={event => {setWFLandfill(event.target.value); setWFLandfillResults(event.target.value * calculatorConstants.WFLandfill)}} value={WFLandfill}
                 /></td>
                 <td>{calculatorConstants.WFLandfill}</td>
@@ -349,6 +356,7 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Reuse/Composting:</label></td>
                 <td><input type="number" 
                 name="WFReuse" 
+                min="0"
                 onChange={event => {setWFReuse(event.target.value); setWFReuseResults(event.target.value * calculatorConstants.WFReuse)}} value={WFReuse}
                 /></td>
                 <td>{calculatorConstants.WFReuse}</td>
@@ -358,6 +366,7 @@ const CarbonCalculator = () => {
                 <td><label>Waste Food to Charity:</label></td>
                 <td><input type="number" 
                 name="WFCharity" 
+                min="0"
                 onChange={event => {setWFCharity(event.target.value); setWFCharityResults(event.target.value * calculatorConstants.WFCharity)}} value={WFCharity}
                 /></td>
                 <td>{calculatorConstants.WFCharity}</td>
@@ -369,6 +378,7 @@ const CarbonCalculator = () => {
                 <tr>
                 <td><label>Bottles Recycling</label></td>
                 <td><input type="number" 
+                min="0"
                 name="BottleRecycling" 
                 onChange={event => {setBottleRecycling(event.target.value); setBottleRecyclingResults(event.target.value * calculatorConstants.BottleRecycling)}} value={BottleRecycling}
                 /></td>
@@ -378,6 +388,7 @@ const CarbonCalculator = () => {
                 <tr>
                 <td><label>Aluminium Cans Recucling </label></td>
                 <td><input type="number" 
+                min="0"
                 name="AluminiumRecycling" 
                 onChange={event => {setAluminiumRecycling(event.target.value); setAluminiumRecyclingResults(event.target.value * calculatorConstants.AluminiumRecycling)}} value={AluminiumRecycling}
                 /></td>
@@ -387,6 +398,7 @@ const CarbonCalculator = () => {
                 <tr>
                 <td><label>General Waste to Landfill</label></td>
                 <td><input type="number" 
+                min="0"
                 name="GWLandfill" 
                 onChange={event => {setGWLandfill(event.target.value); setGWLandfillResults(event.target.value * calculatorConstants.GWLandfill)}} value={GWLandfill}
                 /></td>
@@ -396,6 +408,7 @@ const CarbonCalculator = () => {
                 <tr>
                 <td><label>General Waste to Recycling</label></td>
                 <td><input type="number" 
+                min="0"
                 name="GWRecycling" 
                 onChange={event => {setGWRecycling(event.target.value); setGWRecyclingResults(event.target.value * calculatorConstants.GWRecycling)}} value={GWRecycling}
                 /></td>
@@ -405,6 +418,7 @@ const CarbonCalculator = () => {
                 <tr>
                 <td><label>Special Waste</label></td>
                 <td><input type="number" 
+                min="0"
                 name="SpecialWaste" 
                 onChange={event => {setSpecialWaste(event.target.value); setSpecialWasteResults(event.target.value * calculatorConstants.SpecialWaste)}} value={SpecialWaste}
                 /></td>
@@ -453,6 +467,7 @@ const CarbonCalculator = () => {
                     <td>Beef and Lamb</td>
                     <td>
                       <input type="number" 
+                      min="0"
                       name="BeefLamb" 
                       onChange={(event) => {setBeefLamb(event.target.value); setBeefLambResults(event.target.value * calculatorConstants.BeefLamb)}} value={BeefLamb}
                       />
@@ -464,6 +479,7 @@ const CarbonCalculator = () => {
                     <td>Other Meat Products</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="OtherMeat"
                       onChange={(event) => {setOtherMeat(event.target.value); setOtherMeatResults(event.target.value * calculatorConstants.OtherMeat)}} value={OtherMeat}
                       />
@@ -475,6 +491,7 @@ const CarbonCalculator = () => {
                     <td>Lobster and Farmed Prawn</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="LobsterFarmedPrawn"
                       onChange={(event) => {setLobsterFarmedPrawn(event.target.value); setLobsterFarmedPrawnResults(event.target.value * calculatorConstants.LobsterFarmedPrawn)}} value={LobsterFarmedPrawn}
                       />
@@ -486,6 +503,7 @@ const CarbonCalculator = () => {
                     <td>Fin fish and Seafood</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="Fish"
                       onChange={(event) => {setFish(event.target.value); setFishResults(event.target.value * calculatorConstants.Fish)}} value={Fish}
                       />
@@ -497,6 +515,7 @@ const CarbonCalculator = () => {
                     <td>Milk and Yoghurt</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="MilkYogurt"
                       onChange={(event) => {setMilkYogurt(event.target.value); setMilkYogurtResults(event.target.value * calculatorConstants.MilkYogurt)}} value={MilkYogurt}
                       />
@@ -508,6 +527,7 @@ const CarbonCalculator = () => {
                     <td>Cheese</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="Cheese"
                       onChange={(event) => {setCheese(event.target.value); setCheeseResults(event.target.value * calculatorConstants.Cheese)}} value={Cheese}
                       />
@@ -519,6 +539,7 @@ const CarbonCalculator = () => {
                     <td>Fruit & Veg (Local, seasonal)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="LocalFruitVegetables"
                       onChange={(event) => {setLocalFruitVegetables(event.target.value); setLocalFruitVegetablesResults(event.target.value * calculatorConstants.LocalFruitVegetables)}} value={LocalFruitVegetables}
                       />
@@ -530,6 +551,7 @@ const CarbonCalculator = () => {
                     <td>Fruit & Veg (Air freight, hot house)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="FreightFruitVegetables"
                       onChange={(event) => {setFreightFruitVegetables(event.target.value); setFreightFruitVegetablesResults(event.target.value * calculatorConstants.FreightFruitVegetables)}} value={FreightFruitVegetables}
                       />
@@ -541,6 +563,7 @@ const CarbonCalculator = () => {
                     <td>Other dried food</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="OtherDriedFood"
                       onChange={(event) => {setOtherDriedFood(event.target.value); setOtherDriedFoodResults(event.target.value * calculatorConstants.OtherDriedFood)}} value={OtherDriedFood}
                       />
@@ -552,6 +575,7 @@ const CarbonCalculator = () => {
                     <td>Beer Kegs</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="BeerKegs"
                       onChange={(event) => {setBeerKegs(event.target.value); setBeerKegsResults(event.target.value * calculatorConstants.BeerKegs)}} value={BeerKegs}
                       />
@@ -563,6 +587,7 @@ const CarbonCalculator = () => {
                     <td>Beer(Cans)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="BeerCans"
                       onChange={(event) => {setBeerCans(event.target.value); setBeerCansResults(event.target.value * calculatorConstants.BeerCans)}} value={BeerCans}
                       />
@@ -574,6 +599,7 @@ const CarbonCalculator = () => {
                     <td>Beer Bottles</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="BeerBottles"
                       onChange={(event) => {setBeerBottles(event.target.value); setBeerBottlesResults(event.target.value * calculatorConstants.BeerBottles)}} value={BeerBottles}
                       />
@@ -585,6 +611,7 @@ const CarbonCalculator = () => {
                     <td>Beer Kegs (Low carbon)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="LowBeerKegs"
                       onChange={(event) => {setLowBeerKegs(event.target.value); setLowBeerKegsResults(event.target.value * calculatorConstants.LowBeerKegs)}} value={LowBeerKegs}
                       />
@@ -596,6 +623,7 @@ const CarbonCalculator = () => {
                     <td>Beer(Cans) (Low carbon)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="LowBeerCans"
                       onChange={(event) => {setLowBeerCans(event.target.value); setLowBeerCansResults(event.target.value * calculatorConstants.LowBeerCans)}} value={LowBeerCans}
                       />
@@ -607,6 +635,7 @@ const CarbonCalculator = () => {
                     <td>Beer Bottles (Low carbon)</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="LowBeerBottles"
                       onChange={(event) => {setLowBeerBottles(event.target.value); setLowBeerBottlesResults(event.target.value * calculatorConstants.LowBeerBottles)}} value={LowBeerBottles}
                       />
@@ -618,6 +647,7 @@ const CarbonCalculator = () => {
                     <td>Soft Drinks</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="SoftDrinks"
                       onChange={(event) => {setSoftDrinks(event.target.value); setSoftDrinksResults(event.target.value * calculatorConstants.SoftDrinks)}} value={SoftDrinks}
                       />
@@ -629,6 +659,7 @@ const CarbonCalculator = () => {
                     <td>Wine</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="Wine"
                       onChange={(event) => {setWine(event.target.value); setWineResults(event.target.value * calculatorConstants.Wine)}} value={Wine}
                       />
@@ -640,6 +671,7 @@ const CarbonCalculator = () => {
                     <td>Spirits</td>
                     <td>
                       <input type="number"
+                      min="0"
                       name="Spirits"
                       onChange={(event) => {setSpirits(event.target.value); setSpiritsResults(event.target.value * calculatorConstants.Spirits)}} value={Spirits}
                       />
@@ -699,6 +731,7 @@ const CarbonCalculator = () => {
                           <td>Goods and Deliveries (Company owned)</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="CompanyGoodsDelivery"
                             onChange={(event) => {setCompanyGoodsDelivery(event.target.value); setCompanyGoodsDeliveryResults(event.target.value * calculatorConstants.CompanyGoodsDelivery)}} value={CompanyGoodsDelivery}
                             />
@@ -710,6 +743,7 @@ const CarbonCalculator = () => {
                           <td>Goods Deliveries (Contracted)</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="ContractedGoodsDelivery"
                             onChange={(event) => {setContractedGoodsDelivery(event.target.value); setContractedGoodsDeliveryResults(event.target.value * calculatorConstants.ContractedGoodsDelivery)}} value={ContractedGoodsDelivery}
                             />
@@ -721,6 +755,7 @@ const CarbonCalculator = () => {
                           <td>Travel (Company business)</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="Travel"
                             onChange={(event) => {setTravel(event.target.value); setTravelResults(event.target.value * calculatorConstants.Travel)}} value={Travel}
                             />
@@ -732,6 +767,7 @@ const CarbonCalculator = () => {
                           <td>Flights (UK)</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="UKFlights"
                             onChange={(event) => {setUKFlights(event.target.value); setUKFlightsResults(event.target.value * calculatorConstants.UKFlights)}} value={UKFlights}
                             />
@@ -743,6 +779,7 @@ const CarbonCalculator = () => {
                           <td>Flights (International)</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="InternationalFlights"
                             onChange={(event) => {setInternationalFlights(event.target.value); setInternationalFlightsResults(event.target.value * calculatorConstants.InternationalFlights)}} value={InternationalFlights}
                             />
@@ -754,6 +791,7 @@ const CarbonCalculator = () => {
                           <td>Staff Commuting</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="StaffCommute"
                             onChange={(event) => {setStaffCommute(event.target.value); setStaffCommuteResults(event.target.value * calculatorConstants.StaffCommute)}} value={StaffCommute}
                             />
@@ -768,6 +806,7 @@ const CarbonCalculator = () => {
                           <td>Kitchen equipment assets</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="KitchenEquipment"
                             onChange={(event) => {setKitchenEquipment(event.target.value); setKitchenEquipmentResults(event.target.value * calculatorConstants.KitchenEquipment)}} value={KitchenEquipment}
                             />
@@ -779,6 +818,7 @@ const CarbonCalculator = () => {
                           <td>Building repairs and maintenance</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="BuildingRepair"
                             onChange={(event) => {setBuildingRepair(event.target.value); setBuildingRepairResults(event.target.value * calculatorConstants.BuildingRepair)}} value={BuildingRepair}
                             />
@@ -790,6 +830,7 @@ const CarbonCalculator = () => {
                           <td>Cleaning and cleaning products</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="CleaningProducts"
                             onChange={(event) => {setCleaningProducts(event.target.value); setCleaningProductsResults(event.target.value * calculatorConstants.CleaningProducts)}} value={CleaningProducts}
                             />
@@ -801,6 +842,7 @@ const CarbonCalculator = () => {
                           <td>IT & Marketing</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="ITMarketing"
                             onChange={(event) => {setITMarketing(event.target.value); setITMarketingResults(event.target.value * calculatorConstants.ITMarketing)}} value={ITMarketing}
                             />
@@ -812,6 +854,7 @@ const CarbonCalculator = () => {
                           <td>Mains water</td>
                           <td>
                             <input type="number"
+                            min="0"
                             name="MainsWater"
                             onChange={(event) => {setMainsWater(event.target.value); setMainsWaterResults(event.target.value * calculatorConstants.MainsWater)}} value={MainsWater}
                             />
@@ -824,6 +867,7 @@ const CarbonCalculator = () => {
                           <td>
                             <input type="number"
                             name="Sewage"
+                            min="0"
                             onChange={(event) => {setSewage(event.target.value); setSewageResults(event.target.value * calculatorConstants.Sewage)}} value={Sewage}
                             />
                           </td>
