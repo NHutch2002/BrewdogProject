@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'NewGroteskSquareFIVEWEB';
+    src: url('../fonts/NewGroteskSquareFIVEWEB.woff2') format('woff2'),
+        url('../fonts/NewGroteskSquareFIVEWEB.woff') format('woff');
+}
+@font-face {
+    font-family: 'NewGroteskSquareFOURWEB';
+    src: url('../fonts/NewGroteskSquareFOURWEB.woff2') format('woff2'),
+        url('../fonts/NewGroteskSquareFOURWEB.woff') format('woff');
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.MuiGrid-spacing-xs-1{
+    height:84px;
+}
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary.mui-fixed.MuiPaper-elevation4{
+    padding: 0%!important;
+}
+
+body, html {
+    font-family: 'NewGroteskSquareFOURWEB';
+    background-color: #F6F6F6 !important;
+    padding: 0%!important;
+}
+
+
+/* Potentially unused - maybe delete??? */
+.title {
+    font-family: 'NewGroteskSquareFIVEWEB';
+}
+
+.heading {
+    font-family: 'NewGroteskSquareFIVEWEB';
+    text-transform: uppercase;
+    font-size: 3rem;
+    text-align: center;
+    line-height: 1;
+    color: black;
+    margin-bottom: .5rem;
+    font-weight: inherit;
+}
+
+.subheading {
+    letter-spacing: .02em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: black;
+    font-size: 1.68751rem;
+    font-family: 'NewGroteskSquareFOURWEB';
+    text-align: center;
+}
