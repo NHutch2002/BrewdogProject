@@ -22,6 +22,8 @@ Backend Build:
   image: python:3.11.0
   script:
     - cd brewdog_project/
+    - python manage.py makemigrations brewdog_api
+    - python manage.py migrate brewdog_api
     - python manage.py makemigrations
     - python manage.py migrate
 
@@ -37,6 +39,7 @@ Backend Test:
   image: python:3.11.0
   script:  
     - cd brewdog_project/
+    - python manage.py test brewdog_api
     - python manage.py test
 
 Frontend Test:
