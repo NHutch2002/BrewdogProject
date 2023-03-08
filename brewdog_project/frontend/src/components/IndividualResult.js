@@ -94,7 +94,7 @@ const IndividualResult = () => {
             <Stack direction="row" spacing={10}>
                 <Stack direction="column" spacing={2}>
                     <Stack direction="column" spacing={2}>
-                        <h2>Heating and Other Fuel Use {heatingFuelUse}</h2>
+                        <h2>Heating and Other Fuel Use {parseFloat(heatingFuelUse).toFixed(2)}</h2>
                         <p>Mains Gas: {result.MainsGas}</p>
                         <p>Fuel (Diesel): {result.Fuel}</p>
                         <p>Oil: {result.Oil}</p>
@@ -104,13 +104,13 @@ const IndividualResult = () => {
                         <p>Electricity (Low Carbon Supplier): {result.Electricity}</p>
                     </Stack>
                     <Stack direction="column" spacing={2}>
-                        <h2>Food Waste {foodWaste}</h2>
+                        <h2>Food Waste {parseFloat(foodWaste).toFixed(2)}</h2>
                         <p>Waste Food to Landfill: {result.WFLandfill}</p>
                         <p>Waste Food to Reuse/Composting: {result.WFReuse}</p>
                         <p>Waste Food to Charity: {result.WFCharity}</p>
                     </Stack>
                     <Stack direction="column" spacing={2}>
-                        <h2>Solid Waste {solidWaste}</h2>
+                        <h2>Solid Waste {parseFloat(solidWaste).toFixed(2)}</h2>
                             <p>Bottle Recycling: {result.BottleRecycling}</p>
                             <p>Aluminium Recycling: {result.AluminiumRecycling}</p>
                             <p>General Waste Landfill: {result.GWLandfill}</p>
@@ -118,7 +118,7 @@ const IndividualResult = () => {
                             <p>Special Waste: {result.SpecialWaste}</p>
                     </Stack>
                     <Stack direction="column" spacing={2}>
-                        <h2>Food and Drink {foodDrink}</h2>
+                        <h2>Food and Drink {parseFloat(foodDrink).toFixed(2)}</h2>
                         <p>Beef and Lamb: {result.BeefLamb}</p>
                         <p>Other Meat Products: {result.OtherMeat}</p>
                         <p>Lobster and Farmed Prawn: {result.LobsterFarmedPrawn}</p>
@@ -139,7 +139,7 @@ const IndividualResult = () => {
                         <p>Spirits: {result.Spirits}</p>
                     </Stack>
                     <Stack direction="column" spacing={2}>
-                        <h2>Transport and Distribution {transportDistribution}</h2>
+                        <h2>Transport and Distribution {parseFloat(transportDistribution).toFixed(2)}</h2>
                         <p>Goods and Deliveries (Company owned): {result.CompanyGoodsDelivery}</p>
                         <p>Goods and Deliveries (Contracted): {result.ContractedGoodsDelivery}</p>
                         <p>Travel (Company business): {result.Travel}</p>
@@ -148,7 +148,7 @@ const IndividualResult = () => {
                         <p>Staff Commuting: {result.StaffCommute}</p>
                     </Stack>
                     <Stack direction="column" spacing={2}>
-                        <h2>Other {other}</h2>
+                        <h2>Other {parseFloat(other).toFixed(2)}</h2>
                         <p>Kitchen Equipment assets: {result.KitchenEquipment}</p>
                         <p>Building Repairs and Maintenance: {result.BuildingRepair}</p>
                         <p>Cleaning and Cleaning Products: {result.CleaningProducts}</p>
