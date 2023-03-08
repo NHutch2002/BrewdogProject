@@ -37,7 +37,10 @@ const MyResults = () => {
         let categoryTotals = {
             "Heating and Other Fuel use" : result.MainsGas + result.Fuel + result.Oil + result.Coal + result.Wood + result.GridElectricity + result.Electricity,
             "Food Waste" : result.WFLandfill + result.WFLandfill + result.WFCharity,
-            "Solid Waste" : result.BottleRecycling + result.AluminiumRecycling + result.GWLandfill + result.GWRecycling + result.SpecialWaste
+            "Solid Waste" : result.BottleRecycling + result.AluminiumRecycling + result.GWLandfill + result.GWRecycling + result.SpecialWaste,
+            "Food and Drink" : result.BeefLamb + result.OtherMeat + result.LobsterFarmedPrawn + result.Fish + result.MilkYogurt + result.Cheese + result.LocalFruitVegetables + result.FreightFruitVegetables + result.OtherDriedFood + result.BeerKegs + result.BeerCans + result.BeerBottles + result.LowBeerKegs + result.LowBeerCans + result.LowBeerBottles + result.SoftDrinks + result.Wine + result.Spirits,
+            "Transport and Distribution" : result.CompanyGoodsDelivery + result.ContractedGoodsDelivery + result.Travel + result.UKFlights + result.InternationalFlights + result.StaffCommute,
+            "Other" : result.KitchenEquipment + result.BuildingRepair + result.CleaningProducts + result.ITMarketing + result.MainsWater + result.Sewage
         }
         let total = 0
         for (let category in categoryTotals) {
@@ -58,7 +61,7 @@ const MyResults = () => {
                     <div className="result-entry">
                         <div className="result-summary">
                             <p>Date Created: {result.created}</p>
-                            <p>Total: {total}</p>
+                            <p>Total: {parseFloat(total).toFixed(2)}</p>
                             <IconButton color="inherit" onClick={(e) => handleClick(e)}>
                                 <IoIosArrowDropdownCircle color="#34D19F" size="25px" />
                             </IconButton>
@@ -69,7 +72,7 @@ const MyResults = () => {
                                 Object.keys(categoryTotals).map(category => {
                                     return(
                                         <div className="category-details">
-                                            <p>{category}: {categoryTotals[category]}</p>
+                                            <p>{category}: {parseFloat(categoryTotals[category]).toFixed(2)}</p>
                                         </div>
                                     )
                                 })
