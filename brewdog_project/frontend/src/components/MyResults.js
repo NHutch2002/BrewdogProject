@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "../../static/css/myresults.css";
 import { IconButton } from '@material-ui/core';
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 const MyResults = () => {
@@ -49,13 +50,40 @@ const MyResults = () => {
         return [categoryTotals, total]
     }
 
+    const data = results.map(result => {
+        let [categoryTotals, total] = getCategoryTotals(result)
+        return {
+            name: result.created,
+            "Total": total.toFixed(2),
+        }
+    })
+
+
     return (
         <div className="container-fluid bodycontent">
             <h1 className="title">My Results</h1>
             <div id="results">       
             {
-                results.length > 0 ? 
-                results.map(result => {
+                results.length > 0 ? (
+                    <>
+                    <LineChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        fromZero={true}
+                        margin={{
+                        top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="Total" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+
+                {results.map(result => {
                     let [categoryTotals, total] = getCategoryTotals(result)
                     return(
                     <div className="result-entry">
@@ -80,7 +108,10 @@ const MyResults = () => {
                         </div>
                     </div>
                     );
-                }) 
+                })}
+                </>
+                )
+
                 : <div>No results to display</div>
             }     
             </div>
