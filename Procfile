@@ -1,1 +1,1 @@
-web: gunicorn brewdog_project.wsgi
+web: gunicorn brewdog_project.wsgi.application
