@@ -1,3 +1,7 @@
+"""Serializers for brewdog_api app.
+
+This module contains the serializers for the brewdog_api app, that are used to serialize data.
+"""
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from brewdog_api.models import Calculator, BrewdogUser, CalculatorConstants

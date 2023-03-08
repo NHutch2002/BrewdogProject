@@ -1,3 +1,7 @@
+"""Models for brewdog_api app.
+
+This module contains the models for the brewdog_api app, that are used to store data.
+"""
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
