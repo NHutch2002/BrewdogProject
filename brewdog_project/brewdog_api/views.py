@@ -117,6 +117,12 @@ class CalculatorConstantsView(generics.CreateAPIView):
         data = CalculatorConstants.objects.all()
         serializer = CalculatorConstantsSerializer(data, many=True)
         return Response(serializer.data)
+    
+    def delete(self, request, format=None):
+        id = request.GET.get('id')
+        data = CalculatorConstants.objects.all()
+        data.delete()
+        return Response("Deleted successfully", status=status.HTTP_200_OK)
 
 
 # view to obtain a auth token for user
