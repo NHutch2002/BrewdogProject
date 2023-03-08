@@ -1,1 +1,1 @@
-web: gunicorn brewdog_project.brewdog_project.wsgi
+web: gunicorn --chdir brewdog_project brewdog_project.wsgi
