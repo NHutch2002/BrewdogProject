@@ -51,7 +51,7 @@ form{
 .btn[type="submit"] {
     font-size: large;
     background-color: #34D19F!important;
-    border-radius: 20px;
+    border-radius: 20px !important;
     box-shadow: none;
     margin-top: 20px;
     padding-bottom:20px;
@@ -60,10 +60,13 @@ form{
 .btn[type="button"]{
     font-size: large;
     background-color: #34D19F!important;
-    border-radius: 20px;
+    border-radius: 20px !important;
     box-shadow: none;
     margin-top: 20px;
     padding-bottom:20px;
+}
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle){
+    border-radius: 20px !important;
 }
 .btn:hover {
     background-color: white!important;
@@ -80,14 +83,14 @@ form{
 }
 .btn[type="button"].btn-primary.btn-block.ripple-effect {
     height:54px!important;
-    margin: 20px;
     margin-right: 40px;
+    margin-top:20px;
     padding: 0.84rem 2.14rem;
 }
 .btn[type="submit"].btn-primary.btn-block.ripple-effect {
     height:54px!important;
-    margin: 20px;
     margin-left:40px;
+    margin-top:20px;
     padding: 0.84rem 2.14rem;
 }
 .firtsbtn{
@@ -95,6 +98,9 @@ form{
 }
 .btn-group button:not(:last-child) {
     border-right: 20px; /* Prevent double borders */
+  }
+.btn-group button{
+    border-radius: 20px !important;
   }
   
   /* Clear floats (clearfix hack) */
