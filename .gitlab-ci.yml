@@ -3,19 +3,15 @@ stages:
   - Test
 
 default:
-  stage: .pre
   image: python:3.11.0
-  script:
+  before_script:
     - pip install pipenv
     - pip3 install shell
     - pipenv install django
     - pip install django djangorestframework
     
-
-default:
-  stage: .pre
   image: node:16
-  script:
+  before_script:
     - cd brewdog_project/frontend/
     - npm install
     - npm i react-scripts
