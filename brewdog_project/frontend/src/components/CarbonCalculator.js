@@ -19,6 +19,12 @@ const CarbonCalculator = () => {
     const [firstTotalResults, setFirstTotalResults] = useState(0);
     const [secondTotalResults, setSecondTotalResults] = useState(0);
     const [thirdTotalResults, setThirdTotalResults] = useState(0);
+
+    //can be used later to reduce lines of code
+    // const structure = ["MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill", "WFReuse", "WFCharity", "BottleRecycling", "AluminiumRecycling", "GWLandfill", "GWRecycling", "SpecialWaste", "CompanyGoodsDelivery", "ContractedGoodsDelivery", "Travel", "UKFlights", "InternationalFlights", "StaffCommute", "BeefLamb", "OtherMeat", "LobsterFarmedPrawn", "Fish", "MilkYogurt", "Cheese", "LocalFruitVegetables", "FreightFruitVegetables", "OtherDriedFood", "BeerKegs", "BeerCans", "BeerBottles", "LowBeerKegs", "LowBeerCans", "LowBeerBottles", "SoftDrinks", "Wine", "Spirits", "KitchenEquipment", "BuildingRepair", "CleaningProducts", "ITMarketing", "MainsWater", "Sewage"];
+    // const [results , setResults] = useState(Object.fromEntries( structure.map( x => [x, 0])));
+    // const [input, setInput] = useState(Object.fromEntries( structure.map( x => [x, 0])));
+
     const [MainsGas, setMainsGas] = useState(0);
     const [Fuel, setFuel] = useState(0);
     const [Oil, setOil] = useState(0);
@@ -166,7 +172,11 @@ const CarbonCalculator = () => {
     const handlePage1Submit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      setFirstData(data);
+      let dataCopy = {}
+      data.forEach((value, key) => {
+        dataCopy[key] = value * calculatorConstants[key];
+      });
+      setFirstData(dataCopy);
       setFirstView(false);
       setSecondView(true);
       setThirdView(false);
@@ -175,7 +185,11 @@ const CarbonCalculator = () => {
     const handlePage2Submit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      setSecondData(data);
+      let dataCopy = {}
+      data.forEach((value, key) => {
+        dataCopy[key] = value * calculatorConstants[key];
+      });
+      setSecondData(dataCopy);
       setFirstView(false);
       setSecondView(false);
       setThirdView(true);
@@ -195,16 +209,28 @@ const CarbonCalculator = () => {
         return;
       }
       const data = new FormData(event.target);
-      firstData.forEach((value, key) => {
-        data.append(key, value);
+
+      let out = new FormData();
+      data.forEach((value, key) => {
+        out.append(key, value * calculatorConstants[key]);
       });
-      secondData.forEach((value, key) => {
-        data.append(key, value);
-      });
-      data.append("user", localStorage.user);
+
+      //appending data from first page to the final submission form
+      for (const [key, value] of Object.entries(firstData)) {
+        out.append(key,value);
+      }
+      
+      //appending data from second page to the final submission form
+      for (const [key, value] of Object.entries(secondData)) {
+        out.append(key,value);
+      }
+
+      //append user id to the form data
+      out.append("user",localStorage.user);
+
       fetch('/brewdog/calculator/', {
           method: 'POST',
-          body: data,
+          body: out,
           headers : {"Authorization": "Token "+localStorage.token },
           credentials: 'include'
       }).then(response => {
