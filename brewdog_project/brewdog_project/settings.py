@@ -92,7 +92,7 @@ DATABASES = {
         "NAME": "brewdog",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",
+        "HOST": "https://brewdog-calculator.herokuapp.com/",
         "PORT": "5432",
     }
 }
