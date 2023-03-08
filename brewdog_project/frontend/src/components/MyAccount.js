@@ -112,7 +112,7 @@ function MyAccount() {
                     <h2>Edit Details</h2>
                     <div className='form-outline mb-2 field_container'>
                         <label className='form-label form-input-label'>Username:</label>
-                        <input className='form-control form-input-field'  type="text" value={username} onChange={e => setUserName(e.target.value)}/>  
+                        <input className='form-control form-input-field' data-testid="username-input" type="text" value={username} onChange={e => setUserName(e.target.value)}/>  
                     </div>
                     <div className='form-outline mb-2 field_container'>
                         <label className='form-label form-input-label'>Email:</label>
@@ -126,7 +126,7 @@ function MyAccount() {
                         <label className='form-label form-input-label'>Phone:</label>
                         <input className='form-control form-input-field' type="text" value={phone} onChange={e => setPhone(e.target.value)}/>
                     </div>
-                    <button className='my_account btn btn-primary btn-block ripple-effect' type="submit">Update</button> 
+                    <button className='my_account btn btn-primary btn-block ripple-effect' type="submit" data-testid="update-button">Update</button> 
                     <button className='my_account btn btn-primary btn-block ripple-effect' onClick={() => {setCancelSave(true); setEditMode(false);}}>Cancel</button>
                 </form>
                
@@ -155,7 +155,7 @@ function MyAccount() {
                 <div className="my_account flex-container">
                     <div className='my_account account_form'>
                         <h2 className="my_account existing_fields_heading">My Account</h2>
-                        <p className='my_account existing_fields'><strong>Username</strong>: {dirtyUsername}</p>
+                        <p className='my_account existing_fields' data-testid="username"> <strong>Username</strong>: {dirtyUsername}</p>
                         <p className='my_account existing_fields'><strong>Email</strong>: {dirtyEmail}</p>
                         <p className='my_account existing_fields'><strong>Company:</strong> {dirtyCompany}</p>
                         <p className='my_account existing_fields'><strong>Phone:</strong> {dirtyPhone}</p>

@@ -86,6 +86,7 @@ export default function NavBar() {
                 </Grid>
                 <Grid item xs ={2} align="right">
                     <IconButton color="inherit" aria-label="human"
+                    data-testid="human"
                     aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
                     onClick={handleClick}
@@ -106,11 +107,11 @@ export default function NavBar() {
                     >
                     {
                         isAuth() ?
-                         (<><MenuItem onClick={handleMyAccountClick}>My Account</MenuItem>
-                         <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
-                            <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
-                        : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
-                            <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )
+                         (<><MenuItem data-testid="my-account" onClick={handleMyAccountClick}>My Account</MenuItem>
+                         <MenuItem data-testid="my-results" onClick={handleMyResultsClick}>My Results</MenuItem>
+                            <MenuItem data-testid="log-out" onClick={handleLogOutClick}>Log Out</MenuItem></>)
+                        : ( <><MenuItem data-testid="log-in" onClick={handleLoginClick}>Login</MenuItem>
+                            <MenuItem data-testid="sign-up" onClick={handleSignUpClick}>Sign Up</MenuItem></> )
                     }
                     </Menu>
                 </Grid>

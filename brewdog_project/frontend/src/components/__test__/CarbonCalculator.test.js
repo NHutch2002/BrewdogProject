@@ -109,7 +109,7 @@ test('renders second page of calculator when the back button is clicked in third
     expect(beefAndLambConstant).toBeVisible;
 })
 
-test('checks whether an alert appears if the user tries to submit the calculations without filling in all the fields', async() => {
+test('checks whether an alert appears if the user tries to submit the data without filling in all the fields', async() => {
     localStorage.token = true;
     jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockCalculator />);
@@ -121,4 +121,12 @@ test('checks whether an alert appears if the user tries to submit the calculatio
     fireEvent.submit(submitButton);
     expect(window.alert).toHaveBeenCalledWith("Please enter data into at least one field before submitting.");
     window.alert.mockRestore();
+});
+
+test('checks whether only numbers are allowed to be entered into the input fields', async() => {
+    localStorage.token = true;
+    render(<MockCalculator />);
+    const mainsGasInput = screen.getByTestId("mainsGasInput");
+    fireEvent.change(mainsGasInput, { target: { value: "a" } });
+    expect(mainsGasInput).toHaveValue(null);
 });

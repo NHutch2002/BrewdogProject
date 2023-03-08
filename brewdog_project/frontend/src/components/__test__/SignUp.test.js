@@ -40,4 +40,11 @@ test('renders alert when passwords do not match', () => {
     window.alert.mockRestore();
 });
 
-
+test('does not allow invalid email addresses to be submitted', async () => {
+    render(<MockSignUp />);
+    const email = screen.getByTestId("email-address");
+    fireEvent.change(email, { target: { value: "email@gmail.com" } });
+    expect(email).toBeValid();
+    fireEvent.change(email, { target: { value: "invalid" } });
+    expect(email).toBeInvalid();
+});

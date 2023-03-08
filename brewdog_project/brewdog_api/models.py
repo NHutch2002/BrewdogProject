@@ -102,14 +102,10 @@ class CalculatorConstants(models.Model):
     This model is used to store the constants for each field from the calculator.
     """
 
-    MainsGas = models.FloatField(validators=[
-            MinValueValidator(0)])
-    Fuel = models.FloatField(validators=[
-            MinValueValidator(0)])
-    Oil = models.FloatField(validators=[
-            MinValueValidator(0)])
-    Coal = models.FloatField(validators=[
-            MinValueValidator(0)])
+    MainsGas = models.FloatField()
+    Fuel = models.FloatField()
+    Oil = models.FloatField()
+    Coal = models.FloatField()
     Wood = models.FloatField()
     GridElectricity = models.FloatField()
     Electricity = models.FloatField()

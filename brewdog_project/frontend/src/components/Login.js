@@ -49,12 +49,12 @@ const Login = () => {
 
                     <div className="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-email">Email Address</label>
-                        <input type="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" required/>
+                        <input type="email" data-testid="email" id="login-form-email" value={email} onChange={e => setEmail(e.target.value)}className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-4 field_container">
                         <label className="form-label form-input-label" htmlFor="login-form-password">Password</label>
-                        <input type="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" required/>
+                        <input type="password" data-testid="password" id="login-form-password" value={password} onChange={e => setPassword(e.target.value)} className="form-control form-input-field" required/>
                     </div>
 
 

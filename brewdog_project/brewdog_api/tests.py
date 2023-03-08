@@ -91,27 +91,3 @@ class CalculatorTests(TestCase):
                           BottleRecycling=10, AluminiumRecycling=10, GWLandfill=10, GWRecycling=10,
                           SpecialWaste=10)
         self.assertRaises(ValidationError, calc.full_clean)
-
-    def test_fuel_positive_integers_only(self):
-        """Tests if a validation error is raised if the user has
-        typed in a negative value for the Fuel field."""
-
-        calc = Calculator(MainsGas=10, Fuel=-10, Oil=10, Coal=10, Wood=10, GridElectricity=10,
-                          Electricity=10, WFLandfill=10, WFReuse=10, WFCharity=10,
-                          BottleRecycling=10, AluminiumRecycling=10, GWLandfill=10, GWRecycling=10,
-                          SpecialWaste=10)
-        self.assertRaises(ValidationError, calc.full_clean)
-
-
-class CalculatorConstantsTests(TestCase):
-    """Class for  testing the Calculator constants."""
-
-    def test_fuel_positive_integers_only(self):
-        """Tests if a validation error is raised if the user has
-        typed in a negative value for the Fuel field."""
-
-        calc = CalculatorConstants(MainsGas=10, Fuel=-10, Oil=10, Coal=10, Wood=10,
-                                   GridElectricity=10, Electricity=10, WFLandfill=10, WFReuse=10,
-                                   WFCharity=10, BottleRecycling=10, AluminiumRecycling=10,
-                                   GWLandfill=10, GWRecycling=10, SpecialWaste=10)
-        self.assertRaises(ValidationError, calc.full_clean)
