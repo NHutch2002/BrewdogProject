@@ -48,3 +48,37 @@ test('does not allow invalid email addresses to be submitted', async () => {
     fireEvent.change(email, { target: { value: "invalid" } });
     expect(email).toBeInvalid();
 });
+
+test('does not allow any empty fields to be submitted', async () => {
+    render(<MockSignUp />);
+    const username = screen.getByTestId("username");
+    const email = screen.getByTestId("email-address");
+    const companyName = screen.getByTestId("company-name");
+    const phone = screen.getByTestId("phone-number");
+    const password = screen.getByTestId("password");
+    const confirmPassword = screen.getByTestId("confirm-password");
+    expect(username).toBeRequired();
+    expect(username).toBeInvalid();
+    expect(email).toBeRequired();
+    expect(email).toBeInvalid();
+    expect(companyName).toBeRequired();
+    expect(companyName).toBeInvalid();
+    expect(phone).toBeRequired();
+    expect(phone).toBeInvalid();
+    expect(password).toBeRequired();
+    expect(password).toBeInvalid();
+    expect(confirmPassword).toBeRequired();
+    expect(confirmPassword).toBeInvalid();
+    fireEvent.change(username, { target: { value: "user" } });
+    fireEvent.change(email, { target: { value: "user@gmail.com" } });
+    fireEvent.change(companyName, { target: { value: "Brewdog23" } });
+    fireEvent.change(phone, { target: { value: "07777777777" } });
+    fireEvent.change(password, { target: { value: "Testing123" } });
+    fireEvent.change(confirmPassword, { target: { value: "Testing123" } });
+    expect(username).toBeValid();
+    expect(email).toBeValid();
+    expect(companyName).toBeValid();
+    expect(phone).toBeValid();
+    expect(password).toBeValid();
+    expect(confirmPassword).toBeValid();
+});
