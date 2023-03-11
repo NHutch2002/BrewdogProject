@@ -19,7 +19,7 @@ test('renders Login page', () => {
     expect(login).toBeInTheDocument;
 });
 
-test('does not allow empty fields to be submitted', async () => {
+test('does not allow any empty fields to be submitted', async () => {
     render(<MockLogin />);
     const email = screen.getByTestId("email");
     const password = screen.getByTestId("password");
