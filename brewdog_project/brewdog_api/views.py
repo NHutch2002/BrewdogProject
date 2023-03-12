@@ -39,9 +39,7 @@ class UserView(generics.CreateAPIView):
         id = request.GET.get('id')
         if id:
             data = User.objects.get(id=id)
-            print(data)
             serializer = UserSerializer(data)
-            print(serializer.data)
             return Response(serializer.data)
 
     def put(self, request, format=None):
@@ -85,20 +83,21 @@ class LoginView(APIView):
     def post(self, request, format=None):
         email = request.data.get('email')
         password = request.data.get('password')
-        brewdogUser = BrewdogUser.objects.get(email=email)
-        print(brewdogUser.user.username, password)
-        user = authenticate(username=brewdogUser.user.username, password=password)
-        print(user)
-        if user:
-            if user.is_active:
-                login(request, user)
-                token, created = Token.objects.get_or_create(user=user)
-                print(token.key)
-                return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
-            else:
-                return Response({'Error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            brewdogUser = BrewdogUser.objects.get(email=email)
+        except BrewdogUser.DoesNotExist:
+            return Response({'Error': 'Invalid login details'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'Error': ' Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            user = authenticate(username=brewdogUser.user.username, password=password)
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    token, created = Token.objects.get_or_create(user=user)
+                    return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
+                else:
+                    return Response({'Error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'Error': 'Invalid login details!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CalculatorConstantsView(generics.CreateAPIView):
