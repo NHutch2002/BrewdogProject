@@ -6,25 +6,28 @@ import "../../static/css/calculator.css";
 
 const CarbonCalculator = () => {
     const navigate = useNavigate();
+
+    // State to control whether to show the logged in or logged out view
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [calculatorConstants, setFinalConstants] = useState({});
+
+    // State to store the calculator constants
+    const [calculatorConstants, setCalculatorConstants] = useState({});
     
+    //States to control which view within the logged in view is shown
     const [firstView, setFirstView] = useState(true);
     const [secondView, setSecondView] = useState(false);
     const [thirdView, setThirdView] = useState(false);
     
+    // States to store the calculation results from the first and the second view
     const [firstData, setFirstData] = useState([]);
     const [secondData, setSecondData] = useState([]);
     
+    // States to store the total sum of the results from each view to display to the user
     const [firstTotalResults, setFirstTotalResults] = useState(0);
     const [secondTotalResults, setSecondTotalResults] = useState(0);
     const [thirdTotalResults, setThirdTotalResults] = useState(0);
 
-    //can be used later to reduce lines of code
-    // const structure = ["MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity", "Electricity", "WFLandfill", "WFReuse", "WFCharity", "BottleRecycling", "AluminiumRecycling", "GWLandfill", "GWRecycling", "SpecialWaste", "CompanyGoodsDelivery", "ContractedGoodsDelivery", "Travel", "UKFlights", "InternationalFlights", "StaffCommute", "BeefLamb", "OtherMeat", "LobsterFarmedPrawn", "Fish", "MilkYogurt", "Cheese", "LocalFruitVegetables", "FreightFruitVegetables", "OtherDriedFood", "BeerKegs", "BeerCans", "BeerBottles", "LowBeerKegs", "LowBeerCans", "LowBeerBottles", "SoftDrinks", "Wine", "Spirits", "KitchenEquipment", "BuildingRepair", "CleaningProducts", "ITMarketing", "MainsWater", "Sewage"];
-    // const [results , setResults] = useState(Object.fromEntries( structure.map( x => [x, 0])));
-    // const [input, setInput] = useState(Object.fromEntries( structure.map( x => [x, 0])));
-
+    //States to store user input for each category
     const [MainsGas, setMainsGas] = useState(0);
     const [Fuel, setFuel] = useState(0);
     const [Oil, setOil] = useState(0);
@@ -72,6 +75,7 @@ const CarbonCalculator = () => {
     const [MainsWater, setMainsWater] = useState(0);
     const [Sewage, setSewage] = useState(0);
 
+    //States to store the results of the calculations for each category based off of user input and constants
     const [MainGasResults, setMainGasResults] = useState(0);
     const [FuelResults, setFuelResults] = useState(0);
     const [OilResults, setOilResults] = useState(0);
@@ -119,11 +123,14 @@ const CarbonCalculator = () => {
     const [MainsWaterResults, setMainsWaterResults] = useState(0);
     const [SewageResults, setSewageResults] = useState(0);
 
+    // useEffect which is a hook that runs after the first render of the component
+    // This is where the fetch request is made to the backend to get the constants as well as the authentication check 
+    // to see if the user is logged in or not
     useEffect(() => {
         fetch('/brewdog/calculatorconstants/')
           .then(response => response.json())
           .then(data => {
-            setFinalConstants(data[0]);
+            setCalculatorConstants(data[0]);
           })
           .catch(error => {{
             console.log(error);
@@ -139,37 +146,46 @@ const CarbonCalculator = () => {
         isAuth()
       }, []);
 
+    //useEffect which runs when a result on the first page is updated to update the total result on the first page
     useEffect(() => {
         handleUpdateTotalResultOnFirstPage();
     },[MainGasResults, FuelResults, OilResults, CoalResults, WoodResults, GridElectricityResults, ElectricityResults, WFLandfillResults, WFReuseResults, WFCharityResults, BottleRecyclingResults, AluminiumRecyclingResults, GWLandfillResults, GWRecyclingResults, SpecialWasteResults]);
 
+    //method wich runs the calculations for the sum of the results on the first page
     const handleUpdateTotalResultOnFirstPage = () => {
         setFirstTotalResults([
           parseFloat(MainGasResults) + parseFloat(FuelResults) + parseFloat(OilResults) + parseFloat(CoalResults) + parseFloat(WoodResults) + parseFloat(GridElectricityResults) + parseFloat(ElectricityResults) + parseFloat(WFLandfillResults) + parseFloat(WFReuseResults) + parseFloat(WFCharityResults) + parseFloat(BottleRecyclingResults) + parseFloat(AluminiumRecyclingResults) + parseFloat(GWLandfillResults) + parseFloat(GWRecyclingResults) + parseFloat(SpecialWasteResults)
         ]);
     }
 
+    //method which runs the calculations for the sum of the results on the second page
     const handleUpdateTotalResultOnSecondPage = () => {
         setSecondTotalResults([
           parseFloat(BeefLambResults) + parseFloat(OtherMeatResults) + parseFloat(LobsterFarmedPrawnResults) + parseFloat(FishResults) + parseFloat(MilkYogurtResults) + parseFloat(CheeseResults) + parseFloat(LocalFruitVegetablesResults) + parseFloat(FreightFruitVegetablesResults) + parseFloat(OtherDriedFoodResults) + parseFloat(BeerKegsResults) + parseFloat(BeerCansResults) + parseFloat(BeerBottlesResults) + parseFloat(LowBeerKegsResults) + parseFloat(LowBeerCansResults) + parseFloat(LowBeerBottlesResults) + parseFloat(SoftDrinksResults) + parseFloat(WineResults) + parseFloat(SpiritsResults)
         ]);
     }
 
+    //useEffect which runs when a result on the second page is updated to update the total result on the second page
     useEffect(() => {
         handleUpdateTotalResultOnSecondPage();
     },[BeefLambResults, OtherMeatResults, LobsterFarmedPrawnResults, FishResults, MilkYogurtResults, CheeseResults, LocalFruitVegetablesResults, FreightFruitVegetablesResults, OtherDriedFoodResults, BeerKegsResults, BeerCansResults, BeerBottlesResults, LowBeerKegsResults, LowBeerCansResults, LowBeerBottlesResults, SoftDrinksResults, WineResults, SpiritsResults]);
 
+    //method which runs the calculations for the sum of the results on the third page
     const handleUpdateTotalResultOnThirdPage = () => {
         setThirdTotalResults([
           parseFloat(CompanyGoodsDeliveryResults) + parseFloat(ContractedGoodsDeliveryResults) + parseFloat(TravelResults) + parseFloat(UKFlightsResults) + parseFloat(InternationalFlightsResults) + parseFloat(StaffCommuteResults) + parseFloat(KitchenEquipmentResults) + parseFloat(BuildingRepairResults) + parseFloat(CleaningProductsResults) + parseFloat(ITMarketingResults) + parseFloat(MainsWaterResults) + parseFloat(SewageResults)
         ]);
     }
 
+    //useEffect which runs when a result on the third page is updated to update the total result on the third page
     useEffect(() => {
         handleUpdateTotalResultOnThirdPage();
     },[CompanyGoodsDeliveryResults, ContractedGoodsDeliveryResults, TravelResults, UKFlightsResults, InternationalFlightsResults, StaffCommuteResults, KitchenEquipmentResults, BuildingRepairResults, CleaningProductsResults, ITMarketingResults, MainsWaterResults, SewageResults]);
 
-    const handlePage1Submit = (event) => {
+    //method which handles the submission of the form on the first page
+    //This data is stored in the firstData state variable
+    //The firstView state variable is set to false to hide the first page and the secondView state variable is set to true to show the second page
+    const handlePageOneSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
       let dataCopy = {}
@@ -182,7 +198,10 @@ const CarbonCalculator = () => {
       setThirdView(false);
     }
     
-    const handlePage2Submit = (event) => {
+    //method which handles the submission of the form on the second page
+    //This data is stored in the secondData state variable
+    //The secondView state variable is set to false to hide the second page and the thirdView state variable is set to true to show the third page
+    const handlePageTwoSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
       let dataCopy = {}
@@ -195,42 +214,45 @@ const CarbonCalculator = () => {
       setThirdView(true);
     }
 
+    //method where the final submission form is created and submitted and all the form data from all three pages is appended to the final submission form
     const handleSubmit = (event) => {
       event.preventDefault();
 
+      //Check to make sure that the form is not submitted with all fields empty
       if (firstTotalResults[0] === 0 && secondTotalResults[0] === 0 && thirdTotalResults[0] === 0) {
         alert("Please enter data into at least one field before submitting.");
         return;
       }
 
+      //Popup to confirm submission before sending data to the server
       if(window.confirm("Are you sure you want to submit your data?")){
         console.log("Submitted");
       } else {
         return;
       }
-      const data = new FormData(event.target);
+      const thirdViewFormData = new FormData(event.target);
 
-      let out = new FormData();
-      data.forEach((value, key) => {
-        out.append(key, (value * calculatorConstants[key]).toFixed(2));
+      let finalConcatenatedFormData = new FormData();
+      thirdViewFormData.forEach((value, key) => {
+        finalConcatenatedFormData.append(key, (value * calculatorConstants[key]).toFixed(2));
       });
 
       //appending data from first page to the final submission form
       for (const [key, value] of Object.entries(firstData)) {
-        out.append(key,value);
+        finalConcatenatedFormData.append(key,value);
       }
       
       //appending data from second page to the final submission form
       for (const [key, value] of Object.entries(secondData)) {
-        out.append(key,value);
+        finalConcatenatedFormData.append(key,value);
       }
 
       //append user id to the form data
-      out.append("user",localStorage.user);
+      finalConcatenatedFormData.append("user",localStorage.user);
 
       fetch('/brewdog/calculator/', {
           method: 'POST',
-          body: out,
+          body: finalConcatenatedFormData,
           headers : {"Authorization": "Token "+localStorage.token },
           credentials: 'include'
       }).then(response => {
@@ -266,7 +288,7 @@ const CarbonCalculator = () => {
         className="stack">
         <form method="POST" 
         credentials="include" 
-        onSubmit={handlePage1Submit}>
+        onSubmit={handlePageOneSubmit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
@@ -483,7 +505,7 @@ const CarbonCalculator = () => {
         className="stack">
         <form method="POST" 
         credentials="include" 
-        onSubmit={handlePage2Submit}>
+        onSubmit={handlePageTwoSubmit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
           value="csrftoken" />
