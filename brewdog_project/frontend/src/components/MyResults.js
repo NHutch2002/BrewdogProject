@@ -10,8 +10,9 @@ const MyResults = () => {
     const navigate = useNavigate();
     const [results, setResults] = useState([]);
 
+    const id = localStorage.getItem("user");
     useEffect( () => {
-        fetch('/brewdog/calculator', {
+        fetch(`brewdog/results/?id=${id}`, {
             method: 'GET',
             headers : {"Authorization": "Token "+ localStorage.token },
             credentials: 'include'

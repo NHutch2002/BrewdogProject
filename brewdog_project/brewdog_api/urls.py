@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserView, CalculatorView, LoginView, CustomAuthToken, CalculatorConstantsView, IndividualCalculatorView, RetrieveIndividualUserView
+from .views import UserView, CalculatorView, LoginView, CustomAuthToken, CalculatorConstantsView, IndividualCalculatorView, RetrieveIndividualUserView,RetrieveResultsBasedOnIDView
 from rest_framework.authtoken import views
  
 urlpatterns = [
@@ -9,6 +9,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('calculatorconstants/', CalculatorConstantsView.as_view()),
     path('api-token-auth/', CustomAuthToken.as_view()),
-    path('individualcalculator/', IndividualCalculatorView.as_view())
+    path('individualcalculator/', IndividualCalculatorView.as_view()),
+    path('results/', RetrieveResultsBasedOnIDView.as_view()),
 ]
 
