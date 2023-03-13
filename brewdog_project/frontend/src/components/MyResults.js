@@ -71,9 +71,7 @@ const MyResults = () => {
                         height={300}
                         data={data}
                         fromZero={true}
-                        margin={{
-                        top: 5, right: 30, left: 20, bottom: 5,
-                        }}
+                        style={{margin: "auto"}}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
@@ -82,7 +80,6 @@ const MyResults = () => {
                         <Legend />
                         <Line type="monotone" dataKey="Total" stroke="#8884d8" activeDot={{ r: 8 }} />
                     </LineChart>
-
                 {results.map(result => {
                     let [categoryTotals, total] = getCategoryTotals(result)
                     return(
