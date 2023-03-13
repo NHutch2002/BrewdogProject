@@ -20,7 +20,7 @@ function MyAccount() {
 
     useEffect(() => {
         const id = localStorage.getItem("user");
-        fetch(`/brewdog/user/?id=${id}`, {
+        fetch(`/brewdog/individualuser/?id=${id}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json'},
             credentials: 'include'

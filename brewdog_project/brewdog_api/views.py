@@ -36,11 +36,9 @@ class UserView(generics.CreateAPIView):
         return Response(f"Error: Invalid details- {brewdogUserSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
-        id = request.GET.get('id')
-        if id:
-            data = User.objects.get(id=id)
-            serializer = UserSerializer(data)
-            return Response(serializer.data)
+        data = User.objects.all()
+        serializer = UserSerializer(data, many=True)
+        return Response(serializer.data)
 
     def put(self, request, format=None):
         userData = {}
@@ -56,6 +54,17 @@ class UserView(generics.CreateAPIView):
             userSerializer.save()
             return Response("User updated successfully", status=status.HTTP_200_OK)
         return Response(f"Details already exist- {brewdogUserSerializer.errors},{userSerializer.errors}", status=status.HTTP_400_BAD_REQUEST)
+    
+class RetrieveIndividualUserView(generics.CreateAPIView):
+    serializer_class = UserSerializer
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        if id:
+            data = User.objects.get(id=id)
+            serializer = UserSerializer(data)
+            return Response(serializer.data)
+        return Response("No user found", status=status.HTTP_400_BAD_REQUEST)
 
 class CalculatorView(generics.CreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -146,4 +155,14 @@ class IndividualCalculatorView(generics.CreateAPIView):
         id = request.GET.get('id')
         data = Calculator.objects.get(id=id)
         serializer = CalculatorSerializer(data)
+        return Response(serializer.data)
+    
+class RetrieveResultsBasedOnIDView(generics.CreateAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        data = Calculator.objects.filter(user=id)
+        serializer = CalculatorSerializer(data, many=True)
         return Response(serializer.data)
