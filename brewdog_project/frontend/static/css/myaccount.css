@@ -3,7 +3,7 @@
     height: 86vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25 )), url("https://brewdog-calculator.herokuapp.com/staticfiles/frontend/827a61fd8f5838e739b1b44b1fb3ec53.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25 )), url("https://www.brewdog-calculator.herokuapp.com/staticfiles/frontend/827a61fd8f5838e739b1b44b1fb3ec53.jpeg");
     background-size: 100vw;
 }
 
