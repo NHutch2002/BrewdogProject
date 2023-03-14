@@ -51,3 +51,15 @@ test("header bar renders correctly when logged in", async () => {
     expect(myResults).toBeInTheDocument;
     expect(logOut).toBeInTheDocument;
 });
+
+test("Clicking on the How It Works button take you to the corresponding page", async () => {
+    Object.defineProperty(window, 'location', {
+        value: { pathname: '/howitworks' }
+    });    
+    render(<MockNavBar />);
+    const howItWorks = await screen.findByText("How It Works");
+    fireEvent.click(howItWorks);
+    await waitFor(() => {
+        expect(window.location.pathname).toBe('/howitworks');
+    });
+});
