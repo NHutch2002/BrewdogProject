@@ -1,15 +1,10 @@
-.title{
-    text-align: center;
+.heading{
     margin: 0px 20% 20px 20%;
     max-width: 500px;
     margin:auto;
     margin-bottom:20px;
     background-color: white;
-    text-transform: uppercase;
     padding: 10px 2vw 0 2vw;
-    color: #111;
-    font-family: 'NewGroteskSquareFOURWEB';
-    font-size: 45px;
     box-shadow: 7px 7px 0 #34D19F;
 
 }
@@ -20,6 +15,8 @@ form{
     margin-left: 10%;
     align-items: center;
 }
+
+/*Formatting of table content*/
 .table{
     width: 100%; 
     text-align: center;
@@ -47,34 +44,22 @@ form{
     position:absolute;
     background-color: #111;
 }
+
+/* extra formatting of buttons*/
 .btn[type="submit"] {
-    font-size: large;
     background-color: #34D19F!important;
-    border-radius: 20px;
-    box-shadow: none;
-    margin-top: 20px;
     padding-bottom:20px;
-    /* transition: 0.2s ease-in-out; */
 }
 .btn[type="submit"]:hover {
     background-color: white!important;
     color:#111;
-    box-shadow: none;
-    transform: scale(1.01);
 }
 .btn[type="submit"].btn-primary.btn-block.ripple-effect:active {
-    background-color: #34D19F!important;
-    height:54px!important;
-    margin-top: 20px;
-    padding: 0.84rem 2.14rem;
     margin:20px;
 }
 
 .btn[type="submit"].btn-primary.btn-block.ripple-effect {
-    height:54px!important;
-    margin-top: 20px;
     margin-bottom:20px;
-    padding: 0.84rem 2.14rem;
 }
 .btn-group button:not(:last-child) {
     border-right: 20px; /* Prevent double borders */

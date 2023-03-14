@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 
-
+import "../../static/css/base.css";
 import "../../static/css/useraccount.css";
 
 const SignUp = () => {

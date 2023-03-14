@@ -24,12 +24,6 @@ body, html {
     padding: 0%!important;
 }
 
-
-/* Potentially unused - maybe delete??? */
-.title {
-    font-family: 'NewGroteskSquareFIVEWEB';
-}
-
 .heading {
     font-family: 'NewGroteskSquareFIVEWEB';
     text-transform: uppercase;
@@ -50,4 +44,29 @@ body, html {
     font-size: 1.68751rem;
     font-family: 'NewGroteskSquareFOURWEB';
     text-align: center;
+}
+/* Buttons */
+.btn[type="submit"] {
+    font-size: large;
+    background-color: black!important;
+    border-radius: 20px;
+    box-shadow: none;
+    margin-top: 20px;
+}
+.btn[type="submit"]:hover {
+    background-color: black!important;
+    box-shadow: none;
+    transform: scale(1.01);
+}
+.btn[type="submit"].btn-primary.btn-block.ripple-effect:active {
+    background-color: #34D19F!important;
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
+}
+
+.btn[type="submit"].btn-primary.btn-block.ripple-effect {
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
 }

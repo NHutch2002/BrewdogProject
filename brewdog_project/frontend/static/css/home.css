@@ -6,7 +6,7 @@ body, html {
     background-color: #111;
 }
 
-/* Landing styles */
+/* Landing picture styles */
 .landing_pic_container {
     width: 100%;
     margin: auto;
@@ -28,6 +28,7 @@ body, html {
     filter: brightness(0.9);
     transform: scale(1.01);
 }
+/*Landing title style*/
 .landing_title_container {
     position: absolute;
     z-index: 999;
@@ -40,9 +41,7 @@ body, html {
     filter: brightness(1.4);
     cursor: default;
 }
-.landing_heading {
-    font-family: 'NewGroteskSquareFIVEWEB';
-    text-transform: uppercase;
+.heading {
     font-size: 10vw;
     font-weight: inherit;
     line-height: 7.5vw;
@@ -53,12 +52,8 @@ body, html {
     color: #34D19F;
     text-shadow: 0 0 10px #34D19F;
 }
-.landing_subheading {
-    letter-spacing: .02em;
-    text-transform: uppercase;
-    font-weight: 500;
+.subheading {
     font-size: 4vw;
-    font-family: 'NewGroteskSquareFOURWEB';
 }
 
 /* Content section styles */

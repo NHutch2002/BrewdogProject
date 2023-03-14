@@ -223,7 +223,7 @@ const CarbonCalculator = () => {
 
     return (
         <div className="container-fluid bodycontent">
-        <h1 className="title"
+        <h1 className="heading"
         >Carbon Footprint Calculator</h1>
         {isAuthenticated && firstView ? (
         <Stack direction="column" 
@@ -843,14 +843,7 @@ const CarbonCalculator = () => {
                         </>
                         ) : (
           <>
-            <p
-            style={{
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "green",
-              textAlign: "center",
-            }}
-          >
+            <p className="logged-out">
             To access the Carbon Calculator, please <a href="/login">login</a> or <a href="/signup">register</a></p>
         </>
         )}
