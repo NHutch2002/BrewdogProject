@@ -1,8 +1,9 @@
-import { render, screen, fireEvent, findByText } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import SignUp from '../SignUp';
+import fetchMock from "fetch-mock";
 
 const MockSignUp = () => {
     return (    
@@ -12,6 +13,14 @@ const MockSignUp = () => {
     )
 }
 
+beforeEach(() => {
+    fetchMock.reset();
+});
+
+afterEach(() => {
+    fetchMock.restore();
+});
+
 test('renders Sign Up page', () => {
     render(
         <MockSignUp />);
@@ -19,16 +28,16 @@ test('renders Sign Up page', () => {
     expect(register).toBeInTheDocument;
 });
 
-test('renders alert when passwords do not match', () => {
+test('renders alert when passwords do not match', async () => {
     jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockSignUp />);
-    const username = screen.getByTestId("username");
-    const email = screen.getByTestId("email-address");
-    const companyName = screen.getByTestId("company-name");
-    const phone = screen.getByTestId("phone-number");
-    const password = screen.getByTestId("password");
-    const confirmPassword = screen.getByTestId("confirm-password");
-    const submitButton = screen.getByRole("button", { name: "Submit" });
+    const username = await screen.findByTestId("username");
+    const email = await screen.findByTestId("email-address");
+    const companyName = await screen.findByTestId("company-name");
+    const phone = await screen.findByTestId("phone-number");
+    const password = await screen.findByTestId("password");
+    const confirmPassword = await screen.findByTestId("confirm-password");
+    const submitButton = await screen.findByRole("button", { name: "Submit" });
     fireEvent.change(username, { target: { value: "user" } });
     fireEvent.change(email, { target: { value: "user@gmail.com" } });
     fireEvent.change(companyName, { target: { value: "Brewdog23" } });
@@ -42,7 +51,7 @@ test('renders alert when passwords do not match', () => {
 
 test('does not allow invalid email addresses to be submitted', async () => {
     render(<MockSignUp />);
-    const email = screen.getByTestId("email-address");
+    const email = await screen.findByTestId("email-address");
     fireEvent.change(email, { target: { value: "email@gmail.com" } });
     expect(email).toBeValid();
     fireEvent.change(email, { target: { value: "invalid" } });
@@ -51,12 +60,12 @@ test('does not allow invalid email addresses to be submitted', async () => {
 
 test('does not allow any empty fields to be submitted', async () => {
     render(<MockSignUp />);
-    const username = screen.getByTestId("username");
-    const email = screen.getByTestId("email-address");
-    const companyName = screen.getByTestId("company-name");
-    const phone = screen.getByTestId("phone-number");
-    const password = screen.getByTestId("password");
-    const confirmPassword = screen.getByTestId("confirm-password");
+    const username = await screen.findByTestId("username");
+    const email = await screen.findByTestId("email-address");
+    const companyName = await screen.findByTestId("company-name");
+    const phone = await screen.findByTestId("phone-number");
+    const password = await screen.findByTestId("password");
+    const confirmPassword = await screen.findByTestId("confirm-password");
     expect(username).toBeRequired();
     expect(username).toBeInvalid();
     expect(email).toBeRequired();
@@ -82,3 +91,26 @@ test('does not allow any empty fields to be submitted', async () => {
     expect(password).toBeValid();
     expect(confirmPassword).toBeValid();
 });
+
+test('takes user to login page if register details were valid', async() => {
+    const response = { success: true };
+    fetchMock.post(`/brewdog/user/`, response);
+    render(<MockSignUp />);
+    const username = await screen.findByTestId("username");
+    const email = await screen.findByTestId("email-address");
+    const companyName = await screen.findByTestId("company-name");
+    const phone = await screen.findByTestId("phone-number");
+    const password = await screen.findByTestId("password");
+    const confirmPassword = await screen.findByTestId("confirm-password");
+    fireEvent.change(username, { target: { value: "user" } });
+    fireEvent.change(email, { target: { value: "user@gmail.com" } });
+    fireEvent.change(companyName, { target: { value: "Brewdog23" } });
+    fireEvent.change(phone, { target: { value: "07777777777" } });
+    fireEvent.change(password, { target: { value: "Testing123" } });
+    fireEvent.change(confirmPassword, { target: { value: "Testing123" } });
+    const submitButton = await screen.findByRole("button", { name: "Submit" });
+    fireEvent.click(submitButton);
+    await waitFor(() => {
+        expect(window.location.pathname).toBe('/login');
+    });
+}); 
