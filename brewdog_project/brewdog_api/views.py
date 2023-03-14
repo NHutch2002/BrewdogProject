@@ -47,16 +47,11 @@ class UserView(generics.CreateAPIView):
                         status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        """Retrieve user by id."""
+        """Retrieve users."""
 
-        id = request.GET.get('id')
-        if id:
-            data = User.objects.get(id=id)
-            print(data)
-            serializer = UserSerializer(data)
-            print(serializer.data)
-            return Response(serializer.data)
-        return Response("No id provided", status=status.HTTP_400_BAD_REQUEST)
+        data = User.objects.all()
+        serializer = UserSerializer(data, many=True)
+        return Response(serializer.data)
 
     def put(self, request):
         """Update user by id."""
@@ -66,16 +61,27 @@ class UserView(generics.CreateAPIView):
             user_data[key] = value
         user = User.objects.get(id=request.data.get('id'))
         brewdog_user = BrewdogUser.objects.get(email=user.brewdogUser.email)
-        brewdog_user_serializer = BrewdogUserSerializer(brewdog_user, data=user_data["brewdogUser"])
+        brewdogUserSerializer = BrewdogUserSerializer(brewdog_user, data=user_data["brewdogUser"])
         user_data.pop("brewdogUser")
-        user_serializer = UserUpdateSerializer(user, data=user_data)
-        if brewdog_user_serializer.is_valid() and user_serializer.is_valid():
-            brewdog_user_serializer.save()
-            user_serializer.save()
+        userSerializer = UserUpdateSerializer(user, data=user_data)
+        if brewdogUserSerializer.is_valid() and userSerializer.is_valid():
+            brewdogUserSerializer.save()
+            userSerializer.save()
             return Response("User updated successfully", status=status.HTTP_200_OK)
-        return Response(
-            f"Details already exist- {brewdog_user_serializer.errors},{user_serializer.errors}",
-            status=status.HTTP_400_BAD_REQUEST)
+        return Response(f"Details already exist- {brewdogUserSerializer.errors},{userSerializer.errors}",
+                        status=status.HTTP_400_BAD_REQUEST)
+    
+class RetrieveIndividualUserView(generics.CreateAPIView):
+    serializer_class = UserSerializer
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        if id:
+            data = User.objects.get(id=id)
+            print(data)
+            serializer = UserSerializer(data)
+            print(serializer.data)
+            return Response(serializer.data)
 
 class CalculatorView(generics.CreateAPIView):
     """Calculator view.
@@ -83,8 +89,8 @@ class CalculatorView(generics.CreateAPIView):
     Calculator view is used to create a new calculator instance, retrieve all calculator
     instances and retrieve a calculator instance by id.
     """
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
     serializer_class = CalculatorSerializer
     queryset = Calculator.objects.all()
 
@@ -94,7 +100,7 @@ class CalculatorView(generics.CreateAPIView):
         serializer = CalculatorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponseRedirect(reverse('frontend:myresults'))
+            return Response({'id': serializer.data.get('id')}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
@@ -117,22 +123,21 @@ class LoginView(APIView):
 
         email = request.data.get('email')
         password = request.data.get('password')
-        brewdog_user = BrewdogUser.objects.get(email=email)
-        print(brewdog_user.user.username, password)
-        user = authenticate(username=brewdog_user.user.username, password=password)
-        print(user)
-        if user:
-            if user.is_active:
-                login(request, user)
-                token, _ = Token.objects.get_or_create(user=user)
-                print(token.key)
-                return Response({'status': 'success', 'message': 'Login successful',
-                                 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
-            return Response({'Error': 'User has been deactivated!'},
-                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            brewdogUser = BrewdogUser.objects.get(email=email)
+        except BrewdogUser.DoesNotExist:
+            return Response({'Error': 'Invalid login details'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'Error': ' Invalid Credentials'},
-                            status=status.HTTP_401_UNAUTHORIZED)
+            user = authenticate(username=brewdogUser.user.username, password=password)
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    token, created = Token.objects.get_or_create(user=user)
+                    return Response({'status': 'success', 'message': 'Login successful', 'token': token.key, 'user': user.id }, status=status.HTTP_200_OK)
+                else:
+                    return Response({'Error': 'User has been deactivated!'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'Error': 'Invalid login details!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CalculatorConstantsView(generics.CreateAPIView):
@@ -161,6 +166,12 @@ class CalculatorConstantsView(generics.CreateAPIView):
         data = CalculatorConstants.objects.all()
         serializer = CalculatorConstantsSerializer(data, many=True)
         return Response(serializer.data)
+    
+    def delete(self, request, format=None):
+        id = request.GET.get('id')
+        data = CalculatorConstants.objects.all()
+        data.delete()
+        return Response("Deleted successfully", status=status.HTTP_200_OK)
 
 
 class CustomAuthToken(ObtainAuthToken):
@@ -180,3 +191,23 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
+    
+class IndividualCalculatorView(generics.CreateAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        data = Calculator.objects.get(id=id)
+        serializer = CalculatorSerializer(data)
+        return Response(serializer.data)
+    
+class RetrieveResultsBasedOnIDView(generics.CreateAPIView):
+    serializer_class = CalculatorSerializer
+    queryset = Calculator.objects.all()
+
+    def get(self, request, format=None):
+        id = request.GET.get('id')
+        data = Calculator.objects.filter(user=id)
+        serializer = CalculatorSerializer(data, many=True)
+        return Response(serializer.data)

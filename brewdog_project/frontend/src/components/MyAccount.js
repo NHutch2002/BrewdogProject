@@ -20,10 +20,10 @@ function MyAccount() {
 
     useEffect(() => {
         const id = localStorage.getItem("user");
-        fetch(`/brewdog/user/?id=${id}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json"},
-            credentials: "include"
+        fetch(`/brewdog/individualuser/?id=${id}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json'},
+            credentials: 'include'
         })
         .then(res => {
             if (res.status === 200) {

@@ -12,6 +12,7 @@ import SignUp from "./SignUp";
 import MyAccount from "./MyAccount";
 import ProtectRoutes from "./ProtectedRoutes";
 import HideIfLoggedInRoutes from "./HideIfLoggedInRoutes";
+import IndividualResult from "./IndividualResult";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class App extends Component {
                   
                   <Route exact path="/myaccount" element={<MyAccount />} />
                   <Route exact path="/myresults" element={<MyResults />} />
+                  <Route exact path="/myresults/:resultId" element={<IndividualResult />} />
                 </Route>
             </Routes>
         </Router>
