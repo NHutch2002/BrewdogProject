@@ -19,7 +19,6 @@ __pycache__/
 *password*
 *.httr-oauth*
 
-main.js
 main.js.LICENSE.txt
  
 # Private Node Modules
