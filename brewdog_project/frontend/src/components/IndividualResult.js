@@ -2,6 +2,9 @@ import React, {useState, useEffect } from 'react';
 import { useParams} from 'react-router-dom';
 import {Stack} from '@mui/material';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie,Cell, ResponsiveContainer} from 'recharts';
+import { IconButton } from '@material-ui/core';
+import { TiTickOutline } from "react-icons/ti";
+
 
 const IndividualResult = () => {
     const {resultId} = useParams();
@@ -87,14 +90,40 @@ const IndividualResult = () => {
         );
     }
 
+    const handlePieClick = (e) => {
+        let element = e.target.closest("#individual-result-graphs");
+        if(element.classList.contains("bar")) {
+            element.classList.remove("bar");
+            element.classList.add("pie")
+        }
+    }
+
+    const handleBarClick = (e) => {
+        let element = e.target.closest("#individual-result-graphs");
+        if(element.classList.contains("pie")) {
+            element.classList.remove("pie");
+            element.classList.add("bar")
+        }
+    }
+
     return (
         <div className="container-fluid bodycontent">
             <h1 className='title'>Individual Result</h1>
             <div id="individual-result">
                 <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
                 <div id="individual-result-data">
-                    <div id='individual-result-graphs'>
-                        <div className='individual-graph'>
+                    <div id='individual-result-graphs' className='bar'>
+                        <div id="graph-switch">
+                            <IconButton id="bar-button" color="inherit" onClick={(e) => handleBarClick(e)}>
+                                <TiTickOutline color="#34D19F" size="25px" />
+                                BarChart
+                            </IconButton>
+                            <IconButton id="pie-button" color="inherit" onClick={(e) => handlePieClick(e)}>
+                                <TiTickOutline color="#34D19F" size="25px" />
+                                PieChart
+                            </IconButton>
+                        </div>
+                        <div id="bar-chart" className='individual-graph'>
                             <ResponsiveContainer width="100%" height={500}>
                                 <BarChart
                                     data={data}
@@ -110,7 +139,7 @@ const IndividualResult = () => {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className='individual-graph'>
+                        <div id="pie-chart" className='individual-graph'>
                             <ResponsiveContainer width="100%" height={500}>
                                 <PieChart>
                                     <Pie
