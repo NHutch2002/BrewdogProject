@@ -78,9 +78,7 @@ class RetrieveIndividualUserView(generics.CreateAPIView):
         id = request.GET.get('id')
         if id:
             data = User.objects.get(id=id)
-            print(data)
             serializer = UserSerializer(data)
-            print(serializer.data)
             return Response(serializer.data)
 
 class CalculatorView(generics.CreateAPIView):
