@@ -53,7 +53,6 @@ form.account_form .button[type="submit"] {
 form.account_form .button[type="submit"]:hover {
     background-color: white!important;
     color: #111 !important;
-    }
 }
 form.account_form button[type="submit"].btn-primary.btn-block.ripple-effect:active {
     background-color: #34D19F!important;
