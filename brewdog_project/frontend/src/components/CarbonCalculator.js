@@ -279,8 +279,8 @@ const CarbonCalculator = () => {
     }
 
     return (
-        <div className="container-fluid bodycontent">
-        <h1 className="title"
+        <div className="calc container-fluid bodycontent">
+        <h1 className="heading"
         >Carbon Footprint Calculator</h1>
         {isAuthenticated && firstView ? (
         <Stack direction="column" 

@@ -35,6 +35,9 @@
     transform: scale(1.01);
     color:white;
 }
+.my_account .btn[type=submit]{
+    background-color: #111!important;
+}
 .btn[type=submit]:hover{
     color:white;
 }
@@ -43,6 +46,12 @@
     height:54px!important;
     margin-top: 20px;
     padding: 0.84rem 2.14rem;
+}
+.my_account button.btn-primary.btn-block.ripple-effect:hover{
+    background-color: black!important;
+    box-shadow: none;
+    transform: scale(1.01);
+    color:white;
 }
 
 .my_account button.btn-primary.btn-block.ripple-effect {

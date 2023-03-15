@@ -48,13 +48,13 @@ body, html {
 /* Buttons */
 .btn[type="submit"] {
     font-size: large;
-    background-color: black!important;
+    background-color: black;
     border-radius: 20px;
     box-shadow: none;
     margin-top: 20px;
 }
 .btn[type="submit"]:hover {
-    background-color: black!important;
+    background-color: black;
     box-shadow: none;
     transform: scale(1.01);
 }

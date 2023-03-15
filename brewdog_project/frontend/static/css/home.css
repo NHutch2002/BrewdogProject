@@ -5,6 +5,10 @@ body, html {
 .container-fluid {
     background-color: #111;
 }
+.home_title{
+    max-width: none!important;
+    box-shadow: none!important;
+}
 
 /* Landing picture styles */
 .landing_pic_container {
@@ -41,12 +45,12 @@ body, html {
     filter: brightness(1.4);
     cursor: default;
 }
-.heading {
-    font-size: 10vw;
-    font-weight: inherit;
-    line-height: 7.5vw;
-    letter-spacing: .03em;
-    color: #EEE;
+.home_title {
+    font-size: 10vw!important;
+    font-weight: inherit!important;
+    line-height: 7.5vw!important;
+    letter-spacing: .03em!important;
+    color: #EEE!important;
 }
 #landing_blue_accent {
     color: #34D19F;

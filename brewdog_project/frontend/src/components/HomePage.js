@@ -18,7 +18,7 @@ export default class HomePage extends Component {
                 <div className="landing_pic_container">
                     <img className="landing_pic" src={Landing} alt="Brewdog Banner"/>
                     <div className="landing_title_container">
-                        <h1 className="heading" >Planet First<br />Locals</h1>
+                        <h1 className="home_title heading" >Planet First<br />Locals</h1>
                         <h2 className="subheading"><a id="landing_blue_accent">How low can you go?</a></h2>
                     </div>
                 </div>

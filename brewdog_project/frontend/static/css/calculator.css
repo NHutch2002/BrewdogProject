@@ -1,23 +1,17 @@
-.title{
-    text-align: center;
+.calc .heading{
     margin: 0px 20% 20px 20%;
     max-width: 500px;
     margin:auto;
     margin-bottom:20px;
     background-color: white;
-    text-transform: uppercase;
     padding: 10px 2vw 0 2vw;
-    color: #111;
-    font-family: 'NewGroteskSquareFOURWEB';
-    font-size: 45px;
     box-shadow: 7px 7px 0 #34D19F;
 
 }
 form{
     width:100%;
 }
-.stack{    
-    margin-right: 10%;
+.stack{    margin-right: 10%;
     margin-left: 10%;
     align-items: center;
 }
@@ -53,58 +47,43 @@ form{
 
 /* extra formatting of buttons*/
 .btn[type="submit"] {
-    font-size: large;
     background-color: #34D19F!important;
-    border-radius: 20px !important;
-    box-shadow: none;
-    margin-top: 20px;
     padding-bottom:20px;
-    /* transition: 0.2s ease-in-out; */
 }
 .btn[type="button"]{
     font-size: large;
     background-color: #34D19F!important;
-    border-radius: 20px !important;
+    border-radius: 20px;
     box-shadow: none;
     margin-top: 20px;
     padding-bottom:20px;
 }
-.btn-group>.btn:not(:last-child):not(.dropdown-toggle){
-    border-radius: 20px !important;
-}
-.btn:hover {
+
+.btn[type="submit"]:hover {
     background-color: white!important;
-    color:#111!important;
-    box-shadow: none;
+    color: #111 !important;
+}
+.btn[type="button"]:hover{
     transform: scale(1.01);
+    background-color: white!important;
+    color: #111 !important;
 }
 .btn.btn-primary.btn-block.ripple-effect:active {
-    background-color: #34D19F!important;
-    height:54px!important;
-    margin-top: 20px;
-    padding: 0.84rem 2.14rem;
     margin:20px;
+}
+
+.btn[type="submit"].btn-primary.btn-block.ripple-effect {
+    margin-bottom:20px;
 }
 .btn[type="button"].btn-primary.btn-block.ripple-effect {
     height:54px!important;
+    margin: 20px;
     margin-right: 40px;
-    margin-top:20px;
     padding: 0.84rem 2.14rem;
 }
-.btn[type="submit"].btn-primary.btn-block.ripple-effect {
-    height:54px!important;
-    margin-left:40px;
-    margin-top:20px;
-    padding: 0.84rem 2.14rem;
-}
-.firtsbtn{
-    margin-left:0!important;
-}
+
 .btn-group button:not(:last-child) {
     border-right: 20px; /* Prevent double borders */
-  }
-.btn-group button{
-    border-radius: 20px !important;
   }
   
   /* Clear floats (clearfix hack) */
