@@ -157,7 +157,7 @@ const IndividualResult = () => {
                         <p>Sewage: {result.Sewage}</p>
                     </Stack>
                 </Stack>
-                <Stack direction="column" spacing={30}>
+                <Stack direction="column" spacing={30} data-testid="bar-chart" >
                     <Stack direction="column" spacing={2}>
                         <BarChart
                             width={1000}
@@ -174,7 +174,7 @@ const IndividualResult = () => {
                             <Bar dataKey="Total" fill="#8884d8" />
                         </BarChart>
                     </Stack>
-                    <Stack direction="column" spacing={2}>
+                    <Stack direction="column" spacing={2} data-testid="pie-chart">
                         <PieChart width={730} height={500}>
                             <Pie
                                 data={data}

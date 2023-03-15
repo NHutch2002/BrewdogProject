@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import NavBar from '../NavBar';
-import { createMemoryHistory } from 'history';
 import { BrowserRouter } from "react-router-dom";
 
 const MockNavBar = () => {

@@ -13,7 +13,7 @@ class UserTests(TestCase):
     """Class for testing the BrewdogUser model."""
 
     def test_user_account_created(self):
-        """Tests if a user's account is successfully created with the appropriate fields."""
+        """Tests if a user's account has all the appropriate fields."""
 
         user1 = BrewdogUser(company='Brewdog', email='abc@gmail.com', phone='111')
         self.assertEqual((user1.company == 'Brewdog'), True)
@@ -25,7 +25,7 @@ class CalculatorTests(TestCase):
     """Class for testing the Calculator model."""
 
     def test_calculator_values(self):
-        """Tests if a calculator object is successfully created with the appropriate fields."""
+        """Tests if a calculator object has all the appropriate fields."""
 
         calc = Calculator(MainsGas=10, Fuel=10, Oil=10, Coal=10, Wood=10, GridElectricity=10,
                         Electricity=10, WFLandfill=10, WFReuse=10, WFCharity=10,
@@ -38,7 +38,6 @@ class CalculatorTests(TestCase):
                         LowBeerCans=10, LowBeerBottles=10, SoftDrinks=10, Wine=10, Spirits=10,
                         KitchenEquipment=10, BuildingRepair=10, CleaningProducts=10, ITMarketing=10,
                         MainsWater=10, Sewage=10)
-        calc.save()
         self.assertEqual((calc.MainsGas == 10), True)
         self.assertEqual((calc.Fuel == 10), True)
         self.assertEqual((calc.Oil == 10), True)

@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import Login from '../Login';
 import fetchMock from "fetch-mock";

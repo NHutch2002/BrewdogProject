@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import HowItWorks from '../HowItWorks';
 import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter } from "react-router-dom";

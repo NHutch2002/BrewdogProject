@@ -133,6 +133,7 @@ const CarbonCalculator = () => {
         })
           .then(response => response.json())
           .then(data => {
+            console.log(data);
             setCalculatorConstants(data[0]);
           })
           .catch(error => {{
@@ -318,11 +319,11 @@ const CarbonCalculator = () => {
                       name="MainsGas" 
                       min="0"
                       step= "0.01"
-                      data-testid="mainsGasInput"
+                      data-testid="mains-gas-input"
                       onChange={(event) => {setMainsGas(event.target.value); setMainGasResults((event.target.value * calculatorConstants.MainsGas).toFixed(2));}} value={MainsGas} />
                     </td>
-                    <td data-testid="mainsGasConstant">{calculatorConstants.MainsGas}</td>
-                    <td data-testid="mainsGasResult">{MainGasResults}</td>
+                    <td data-testid="mains-gas-constant">{calculatorConstants.MainsGas}</td>
+                    <td data-testid="mains-gas-result">{MainGasResults}</td>
                   </tr>
                   <tr>
                     <td>Fuel (Diesel):</td>
@@ -331,11 +332,12 @@ const CarbonCalculator = () => {
                       name="Fuel" 
                       min="0"
                       step= "0.01"
+                      data-testid="fuel-input"
                       onChange={(event) => {setFuel(event.target.value); setFuelResults((event.target.value * calculatorConstants.Fuel).toFixed(2));}} value={Fuel}
                       />
                     </td>
-                    <td>{calculatorConstants.Fuel}</td>
-                    <td>{FuelResults}</td>
+                    <td data-testid="fuel-constant">{calculatorConstants.Fuel}</td>
+                    <td data-testid="fuel-result">{FuelResults}</td>
                   </tr>
                   <tr>
                     <td>Oil:</td>
@@ -344,11 +346,14 @@ const CarbonCalculator = () => {
                       name="Oil" 
                       min="0"
                       step= "0.01"
+                      data-testid="oil-input"
                       onChange={(event) => {setOil(event.target.value); setOilResults((event.target.value * calculatorConstants.Oil).toFixed(2));}} value={Oil}
                       />
                     </td>
                     <td>{calculatorConstants.Oil}</td>
-                    <td>{OilResults}</td>
+                    <td 
+                    data-testid="oil-result"
+                    >{OilResults}</td>
                   </tr>
                   <tr>
                     <td>Coal:</td>
@@ -357,11 +362,14 @@ const CarbonCalculator = () => {
                       name="Coal" 
                       min="0"
                       step= "0.01"
+                      data-testid="coal-input"
                       onChange={(event) => {setCoal(event.target.value); setCoalResults((event.target.value * calculatorConstants.Coal).toFixed(2));}} value={Coal}
                       />
                     </td>
                     <td>{calculatorConstants.Coal}</td>
-                    <td>{CoalResults}</td>
+                    <td
+                    data-testid="coal-result"
+                    >{CoalResults}</td>
                   </tr>
                   <tr>
                     <td>Wood:</td>
@@ -370,11 +378,14 @@ const CarbonCalculator = () => {
                       name="Wood" 
                       min="0"
                       step= "0.01"
+                      data-testid="wood-input"
                       onChange={(event) => {setWood(event.target.value); setWoodResults((event.target.value * calculatorConstants.Wood).toFixed(2));}} value={Wood}
                       />
                     </td>
                     <td>{calculatorConstants.Wood}</td>
-                    <td>{WoodResults}</td>
+                    <td
+                    data-testid="wood-result"
+                    >{WoodResults}</td>
               </tr>
               <tr>
                 <td><label>Grid Electricity:</label></td>
@@ -383,18 +394,24 @@ const CarbonCalculator = () => {
                 name="GridElectricity" 
                 min="0"
                 step= "0.01"
+                data-testid="grid-electricity-input"
                 onChange={event => {setGridElectricity(event.target.value); setGridElectricityResults((event.target.value * calculatorConstants.GridElectricity).toFixed(2));}} value={GridElectricity}
                 /></td>
                 <td>{calculatorConstants.GridElectricity}</td>
-                <td>{GridElectricityResults}</td>
+                <td
+                data-testid="grid-electricity-result"
+                >{GridElectricityResults}</td>
               </tr>
               <tr>
                 <td><label>Electricity (Low Carbon Supplier):</label></td>
                 <td><input type="number" name="Electricity" min="0"  step= "0.01"
+                data-testid="electricity-input"
                 onChange={event => {setElectricity(event.target.value); setElectricityResults((event.target.value * calculatorConstants.Electricity).toFixed(2))}} value={Electricity} 
                 /></td>
                 <td>{calculatorConstants.Electricity}</td>
-                <td>{ElectricityResults}</td>
+                <td
+                data-testid="electricity-result"
+                >{ElectricityResults}</td>
               </tr>
               <tr>
                 <td colSpan="4" className="table-title">Food Waste</td>
@@ -409,7 +426,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setWFLandfill(event.target.value); setWFLandfillResults((event.target.value * calculatorConstants.WFLandfill).toFixed(2))}} value={WFLandfill}
                 /></td>
                 <td>{calculatorConstants.WFLandfill}</td>
-                <td>{WFLandfillResults}</td>
+                <td
+                data-testid="wf-landfill-result"
+                >{WFLandfillResults}</td>
                 </tr>
                 <tr>
                 <td><label>Waste Food to Reuse/Composting:</label></td>
@@ -421,7 +440,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setWFReuse(event.target.value); setWFReuseResults((event.target.value * calculatorConstants.WFReuse).toFixed(2))}} value={WFReuse}
                 /></td>
                 <td>{calculatorConstants.WFReuse}</td>
-                <td>{WFReuseResults}</td>
+                <td
+                data-testid="wf-reuse-result"
+                >{WFReuseResults}</td>
                 </tr>
                 <tr>
                 <td><label>Waste Food to Charity:</label></td>
@@ -433,7 +454,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setWFCharity(event.target.value); setWFCharityResults((event.target.value * calculatorConstants.WFCharity).toFixed(2))}} value={WFCharity}
                 /></td>
                 <td>{calculatorConstants.WFCharity}</td>
-                <td>{WFCharityResults}</td>
+                <td
+                data-testid="wf-charity-result"
+                >{WFCharityResults}</td>
                 </tr>
                 <tr>
                 <td colSpan="4" className="table-title">Solid Waste</td>
@@ -448,7 +471,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setBottleRecycling(event.target.value); setBottleRecyclingResults((event.target.value * calculatorConstants.BottleRecycling).toFixed(2))}} value={BottleRecycling}
                 /></td>
                 <td>{calculatorConstants.BottleRecycling}</td>
-                <td>{BottleRecyclingResults}</td>
+                <td
+                data-testid="bottle-recycling-result"
+                >{BottleRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>Aluminium Cans Recucling </label></td>
@@ -460,7 +485,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setAluminiumRecycling(event.target.value); setAluminiumRecyclingResults((event.target.value * calculatorConstants.AluminiumRecycling).toFixed(2))}} value={AluminiumRecycling}
                 /></td>
                 <td>{calculatorConstants.AluminiumRecycling}</td>
-                <td>{AluminiumRecyclingResults}</td>
+                <td
+                data-testid="aluminium-recycling-result"
+                >{AluminiumRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>General Waste to Landfill</label></td>
@@ -472,7 +499,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setGWLandfill(event.target.value); setGWLandfillResults((event.target.value * calculatorConstants.GWLandfill).toFixed(2))}} value={GWLandfill}
                 /></td>
                 <td>{calculatorConstants.GWLandfill}</td>
-                <td>{GWLandfillResults}</td>
+                <td
+                data-testid="gw-landfill-result"
+                >{GWLandfillResults}</td>
                 </tr>
                 <tr>
                 <td><label>General Waste to Recycling</label></td>
@@ -484,7 +513,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setGWRecycling(event.target.value); setGWRecyclingResults((event.target.value * calculatorConstants.GWRecycling).toFixed(2))}} value={GWRecycling}
                 /></td>
                 <td>{calculatorConstants.GWRecycling}</td>
-                <td>{GWRecyclingResults}</td>
+                <td
+                data-testid="gw-recycling-result"
+                >{GWRecyclingResults}</td>
                 </tr>
                 <tr>
                 <td><label>Special Waste</label></td>
@@ -496,7 +527,9 @@ const CarbonCalculator = () => {
                 onChange={event => {setSpecialWaste(event.target.value); setSpecialWasteResults((event.target.value * calculatorConstants.SpecialWaste).toFixed(2))}} value={SpecialWaste}
                 /></td>
                 <td>{calculatorConstants.SpecialWaste}</td>
-                <td>{SpecialWasteResults}</td>
+                <td
+                data-testid="special-waste-result"
+                >{SpecialWasteResults}</td>
                 </tr>
                 <tr>
                     <td colSpan="3" className="table-title total">Page 1 Total</td>
@@ -547,8 +580,12 @@ const CarbonCalculator = () => {
                       onChange={(event) => {setBeefLamb(event.target.value); setBeefLambResults((event.target.value * calculatorConstants.BeefLamb).toFixed(2))}} value={BeefLamb}
                       />
                     </td>
-                    <td>{calculatorConstants.BeefLamb}</td>
-                    <td>{BeefLambResults}</td>
+                    <td
+                    data-testid="beef-lamb-constant"
+                    >{calculatorConstants.BeefLamb}</td>
+                    <td
+                    data-testid="beef-lamb-result"
+                    >{BeefLambResults}</td>
                   </tr>
                   <tr>
                     <td>Other Meat Products</td>
@@ -562,7 +599,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.OtherMeat}</td>
-                    <td>{OtherMeatResults}</td>
+                    <td
+                    data-testid="other-meat-result"
+                    >{OtherMeatResults}</td>
                   </tr>
                   <tr>
                     <td>Lobster and Farmed Prawn</td>
@@ -576,7 +615,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.LobsterFarmedPrawn}</td>
-                    <td>{LobsterFarmedPrawnResults}</td>
+                    <td
+                    data-testid="lobster-farmed-prawn-result"
+                    >{LobsterFarmedPrawnResults}</td>
                   </tr>
                   <tr>
                     <td>Fin fish and Seafood</td>
@@ -590,7 +631,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.Fish}</td>
-                    <td>{FishResults}</td>
+                    <td
+                    data-testid="fish-result"
+                    >{FishResults}</td>
                   </tr>
                   <tr>
                     <td>Milk and Yoghurt</td>
@@ -604,7 +647,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.MilkYogurt}</td>
-                    <td>{MilkYogurtResults}</td>
+                    <td
+                    data-testid="milk-result"
+                    >{MilkYogurtResults}</td>
                   </tr>
                   <tr>
                     <td>Cheese</td>
@@ -618,7 +663,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.Cheese}</td>
-                    <td>{CheeseResults}</td>
+                    <td
+                    data-testid="cheese-result"
+                    >{CheeseResults}</td>
                   </tr>
                   <tr>
                     <td>Fruit & Veg (Local, seasonal)</td>
@@ -632,7 +679,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.LocalFruitVegetables}</td>
-                    <td>{LocalFruitVegetablesResults}</td>
+                    <td
+                    data-testid="local-fruit-vegetables-result"
+                    >{LocalFruitVegetablesResults}</td>
                   </tr>
                   <tr>
                     <td>Fruit & Veg (Air freight, hot house)</td>
@@ -646,7 +695,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.FreightFruitVegetables}</td>
-                    <td>{FreightFruitVegetablesResults}</td>
+                    <td
+                    data-testid="freight-fruit-vegetables-result"
+                    >{FreightFruitVegetablesResults}</td>
                   </tr>
                   <tr>
                     <td>Other dried food</td>
@@ -660,7 +711,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.OtherDriedFood}</td>
-                    <td>{OtherDriedFoodResults}</td>
+                    <td
+                    data-testid="other-dried-food-result"
+                    >{OtherDriedFoodResults}</td>
                   </tr>
                   <tr>
                     <td>Beer Kegs</td>
@@ -674,7 +727,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.BeerKegs}</td>
-                    <td>{BeerKegsResults}</td>
+                    <td
+                    data-testid="beer-kegs-result"
+                    >{BeerKegsResults}</td>
                   </tr>
                   <tr>
                     <td>Beer(Cans)</td>
@@ -688,7 +743,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.BeerCans}</td>
-                    <td>{BeerCansResults}</td>
+                    <td
+                    data-testid="beer-cans-result"
+                    >{BeerCansResults}</td>
                   </tr>
                   <tr>
                     <td>Beer Bottles</td>
@@ -702,7 +759,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.BeerBottles}</td>
-                    <td>{BeerBottlesResults}</td>
+                    <td
+                    data-testid="beer-bottles-result"
+                    >{BeerBottlesResults}</td>
                   </tr>
                   <tr>
                     <td>Beer Kegs (Low carbon)</td>
@@ -716,7 +775,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerKegs}</td>
-                    <td>{LowBeerKegsResults}</td>
+                    <td
+                    data-testid="low-beer-kegs-result"
+                    >{LowBeerKegsResults}</td>
                   </tr>
                   <tr>
                     <td>Beer(Cans) (Low carbon)</td>
@@ -730,7 +791,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerCans}</td>
-                    <td>{LowBeerCansResults}</td>
+                    <td
+                    data-testid="low-beer-cans-result"
+                    >{LowBeerCansResults}</td>
                   </tr>
                   <tr>
                     <td>Beer Bottles (Low carbon)</td>
@@ -744,7 +807,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerBottles}</td>
-                    <td>{LowBeerBottlesResults}</td>
+                    <td
+                    data-testid="low-beer-bottles-result"
+                    >{LowBeerBottlesResults}</td>
                   </tr>
                   <tr>
                     <td>Soft Drinks</td>
@@ -758,7 +823,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.SoftDrinks}</td>
-                    <td>{SoftDrinksResults}</td>
+                    <td
+                    data-testid="soft-drinks-result"
+                    >{SoftDrinksResults}</td>
                   </tr>
                   <tr>
                     <td>Wine</td>
@@ -772,7 +839,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.Wine}</td>
-                    <td>{WineResults}</td>
+                    <td
+                    data-testid="wine-result"
+                    >{WineResults}</td>
                   </tr>
                   <tr>
                     <td>Spirits</td>
@@ -786,7 +855,9 @@ const CarbonCalculator = () => {
                       />
                     </td>
                     <td>{calculatorConstants.Spirits}</td>
-                    <td>{SpiritsResults}</td>
+                    <td
+                    data-testid="spirits-result"
+                    >{SpiritsResults}</td>
                   </tr>
                   <tr>
                     <td colSpan="3" className="table-title total">Page 2 Total</td>
@@ -795,13 +866,13 @@ const CarbonCalculator = () => {
                 </tbody>
               </table>
               <div className="btn-group">
-              <button type="button" id="btn2"className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2" data-testid="back-button" className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <button type="submit" id="btn2" className="calcbtn btn btn-primary btn-block ripple-effect">Next</button>
+                  <button type="submit" id="btn2" data-testid="next-button-2" className="calcbtn btn btn-primary btn-block ripple-effect">Next</button>
                   </div> 
             </Stack>
           </Stack>
@@ -846,8 +917,12 @@ const CarbonCalculator = () => {
                             onChange={(event) => {setCompanyGoodsDelivery(event.target.value); setCompanyGoodsDeliveryResults((event.target.value * calculatorConstants.CompanyGoodsDelivery).toFixed(2))}} value={CompanyGoodsDelivery}
                             />
                           </td>
-                          <td>{calculatorConstants.CompanyGoodsDelivery}</td>
-                          <td>{CompanyGoodsDeliveryResults}</td>
+                          <td
+                          data-testid="company-goods-delivery-constant"
+                          >{calculatorConstants.CompanyGoodsDelivery}</td>
+                          <td
+                          data-testid="company-goods-delivery-result"
+                          >{CompanyGoodsDeliveryResults}</td>
                         </tr>
                         <tr>
                           <td>Goods Deliveries (Contracted)</td>
@@ -861,7 +936,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.ContractedGoodsDelivery}</td>
-                          <td>{ContractedGoodsDeliveryResults}</td>
+                          <td
+                          data-testid="contracted-goods-delivery-result"
+                          >{ContractedGoodsDeliveryResults}</td>
                         </tr>
                         <tr>
                           <td>Travel (Company business)</td>
@@ -875,7 +952,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.Travel}</td>
-                          <td>{TravelResults}</td>
+                          <td
+                          data-testid="travel-result"
+                          >{TravelResults}</td>
                         </tr>
                         <tr>
                           <td>Flights (UK)</td>
@@ -889,7 +968,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.UKFlights}</td>
-                          <td>{UKFlightsResults}</td>
+                          <td
+                          data-testid="uk-flights-result"
+                          >{UKFlightsResults}</td>
                         </tr>
                         <tr>
                           <td>Flights (International)</td>
@@ -903,7 +984,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.InternationalFlights}</td>
-                          <td>{InternationalFlightsResults}</td>
+                          <td
+                          data-testid="international-flights-result"
+                          >{InternationalFlightsResults}</td>
                         </tr>
                         <tr>
                           <td>Staff Commuting</td>
@@ -917,7 +1000,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.StaffCommute}</td>
-                          <td>{StaffCommuteResults}</td>
+                          <td
+                          data-testid="staff-commute-result"
+                          >{StaffCommuteResults}</td>
                         </tr>
                         <tr>
                           <td colSpan="4" className="table-title">Other</td>
@@ -934,7 +1019,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.KitchenEquipment}</td>
-                          <td>{KitchenEquipmentResults}</td>
+                          <td
+                          data-testid="kitchen-equipment-result"
+                          >{KitchenEquipmentResults}</td>
                         </tr>
                         <tr>
                           <td>Building repairs and maintenance</td>
@@ -948,7 +1035,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.BuildingRepair}</td>
-                          <td>{BuildingRepairResults}</td>
+                          <td
+                          data-testid="building-repair-result"
+                          >{BuildingRepairResults}</td>
                         </tr>
                         <tr>
                           <td>Cleaning and cleaning products</td>
@@ -962,7 +1051,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.CleaningProducts}</td>
-                          <td>{CleaningProductsResults}</td>
+                          <td
+                          data-testid="cleaning-products-result"
+                          >{CleaningProductsResults}</td>
                         </tr>
                         <tr>
                           <td>IT & Marketing</td>
@@ -976,7 +1067,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.ITMarketing}</td>
-                          <td>{ITMarketingResults}</td>
+                          <td
+                          data-testid="it-marketing-result"
+                          >{ITMarketingResults}</td>
                         </tr>
                         <tr>
                           <td>Mains water</td>
@@ -990,7 +1083,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.MainsWater}</td>
-                          <td>{MainsWaterResults}</td>
+                          <td
+                          data-testid="mains-water-result"
+                          >{MainsWaterResults}</td>
                         </tr>
                         <tr>
                           <td>Sewage</td>
@@ -1004,7 +1099,9 @@ const CarbonCalculator = () => {
                             />
                           </td>
                           <td>{calculatorConstants.Sewage}</td>
-                          <td>{SewageResults}</td>
+                          <td
+                          data-testid="sewage-result"
+                          >{SewageResults}</td>
                         </tr>
                         <tr>
                           <td colSpan="3" className="table-title total">Page 3 Total</td>

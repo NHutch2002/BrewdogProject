@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import MyAccount from '../MyAccount'
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import fetchMock from "fetch-mock";
@@ -17,8 +17,8 @@ beforeEach(() => {
     fetchMock.reset();
     const id = 1;
     const user = { id, username: "user123", password: "123456" , brewdogUser : { company: "Brewdog", email: "user@gmail.com", phone:"111"}};
-    fetchMock.get(`/brewdog/user/?id=${id}`, user);
-    fetchMock.get('/brewdog/user/?id=null', user);
+    fetchMock.get(`/brewdog/individualuser/?id=${id}`, user);
+    fetchMock.get('/brewdog/individualuser/?id=null', user);
     fetchMock.put(`/brewdog/user/`, {
         status: 200,
         body: { success: true, },
