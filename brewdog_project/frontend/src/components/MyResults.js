@@ -14,7 +14,7 @@ const MyResults = () => {
     useEffect( () => {
         fetch(`brewdog/results/?id=${id}`, {
             method: 'GET',
-            headers : {"Authorization": "Token "+ localStorage.token },
+            headers : {"Authorization": "Token "+ localStorage.token, 'X-FRONTEND-REQUEST': 'true'},
             credentials: "include"
         })
         .then(response => response.json())

@@ -127,7 +127,10 @@ const CarbonCalculator = () => {
     // This is where the fetch request is made to the backend to get the constants as well as the authentication check 
     // to see if the user is logged in or not
     useEffect(() => {
-        fetch('/brewdog/calculatorconstants/')
+        fetch('/brewdog/calculatorconstants/', {
+          method: 'GET',
+          headers: {'X-FRONTEND-REQUEST': 'true'}
+        })
           .then(response => response.json())
           .then(data => {
             setCalculatorConstants(data[0]);
@@ -250,10 +253,10 @@ const CarbonCalculator = () => {
       //append user id to the form data
       finalConcatenatedFormData.append("user",localStorage.user);
 
-      fetch('/brewdog/results/', {
+      fetch('/brewdog/calculator/', {
           method: 'POST',
           body: finalConcatenatedFormData,
-          headers : {"Authorization": "Token "+localStorage.token },
+          headers : {"Authorization": "Token "+localStorage.token , 'X-FRONTEND-REQUEST': 'true'},
           credentials: 'include'
       }).then(response => {
           if (response.ok) {

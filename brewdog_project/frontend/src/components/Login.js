@@ -13,7 +13,7 @@ const Login = () => {
         event.preventDefault();
         fetch("/brewdog/login/", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", 'X-FRONTEND-REQUEST': 'true' },
             body: JSON.stringify({ email, password }),
             credentials: "include"
         })

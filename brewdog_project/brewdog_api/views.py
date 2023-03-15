@@ -15,13 +15,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from brewdog_api.models import BrewdogUser, Calculator, CalculatorConstants
 from brewdog_api.serializers import BrewdogUserSerializer, UserUpdateSerializer, CalculatorSerializer, LoginSerializer, UserSerializer, CalculatorConstantsSerializer
-
+from .permissions import FrontendPermission
 
 class UserView(generics.CreateAPIView):
     """User view.
 
     User view is used to register a new user, update users and retrieve user by id.
     """
+    permission_classes = [FrontendPermission]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -73,6 +74,7 @@ class UserView(generics.CreateAPIView):
     
 class RetrieveIndividualUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
+    permission_classes = [FrontendPermission]
 
     def get(self, request, format=None):
         id = request.GET.get('id')
@@ -91,6 +93,7 @@ class CalculatorView(generics.CreateAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = CalculatorSerializer
     queryset = Calculator.objects.all()
+    permission_classes = [FrontendPermission]
 
     def post(self, request):
         """Create a new calculator instance."""
@@ -115,6 +118,7 @@ class LoginView(APIView):
     Login view is used to login a user.
     """
     serializer_class = LoginSerializer
+    permission_classes = [FrontendPermission]
 
     def post(self, request):
         """Login a user."""
@@ -147,6 +151,7 @@ class CalculatorConstantsView(generics.CreateAPIView):
 
     serializer_class = CalculatorConstantsSerializer
     queryset = CalculatorConstants.objects.all()
+    permission_classes = [FrontendPermission]
 
     def post(self, request):
         """Create a new calculatorConstants instance."""
@@ -193,6 +198,7 @@ class CustomAuthToken(ObtainAuthToken):
 class IndividualCalculatorView(generics.CreateAPIView):
     serializer_class = CalculatorSerializer
     queryset = Calculator.objects.all()
+    permission_classes = [FrontendPermission]
 
     def get(self, request, format=None):
         id = request.GET.get('id')

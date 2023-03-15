@@ -22,7 +22,7 @@ function MyAccount() {
         const id = localStorage.getItem("user");
         fetch(`/brewdog/individualuser/?id=${id}`, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json', 'X-FRONTEND-REQUEST': 'true'},
             credentials: 'include'
         })
         .then(res => {
@@ -72,7 +72,7 @@ function MyAccount() {
         const id = localStorage.getItem("user");
         fetch("/brewdog/user/", {
             method: "PUT",
-            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user")},
+            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user"), 'X-FRONTEND-REQUEST': 'true'},
             body: JSON.stringify({ username, password, brewdogUser, id }),
             credentials: "include"
         })
@@ -124,7 +124,7 @@ function MyAccount() {
                     </div>
                     <div className='form-outline mb-2 field_container'>
                         <label className='form-label form-input-label'>Phone:</label>
-                        <input className='form-control form-input-field' data-testid="phone-input "type="text" value={phone} onChange={e => setPhone(e.target.value)}/>
+                        <input className='form-control form-input-field' data-testid="phone-input "type="number" value={phone} onChange={e => setPhone(e.target.value)}/>
                     </div>
                     <button className='my_account btn btn-primary btn-block ripple-effect' type="submit" data-testid="update-button">Update</button> 
                     <button className='my_account btn btn-primary btn-block ripple-effect' data-testid="cancel" onClick={() => {setCancelSave(true); setEditMode(false);}}>Cancel</button>

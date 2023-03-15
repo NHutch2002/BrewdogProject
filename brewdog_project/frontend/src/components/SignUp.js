@@ -20,7 +20,8 @@ const SignUp = () => {
         fetch("/brewdog/user/", {
             method: "POST",
             body: data,
-            credentials: "include"
+            credentials: "include",
+            headers: {'X-FRONTEND-REQUEST': 'true' },
         }).then(response => {
             if (response.ok) {
                 navigate("/login");
@@ -59,7 +60,7 @@ const SignUp = () => {
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-phone-number">Phone number</label>
-                        <input data-testid="phone-number" type="text" name="phone" id="signup-form-phone" className="form-control form-input-field" required/>
+                        <input data-testid="phone-number" type="number" name="phone" id="signup-form-phone" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
