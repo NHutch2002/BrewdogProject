@@ -151,7 +151,7 @@ class CalculatorConstantsView(generics.CreateAPIView):
 
     serializer_class = CalculatorConstantsSerializer
     queryset = CalculatorConstants.objects.all()
-    # permission_classes = [FrontendPermission]
+    permission_classes = [FrontendPermission]
 
     def post(self, request):
         """Create a new calculatorConstants instance."""
