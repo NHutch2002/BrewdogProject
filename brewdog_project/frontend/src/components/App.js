@@ -14,36 +14,32 @@ import ProtectRoutes from "./ProtectedRoutes";
 import HideIfLoggedInRoutes from "./HideIfLoggedInRoutes";
 import IndividualResult from "./IndividualResult";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+const App = () => { 
 
-  render() {
-    return (
-      <div>
-        <NavBar />
-        <Router>
-            <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route exact path="/howitworks" element={<HowItWorks />} />
-                <Route exact path="/blog" element={<Blog />} />
-                <Route exact path="/carboncalculator" element={<CarbonCalculator/>} />
+  return (
+    <div>
+      <NavBar />
+      <Router>
+          <Routes>
+              <Route exact path="/" element={<HomePage />} />
+              <Route exact path="/howitworks" element={<HowItWorks />} />
+              <Route exact path="/blog" element={<Blog />} />
+              <Route exact path="/carboncalculator" element={<CarbonCalculator/>} />
 
-                <Route element={<HideIfLoggedInRoutes />} >
-                  <Route exact path="/login" element={<Login />} />
-                  <Route exact path="/signup" element={<SignUp />} />
-                </Route>
-                <Route element={<ProtectRoutes />} >
-                  
-                  <Route exact path="/myaccount" element={<MyAccount />} />
-                  <Route exact path="/myresults" element={<MyResults />} />
-                  <Route exact path="/myresults/:resultId" element={<IndividualResult />} />
-                </Route>
-            </Routes>
-        </Router>
-      </div>
-    );
-  }
+              <Route element={<HideIfLoggedInRoutes />} >
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/signup" element={<SignUp />} />
+              </Route>
+              <Route element={<ProtectRoutes />} >
+                
+                <Route exact path="/myaccount" element={<MyAccount />} />
+                <Route exact path="/myresults" element={<MyResults />} />
+                <Route exact path="/myresults/:resultId" element={<IndividualResult />} />
+              </Route>
+          </Routes>
+      </Router>
+    </div>
+  );
 }
 
+export default App;
