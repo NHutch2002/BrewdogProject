@@ -48,7 +48,7 @@
     padding: 0.84rem 2.14rem;
 }
 .my_account button.btn-primary.btn-block.ripple-effect:hover{
-    background-color: black!important;
+    background-color: black;
     box-shadow: none;
     transform: scale(1.01);
     color:white;

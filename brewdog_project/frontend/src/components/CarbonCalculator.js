@@ -503,7 +503,7 @@ const CarbonCalculator = () => {
             </table>
           </Stack>
         </Stack>
-        <button type="submit" data-testid="next-button" className="btn btn-primary firtsbtn btn-block ripple-effect">Next</button>
+        <button type="submit" data-testid="next-button" className="calcbtn btn btn-primary firtsbtn btn-block ripple-effect">Next</button>
         </form>   
     </Stack>
         ) : secondView ? (
@@ -792,13 +792,13 @@ const CarbonCalculator = () => {
                 </tbody>
               </table>
               <div className="btn-group">
-              <button type="button" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" id="btn2"className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <button type="submit" id="btn2" className="btn btn-primary btn-block ripple-effect">Next</button>
+                  <button type="submit" id="btn2" className="calcbtn btn btn-primary btn-block ripple-effect">Next</button>
                   </div> 
             </Stack>
           </Stack>
@@ -1010,13 +1010,13 @@ const CarbonCalculator = () => {
                         </tbody>
                         </table>
                         <div className="btn-group">
-              <button type="button" data-testid="back-button-2" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() => {
+              <button type="button" data-testid="back-button-2" id="btn2"className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() => {
                     setFirstView(false);
                     setSecondView(true);
                     setThirdView(false);
                   }
                   }>Back</button>
-                  <button type="submit" id="btn2" className="btn btn-primary btn-block ripple-effect">Submit</button>
+                  <button type="submit" id="btn2" className="calcbtn btn btn-primary btn-block ripple-effect">Submit</button>
                   </div>
                         </Stack>
                         </Stack>

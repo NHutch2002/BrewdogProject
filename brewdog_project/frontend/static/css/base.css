@@ -48,7 +48,7 @@ body, html {
 /* Buttons */
 .btn[type="submit"] {
     font-size: large;
-    background-color: black;
+    background-color: black!important;
     border-radius: 20px;
     box-shadow: none;
     margin-top: 20px;
@@ -64,6 +64,7 @@ body, html {
     margin-top: 20px;
     padding: 0.84rem 2.14rem;
 }
+
 
 .btn[type="submit"].btn-primary.btn-block.ripple-effect {
     height:54px!important;
