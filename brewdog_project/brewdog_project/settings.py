@@ -87,10 +87,15 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "dc5gc44b2693kh",
+        "USER": "jgzwtpjtcevgoe",
+        "PASSWORD": "7380fbf6f7857413668e92c616f1fb40a473a4a2176c047dd0d4e6178232cc8b",
+        "HOST": "ec2-99-80-170-190.eu-west-1.compute.amazonaws.com",
+        "PORT": "5432",
     }
 }
+
 
 
 # Password validation
