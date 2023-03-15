@@ -14,5 +14,5 @@ from whitenoise import WhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "brewdog_project.settings")
 
-application = WhiteNoise(application, root='staticfiles')
+application = WhiteNoise(application, root='static')
 
