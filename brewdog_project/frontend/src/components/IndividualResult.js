@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { useParams} from 'react-router-dom';
 import {Stack} from '@mui/material';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie,Cell} from 'recharts';
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie,Cell, ResponsiveContainer} from 'recharts';
 
 const IndividualResult = () => {
     const {resultId} = useParams();
@@ -88,114 +88,124 @@ const IndividualResult = () => {
     }
 
     return (
-        <>
-        <h1>Individual Result</h1>
-        <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
-            <Stack direction="row" spacing={10}>
-                <Stack direction="column" spacing={2}>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Heating and Other Fuel Use {parseFloat(heatingFuelUse).toFixed(2)}</h2>
-                        <p>Mains Gas: {result.MainsGas}</p>
-                        <p>Fuel (Diesel): {result.Fuel}</p>
-                        <p>Oil: {result.Oil}</p>
-                        <p>Coal: {result.Coal}</p>
-                        <p>Wood: {result.Wood}</p>
-                        <p>Grid Electricity: {result.GridElectricity}</p>
-                        <p>Electricity (Low Carbon Supplier): {result.Electricity}</p>
-                    </Stack>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Food Waste {parseFloat(foodWaste).toFixed(2)}</h2>
-                        <p>Waste Food to Landfill: {result.WFLandfill}</p>
-                        <p>Waste Food to Reuse/Composting: {result.WFReuse}</p>
-                        <p>Waste Food to Charity: {result.WFCharity}</p>
-                    </Stack>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Solid Waste {parseFloat(solidWaste).toFixed(2)}</h2>
+        <div className="container-fluid bodycontent">
+            <h1 className='title'>Individual Result</h1>
+            <div id="individual-result">
+                <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
+                <div id="individual-result-data">
+                    <div id='individual-result-graphs'>
+                        <div className='individual-graph'>
+                            <ResponsiveContainer width="100%" height={500}>
+                                <BarChart
+                                    data={data}
+                                    margin={{
+                                        top: 5, right: 20, left: 20, bottom: 5,
+                                    }}
+                                >
+                                    <XAxis dataKey="name" />
+                                    <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Bar dataKey="Total" fill="#8884d8" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                        <div className='individual-graph'>
+                            <ResponsiveContainer width="100%" height={500}>
+                                <PieChart>
+                                    <Pie
+                                        data={data}
+                                        dataKey="Total"
+                                        nameKey="name"
+                                        cx="50%"
+                                        cy="50%"
+                                        labelLine={false}
+                                        label={renderCustomizedLabel}
+                                        outerRadius={200}
+                                        fill="#8884d8"
+                                        >
+                                        {data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                                    </Pie>
+                                    <Tooltip />
+                                    <Legend />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+                    <div id="individual-result-categories">
+                        <div className='individual-category'>
+                            <h2>Heating and Other Fuel Use</h2>
+                            <h2>{parseFloat(heatingFuelUse).toFixed(2)}</h2>
+                            <p>Mains Gas: {result.MainsGas}</p>
+                            <p>Fuel (Diesel): {result.Fuel}</p>
+                            <p>Oil: {result.Oil}</p>
+                            <p>Coal: {result.Coal}</p>
+                            <p>Wood: {result.Wood}</p>
+                            <p>Grid Electricity: {result.GridElectricity}</p>
+                            <p>Electricity (Low Carbon Supplier): {result.Electricity}</p>
+                        </div>
+                        <div className='individual-category'>
+                            <h2>Food Waste</h2>
+                            <h2>{parseFloat(foodWaste).toFixed(2)}</h2>
+                            <p>Waste Food to Landfill: {result.WFLandfill}</p>
+                            <p>Waste Food to Reuse/Composting: {result.WFReuse}</p>
+                            <p>Waste Food to Charity: {result.WFCharity}</p>
+                        </div>
+                        <div className='individual-category'>
+                            <h2>Solid Waste</h2>
+                            <h2>{parseFloat(solidWaste).toFixed(2)}</h2>
                             <p>Bottle Recycling: {result.BottleRecycling}</p>
                             <p>Aluminium Recycling: {result.AluminiumRecycling}</p>
                             <p>General Waste Landfill: {result.GWLandfill}</p>
                             <p>General Waste Recycling: {result.GWRecycling}</p>
                             <p>Special Waste: {result.SpecialWaste}</p>
-                    </Stack>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Food and Drink {parseFloat(foodDrink).toFixed(2)}</h2>
-                        <p>Beef and Lamb: {result.BeefLamb}</p>
-                        <p>Other Meat Products: {result.OtherMeat}</p>
-                        <p>Lobster and Farmed Prawn: {result.LobsterFarmedPrawn}</p>
-                        <p>Fin fish and Seafood: {result.Fish}</p>
-                        <p>Milk and Yogurt: {result.MilkYogurt}</p>
-                        <p>Cheese: {result.Cheese}</p>
-                        <p>Fruit and Vegetables (Local, seasonal): {result.LocalFruitVegetables}</p>
-                        <p>Fruit and Vegetables (Air freight, hot house): {result.FreightFruitVegetables}</p>
-                        <p>Other Dried Food: {result.OtherDriedFood}</p>
-                        <p>Beer (Kegs): {result.BeerKegs}</p>
-                        <p>Beer (Cans): {result.BeerCans}</p>
-                        <p>Beer (Bottles): {result.BeerBottles}</p>
-                        <p>Beer Kegs (Low carbon): {result.LowBeerKegs}</p>
-                        <p>Beer Cans (Low carbon): {result.LowBeerCans}</p>
-                        <p>Beer Bottles (Low carbon): {result.LowBeerBottles}</p>
-                        <p>Soft Drinks: {result.SoftDrinks}</p>
-                        <p>Wine: {result.Wine}</p>
-                        <p>Spirits: {result.Spirits}</p>
-                    </Stack>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Transport and Distribution {parseFloat(transportDistribution).toFixed(2)}</h2>
-                        <p>Goods and Deliveries (Company owned): {result.CompanyGoodsDelivery}</p>
-                        <p>Goods and Deliveries (Contracted): {result.ContractedGoodsDelivery}</p>
-                        <p>Travel (Company business): {result.Travel}</p>
-                        <p>Flights (UK): {result.UKFlights}</p>
-                        <p>Flights (International): {result.InternationalFlights}</p>
-                        <p>Staff Commuting: {result.StaffCommute}</p>
-                    </Stack>
-                    <Stack direction="column" spacing={2}>
-                        <h2>Other {parseFloat(other).toFixed(2)}</h2>
-                        <p>Kitchen Equipment assets: {result.KitchenEquipment}</p>
-                        <p>Building Repairs and Maintenance: {result.BuildingRepair}</p>
-                        <p>Cleaning and Cleaning Products: {result.CleaningProducts}</p>
-                        <p>IT and Marketing: {result.ITMarketing}</p>
-                        <p>Mains Water: {result.MainsWater}</p>
-                        <p>Sewage: {result.Sewage}</p>
-                    </Stack>
-                </Stack>
-                <Stack direction="column" spacing={30} data-testid="bar-chart" >
-                    <Stack direction="column" spacing={2}>
-                        <BarChart
-                            width={1000}
-                            height={500}
-                            data={data}
-                            margin={{
-                                top: 5, right: 20, left: 20, bottom: 5,
-                            }}
-                        >
-                            <XAxis dataKey="name" />
-                            <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Total" fill="#8884d8" />
-                        </BarChart>
-                    </Stack>
-                    <Stack direction="column" spacing={2} data-testid="pie-chart">
-                        <PieChart width={730} height={500}>
-                            <Pie
-                                data={data}
-                                dataKey="Total"
-                                nameKey="name"
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={renderCustomizedLabel}
-                                outerRadius={200}
-                                fill="#8884d8"
-                                >
-                                {data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
-                            </Pie>
-                            <Tooltip />
-                            <Legend />
-                        </PieChart>
-                    </Stack>
-                </Stack>
-            </Stack>
-        </>
+                        </div>
+                        <div className='individual-category'>
+                            <h2>Food and Drink</h2>
+                            <h2>{parseFloat(foodDrink).toFixed(2)}</h2>
+                            <p>Beef and Lamb: {result.BeefLamb}</p>
+                            <p>Other Meat Products: {result.OtherMeat}</p>
+                            <p>Lobster and Farmed Prawn: {result.LobsterFarmedPrawn}</p>
+                            <p>Fin fish and Seafood: {result.Fish}</p>
+                            <p>Milk and Yogurt: {result.MilkYogurt}</p>
+                            <p>Cheese: {result.Cheese}</p>
+                            <p>Fruit and Vegetables (Local, seasonal): {result.LocalFruitVegetables}</p>
+                            <p>Fruit and Vegetables (Air freight, hot house): {result.FreightFruitVegetables}</p>
+                            <p>Other Dried Food: {result.OtherDriedFood}</p>
+                            <p>Beer (Kegs): {result.BeerKegs}</p>
+                            <p>Beer (Cans): {result.BeerCans}</p>
+                            <p>Beer (Bottles): {result.BeerBottles}</p>
+                            <p>Beer Kegs (Low carbon): {result.LowBeerKegs}</p>
+                            <p>Beer Cans (Low carbon): {result.LowBeerCans}</p>
+                            <p>Beer Bottles (Low carbon): {result.LowBeerBottles}</p>
+                            <p>Soft Drinks: {result.SoftDrinks}</p>
+                            <p>Wine: {result.Wine}</p>
+                            <p>Spirits: {result.Spirits}</p>
+                        </div>
+                        <div className='individual-category'>
+                            <h2>Transport and Distribution</h2>
+                            <h2>{parseFloat(transportDistribution).toFixed(2)}</h2>
+                            <p>Goods and Deliveries (Company owned): {result.CompanyGoodsDelivery}</p>
+                            <p>Goods and Deliveries (Contracted): {result.ContractedGoodsDelivery}</p>
+                            <p>Travel (Company business): {result.Travel}</p>
+                            <p>Flights (UK): {result.UKFlights}</p>
+                            <p>Flights (International): {result.InternationalFlights}</p>
+                            <p>Staff Commuting: {result.StaffCommute}</p>
+                        </div>
+                        <div className='individual-category'>
+                            <h2>Other</h2>
+                            <h2>{parseFloat(other).toFixed(2)}</h2>
+                            <p>Kitchen Equipment assets: {result.KitchenEquipment}</p>
+                            <p>Building Repairs and Maintenance: {result.BuildingRepair}</p>
+                            <p>Cleaning and Cleaning Products: {result.CleaningProducts}</p>
+                            <p>IT and Marketing: {result.ITMarketing}</p>
+                            <p>Mains Water: {result.MainsWater}</p>
+                            <p>Sewage: {result.Sewage}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
