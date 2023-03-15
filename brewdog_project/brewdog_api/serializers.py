@@ -70,7 +70,7 @@ class CalculatorSerializer(serializers.ModelSerializer):
         """Meta class for CalculatorSerializer."""
 
         model = Calculator
-        fields = ("id", "MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity",
+        fields = ("id", "user", "created","MainsGas", "Fuel", "Oil", "Coal", "Wood", "GridElectricity",
             "Electricity", "WFLandfill","WFReuse","WFCharity", "BottleRecycling",
             "AluminiumRecycling","GWLandfill","GWRecycling","SpecialWaste","CompanyGoodsDelivery",
             "ContractedGoodsDelivery", "Travel", "UKFlights","InternationalFlights", "StaffCommute",

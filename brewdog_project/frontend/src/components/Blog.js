@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 
-export default class Blog extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
-    render() {
-        return (
+const Blog = () => {
+    return (
         <div>
-            <h1>blog</h1>
+            <h1><br></br>blog</h1>
         </div>
         );
-    }
 }
+export default Blog;

@@ -1,0 +1,51 @@
+.title{
+    text-align: center;
+    margin: 4vh auto ;
+    max-width: 500px;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 10px 2vw 0 2vw;
+    color: #111;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 45px;
+    box-shadow: 7px 7px 0 #34D19F;
+
+}
+
+#results {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    box-shadow: 7px 7px 0 #34D19F;
+    padding: 1em;
+}
+
+.result-entry {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-entry .result-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.result-entry.active .result-details {
+    display: flex;
+}
+
+.result-entry .result-details {
+    display: none;
+    flex-direction: column;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.result-entry .result-details .category-details {
+    display: flex;
+    flex-direction: row;
+}

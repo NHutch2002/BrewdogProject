@@ -1,3 +1,4 @@
+/* howitworks styles*/
 h2{
     margin-bottom: 0;
     padding-bottom: 0;
@@ -74,6 +75,7 @@ body{
     margin: 5%;
     display:block;
 }
+/*Contents right and left aligned*/
 .how-it-works.image-right{
     float: right;
     width: 10vw;
@@ -101,7 +103,7 @@ body{
     height: 100%;
     float:right;
 }
-
+/*Dashed lines going down the way*/
 .how-it-works.dashed-line{
     display: flex;
     justify-content: center;

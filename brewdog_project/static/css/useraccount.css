@@ -1,0 +1,100 @@
+/* Account forms (login, signup) styles */
+.flex-container {
+    height: 86vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25 )), url("https://brewdog-calculator.herokuapp.com/staticfiles/frontend/827a61fd8f5838e739b1b44b1fb3ec53.jpeg");
+    background-size: 100vw;
+}
+
+form.account_form {
+    background-color: white;
+    width: 350px;
+    border-radius: 6px;
+    box-shadow: 0 0 16px #AAA;
+    margin: 0 auto 0px auto;
+    padding: 25px 25px 0 25px;
+}
+
+form.account_form .form-label{
+    margin-bottom: 1px;
+}
+
+form.account_form .field_container > .form-input-field:focus {
+    border: 1px solid black;
+}
+form.account_form h2 {
+    margin: 20px 0;
+    background-color: #111;
+    text-transform: uppercase;
+    padding: 8px 8px 0 8px;
+    color: #EEE;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 40px;
+    text-align: center;
+    box-shadow: 4px 4px 0 #34D19F;
+}
+.form-input-label {
+    background-color: white;
+    color: black;
+}
+.form-input-field, .form-input-field:focus {
+    color: black;
+    font-size: 16px;
+}
+form.account_form .button[type="submit"] {
+    font-size: large;
+    background-color: black!important;
+    border-radius: 20px;
+    box-shadow: none;
+    margin-top: 20px;
+    /* transition: 0.2s ease-in-out; */
+}
+form.account_form .button[type="submit"]:hover {
+    background-color: white!important;
+    color: #111 !important;
+}
+form.account_form button[type="submit"].btn-primary.btn-block.ripple-effect:active {
+    background-color: #34D19F!important;
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
+}
+
+form.account_form button[type="submit"].btn-primary.btn-block.ripple-effect {
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
+}
+
+
+form.account_form p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    transition: 0.4s ease-in-out;
+    line-height: 1.4em;
+}
+/* form p:hover {
+    cursor: pointer;
+    transform: scale(4) rotate(26deg);
+    color: hotpink;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+form p:hover:after {
+    content: " TOO BAD :)";
+} */
+form.account_form p a {
+    text-decoration: underline;
+    color: black;
+    transition: 0.1s ease-in-out;
+}
+form.account_form p a:hover {
+    color: gray;
+}
+.background_pic {
+    display:inline;
+    width:100vw;
+    filter: brightness(0.8);
+}

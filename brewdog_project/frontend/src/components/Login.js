@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+import "../../static/css/base.css";
 import "../../static/css/useraccount.css";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
         event.preventDefault();
         fetch("/brewdog/login/", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", 'X-FRONTEND-REQUEST': 'true' },
             body: JSON.stringify({ email, password }),
             credentials: "include"
         })

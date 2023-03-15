@@ -117,7 +117,6 @@ export default function NavBar() {
                 </Grid>
             </Toolbar>
             </AppBar>
-            <div style={{marginTop: "125px"}}></div>
         </Grid>
         
     );
