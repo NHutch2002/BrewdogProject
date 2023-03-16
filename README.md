@@ -1,4 +1,4 @@
-# BrewDog Carbon Calculator Web Application 
+BrewDog Carbon Calculator Web Application 
 
 [TOC]
 
@@ -9,10 +9,7 @@ To install this application, please do the following steps in order:
 - Install 'Git' from https://git-scm.com/downloads, making sure to download the correct version for your Operating System.
 - Install 'Python' from https://www.python.org/downloads/release/python-3110/, making sure to download the correct version for your Operating System.
 - Install 'Node JS' from https://nodejs.org/en/download/, making sure to download the correct version for your Operating System.
-- Open Command Prompt, and navigate to the folder you want to clone the files to, using the command `cd`. E.g. if installation is in C:\Users\*User*\brewdog_project then copy the path and write:
-```
-cd C:\Users\*User*\brewdog_project
-```
+- Open Command Prompt, and navigate to the folder you want to clone the files to, using the command `cd`. E.g. if installation is in C:\Users\*User*\brewdog_project then copy the path and write `cd brewdog_project`
 - Next, clone the repo using `git clone https://github.com/NHutch2002/BrewdogProject`.
 - Open the project files on Command Prompt using `cd sh15-main`.
 - Install the requirements for the Python based Django backend using `pip install -r requirements.txt`.
