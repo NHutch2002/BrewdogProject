@@ -40,3 +40,24 @@ To add the multiplying factors for the calculator to work, please do the followi
 - Finally hit POST, and you should see you numbers reflected in the database at the top of the page
 - Navigate back to '127.0.0.1:8000' and once an account has been made, you can enter the calculator and save your results
 
+## Testing
+
+To test the web application, the testing can be ran automatically using the testing suites provided
+
+### Testing backend
+
+To test the backend of the web application, run these steps in order:
+
+- Open a Command Prompt window.
+- Run `cd *folder_name*/sh15-main/brewdog_project` where folder_name is the name of the directory in which the project is located.
+- Then finally run `python manage.py test` to test the Django backend of the project.
+
+### Testing frontend
+
+To test the frontend of the web application, run these steps in order:
+
+- Open a Command Prompt window.
+- Run `cd *folder_name*/sh15-main/brewdog_project/frontend` where folder_name is the name of the directory in which the project is located.
+- Run `npm run test` to launch the Jest testing suite for the React frontend of the project.
+
+
