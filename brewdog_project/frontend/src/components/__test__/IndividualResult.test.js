@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import IndividualResult from '../IndividualResult';
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import fetchMock from "fetch-mock";
@@ -27,6 +27,11 @@ CleaningProducts: 0.21, ITMarketing: 0.12, MainsWater: 0.15, Sewage: 0.42 };
 
 beforeEach(() => {
     fetchMock.reset();
+    window.ResizeObserver = jest.fn().mockImplementation(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+    }));    
     const resultId = 1;
     const response = {
         body: mockData
@@ -64,4 +69,3 @@ test('renders pie chart', async () => {
     const pieChart = await screen.findByTestId("pie-chart");
     expect(pieChart).toBeInTheDocument();
 });
-
