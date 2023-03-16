@@ -123,7 +123,7 @@ const IndividualResult = () => {
                                 PieChart
                             </IconButton>
                         </div>
-                        <div id="bar-chart" className='individual-graph'>
+                        <div id="bar-chart" className='individual-graph' data-testid="bar-chart">
                             <ResponsiveContainer width="100%" height={500}>
                                 <BarChart
                                     data={data}
@@ -139,7 +139,7 @@ const IndividualResult = () => {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
-                        <div id="pie-chart" className='individual-graph'>
+                        <div id="pie-chart" className='individual-graph' data-testid="pie-chart">
                             <ResponsiveContainer width="100%" height={500}>
                                 <PieChart>
                                     <Pie
