@@ -44,7 +44,7 @@ To add the multiplying factors for the calculator to work, please do the followi
 
 To test the web application, the testing can be ran automatically using the testing suites provided
 
-### Testing backend
+### Testing Backend
 
 To test the backend of the web application, run these steps in order:
 
@@ -52,7 +52,7 @@ To test the backend of the web application, run these steps in order:
 - Run `cd *folder_name*/sh15-main/brewdog_project` where folder_name is the name of the directory in which the project is located.
 - Then finally run `python manage.py test` to test the Django backend of the project.
 
-### Testing frontend
+### Testing Frontend
 
 To test the frontend of the web application, run these steps in order:
 
@@ -60,4 +60,23 @@ To test the frontend of the web application, run these steps in order:
 - Run `cd *folder_name*/sh15-main/brewdog_project/frontend` where folder_name is the name of the directory in which the project is located.
 - Run `npm run test` to launch the Jest testing suite for the React frontend of the project.
 
+## Linting
 
+To lint the web application, the linting can be ran automatically with the linting setup
+
+### Linting Backend
+
+To lint the backend of the web application, run these steps in order:
+- Open a Command Prompt window.
+- Run `cd *folder_name*/sh15-main/brewdog_project` where folder_name is the name of the directory in which the project is located.
+- Run `pylint brewdog_api` for linting of the brewdog_api folder.
+- Run `pylint brewdog_project` for linting of the brewdog_project folder.
+
+
+### Linting Frontend
+
+To lint the frontend of the web application, run these steps in order:
+
+- Open a Command Prompt window.
+- Run `cd *folder_name*/sh15-main/brewdog_project/frontend` where folder_name is the name of the directory in which the project is located.
+- Run `npx eslint "src/components/**.js" --fix`
