@@ -9,6 +9,8 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    /* This function is called when the user submits the form, sends a POST request to the backend to verify the user
+     and if the user is verified saves the token and the user ID to the local storage which will be used when making other requests.*/
     const handleSubmit = (event) => {
         event.preventDefault();
         fetch("/brewdog/login/", {

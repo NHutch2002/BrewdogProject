@@ -7,8 +7,11 @@ import { TiTickOutline } from "react-icons/ti";
 
 
 const IndividualResult = () => {
+    
+    // Result ID is passed in as a parameter from the URL
     const {resultId} = useParams();
 
+    // State variables to store the result data and the totals for each category
     const [result, setResult] = useState([]);
     const [heatingFuelUse, setHeatingFuelUse] = useState(0);
     const [foodWaste, setFoodWaste] = useState(0);
@@ -17,6 +20,8 @@ const IndividualResult = () => {
     const [transportDistribution, setTransportDistribution] = useState(0);
     const [other, setOther] = useState(0);
 
+    /* On page load, fetch the result data from the backend for the specific result based on the result ID
+    this also rerenders the page when the resultId changes to display the new result */
     useEffect( () => {
         fetch(`/brewdog/individualcalculator/?id=${resultId}`, {
             method: 'GET',
@@ -33,6 +38,7 @@ const IndividualResult = () => {
         });
     }, [resultId]);
 
+    // On page load, calculate the totals for each category. This is also rerendered when the result state changes
     useEffect(() => {
         getCategoryTotals();
     }, [result]);
@@ -54,6 +60,7 @@ const IndividualResult = () => {
         setOther(categoryTotals.Other);
     }
 
+    // Data for the charts
     const data = [
         {
             name: 'Heat and Fuel Use (kgCO2e / year)', Total: heatingFuelUse,

@@ -123,9 +123,9 @@ const CarbonCalculator = () => {
     const [MainsWaterResults, setMainsWaterResults] = useState(0);
     const [SewageResults, setSewageResults] = useState(0);
 
-    // useEffect which is a hook that runs after the first render of the component
-    // This is where the fetch request is made to the backend to get the constants as well as the authentication check 
-    // to see if the user is logged in or not
+    /* useEffect which is a hook that runs after the first render of the component
+     This is where the fetch request is made to the backend to get the constants as well as the authentication check 
+     to see if the user is logged in or not */
     useEffect(() => {
         fetch('/brewdog/calculatorconstants/', {
           method: 'GET',
@@ -186,9 +186,9 @@ const CarbonCalculator = () => {
         handleUpdateTotalResultOnThirdPage();
     },[CompanyGoodsDeliveryResults, ContractedGoodsDeliveryResults, TravelResults, UKFlightsResults, InternationalFlightsResults, StaffCommuteResults, KitchenEquipmentResults, BuildingRepairResults, CleaningProductsResults, ITMarketingResults, MainsWaterResults, SewageResults]);
 
-    //method which handles the submission of the form on the first page
-    //This data is stored in the firstData state variable
-    //The firstView state variable is set to false to hide the first page and the secondView state variable is set to true to show the second page
+    /*method which handles the submission of the form on the first page
+    This data is stored in the firstData state variable
+    The firstView state variable is set to false to hide the first page and the secondView state variable is set to true to show the second page */
     const handlePageOneSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
@@ -202,9 +202,9 @@ const CarbonCalculator = () => {
       setThirdView(false);
     }
     
-    //method which handles the submission of the form on the second page
-    //This data is stored in the secondData state variable
-    //The secondView state variable is set to false to hide the second page and the thirdView state variable is set to true to show the third page
+    /*method which handles the submission of the form on the second page
+    This data is stored in the secondData state variable
+    The secondView state variable is set to false to hide the second page and the thirdView state variable is set to true to show the third page */
     const handlePageTwoSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);

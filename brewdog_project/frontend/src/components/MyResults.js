@@ -11,6 +11,8 @@ const MyResults = () => {
     const [results, setResults] = useState([]);
 
     const id = localStorage.getItem("user");
+    /* On page load, fetch the results from the backend for the specific user based on the user ID 
+    Store the results in the results state variable */
     useEffect( () => {
         fetch(`brewdog/results/?id=${id}`, {
             method: 'GET',
@@ -27,7 +29,8 @@ const MyResults = () => {
         });
     }, []);
 
-    const handleClick = (e) => {
+    // This function is called when the user clicks on a result entry, to expand/ collapse the entry and show more information
+    const handleDropDownMenuClick = (e) => {
         let element = e.target.closest(".result-entry");
         if(element.classList.contains("active")) {
             element.classList.remove("active");
@@ -36,6 +39,7 @@ const MyResults = () => {
         }
     }
     
+    // This function calculates the total emissions for each category and returns an object with the category name and the total emissions
     const getCategoryTotals = (result) => {
         let categoryTotals = {
             "Heating and Other Fuel use (kgCO2e / year)" : result.MainsGas + result.Fuel + result.Oil + result.Coal + result.Wood + result.GridElectricity + result.Electricity,
@@ -60,6 +64,7 @@ const MyResults = () => {
         }
     })
 
+    const yAxisMaxValue = Math.max(...data.map(d => d.Total));
 
     return (
         <div className="container-fluid bodycontent">
@@ -77,7 +82,7 @@ const MyResults = () => {
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
-                        <YAxis label={{ value: 'Total emissions (kgCO2e / year)', angle: -90, position: 'insideLeft' }} />
+                        <YAxis label={{ value: 'Total (kgCO2e / year)', angle: -90, position: 'insideLeft' }} domain={[0, yAxisMaxValue]} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="Total" stroke="#8884d8" activeDot={{ r: 8 }} />
@@ -89,7 +94,7 @@ const MyResults = () => {
                         <div className="result-summary">
                             <p>Date Created: {result.created}</p>
                             <p>Total (kgCO2e / year): {parseFloat(total).toFixed(2)}</p>
-                            <IconButton color="inherit" onClick={(e) => handleClick(e)}>
+                            <IconButton color="inherit" onClick={(e) => handleDropDownMenuClick(e)}>
                                 <IoIosArrowDropdownCircle color="#34D19F" size="25px" />
                             </IconButton>
                             <a href="#" onClick={() => navigate(`/myresults/${result.id}`)}>View</a>

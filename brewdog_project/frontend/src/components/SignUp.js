@@ -8,6 +8,8 @@ import "../../static/css/useraccount.css";
 const SignUp = () => {
     const navigate = useNavigate();
 
+    /* This function is called when the user submits the form, sends a POST request to the backend to create a new user.
+    it redirects to login page if the user is created successfully or displays an error if it fails or if user already exists. */
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
