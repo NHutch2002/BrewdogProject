@@ -1,9 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import MyResults from '../MyResults';
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import fetchMock from "fetch-mock";
+import { act } from 'react-dom/test-utils';
 
 const MockMyResults = () => {
     return (    
@@ -11,28 +12,37 @@ const MockMyResults = () => {
         <MyResults />
     </BrowserRouter>
     )
-}
+};
 
-const mockData = [{ id: 1, user: 1, created: "2023-03-14", MainsGas: 20, Fuel: 3.86, Oil: 3.01, Coal: 2.98, Wood: 1.65,
-GridElectricity: 0.31, Electricity: 0.076, WFLandfill: 0.63, WFReuse: 0.01,
-WFCharity: 0.01, BottleRecycling: 0.02, AluminiumRecycling: 0.02, GWLandfill: 0.46,
-GWRecycling: 0.02, SpecialWaste: 0.46, CompanyGoodsDelivery: 1.57, ContractedGoodsDelivery: 1.57,
-Travel: 0.34, UKFlights: 0.29, InternationalFlights: 0.23, StaffCommute: 0.34, BeefLamb: 22.49,
-OtherMeat: 10.97, LobsterFarmedPrawn: 22.79, Fish: 4.82, MilkYogurt: 1.4, Cheese: 8.3,
-LocalFruitVegetables: 2.0, FreightFruitVegetables: 4.32, OtherDriedFood: 1.62, BeerKegs: 1.32,
-BeerCans: 1.39, BeerBottles: 1.46, LowBeerKegs: 0.7, LowBeerCans: 0.98, LowBeerBottles: 1.26,
-SoftDrinks: 0.65, Wine: 1.29, Spirits: 1.05, KitchenEquipment: 0.3, BuildingRepair: 0.34,
-CleaningProducts: 0.21, ITMarketing: 0.12, MainsWater: 0.15, Sewage: 0.42 },
-{ id: 2, user: 1, created: "2023-03-15", MainsGas: 20 }]
+const mockData = [{ id: 1, user: 1, created: "2023-03-14", MainsGas: 20, Fuel: 15, Oil: 13, Coal: 22, Wood: 34,
+GridElectricity: 10, Electricity: 5, WFLandfill: 23, WFReuse: 40,
+WFCharity: 31, BottleRecycling: 22, AluminiumRecycling: 26, GWLandfill: 10,
+GWRecycling: 42, SpecialWaste: 11, CompanyGoodsDelivery: 4, ContractedGoodsDelivery: 21,
+Travel: 20, UKFlights: 20, InternationalFlights: 53, StaffCommute: 24, BeefLamb: 23,
+OtherMeat: 11, LobsterFarmedPrawn: 26, Fish: 46, MilkYogurt: 11, Cheese: 9,
+LocalFruitVegetables: 11, FreightFruitVegetables: 6, OtherDriedFood: 32, BeerKegs: 25,
+BeerCans: 20, BeerBottles: 56, LowBeerKegs: 10, LowBeerCans: 8, LowBeerBottles: 56,
+SoftDrinks: 85, Wine: 1.29, Spirits: 51, KitchenEquipment: 34, BuildingRepair: 64,
+CleaningProducts: 22, ITMarketing: 62, MainsWater: 65, Sewage: 72 },
+
+{ id: 2, user: 1, created: "2023-03-15", MainsGas: 30, Fuel: 15, Oil: 13, Coal: 22, Wood: 34,
+GridElectricity: 10, Electricity: 5, WFLandfill: 23, WFReuse: 40,
+WFCharity: 31, BottleRecycling: 22, AluminiumRecycling: 26, GWLandfill: 10,
+GWRecycling: 42, SpecialWaste: 11, CompanyGoodsDelivery: 4, ContractedGoodsDelivery: 21,
+Travel: 20, UKFlights: 20, InternationalFlights: 53, StaffCommute: 24, BeefLamb: 23,
+OtherMeat: 11, LobsterFarmedPrawn: 26, Fish: 46, MilkYogurt: 11, Cheese: 9,
+LocalFruitVegetables: 11, FreightFruitVegetables: 6, OtherDriedFood: 32, BeerKegs: 25,
+BeerCans: 20, BeerBottles: 56, LowBeerKegs: 10, LowBeerCans: 8, LowBeerBottles: 56,
+SoftDrinks: 85, Wine: 1.29, Spirits: 51, KitchenEquipment: 34, BuildingRepair: 64,
+CleaningProducts: 22, ITMarketing: 62, MainsWater: 65, Sewage: 72 }]
 
 beforeEach(() => {
     fetchMock.reset();
-    const id = 1;
+    localStorage.setItem('user', 1);
     const response = {
         body: mockData
     }
-    fetchMock.get(`brewdog/results/?id=${id}`, response);
-    fetchMock.get(`/brewdog/results/?id=null`, response);
+    fetchMock.get(`brewdog/results/?id=${1}`, response);
 });
 
 afterEach(() => {
@@ -53,11 +63,20 @@ test('displays two individual results', async () => {
     expect(secondResultDate).toBeInTheDocument();
 });
 
-test('takes user to individual result page when clicking View ', async () => {
+ test('takes user to first individual result page when clicking View of first result', async () => {
     render(<MockMyResults />);
     const viewButton = await screen.findAllByText("View");
     fireEvent.click(viewButton[0]);
-    await waitFor(() => {
+    await act(async () => {
         expect(window.location.pathname).toBe('/myresults/1');
+    });
+});
+
+test('takes user to second individual result page when clicking View of second result', async () => {
+    render(<MockMyResults />);
+    const viewButton = await screen.findAllByText("View");
+    fireEvent.click(viewButton[1]);
+    await act(async () => {
+        expect(window.location.pathname).toBe('/myresults/2');
     });
 });

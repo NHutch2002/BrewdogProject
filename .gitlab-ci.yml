@@ -10,6 +10,7 @@ Backend Build:
     - pip3 install shell
     - pipenv install django
     - pip install django djangorestframework
+    - pip install -r requirements.txt
     - cd brewdog_project/
     - python manage.py makemigrations brewdog_api
     - python manage.py makemigrations
@@ -34,6 +35,7 @@ Backend Test:
     - pip3 install shell
     - pipenv install django
     - pip install django djangorestframework
+    - pip install -r requirements.txt
     - cd brewdog_project/
     - python manage.py makemigrations brewdog_api
     - python manage.py makemigrations

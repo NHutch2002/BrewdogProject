@@ -7,7 +7,8 @@ import { HiCalculator } from "react-icons/hi";
 
 export default function NavBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+    //Set of functions to handle differnt menu items and clicking 
 
     function handleClick(event) {
         if (anchorEl !== event.currentTarget) { setAnchorEl(event.currentTarget);}
@@ -36,12 +37,10 @@ export default function NavBar() {
     }
 
     function handleCarbonCalculatorClick() {
-        setAnchorEl2(null);
         window.location.href = "/carboncalculator";
     }
 
     function handleMyResultsClick() {
-        setAnchorEl2(null);
         window.location.href = "/myresults";
     }
 

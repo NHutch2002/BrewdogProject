@@ -11,14 +11,14 @@ const MockLogin = () => {
         <Login />
     </BrowserRouter>
     )
-}
+};
 
 beforeEach(() => {
     fetchMock.reset();
     const response = {
         status: 200,
         body: { token: 'token' },
-    }
+    };
     fetchMock.post(`/brewdog/login/`, response);
 });
 
@@ -27,8 +27,7 @@ afterEach(() => {
 });
 
 test('renders Login page', () => {
-    render(
-        <MockLogin />);
+    render( <MockLogin />);
     const login = screen.getByText("Log In");
     expect(login).toBeInTheDocument;
 });

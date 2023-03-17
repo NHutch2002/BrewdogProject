@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import CarbonCalculator from '../CarbonCalculator'
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -10,7 +10,7 @@ const MockCalculator = () => {
         <CarbonCalculator />
     </BrowserRouter>
     )
-}
+};
 
 const mockData = [{ "MainsGas": 0.22, "Fuel": 3.86, "Oil": 3.01, "Coal": 2.98, "Wood": 1.65,
 "GridElectricity": 0.31, "Electricity": 0.076, "WFLandfill": 0.63, "WFReuse": 0.01,
@@ -274,8 +274,8 @@ test('renders second page of calculator when the next button is clicked', async(
     render(<MockCalculator />);
     const nextButton = await screen.findByTestId("next-button");
     fireEvent.click(nextButton);
-    const beefAndLambConstant = await screen.findByTestId("beef-lamb-result");
-    expect(beefAndLambConstant).toBeVisible;
+    const page2 = await screen.findByText("Page 2 Total");
+    expect(page2).toBeVisible;
 })
 
 test('renders third page of calculator when the next button is clicked twice', async() => {
@@ -284,22 +284,21 @@ test('renders third page of calculator when the next button is clicked twice', a
     fireEvent.click(nextButton);
     const nextButton2 = await screen.findByTestId("next-button-2");
     fireEvent.click(nextButton2);
-    const CompanyGoodsDeliveryConstant = await screen.findByTestId("company-goods-delivery-constant");
-    expect(CompanyGoodsDeliveryConstant).toBeVisible;
+    const page3 = await screen.findByText("Page 3 Total");
+    expect(page3).toBeVisible;
 })
 
-test('renders first page of calculator when the back button is clicked in second page', async() => {
+test('renders first page of calculator when the back button is clicked on second page', async() => {
     render(<MockCalculator />);
     const nextButton = await screen.findByTestId("next-button");
     fireEvent.click(nextButton);
-    const beefAndLambConstant = await screen.findByTestId("beef-lamb-constant");
     const backButton = await screen.findByTestId("back-button");
     fireEvent.click(backButton);
-    const mainsGasConstant = await screen.findByTestId("mains-gas-constant");
-    expect(mainsGasConstant).toBeVisible;
+    const page1 = await screen.findByText("Page 1 Total");
+    expect(page1).toBeVisible;
 })
 
-test('renders second page of calculator when the back button is clicked in third page', async() => {
+test('renders second page of calculator when the back button is clicked on third page', async() => {
     render(<MockCalculator />);
     const nextButton = await screen.findByTestId("next-button");
     fireEvent.click(nextButton);
@@ -307,8 +306,8 @@ test('renders second page of calculator when the back button is clicked in third
     fireEvent.click(nextButton2);
     const backButton = await screen.findByTestId("back-button-2");
     fireEvent.click(backButton);
-    const beefAndLambConstant = await screen.findByTestId("beef-lamb-constant");
-    expect(beefAndLambConstant).toBeVisible;
+    const page2 = await screen.findByText("Page 2 Total");
+    expect(page2).toBeVisible;
 })
 
 test('checks whether an alert appears if the user tries to submit the data without filling in all the fields', async() => {
@@ -328,5 +327,8 @@ test('checks whether only numbers are allowed to be entered into the input field
     render(<MockCalculator />);
     const mainsGasInput = await screen.findByTestId("mains-gas-input");
     fireEvent.change(mainsGasInput, { target: { value: "a" } });
+    expect(mainsGasInput).toHaveValue(null);
+
+    fireEvent.change(mainsGasInput, { target: { value: "?" } });
     expect(mainsGasInput).toHaveValue(null);
 });

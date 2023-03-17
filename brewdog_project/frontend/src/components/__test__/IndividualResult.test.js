@@ -12,7 +12,7 @@ const MockIndividualResult = () => {
         <IndividualResult />
     </BrowserRouter>
     )
-}
+};
 
 const mockData = { id: 1, user: 1, created: "2023-03-15", MainsGas: 20, Fuel: 3.86, Oil: 3.01, Coal: 2.98, Wood: 1.65,
 GridElectricity: 0.31, Electricity: 0.076, WFLandfill: 0.63, WFReuse: 0.01,
@@ -32,12 +32,10 @@ beforeEach(() => {
         unobserve: jest.fn(),
         disconnect: jest.fn(),
     }));    
-    const resultId = 1;
     const response = {
         body: mockData
-    }
+    };
     fetchMock.get(`/brewdog/individualcalculator/?id=undefined`, response);
-    fetchMock.get(`/brewdog/individualcalculator/?id=${resultId}`, response);
 });
 
 afterEach(() => {
@@ -53,7 +51,7 @@ test('renders IndividualResult page', async () => {
 test('renders correct MainsGas result', async () => {
     render(<MockIndividualResult />);
     await act(async () => {
-        const mainsGasResult = await screen.findByText("Mains Gas: 20");
+        const mainsGasResult = await screen.findByText("Mains Gas (kgCO2e / year): 20");
         expect(mainsGasResult).toBeInTheDocument();
     });
 });

@@ -1201,13 +1201,16 @@
 <a name='L1136'></a><a href='#L1136'>1136</a>
 <a name='L1137'></a><a href='#L1137'>1137</a>
 <a name='L1138'></a><a href='#L1138'>1138</a>
-<a name='L1139'></a><a href='#L1139'>1139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L1139'></a><a href='#L1139'>1139</a>
+<a name='L1140'></a><a href='#L1140'>1140</a>
+<a name='L1141'></a><a href='#L1141'>1141</a>
+<a name='L1142'></a><a href='#L1142'>1142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">146x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1331,6 +1334,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">146x</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
@@ -2468,7 +2474,10 @@ const CarbonCalculator = () =&gt; {
     // This is where the fetch request is made to the backend to get the constants as well as the authentication check 
     // to see if the user is logged in or not
     useEffect(() =&gt; {
-        fetch('/brewdog/calculatorconstants/')
+        fetch('/brewdog/calculatorconstants/', {
+          method: 'GET',
+          headers: {'X-FRONTEND-REQUEST': 'true'}
+        })
           .then(response =&gt; response.json())
           .then(data =&gt; {
             console.log(data);
@@ -2592,10 +2601,10 @@ const CarbonCalculator = () =&gt; {
       //append user id to the form data
 <span class="cstat-no" title="statement not covered" >      finalConcatenatedFormData.append("user",localStorage.user);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      fetch('/brewdog/results/', {</span>
+<span class="cstat-no" title="statement not covered" >      fetch('/brewdog/calculator/', {</span>
           method: 'POST',
           body: finalConcatenatedFormData,
-          headers : {"Authorization": "Token "+localStorage.token },
+          headers : {"Authorization": "Token "+localStorage.token , 'X-FRONTEND-REQUEST': 'true'},
           credentials: 'include'
       }).then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >          if (response.ok) {</span>
@@ -2621,8 +2630,8 @@ const CarbonCalculator = () =&gt; {
     }
 &nbsp;
     return (
-        &lt;div className="container-fluid bodycontent"&gt;
-        &lt;h1 className="title"
+        &lt;div className="calc container-fluid bodycontent"&gt;
+        &lt;h1 className="heading"
         &gt;Carbon Footprint Calculator&lt;/h1&gt;
         {isAuthenticated &amp;&amp; firstView ? (
         &lt;Stack direction="column" 
@@ -2877,7 +2886,7 @@ const CarbonCalculator = () =&gt; {
             &lt;/table&gt;
           &lt;/Stack&gt;
         &lt;/Stack&gt;
-        &lt;button type="submit" data-testid="next-button" className="btn btn-primary firtsbtn btn-block ripple-effect"&gt;Next&lt;/button&gt;
+        &lt;button type="submit" data-testid="next-button" className="calcbtn btn btn-primary firtsbtn btn-block ripple-effect"&gt;Next&lt;/button&gt;
         &lt;/form&gt;   
     &lt;/Stack&gt;
         ) : secondView ? (
@@ -3204,13 +3213,13 @@ const CarbonCalculator = () =&gt; {
                 &lt;/tbody&gt;
               &lt;/table&gt;
               &lt;div className="btn-group"&gt;
-              &lt;button type="button" id="btn2" data-testid="back-button" className="btn btn-primary btn-block ripple-effect" onClick={() =&gt; {
+              &lt;button type="button" id="btn2" data-testid="back-button" className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() =&gt; {
                     setFirstView(true);
                     setSecondView(false);
                     setThirdView(false);
                   }
                   }&gt;Back&lt;/button&gt;
-                  &lt;button type="submit" id="btn2" data-testid="next-button-2" className="btn btn-primary btn-block ripple-effect"&gt;Next&lt;/button&gt;
+                  &lt;button type="submit" id="btn2" data-testid="next-button-2" className="calcbtn btn btn-primary btn-block ripple-effect"&gt;Next&lt;/button&gt;
                   &lt;/div&gt; 
             &lt;/Stack&gt;
           &lt;/Stack&gt;
@@ -3448,13 +3457,13 @@ const CarbonCalculator = () =&gt; {
                         &lt;/tbody&gt;
                         &lt;/table&gt;
                         &lt;div className="btn-group"&gt;
-              &lt;button type="button" data-testid="back-button-2" id="btn2"className="btn btn-primary btn-block ripple-effect" onClick={() =&gt; {
+              &lt;button type="button" data-testid="back-button-2" id="btn2"className="calcbtn btn btn-primary btn-block ripple-effect" onClick={() =&gt; {
                     setFirstView(false);
                     setSecondView(true);
                     setThirdView(false);
                   }
                   }&gt;Back&lt;/button&gt;
-                  &lt;button type="submit" id="btn2" className="btn btn-primary btn-block ripple-effect"&gt;Submit&lt;/button&gt;
+                  &lt;button type="submit" id="btn2" className="calcbtn btn btn-primary btn-block ripple-effect"&gt;Submit&lt;/button&gt;
                   &lt;/div&gt;
                         &lt;/Stack&gt;
                         &lt;/Stack&gt;
@@ -3484,7 +3493,7 @@ export default CarbonCalculator;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-15T16:56:26.912Z
+                at 2023-03-17T13:28:00.321Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

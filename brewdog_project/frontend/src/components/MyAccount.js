@@ -3,6 +3,9 @@ import "../../static/css/useraccount.css";
 import "../../static/css/myaccount.css";
 
 function MyAccount() {
+
+    /* Two states for each attribute one to store the actual value and the other to store the value when the user starts editing it
+     to be able to control changes and display the correct value in the input field. */
     const [username, setUserName] = React.useState();
     const [dirtyUsername, setDirtyUsername] = React.useState(false);
     const [email, setEmail] = React.useState();
@@ -14,6 +17,8 @@ function MyAccount() {
     const [dirtyCompany, setDirtyCompany] = React.useState(false);
     const [phone, setPhone] = React.useState();
     const [dirtyPhone, setDirtyPhone] = React.useState(false);
+
+    /* States to control the different views of the page. */
     const [editMode, setEditMode] = React.useState(false);
     const [passwordMode, setPasswordMode] = React.useState(false);
     const [cancelSave, setCancelSave] = React.useState(false);
@@ -21,9 +26,9 @@ function MyAccount() {
     useEffect(() => {
         const id = localStorage.getItem("user");
         fetch(`/brewdog/individualuser/?id=${id}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json', 'X-FRONTEND-REQUEST': 'true'},
-            credentials: 'include'
+            method: "GET",
+            headers: { "Content-Type": "application/json", "X-FRONTEND-REQUEST": "true"},
+            credentials: "include"
         })
         .then(res => {
             if (res.status === 200) {
@@ -51,6 +56,7 @@ function MyAccount() {
         setCancelSave(false);
     }, [cancelSave]);
 
+    /* Function to handle the submission of the form and conditional statements to check different edge cases. */
     const handleSubmit = (event) => {
         event.preventDefault();
         if (pass !== confirmPassword) {
@@ -72,7 +78,7 @@ function MyAccount() {
         const id = localStorage.getItem("user");
         fetch("/brewdog/user/", {
             method: "PUT",
-            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user"), 'X-FRONTEND-REQUEST': 'true'},
+            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user"), "X-FRONTEND-REQUEST": "true"},
             body: JSON.stringify({ username, password, brewdogUser, id }),
             credentials: "include"
         })

@@ -9,16 +9,16 @@ const MockHowItWorks = () => {
       <HowItWorks />
   </BrowserRouter>
   )
-}
+};
 
 test('renders how it works page', () => {
     render(<MockHowItWorks />);
-  }) 
+});
 
-  test('home MockHowItWorks subheading renders', () => {
+test('home MockHowItWorks subheading renders', () => {
     render(<MockHowItWorks />);
     const step1 = screen.getByRole("heading", { name: "Step 1 - Team Commitment"});
     const handshake = screen.getByAltText("Handshake Image");
     expect(step1).toBeInTheDocument();
     expect(handshake).toBeInTheDocument();
-  })
+});
