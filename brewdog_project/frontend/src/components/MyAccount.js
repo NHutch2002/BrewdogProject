@@ -26,9 +26,9 @@ function MyAccount() {
     useEffect(() => {
         const id = localStorage.getItem("user");
         fetch(`/brewdog/individualuser/?id=${id}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json', 'X-FRONTEND-REQUEST': 'true'},
-            credentials: 'include'
+            method: "GET",
+            headers: { "Content-Type": "application/json", "X-FRONTEND-REQUEST": "true"},
+            credentials: "include"
         })
         .then(res => {
             if (res.status === 200) {
@@ -78,7 +78,7 @@ function MyAccount() {
         const id = localStorage.getItem("user");
         fetch("/brewdog/user/", {
             method: "PUT",
-            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user"), 'X-FRONTEND-REQUEST': 'true'},
+            headers: { "Content-Type": "application/json" , id: localStorage.getItem("user"), "X-FRONTEND-REQUEST": "true"},
             body: JSON.stringify({ username, password, brewdogUser, id }),
             credentials: "include"
         })

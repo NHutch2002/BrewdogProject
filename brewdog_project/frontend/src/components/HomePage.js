@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Landing from "../../static/images/tree.jpeg";
 import FoodAtPub from "../../static/images/food_at_pub.png";
 import Roadmap from "../../static/images/roadmap.png";
@@ -76,6 +76,6 @@ const HomePage = () => {
 
         </div>
     );   
-}
+};
 
 export default HomePage;

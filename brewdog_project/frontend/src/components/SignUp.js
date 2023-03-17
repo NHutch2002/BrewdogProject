@@ -23,7 +23,7 @@ const SignUp = () => {
             method: "POST",
             body: data,
             credentials: "include",
-            headers: {'X-FRONTEND-REQUEST': 'true' },
+            headers: {"X-FRONTEND-REQUEST": "true" },
         }).then(response => {
             if (response.ok) {
                 navigate("/login");

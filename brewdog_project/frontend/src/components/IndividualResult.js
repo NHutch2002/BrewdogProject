@@ -1,8 +1,7 @@
-import React, {useState, useEffect } from 'react';
-import { useParams} from 'react-router-dom';
-import {Stack} from '@mui/material';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie,Cell, ResponsiveContainer} from 'recharts';
-import { IconButton } from '@material-ui/core';
+import React, {useState, useEffect } from "react";
+import { useParams} from "react-router-dom";
+import {BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie,Cell, ResponsiveContainer} from "recharts";
+import { IconButton } from "@material-ui/core";
 import { TiTickOutline } from "react-icons/ti";
 
 
@@ -24,9 +23,9 @@ const IndividualResult = () => {
     this also rerenders the page when the resultId changes to display the new result */
     useEffect( () => {
         fetch(`/brewdog/individualcalculator/?id=${resultId}`, {
-            method: 'GET',
-            headers: {"Authorisation": "Token "+ localStorage.token, 'X-FRONTEND-REQUEST': 'true'},
-            credentials: 'include'
+            method: "GET",
+            headers: {"Authorisation": "Token "+ localStorage.token, "X-FRONTEND-REQUEST": "true"},
+            credentials: "include"
         })
         .then(response => response.json())
         .then(data => {
@@ -51,38 +50,38 @@ const IndividualResult = () => {
             "FoodandDrink" : result.BeefLamb + result.OtherMeat + result.LobsterFarmedPrawn + result.Fish + result.MilkYogurt + result.Cheese + result.LocalFruitVegetables + result.FreightFruitVegetables + result.OtherDriedFood + result.BeerKegs + result.BeerCans + result.BeerBottles + result.LowBeerKegs + result.LowBeerCans + result.LowBeerBottles + result.SoftDrinks + result.Wine + result.Spirits,
             "TransportandDistribution" : result.CompanyGoodsDelivery + result.ContractedGoodsDelivery + result.Travel + result.UKFlights + result.InternationalFlights + result.StaffCommute,
             "Other" : result.KitchenEquipment + result.BuildingRepair + result.CleaningProducts + result.ITMarketing + result.MainsWater + result.Sewage
-        }
+        };
         setHeatingFuelUse(categoryTotals.HeatingandOtherFueluse);
         setFoodWaste(categoryTotals.FoodWaste);
         setSolidWaste(categoryTotals.SolidWaste);
-        setFoodDrink(categoryTotals.FoodandDrink)
+        setFoodDrink(categoryTotals.FoodandDrink);
         setTransportDistribution(categoryTotals.TransportandDistribution);
         setOther(categoryTotals.Other);
-    }
+    };
 
     // Data for the charts
     const data = [
         {
-            name: 'Heat and Fuel Use (kgCO2e / year)', Total: heatingFuelUse,
+            name: "Heat and Fuel Use (kgCO2e / year)", Total: heatingFuelUse,
         },
         {
-            name: 'Food Waste (kgCO2e / year)', Total: foodWaste,
+            name: "Food Waste (kgCO2e / year)", Total: foodWaste,
         },
         {
-            name: 'Solid Waste (kgCO2e / year)', Total: solidWaste,
+            name: "Solid Waste (kgCO2e / year)", Total: solidWaste,
         },
         {
-            name: 'Food & Drink (kgCO2e / year)', Total: foodDrink,
+            name: "Food & Drink (kgCO2e / year)", Total: foodDrink,
         },
         {
-            name: 'Transport & Distribution (kgCO2e / year)', Total: transportDistribution,
+            name: "Transport & Distribution (kgCO2e / year)", Total: transportDistribution,
         },
         {
-            name: 'Other (kgCO2e / year)', Total: other,
+            name: "Other (kgCO2e / year)", Total: other,
         },
     ];
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#000000'];
+    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF0000", "#000000"];
 
     const RADIAN = Math.PI / 180;
 
@@ -91,33 +90,33 @@ const IndividualResult = () => {
         const x  = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy  + radius * Math.sin(-midAngle * RADIAN);
         return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? "start" : "end"} dominantBaseline="central">
                 {`${(percent * 100).toFixed(0)}%`}
             </text>
         );
-    }
+    };
 
     const handlePieClick = (e) => {
         let element = e.target.closest("#individual-result-graphs");
         if(element.classList.contains("bar")) {
             element.classList.remove("bar");
-            element.classList.add("pie")
+            element.classList.add("pie");
         }
-    }
+    };
 
     const handleBarClick = (e) => {
         let element = e.target.closest("#individual-result-graphs");
         if(element.classList.contains("pie")) {
             element.classList.remove("pie");
-            element.classList.add("bar")
+            element.classList.add("bar");
         }
-    }
+    };
 
     return (
         <div className="container-fluid bodycontent">
             <h1 className='results_title heading'>Individual Result</h1>
             <div id="individual-result">
-                <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
+                <p>{result.created}</p> <a href={"/myresults"}>View all results</a>
                 <div id="individual-result-data">
                     <div id='individual-result-graphs' className='bar'>
                         <div id="graph-switch">
@@ -139,7 +138,7 @@ const IndividualResult = () => {
                                     }}
                                 >
                                     <XAxis dataKey="name" />
-                                    <YAxis label={{ value: 'Total emissions (kgCO2e / year)', angle: -90, position: 'insideLeft' }} />
+                                    <YAxis label={{ value: "Total emissions (kgCO2e / year)", angle: -90, position: "insideLeft" }} />
                                     <Tooltip />
                                     <Legend />
                                     <Bar dataKey="Total" fill="#8884d8" />
@@ -243,6 +242,6 @@ const IndividualResult = () => {
             </div>
         </div>
     );
-}
+};
 
 export default IndividualResult;
