@@ -39,7 +39,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -167,10 +167,7 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,13 +178,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,110 +282,107 @@ import HowItWorks5 from "../../static/images/howitworks5.png";
 &nbsp;
 &nbsp;
 &nbsp;
-export default class HowItWorks extends Component {
-    constructor(props) {
-        super(props);
-    }
+const HowItWorks = () =&gt; {
     
-    render() {
-        return (
-            &lt;div className="container-fluid bodycontent"  &gt;
-                &lt;div className="row"&gt;
-                    &lt;div className="textDiv top"&gt;
-                        &lt;div className="titleDiv"&gt;
-                            &lt;h2 className="how-it-works title top"&gt;Step 1 - Team Commitment&lt;/h2&gt;
-                        &lt;/div&gt;
-                        &lt;div className="how-it-works stage-div"&gt;
-                            &lt;img className="how-it-works image-right" src={HowItWorks1} alt="Handshake Image"&gt;&lt;/img&gt;
-                            &lt;div className="how-it-works centering-left"&gt;
-                                &lt;p className="how-it-works text"&gt;
-                                Make a commitment with your management and staff to go for it. Gaining the support of your staff team is the most important 
-                                part of building a culture of change. Ensure there is
-                                sufficient time allocated to complete the tool.
-                                &lt;/p&gt;
-                            &lt;/div&gt;
+    return (
+        &lt;div className="container-fluid bodycontent"  &gt;
+            &lt;div className="row"&gt;
+                &lt;div className="textDiv top"&gt;
+                    &lt;div className="titleDiv"&gt;
+                        &lt;h2 className="how-it-works title top"&gt;Step 1 - Team Commitment&lt;/h2&gt;
+                    &lt;/div&gt;
+                    &lt;div className="how-it-works stage-div"&gt;
+                        &lt;img className="how-it-works image-right" src={HowItWorks1} alt="Handshake Image"&gt;&lt;/img&gt;
+                        &lt;div className="how-it-works centering-left"&gt;
+                            &lt;p className="how-it-works text"&gt;
+                            Make a commitment with your management and staff to go for it. Gaining the support of your staff team is the most important 
+                            part of building a culture of change. Ensure there is
+                            sufficient time allocated to complete the tool.
+                            &lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div className="how-it-works dashed-line"&gt;
-                        &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="how-it-works dashed-line"&gt;
+                    &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="textDiv"&gt;
+                    &lt;div className="titleDiv"&gt;
+                        &lt;h2 className="how-it-works title"&gt;Step 2 - Gathering Information&lt;/h2&gt;
                     &lt;/div&gt;
-                    &lt;div className="textDiv"&gt;
-                        &lt;div className="titleDiv"&gt;
-                            &lt;h2 className="how-it-works title"&gt;Step 2 - Gathering Information&lt;/h2&gt;
-                        &lt;/div&gt;
-                        &lt;div className="how-it-works stage-div"&gt;
-                            &lt;img className="how-it-works image-left" src={HowItWorks2} alt="Thinking Image"&gt;&lt;/img&gt;
-                            &lt;div className="how-it-works centering-right"&gt;
-                                &lt;p className="how-it-works text2"&gt;
-                                Work through the ‘How it Works’ section and gather the relevant
-                                data. The Footprint Calculator requires annual data on 
-                                amounts of utilities, resources and food - either in kg, litres
-                                etc. or by cost (£).&lt;/p&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;div className="how-it-works dashed-line"&gt;
-                        &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
-                    &lt;/div&gt;
-                    &lt;div className="textDiv"&gt;
-                        &lt;div className="titleDiv"&gt;
-                            &lt;h2 className="how-it-works title"&gt;Step 3 - Complete the Calculator&lt;/h2&gt;
-                        &lt;/div&gt;
-                        &lt;div className="how-it-works stage-div"&gt;
-                            &lt;img className="how-it-works image-right" src={HowItWorks3} alt="Box Image"&gt;&lt;/img&gt;
-                            &lt;div className="how-it-works centering-left"&gt;
-                                &lt;p className="how-it-works text"&gt;
-                                Complete the Footprint Calculator, working through the guidance in the supporting notes and in cells.
-                                &lt;/p&gt;
-                            &lt;/div&gt;
+                    &lt;div className="how-it-works stage-div"&gt;
+                        &lt;img className="how-it-works image-left" src={HowItWorks2} alt="Thinking Image"&gt;&lt;/img&gt;
+                        &lt;div className="how-it-works centering-right"&gt;
+                            &lt;p className="how-it-works text2"&gt;
+                            Work through the ‘How it Works’ section and gather the relevant
+                            data. The Footprint Calculator requires annual data on 
+                            amounts of utilities, resources and food - either in kg, litres
+                            etc. or by cost (£).&lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div className="how-it-works dashed-line"&gt;
-                        &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="how-it-works dashed-line"&gt;
+                    &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="textDiv"&gt;
+                    &lt;div className="titleDiv"&gt;
+                        &lt;h2 className="how-it-works title"&gt;Step 3 - Complete the Calculator&lt;/h2&gt;
                     &lt;/div&gt;
-                    &lt;div className="textDiv"&gt;                  
-                        &lt;div className="titleDiv"&gt;
-                            &lt;h2 className="how-it-works title"&gt;Step 4 - Make the Pledge&lt;/h2&gt;
-                        &lt;/div&gt;
-                        &lt;div className="how-it-works stage-div"&gt;
-                            &lt;img className="how-it-works image-left" src={HowItWorks4} alt="Target Image"&gt;&lt;/img&gt;
-                            &lt;div className="how-it-works centering-right"&gt;
-                                &lt;p className="how-it-works text2"&gt;
-                                The ‘Your Pledges’ tool then allows you to try lots of carbon cutting options and see how they impact your emissions.
-                                With knowledge of where your footprint comes from, make ‘Pledges’ that are both specific and measurable, and identify what you should do first, and what might be more challenging.
-                                &lt;/p&gt;
-                            &lt;/div&gt;
+                    &lt;div className="how-it-works stage-div"&gt;
+                        &lt;img className="how-it-works image-right" src={HowItWorks3} alt="Box Image"&gt;&lt;/img&gt;
+                        &lt;div className="how-it-works centering-left"&gt;
+                            &lt;p className="how-it-works text"&gt;
+                            Complete the Footprint Calculator, working through the guidance in the supporting notes and in cells.
+                            &lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div className="how-it-works dashed-line"&gt;
-                        &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="how-it-works dashed-line"&gt;
+                    &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="textDiv"&gt;                  
+                    &lt;div className="titleDiv"&gt;
+                        &lt;h2 className="how-it-works title"&gt;Step 4 - Make the Pledge&lt;/h2&gt;
                     &lt;/div&gt;
-                    &lt;div className="textDiv bottom"&gt;
-                        &lt;div className="titleDiv"&gt;
-                            &lt;h2 className="how-it-works title"&gt;Step 5 - Get an Action Plan&lt;/h2&gt;
+                    &lt;div className="how-it-works stage-div"&gt;
+                        &lt;img className="how-it-works image-left" src={HowItWorks4} alt="Target Image"&gt;&lt;/img&gt;
+                        &lt;div className="how-it-works centering-right"&gt;
+                            &lt;p className="how-it-works text2"&gt;
+                            The ‘Your Pledges’ tool then allows you to try lots of carbon cutting options and see how they impact your emissions.
+                            With knowledge of where your footprint comes from, make ‘Pledges’ that are both specific and measurable, and identify what you should do first, and what might be more challenging.
+                            &lt;/p&gt;
                         &lt;/div&gt;
-                        &lt;div className="how-it-works stage-div"&gt;
-                            &lt;img className="how-it-works image-right" src={HowItWorks5} alt="People Image"&gt;&lt;/img&gt;
-                            &lt;div className="how-it-works centering-left"&gt;
-                                &lt;p className="how-it-works text"&gt;
-                                The ‘Action Plan’ sets out a simple template for delivering the pledges, deciding who is responsible for delivering the Action, likely start and finish dates, a summary of what needs to get done, and importantly what is going to change and by how much.
-                                The action plan can help engage with staff and customers.
-                                &lt;/p&gt;
-                            &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div className="how-it-works dashed-line"&gt;
+                    &lt;h6 className="how-it-works lines"&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;|&lt;br&gt;&lt;/br&gt;&lt;/h6&gt;
+                &lt;/div&gt;
+                &lt;div className="textDiv bottom"&gt;
+                    &lt;div className="titleDiv"&gt;
+                        &lt;h2 className="how-it-works title"&gt;Step 5 - Get an Action Plan&lt;/h2&gt;
+                    &lt;/div&gt;
+                    &lt;div className="how-it-works stage-div"&gt;
+                        &lt;img className="how-it-works image-right" src={HowItWorks5} alt="People Image"&gt;&lt;/img&gt;
+                        &lt;div className="how-it-works centering-left"&gt;
+                            &lt;p className="how-it-works text"&gt;
+                            The ‘Action Plan’ sets out a simple template for delivering the pledges, deciding who is responsible for delivering the Action, likely start and finish dates, a summary of what needs to get done, and importantly what is going to change and by how much.
+                            The action plan can help engage with staff and customers.
+                            &lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
-        );   
-    }
-}</pre></td></tr></table></pre>
+        &lt;/div&gt;
+    );   
+}
+&nbsp;
+export default HowItWorks;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-15T16:56:26.912Z
+                at 2023-03-17T13:28:00.321Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

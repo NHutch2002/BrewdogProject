@@ -11,21 +11,22 @@ const MockAccount = () => {
         <MyAccount />
     </BrowserRouter>
     )
-}
+};
 
 beforeEach(() => {
     fetchMock.reset();
-    const id = 1;
-    const user = { id, username: "user123", password: "123456" , brewdogUser : { company: "Brewdog", email: "user@gmail.com", phone:"111"}};
-    fetchMock.get(`/brewdog/individualuser/?id=${id}`, user);
-    fetchMock.get('/brewdog/individualuser/?id=null', user);
+    localStorage.setItem("user", 1);
+    const user = { id: 1, username: "user123", password: "123456" , brewdogUser : { company: "Brewdog", email: "user@gmail.com", phone:"111"}};
+    fetchMock.get(`/brewdog/individualuser/?id=${1}`, user);
     fetchMock.put(`/brewdog/user/`, {
         status: 200,
         body: { success: true, },
     });
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
 });
 
 afterEach(() => {
+    window.alert.mockRestore();
     fetchMock.restore();
 });
 
@@ -42,7 +43,6 @@ test('renders correct account details', async() => {
 });
 
  test('allows user to succesfully edit all account details', async() => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockAccount />);
     const edit = await screen.findByText("Edit");
     fireEvent.click(edit);
@@ -64,11 +64,9 @@ test('renders correct account details', async() => {
     expect(email).toHaveTextContent("Email: newEmail@gmail.com");
     expect(company).toHaveTextContent("Company: newCompany");
     expect(phone).toHaveTextContent("Phone: 2222");
-    window.alert.mockRestore();
 });
 
  test('alerts user if account details have been successfully changed', async() => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockAccount />);
     const edit = await screen.findByText("Edit");
     fireEvent.click(edit);
@@ -78,11 +76,9 @@ test('renders correct account details', async() => {
     fireEvent.submit(update);
     const email = await screen.findByTestId("email");
     expect(window.alert).toHaveBeenCalledWith("Changes saved successfully");
-    window.alert.mockRestore();
 });
 
- test('alerts user if they successfully changd passwords', async() => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
+ test('alerts user if they successfully change passwords', async() => {
     render(<MockAccount />);
     const edit = await screen.findByText("Change Password");
     fireEvent.click(edit);
@@ -94,11 +90,9 @@ test('renders correct account details', async() => {
     fireEvent.submit(submit);
     const email = await screen.findByTestId("email");
     expect(window.alert).toHaveBeenCalledWith("Changes saved successfully");
-    window.alert.mockRestore();
 });
 
 test('alerts user if their password does not match the confirm password field', async() => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockAccount />);
     const changePassword = await screen.findByText("Change Password");
     fireEvent.click(changePassword);
@@ -109,21 +103,18 @@ test('alerts user if their password does not match the confirm password field', 
     const submit = await screen.findByRole("button", { name: "Update" });
     fireEvent.submit(submit);
     expect(window.alert).toHaveBeenCalledWith("Passwords do not match");
-    window.alert.mockRestore();
 });
 
 test('alerts user if they have not made any changes to their account details', async() => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
     render(<MockAccount />);
     const edit = await screen.findByText("Edit");
     fireEvent.click(edit);
     const update = await screen.findByRole("button", { name: "Update" });
     fireEvent.submit(update);
     expect(window.alert).toHaveBeenCalledWith("No changes made");
-    window.alert.mockRestore();
 });
 
-test('clicking on cancel button returns user to account page', async() => {
+test('clicking on cancel button on Edit view returns user to account page', async() => {
     render(<MockAccount />);
     const edit = await screen.findByText("Edit");
     fireEvent.click(edit);
@@ -131,7 +122,10 @@ test('clicking on cancel button returns user to account page', async() => {
     fireEvent.click(cancel);
     const username = await screen.findByTestId("username");
     expect(username).toBeInTheDocument();
+});
 
+test('clicking on cancel button on Change password view returns user to account page', async() => {
+    render(<MockAccount />);
     const changePassword = await screen.findByText("Change Password");
     fireEvent.click(changePassword);
     const cancel2 = await screen.findByRole("button", { name: "Cancel" });
