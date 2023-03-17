@@ -302,7 +302,7 @@ const CarbonCalculator = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Carbon Source</th>
+                    <th>Carbon Source (units)</th>
                     <th>Input</th>
                     <th>Constant</th>
                     <th>Result</th>
@@ -313,7 +313,7 @@ const CarbonCalculator = () => {
                     <td colSpan="4" className="table-title">Heating and Other Fuel use</td>
                     </tr>
                   <tr>
-                    <td>Mains Gas:</td>
+                    <td>Mains Gas: (kWh)</td>
                     <td>
                       <input type="number" 
                       name="MainsGas" 
@@ -326,7 +326,7 @@ const CarbonCalculator = () => {
                     <td data-testid="mains-gas-result">{MainGasResults}</td>
                   </tr>
                   <tr>
-                    <td>Fuel (Diesel):</td>
+                    <td>Fuel (Diesel): (Ltrs)</td>
                     <td>
                       <input type="number" 
                       name="Fuel" 
@@ -340,7 +340,7 @@ const CarbonCalculator = () => {
                     <td data-testid="fuel-result">{FuelResults}</td>
                   </tr>
                   <tr>
-                    <td>Oil:</td>
+                    <td>Oil: (Ltrs)</td>
                     <td>
                       <input type="number" 
                       name="Oil" 
@@ -356,7 +356,7 @@ const CarbonCalculator = () => {
                     >{OilResults}</td>
                   </tr>
                   <tr>
-                    <td>Coal:</td>
+                    <td>Coal: (kg)</td>
                     <td>
                       <input type="number" 
                       name="Coal" 
@@ -372,7 +372,7 @@ const CarbonCalculator = () => {
                     >{CoalResults}</td>
                   </tr>
                   <tr>
-                    <td>Wood:</td>
+                    <td>Wood: (kg)</td>
                     <td>
                       <input type="number" 
                       name="Wood" 
@@ -388,7 +388,7 @@ const CarbonCalculator = () => {
                     >{WoodResults}</td>
               </tr>
               <tr>
-                <td><label>Grid Electricity:</label></td>
+                <td><label>Grid Electricity: (kWh)</label></td>
                 <td><input 
                 type="number" 
                 name="GridElectricity" 
@@ -403,7 +403,7 @@ const CarbonCalculator = () => {
                 >{GridElectricityResults}</td>
               </tr>
               <tr>
-                <td><label>Electricity (Low Carbon Supplier):</label></td>
+                <td><label>Grid Electricity (Low Carbon Supplier): (kWh)</label></td>
                 <td><input type="number" name="Electricity" min="0"  step= "0.01"
                 data-testid="electricity-input"
                 onChange={event => {setElectricity(event.target.value); setElectricityResults((event.target.value * calculatorConstants.Electricity).toFixed(2))}} value={Electricity} 
@@ -417,7 +417,7 @@ const CarbonCalculator = () => {
                 <td colSpan="4" className="table-title">Food Waste</td>
                 </tr>
               <tr>
-                <td><label>Waste Food to Landfill:</label></td>
+                <td><label>Waste Food to Landfill: (kg)</label></td>
                 <td><input type="number" 
                 name="WFLandfill" 
                 data-testid="wf-landfill-input"
@@ -431,7 +431,7 @@ const CarbonCalculator = () => {
                 >{WFLandfillResults}</td>
                 </tr>
                 <tr>
-                <td><label>Waste Food to Reuse/Composting:</label></td>
+                <td><label>Waste Food to Reuse/Composting: (kg)</label></td>
                 <td><input type="number" 
                 name="WFReuse" 
                 data-testid="wf-reuse-input"
@@ -445,7 +445,7 @@ const CarbonCalculator = () => {
                 >{WFReuseResults}</td>
                 </tr>
                 <tr>
-                <td><label>Waste Food to Charity:</label></td>
+                <td><label>Waste Food to Charity: (kg)</label></td>
                 <td><input type="number" 
                 name="WFCharity" 
                 data-testid="wf-charity-input"
@@ -462,7 +462,7 @@ const CarbonCalculator = () => {
                 <td colSpan="4" className="table-title">Solid Waste</td>
                 </tr>
                 <tr>
-                <td><label>Bottles Recycling</label></td>
+                <td><label>Bottles Recycling: (kg)</label></td>
                 <td><input type="number" 
                 min="0"
                 step= "0.01"
@@ -476,7 +476,7 @@ const CarbonCalculator = () => {
                 >{BottleRecyclingResults}</td>
                 </tr>
                 <tr>
-                <td><label>Aluminium Cans Recucling </label></td>
+                <td><label>Aluminium Cans Recucling: (kg) </label></td>
                 <td><input type="number" 
                 min="0"
                 step= "0.01"
@@ -490,7 +490,7 @@ const CarbonCalculator = () => {
                 >{AluminiumRecyclingResults}</td>
                 </tr>
                 <tr>
-                <td><label>General Waste to Landfill</label></td>
+                <td><label>General Waste to Landfill: (kg)</label></td>
                 <td><input type="number" 
                 min="0"
                 step= "0.01"
@@ -504,7 +504,7 @@ const CarbonCalculator = () => {
                 >{GWLandfillResults}</td>
                 </tr>
                 <tr>
-                <td><label>General Waste to Recycling</label></td>
+                <td><label>General Waste to Recycling: (kg)</label></td>
                 <td><input type="number" 
                 min="0"
                 step= "0.01"
@@ -518,7 +518,7 @@ const CarbonCalculator = () => {
                 >{GWRecyclingResults}</td>
                 </tr>
                 <tr>
-                <td><label>Special Waste</label></td>
+                <td><label>Special Waste: (kg)</label></td>
                 <td><input type="number" 
                 min="0"
                 step= "0.01"
@@ -559,7 +559,7 @@ const CarbonCalculator = () => {
               <table className="table">
                 <thead>
                   <tr>
-                  <th>Carbon Source</th>
+                  <th>Carbon Source: (uints)</th>
                     <th>Input</th>
                     <th>Constant</th>
                     <th>Result</th>
@@ -570,7 +570,7 @@ const CarbonCalculator = () => {
                     <td colSpan="4" className="table-title">Food and Drink</td>
                   </tr>
                   <tr>
-                    <td>Beef and Lamb</td>
+                    <td>Beef and Lamb: (kg)</td>
                     <td>
                       <input type="number" 
                       min="0"
@@ -588,7 +588,7 @@ const CarbonCalculator = () => {
                     >{BeefLambResults}</td>
                   </tr>
                   <tr>
-                    <td>Other Meat Products</td>
+                    <td>Other Meat Products: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -604,7 +604,7 @@ const CarbonCalculator = () => {
                     >{OtherMeatResults}</td>
                   </tr>
                   <tr>
-                    <td>Lobster and Farmed Prawn</td>
+                    <td>Lobster and Farmed Prawn: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -620,7 +620,7 @@ const CarbonCalculator = () => {
                     >{LobsterFarmedPrawnResults}</td>
                   </tr>
                   <tr>
-                    <td>Fin fish and Seafood</td>
+                    <td>Fin fish and Seafood: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -636,7 +636,7 @@ const CarbonCalculator = () => {
                     >{FishResults}</td>
                   </tr>
                   <tr>
-                    <td>Milk and Yoghurt</td>
+                    <td>Milk and Yoghurt: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -652,7 +652,7 @@ const CarbonCalculator = () => {
                     >{MilkYogurtResults}</td>
                   </tr>
                   <tr>
-                    <td>Cheese</td>
+                    <td>Cheeses: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -668,7 +668,7 @@ const CarbonCalculator = () => {
                     >{CheeseResults}</td>
                   </tr>
                   <tr>
-                    <td>Fruit & Veg (Local, seasonal)</td>
+                    <td>Fruit & Veg (Local, seasonal): (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -684,7 +684,7 @@ const CarbonCalculator = () => {
                     >{LocalFruitVegetablesResults}</td>
                   </tr>
                   <tr>
-                    <td>Fruit & Veg (Air freight, hot house)</td>
+                    <td>Fruit & Veg (Air freight, hot house): (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -700,7 +700,7 @@ const CarbonCalculator = () => {
                     >{FreightFruitVegetablesResults}</td>
                   </tr>
                   <tr>
-                    <td>Other dried food</td>
+                    <td>Other dried food: (kg)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -716,7 +716,7 @@ const CarbonCalculator = () => {
                     >{OtherDriedFoodResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer Kegs</td>
+                    <td>Beer Kegs: (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -732,7 +732,7 @@ const CarbonCalculator = () => {
                     >{BeerKegsResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer(Cans)</td>
+                    <td>Beer(Cans): (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -748,7 +748,7 @@ const CarbonCalculator = () => {
                     >{BeerCansResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer Bottles</td>
+                    <td>Beer Bottles: (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -764,7 +764,7 @@ const CarbonCalculator = () => {
                     >{BeerBottlesResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer Kegs (Low carbon)</td>
+                    <td>Beer Kegs (Low carbon): (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -780,7 +780,7 @@ const CarbonCalculator = () => {
                     >{LowBeerKegsResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer(Cans) (Low carbon)</td>
+                    <td>Beer(Cans) (Low carbon): (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -796,7 +796,7 @@ const CarbonCalculator = () => {
                     >{LowBeerCansResults}</td>
                   </tr>
                   <tr>
-                    <td>Beer Bottles (Low carbon)</td>
+                    <td>Beer Bottles (Low carbon): (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -812,7 +812,7 @@ const CarbonCalculator = () => {
                     >{LowBeerBottlesResults}</td>
                   </tr>
                   <tr>
-                    <td>Soft Drinks</td>
+                    <td>Soft Drinks: (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -828,7 +828,7 @@ const CarbonCalculator = () => {
                     >{SoftDrinksResults}</td>
                   </tr>
                   <tr>
-                    <td>Wine</td>
+                    <td>Wine: (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -844,7 +844,7 @@ const CarbonCalculator = () => {
                     >{WineResults}</td>
                   </tr>
                   <tr>
-                    <td>Spirits</td>
+                    <td>Spirits: (Ltrs)</td>
                     <td>
                       <input type="number"
                       min="0"
@@ -896,7 +896,7 @@ const CarbonCalculator = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                        <th>Carbon Source</th>
+                        <th>Carbon Source: (units)</th>
 
                           <th>Input</th>
                           <th>Constant</th>
@@ -908,7 +908,7 @@ const CarbonCalculator = () => {
                           <td colSpan="4" className="table-title">Transport and Distribution</td>
                         </tr>
                         <tr>
-                          <td>Goods and Deliveries (Company owned)</td>
+                          <td>Goods and Deliveries (Company owned): (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -925,7 +925,7 @@ const CarbonCalculator = () => {
                           >{CompanyGoodsDeliveryResults}</td>
                         </tr>
                         <tr>
-                          <td>Goods Deliveries (Contracted)</td>
+                          <td>Goods Deliveries (Contracted): (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -941,7 +941,7 @@ const CarbonCalculator = () => {
                           >{ContractedGoodsDeliveryResults}</td>
                         </tr>
                         <tr>
-                          <td>Travel (Company business)</td>
+                          <td>Travel (Company business): (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -957,7 +957,7 @@ const CarbonCalculator = () => {
                           >{TravelResults}</td>
                         </tr>
                         <tr>
-                          <td>Flights (UK)</td>
+                          <td>Flights (UK): (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -973,7 +973,7 @@ const CarbonCalculator = () => {
                           >{UKFlightsResults}</td>
                         </tr>
                         <tr>
-                          <td>Flights (International)</td>
+                          <td>Flights (International): (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -989,7 +989,7 @@ const CarbonCalculator = () => {
                           >{InternationalFlightsResults}</td>
                         </tr>
                         <tr>
-                          <td>Staff Commuting</td>
+                          <td>Staff Commuting: (km)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1008,7 +1008,7 @@ const CarbonCalculator = () => {
                           <td colSpan="4" className="table-title">Other</td>
                         </tr>
                         <tr>
-                          <td>Kitchen equipment assets</td>
+                          <td>Kitchen equipment assets: (£)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1024,7 +1024,7 @@ const CarbonCalculator = () => {
                           >{KitchenEquipmentResults}</td>
                         </tr>
                         <tr>
-                          <td>Building repairs and maintenance</td>
+                          <td>Building repairs and maintenance: (£)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1040,7 +1040,7 @@ const CarbonCalculator = () => {
                           >{BuildingRepairResults}</td>
                         </tr>
                         <tr>
-                          <td>Cleaning and cleaning products</td>
+                          <td>Cleaning and cleaning products: (£)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1056,7 +1056,7 @@ const CarbonCalculator = () => {
                           >{CleaningProductsResults}</td>
                         </tr>
                         <tr>
-                          <td>IT & Marketing</td>
+                          <td>IT & Marketing: (£)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1072,7 +1072,7 @@ const CarbonCalculator = () => {
                           >{ITMarketingResults}</td>
                         </tr>
                         <tr>
-                          <td>Mains water</td>
+                          <td>Mains water: (Cubic Mtrs)</td>
                           <td>
                             <input type="number"
                             min="0"
@@ -1088,7 +1088,7 @@ const CarbonCalculator = () => {
                           >{MainsWaterResults}</td>
                         </tr>
                         <tr>
-                          <td>Sewage</td>
+                          <td>Sewage: (£)</td>
                           <td>
                             <input type="number"
                             name="Sewage"

@@ -56,22 +56,22 @@ const IndividualResult = () => {
 
     const data = [
         {
-            name: 'Heat and Fuel Use', Total: heatingFuelUse,
+            name: 'Heat and Fuel Use (kgCO2e / year)', Total: heatingFuelUse,
         },
         {
-            name: 'Food Waste', Total: foodWaste,
+            name: 'Food Waste (kgCO2e / year)', Total: foodWaste,
         },
         {
-            name: 'Solid Waste', Total: solidWaste,
+            name: 'Solid Waste (kgCO2e / year)', Total: solidWaste,
         },
         {
-            name: 'Food & Drink', Total: foodDrink,
+            name: 'Food & Drink (kgCO2e / year)', Total: foodDrink,
         },
         {
-            name: 'Transport & Distribution', Total: transportDistribution,
+            name: 'Transport & Distribution (kgCO2e / year)', Total: transportDistribution,
         },
         {
-            name: 'Other', Total: other,
+            name: 'Other (kgCO2e / year)', Total: other,
         },
     ];
 
@@ -132,7 +132,7 @@ const IndividualResult = () => {
                                     }}
                                 >
                                     <XAxis dataKey="name" />
-                                    <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
+                                    <YAxis label={{ value: 'Total emissions (kgCO2e / year)', angle: -90, position: 'insideLeft' }} />
                                     <Tooltip />
                                     <Legend />
                                     <Bar dataKey="Total" fill="#8884d8" />
@@ -163,73 +163,73 @@ const IndividualResult = () => {
                     </div>
                     <div id="individual-result-categories">
                         <div className='individual-category'>
-                            <h2>Heating and Other Fuel Use</h2>
+                            <h2>Heating and Other Fuel Use (kgCO2e / year):</h2>
                             <h2>{parseFloat(heatingFuelUse).toFixed(2)}</h2>
-                            <p>Mains Gas: {result.MainsGas}</p>
-                            <p>Fuel (Diesel): {result.Fuel}</p>
-                            <p>Oil: {result.Oil}</p>
-                            <p>Coal: {result.Coal}</p>
-                            <p>Wood: {result.Wood}</p>
-                            <p>Grid Electricity: {result.GridElectricity}</p>
-                            <p>Electricity (Low Carbon Supplier): {result.Electricity}</p>
+                            <p>Mains Gas (kgCO2e / year): {result.MainsGas}</p>
+                            <p>Fuel (kgCO2e / year): (Diesel): {result.Fuel}</p>
+                            <p>Oil (kgCO2e / year): {result.Oil}</p>
+                            <p>Coal (kgCO2e / year): {result.Coal}</p>
+                            <p>Wood (kgCO2e / year): {result.Wood}</p>
+                            <p>Grid Electricity (kgCO2e / year): {result.GridElectricity}</p>
+                            <p>Gird Electricity (Low Carbon Supplier) (kgCO2e / year): {result.Electricity}</p>
                         </div>
                         <div className='individual-category'>
-                            <h2>Food Waste</h2>
+                            <h2>Food Waste (kgCO2e / year):</h2>
                             <h2>{parseFloat(foodWaste).toFixed(2)}</h2>
-                            <p>Waste Food to Landfill: {result.WFLandfill}</p>
-                            <p>Waste Food to Reuse/Composting: {result.WFReuse}</p>
-                            <p>Waste Food to Charity: {result.WFCharity}</p>
+                            <p>Waste Food to Landfill (kgCO2e / year): {result.WFLandfill}</p>
+                            <p>Waste Food to Reuse/Composting (kgCO2e / year): {result.WFReuse}</p>
+                            <p>Waste Food to Charity (kgCO2e / year): {result.WFCharity}</p>
                         </div>
                         <div className='individual-category'>
-                            <h2>Solid Waste</h2>
+                            <h2>Solid Waste (kgCO2e / year):</h2>
                             <h2>{parseFloat(solidWaste).toFixed(2)}</h2>
-                            <p>Bottle Recycling: {result.BottleRecycling}</p>
-                            <p>Aluminium Recycling: {result.AluminiumRecycling}</p>
-                            <p>General Waste Landfill: {result.GWLandfill}</p>
-                            <p>General Waste Recycling: {result.GWRecycling}</p>
-                            <p>Special Waste: {result.SpecialWaste}</p>
+                            <p>Bottle Recycling (kgCO2e / year): {result.BottleRecycling}</p>
+                            <p>Aluminium Recycling (kgCO2e / year): {result.AluminiumRecycling}</p>
+                            <p>General Waste Landfill (kgCO2e / year): {result.GWLandfill}</p>
+                            <p>General Waste Recycling (kgCO2e / year): {result.GWRecycling}</p>
+                            <p>Special Waste (kgCO2e / year): {result.SpecialWaste}</p>
                         </div>
                         <div className='individual-category'>
-                            <h2>Food and Drink</h2>
+                            <h2>Food and Drink (kgCO2e / year):</h2>
                             <h2>{parseFloat(foodDrink).toFixed(2)}</h2>
-                            <p>Beef and Lamb: {result.BeefLamb}</p>
-                            <p>Other Meat Products: {result.OtherMeat}</p>
-                            <p>Lobster and Farmed Prawn: {result.LobsterFarmedPrawn}</p>
-                            <p>Fin fish and Seafood: {result.Fish}</p>
-                            <p>Milk and Yogurt: {result.MilkYogurt}</p>
-                            <p>Cheese: {result.Cheese}</p>
-                            <p>Fruit and Vegetables (Local, seasonal): {result.LocalFruitVegetables}</p>
-                            <p>Fruit and Vegetables (Air freight, hot house): {result.FreightFruitVegetables}</p>
-                            <p>Other Dried Food: {result.OtherDriedFood}</p>
-                            <p>Beer (Kegs): {result.BeerKegs}</p>
-                            <p>Beer (Cans): {result.BeerCans}</p>
-                            <p>Beer (Bottles): {result.BeerBottles}</p>
-                            <p>Beer Kegs (Low carbon): {result.LowBeerKegs}</p>
-                            <p>Beer Cans (Low carbon): {result.LowBeerCans}</p>
-                            <p>Beer Bottles (Low carbon): {result.LowBeerBottles}</p>
-                            <p>Soft Drinks: {result.SoftDrinks}</p>
-                            <p>Wine: {result.Wine}</p>
-                            <p>Spirits: {result.Spirits}</p>
+                            <p>Beef and Lamb (kgCO2e / year): {result.BeefLamb}</p>
+                            <p>Other Meat Products (kgCO2e / year): {result.OtherMeat}</p>
+                            <p>Lobster and Farmed Prawn (kgCO2e / year): {result.LobsterFarmedPrawn}</p>
+                            <p>Fin fish and Seafood (kgCO2e / year): {result.Fish}</p>
+                            <p>Milk and Yogurt (kgCO2e / year): {result.MilkYogurt}</p>
+                            <p>Cheeses (kgCO2e / year): {result.Cheese}</p>
+                            <p>Fruit and Vegetables (Local, seasonal) (kgCO2e / year): {result.LocalFruitVegetables}</p>
+                            <p>Fruit and Vegetables (Air freight, hot house) (kgCO2e / year): {result.FreightFruitVegetables}</p>
+                            <p>Other Dried Food (kgCO2e / year): {result.OtherDriedFood}</p>
+                            <p>Beer (Kegs) (kgCO2e / year): {result.BeerKegs}</p>
+                            <p>Beer (Cans) (kgCO2e / year): {result.BeerCans}</p>
+                            <p>Beer (Bottles) (kgCO2e / year): {result.BeerBottles}</p>
+                            <p>Beer Kegs (Low carbon) (kgCO2e / year): {result.LowBeerKegs}</p>
+                            <p>Beer Cans (Low carbon) (kgCO2e / year): {result.LowBeerCans}</p>
+                            <p>Beer Bottles (Low carbon) (kgCO2e / year): {result.LowBeerBottles}</p>
+                            <p>Soft Drinks (kgCO2e / year): {result.SoftDrinks}</p>
+                            <p>Wine (kgCO2e / year): {result.Wine}</p>
+                            <p>Spirits (kgCO2e / year): {result.Spirits}</p>
                         </div>
                         <div className='individual-category'>
-                            <h2>Transport and Distribution</h2>
+                            <h2>Transport and Distribution (kgCO2e / year):</h2>
                             <h2>{parseFloat(transportDistribution).toFixed(2)}</h2>
-                            <p>Goods and Deliveries (Company owned): {result.CompanyGoodsDelivery}</p>
-                            <p>Goods and Deliveries (Contracted): {result.ContractedGoodsDelivery}</p>
-                            <p>Travel (Company business): {result.Travel}</p>
-                            <p>Flights (UK): {result.UKFlights}</p>
-                            <p>Flights (International): {result.InternationalFlights}</p>
-                            <p>Staff Commuting: {result.StaffCommute}</p>
+                            <p>Goods and Deliveries (Company owned) (kgCO2e / year): {result.CompanyGoodsDelivery}</p>
+                            <p>Goods and Deliveries (Contracted) (kgCO2e / year): {result.ContractedGoodsDelivery}</p>
+                            <p>Travel (Company business) (kgCO2e / year): {result.Travel}</p>
+                            <p>Flights (UK) (kgCO2e / year): {result.UKFlights}</p>
+                            <p>Flights (International) (kgCO2e / year): {result.InternationalFlights}</p>
+                            <p>Staff Commuting (kgCO2e / year): {result.StaffCommute}</p>
                         </div>
                         <div className='individual-category'>
                             <h2>Other</h2>
                             <h2>{parseFloat(other).toFixed(2)}</h2>
-                            <p>Kitchen Equipment assets: {result.KitchenEquipment}</p>
-                            <p>Building Repairs and Maintenance: {result.BuildingRepair}</p>
-                            <p>Cleaning and Cleaning Products: {result.CleaningProducts}</p>
-                            <p>IT and Marketing: {result.ITMarketing}</p>
-                            <p>Mains Water: {result.MainsWater}</p>
-                            <p>Sewage: {result.Sewage}</p>
+                            <p>Kitchen Equipment assets (kgCO2e / year): {result.KitchenEquipment}</p>
+                            <p>Building Repairs and Maintenance (kgCO2e / year): {result.BuildingRepair}</p>
+                            <p>Cleaning and Cleaning Products (kgCO2e / year): {result.CleaningProducts}</p>
+                            <p>IT and Marketing (kgCO2e / year): {result.ITMarketing}</p>
+                            <p>Mains Water (kgCO2e / year): {result.MainsWater}</p>
+                            <p>Sewage (kgCO2e / year): {result.Sewage}</p>
                         </div>
                     </div>
                 </div>

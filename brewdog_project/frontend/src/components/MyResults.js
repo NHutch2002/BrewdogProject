@@ -38,12 +38,12 @@ const MyResults = () => {
     
     const getCategoryTotals = (result) => {
         let categoryTotals = {
-            "Heating and Other Fuel use" : result.MainsGas + result.Fuel + result.Oil + result.Coal + result.Wood + result.GridElectricity + result.Electricity,
-            "Food Waste" : result.WFLandfill + result.WFLandfill + result.WFCharity,
-            "Solid Waste" : result.BottleRecycling + result.AluminiumRecycling + result.GWLandfill + result.GWRecycling + result.SpecialWaste,
-            "Food and Drink" : result.BeefLamb + result.OtherMeat + result.LobsterFarmedPrawn + result.Fish + result.MilkYogurt + result.Cheese + result.LocalFruitVegetables + result.FreightFruitVegetables + result.OtherDriedFood + result.BeerKegs + result.BeerCans + result.BeerBottles + result.LowBeerKegs + result.LowBeerCans + result.LowBeerBottles + result.SoftDrinks + result.Wine + result.Spirits,
-            "Transport and Distribution" : result.CompanyGoodsDelivery + result.ContractedGoodsDelivery + result.Travel + result.UKFlights + result.InternationalFlights + result.StaffCommute,
-            "Other" : result.KitchenEquipment + result.BuildingRepair + result.CleaningProducts + result.ITMarketing + result.MainsWater + result.Sewage
+            "Heating and Other Fuel use (kgCO2e / year)" : result.MainsGas + result.Fuel + result.Oil + result.Coal + result.Wood + result.GridElectricity + result.Electricity,
+            "Food Waste (kgCO2e / year)" : result.WFLandfill + result.WFLandfill + result.WFCharity,
+            "Solid Waste (kgCO2e / year)" : result.BottleRecycling + result.AluminiumRecycling + result.GWLandfill + result.GWRecycling + result.SpecialWaste,
+            "Food and Drink (kgCO2e / year)" : result.BeefLamb + result.OtherMeat + result.LobsterFarmedPrawn + result.Fish + result.MilkYogurt + result.Cheese + result.LocalFruitVegetables + result.FreightFruitVegetables + result.OtherDriedFood + result.BeerKegs + result.BeerCans + result.BeerBottles + result.LowBeerKegs + result.LowBeerCans + result.LowBeerBottles + result.SoftDrinks + result.Wine + result.Spirits,
+            "Transport and Distribution (kgCO2e / year)" : result.CompanyGoodsDelivery + result.ContractedGoodsDelivery + result.Travel + result.UKFlights + result.InternationalFlights + result.StaffCommute,
+            "Other (kgCO2e / year)" : result.KitchenEquipment + result.BuildingRepair + result.CleaningProducts + result.ITMarketing + result.MainsWater + result.Sewage
         }
         let total = 0
         for (let category in categoryTotals) {
@@ -63,21 +63,21 @@ const MyResults = () => {
 
     return (
         <div className="container-fluid bodycontent">
-            <h1 className="title">My Results</h1>
+            <h1 className="heading">My Results</h1>
             <div id="results">       
             {
                 results.length > 0 ? (
                     <>
                     <LineChart
                         width={500}
-                        height={300}
+                        height={500}
                         data={data}
                         fromZero={true}
                         style={{margin: "auto"}}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
-                        <YAxis label={{ value: 'Total emissions', angle: -90, position: 'insideLeft' }} />
+                        <YAxis label={{ value: 'Total emissions (kgCO2e / year)', angle: -90, position: 'insideLeft' }} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="Total" stroke="#8884d8" activeDot={{ r: 8 }} />
@@ -88,7 +88,7 @@ const MyResults = () => {
                     <div className="result-entry">
                         <div className="result-summary">
                             <p>Date Created: {result.created}</p>
-                            <p>Total: {parseFloat(total).toFixed(2)}</p>
+                            <p>Total (kgCO2e / year): {parseFloat(total).toFixed(2)}</p>
                             <IconButton color="inherit" onClick={(e) => handleClick(e)}>
                                 <IoIosArrowDropdownCircle color="#34D19F" size="25px" />
                             </IconButton>

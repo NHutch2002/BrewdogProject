@@ -1,13 +1,8 @@
-.title{
-    text-align: center;
+.heading{
     margin: 6vh auto ;
     max-width: 500px;
     background-color: white;
-    text-transform: uppercase;
     padding: 10px 2vw 0 2vw;
-    color: #111;
-    font-family: 'NewGroteskSquareFOURWEB';
-    font-size: 45px;
     box-shadow: 7px 7px 0 #34D19F;
 
 }
