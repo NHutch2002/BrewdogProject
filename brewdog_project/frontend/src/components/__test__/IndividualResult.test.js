@@ -51,7 +51,7 @@ test('renders IndividualResult page', async () => {
 test('renders correct MainsGas result', async () => {
     render(<MockIndividualResult />);
     await act(async () => {
-        const mainsGasResult = await screen.findByText("Mains Gas: 20");
+        const mainsGasResult = await screen.findByText("Mains Gas (kgCO2e / year): 20");
         expect(mainsGasResult).toBeInTheDocument();
     });
 });
