@@ -41,7 +41,7 @@ class UserView(generics.CreateAPIView):
             user_serializer = UserSerializer(data=user_data)
             if user_serializer.is_valid():
                 user_serializer.save()
-                return HttpResponseRedirect(reverse('frontend:carboncalculator'))
+                return HttpResponseRedirect(reverse('frontend:login'))
             return Response(f"Error: Invalid details- {user_serializer.errors}",
                             status=status.HTTP_400_BAD_REQUEST)
         return Response(f"Error: Invalid details- {brewdog_user_serializer.errors}",

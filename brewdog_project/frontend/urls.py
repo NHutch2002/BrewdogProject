@@ -8,7 +8,7 @@ urlpatterns = [
     path('carboncalculator', index),
     path('howitworks', index),
     path('blog', index),
-    path('login', index),
+    path('login', index, name='login'),
     path('myresults', index, name='myresults'),
     path('myresults/<int:id>', index),
     path('myaccount', index),
