@@ -108,7 +108,7 @@ const IndividualResult = () => {
 
     return (
         <div className="container-fluid bodycontent">
-            <h1 className='title'>Individual Result</h1>
+            <h1 className='results_title heading'>Individual Result</h1>
             <div id="individual-result">
                 <p>{result.created}</p> <a href={'/myresults'}>View all results</a>
                 <div id="individual-result-data">

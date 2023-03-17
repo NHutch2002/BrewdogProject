@@ -63,7 +63,7 @@ const MyResults = () => {
 
     return (
         <div className="container-fluid bodycontent">
-            <h1 className="heading">My Results</h1>
+            <h1 className=" results_title heading">My Results</h1>
             <div id="results">       
             {
                 results.length > 0 ? (
