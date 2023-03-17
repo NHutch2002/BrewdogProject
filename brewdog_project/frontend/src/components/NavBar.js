@@ -1,13 +1,14 @@
 import { AppBar, Toolbar, IconButton, Button, Grid, Menu, MenuItem } from "@material-ui/core";
 import React from "react";
 import brewdogLogo from "../../static/images/brewdog_logo.png";
-import { VscAccount } from 'react-icons/vsc';
-import { HiCalculator } from 'react-icons/hi';
+import { VscAccount } from "react-icons/vsc";
+import { HiCalculator } from "react-icons/hi";
 
 
 export default function NavBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+    //Set of functions to handle differnt menu items and clicking 
 
     function handleClick(event) {
         if (anchorEl !== event.currentTarget) { setAnchorEl(event.currentTarget);}
@@ -26,7 +27,7 @@ export default function NavBar() {
 
     function handleLogOutClick() {
         setAnchorEl(null);
-        localStorage.removeItem('token')
+        localStorage.removeItem("token");
         window.location.href = "/";
     }
 
@@ -36,12 +37,10 @@ export default function NavBar() {
     }
 
     function handleCarbonCalculatorClick() {
-        setAnchorEl2(null);
         window.location.href = "/carboncalculator";
     }
 
     function handleMyResultsClick() {
-        setAnchorEl2(null);
         window.location.href = "/myresults";
     }
 
@@ -49,7 +48,7 @@ export default function NavBar() {
         position: "fixed",
         top: "50px",
         height: "220px",
-    }
+    };
 
     function isAuth(){
         if(localStorage.token){ return true; }
@@ -86,6 +85,7 @@ export default function NavBar() {
                 </Grid>
                 <Grid item xs ={2} align="right">
                     <IconButton color="inherit" aria-label="human"
+                    data-testid="human"
                     aria-owns={anchorEl ? "simple-menu" : undefined}
                     aria-haspopup="true"
                     onClick={handleClick}
@@ -106,17 +106,16 @@ export default function NavBar() {
                     >
                     {
                         isAuth() ?
-                         (<><MenuItem onClick={handleMyAccountClick}>My Account</MenuItem>
-                         <MenuItem onClick={handleMyResultsClick}>My Results</MenuItem>
-                            <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem></>)
-                        : ( <><MenuItem onClick={handleLoginClick}>Login</MenuItem>
-                            <MenuItem onClick={handleSignUpClick}>Sign Up</MenuItem></> )
+                         (<><MenuItem data-testid="my-account" onClick={handleMyAccountClick}>My Account</MenuItem>
+                         <MenuItem data-testid="my-results" onClick={handleMyResultsClick}>My Results</MenuItem>
+                            <MenuItem data-testid="log-out" onClick={handleLogOutClick}>Log Out</MenuItem></>)
+                        : ( <><MenuItem data-testid="log-in" onClick={handleLoginClick}>Login</MenuItem>
+                            <MenuItem data-testid="sign-up" onClick={handleSignUpClick}>Sign Up</MenuItem></> )
                     }
                     </Menu>
                 </Grid>
             </Toolbar>
             </AppBar>
-            <div style={{marginTop: "125px"}}></div>
         </Grid>
         
     );

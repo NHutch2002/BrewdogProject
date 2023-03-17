@@ -5,8 +5,12 @@ body, html {
 .container-fluid {
     background-color: #111;
 }
+.home_title{
+    max-width: none!important;
+    box-shadow: none!important;
+}
 
-/* Landing styles */
+/* Landing picture styles */
 .landing_pic_container {
     width: 100%;
     margin: auto;
@@ -28,6 +32,7 @@ body, html {
     filter: brightness(0.9);
     transform: scale(1.01);
 }
+/*Landing title style*/
 .landing_title_container {
     position: absolute;
     z-index: 999;
@@ -40,25 +45,19 @@ body, html {
     filter: brightness(1.4);
     cursor: default;
 }
-.landing_heading {
-    font-family: 'NewGroteskSquareFIVEWEB';
-    text-transform: uppercase;
-    font-size: 10vw;
-    font-weight: inherit;
-    line-height: 7.5vw;
-    letter-spacing: .03em;
-    color: #EEE;
+.home_title {
+    font-size: 10vw!important;
+    font-weight: inherit!important;
+    line-height: 7.5vw!important;
+    letter-spacing: .03em!important;
+    color: #EEE!important;
 }
 #landing_blue_accent {
     color: #34D19F;
     text-shadow: 0 0 10px #34D19F;
 }
-.landing_subheading {
-    letter-spacing: .02em;
-    text-transform: uppercase;
-    font-weight: 500;
+.subheading {
     font-size: 4vw;
-    font-family: 'NewGroteskSquareFOURWEB';
 }
 
 /* Content section styles */

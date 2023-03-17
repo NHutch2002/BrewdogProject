@@ -1,75 +1,78 @@
-import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as mdb from 'mdb-ui-kit'; // dont delete me
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 
+import "../../static/css/base.css";
 import "../../static/css/useraccount.css";
 
 const SignUp = () => {
     const navigate = useNavigate();
 
+    /* This function is called when the user submits the form, sends a POST request to the backend to create a new user.
+    it redirects to login page if the user is created successfully or displays an error if it fails or if user already exists. */
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        if (data.get('password') !== data.get('confirm-password')) {
+        if (data.get("password") !== data.get("confirm-password")) {
             window.alert("Passwords do not match");
             return;
         }
 
-        fetch('/brewdog/user/', {
-            method: 'POST',
+        fetch("/brewdog/user/", {
+            method: "POST",
             body: data,
-            credentials: 'include'
+            credentials: "include",
+            headers: {'X-FRONTEND-REQUEST': 'true' },
         }).then(response => {
             if (response.ok) {
-                navigate('/login');
+                navigate("/login");
             } else {
                 response.text().then( text => {{ 
                     window.alert(text);
-                    throw new Error(text); }})
+                    throw new Error(text); }});
             }
         }).catch( error => {
-            console.log("Error: " + error )
-        })
-    }
+            console.log("Error: " + error );
+        });
+    };
 
 
     return (
         <>
             <div className="flex-container">
                 
-                <form className="account_form" method="POST" credentials="include" onSubmit={handleSubmit}>
+                <form className="account_form" method="POST" onSubmit={handleSubmit}>
                     <input type="hidden" name="csrfmiddlewaretoken" value="csrftoken"/>
                     <h2>Create Account</h2>
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-username">Username</label>
-                        <input type="text" name="username" id="signup-form-username" className="form-control form-input-field" required/>
+                        <input data-testid="username" type="text" name="username" id="signup-form-username" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-email">Email address</label>
-                        <input type="email" name="email" id="signup-form-email" className="form-control form-input-field" required/>
+                        <input data-testid="email-address" type="email" name="email" id="signup-form-email" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-company">Company</label>
-                        <input type="text" name="company" id="signup-form-company" className="form-control form-input-field" required/>
+                        <input data-testid="company-name" type="text" name="company" id="signup-form-company" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-phone-number">Phone number</label>
-                        <input type="text" name="phone" id="signup-form-phone" className="form-control form-input-field" required/>
+                        <input data-testid="phone-number" type="number" name="phone" id="signup-form-phone" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-password">Password</label>
-                        <input type="password" name="password" id="signup-form-password" className="form-control form-input-field" required/>
+                        <input data-testid="password" type="password" name="password" id="signup-form-password" className="form-control form-input-field" required/>
                     </div>
 
                     <div className="form-outline mb-2 field_container">
                         <label className="form-label form-input-label" htmlFor="signup-form-confirm-password">Confirm password</label>
-                        <input type="password" name="confirm-password" id="signup-form-confirm-password" className="form-control form-input-field" required/>
+                        <input data-testid="confirm-password" type="password" name="confirm-password" id="signup-form-confirm-password" className="form-control form-input-field" required/>
                     </div>
 
 
@@ -80,7 +83,7 @@ const SignUp = () => {
             </div>
         </>
     );
-}
+};
 
 export default SignUp;
 

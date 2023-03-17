@@ -1,0 +1,73 @@
+/* CSS for the my account page*/
+.my_account.flex-container {
+    height: 86vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25 )), url("https://brewdog-calculator.herokuapp.com/staticfiles/frontend/827a61fd8f5838e739b1b44b1fb3ec53.jpeg")!important;
+    background-size: 100vw;
+}
+
+.my_account.account_form {
+    background-color: white;
+    width: 350px;
+    border-radius: 6px;
+    box-shadow: 0 0 16px #AAA;
+    margin: 0 auto 0px auto;
+    padding: 25px 25px 25px 25px;
+}
+
+
+.my_account.existing_fields{
+    margin: 4vh 0 4vh 10px;
+}
+
+.my_account button {
+    font-size: large;
+    background-color: black!important;
+    border-radius: 20px;
+    box-shadow: none;
+    margin-top: 20px;
+    /* transition: 0.2s ease-in-out; */
+}
+.my_account button:hover {
+    background-color: black!important;
+    box-shadow: none;
+    transform: scale(1.01);
+    color:white;
+}
+.btn[type=submit]:hover{
+    color:white;
+}
+.my_account button.btn-primary.btn-block.ripple-effect:active {
+    background-color: #34D19F!important;
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
+}
+
+.my_account button.btn-primary.btn-block.ripple-effect {
+    height:54px!important;
+    margin-top: 20px;
+    padding: 0.84rem 2.14rem;
+}
+
+.my_account.account_form h2 {
+    margin-bottom: 20px;
+    margin-top: 0!important;
+    background-color: #111;
+    text-transform: uppercase;
+    padding: 8px 8px 0 8px;
+    color: #EEE;
+    font-family: 'NewGroteskSquareFOURWEB';
+    font-size: 40px;
+    text-align: center;
+    box-shadow: 4px 4px 0 #34D19F;
+}
+
+.my_account.my_account.existing_fields_heading{
+    margin-bottom: 50px!important;
+}
+
+.my_account button.btn-primary.btn-block.ripple-effect.my_account.existing_fields{
+    margin-top: 50px!important;    
+}
