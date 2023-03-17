@@ -1,9 +1,9 @@
-import React, { Component, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../static/css/myresults.css";
-import { IconButton } from '@material-ui/core';
+import { IconButton } from "@material-ui/core";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 
 const MyResults = () => {
@@ -15,8 +15,8 @@ const MyResults = () => {
     Store the results in the results state variable */
     useEffect( () => {
         fetch(`brewdog/results/?id=${id}`, {
-            method: 'GET',
-            headers : {"Authorization": "Token "+ localStorage.token, 'X-FRONTEND-REQUEST': 'true'},
+            method: "GET",
+            headers : {"Authorization": "Token "+ localStorage.token, "X-FRONTEND-REQUEST": "true"},
             credentials: "include"
         })
         .then(response => response.json())
@@ -37,7 +37,7 @@ const MyResults = () => {
         } else {
             element.classList.add("active");
         }
-    }
+    };
     
     // This function calculates the total emissions for each category and returns an object with the category name and the total emissions
     const getCategoryTotals = (result) => {
@@ -48,21 +48,21 @@ const MyResults = () => {
             "Food and Drink (kgCO2e / year)" : result.BeefLamb + result.OtherMeat + result.LobsterFarmedPrawn + result.Fish + result.MilkYogurt + result.Cheese + result.LocalFruitVegetables + result.FreightFruitVegetables + result.OtherDriedFood + result.BeerKegs + result.BeerCans + result.BeerBottles + result.LowBeerKegs + result.LowBeerCans + result.LowBeerBottles + result.SoftDrinks + result.Wine + result.Spirits,
             "Transport and Distribution (kgCO2e / year)" : result.CompanyGoodsDelivery + result.ContractedGoodsDelivery + result.Travel + result.UKFlights + result.InternationalFlights + result.StaffCommute,
             "Other (kgCO2e / year)" : result.KitchenEquipment + result.BuildingRepair + result.CleaningProducts + result.ITMarketing + result.MainsWater + result.Sewage
-        }
-        let total = 0
+        };
+        let total = 0;
         for (let category in categoryTotals) {
-            total += categoryTotals[category]
+            total += categoryTotals[category];
         }
-        return [categoryTotals, total]
-    }
+        return [categoryTotals, total];
+    };
 
     const data = results.map(result => {
-        let [categoryTotals, total] = getCategoryTotals(result)
+        let [categoryTotals, total] = getCategoryTotals(result);
         return {
             name: result.created,
             "Total": total.toFixed(2),
-        }
-    })
+        };
+    });
 
     const yAxisMaxValue = Math.max(...data.map(d => d.Total));
 
@@ -82,14 +82,14 @@ const MyResults = () => {
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
-                        <YAxis label={{ value: 'Total (kgCO2e / year)', angle: -90, position: 'insideLeft' }} domain={[0, yAxisMaxValue]} />
+                        <YAxis label={{ value: "Total (kgCO2e / year)", angle: -90, position: "insideLeft" }} domain={[0, yAxisMaxValue]} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="Total" stroke="#8884d8" activeDot={{ r: 8 }} />
                     </LineChart>
                 {results.map(result => {
-                    let [categoryTotals, total] = getCategoryTotals(result)
-                    return(
+                    let [categoryTotals, total] = getCategoryTotals(result);
+                    return (
                     <div className="result-entry">
                         <div className="result-summary">
                             <p>Date Created: {result.created}</p>
@@ -102,11 +102,11 @@ const MyResults = () => {
                         <div className="result-details">
                             {
                                 Object.keys(categoryTotals).map(category => {
-                                    return(
+                                    return (
                                         <div className="category-details">
                                             <p>{category}: {parseFloat(categoryTotals[category]).toFixed(2)}</p>
                                         </div>
-                                    )
+                                );
                                 })
                             }
                         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {Stack} from "@mui/material";
 import "../../static/css/base.css";
 import "../../static/css/calculator.css";
@@ -127,9 +127,9 @@ const CarbonCalculator = () => {
      This is where the fetch request is made to the backend to get the constants as well as the authentication check 
      to see if the user is logged in or not */
     useEffect(() => {
-        fetch('/brewdog/calculatorconstants/', {
-          method: 'GET',
-          headers: {'X-FRONTEND-REQUEST': 'true'}
+        fetch("/brewdog/calculatorconstants/", {
+          method: "GET",
+          headers: {"X-FRONTEND-REQUEST": "true"}
         })
           .then(response => response.json())
           .then(data => {
@@ -138,7 +138,7 @@ const CarbonCalculator = () => {
           })
           .catch(error => {{
             console.log(error);
-            alert('Error loading constants, please try again later');
+            alert("Error loading constants, please try again later");
           }});
           function isAuth(){
             if(localStorage.token){ 
@@ -147,7 +147,7 @@ const CarbonCalculator = () => {
               setIsAuthenticated(false);
             }
         }
-        isAuth()
+        isAuth();
       }, []);
 
     //useEffect which runs when a result on the first page is updated to update the total result on the first page
@@ -160,14 +160,14 @@ const CarbonCalculator = () => {
         setFirstTotalResults([
           parseFloat(MainGasResults) + parseFloat(FuelResults) + parseFloat(OilResults) + parseFloat(CoalResults) + parseFloat(WoodResults) + parseFloat(GridElectricityResults) + parseFloat(ElectricityResults) + parseFloat(WFLandfillResults) + parseFloat(WFReuseResults) + parseFloat(WFCharityResults) + parseFloat(BottleRecyclingResults) + parseFloat(AluminiumRecyclingResults) + parseFloat(GWLandfillResults) + parseFloat(GWRecyclingResults) + parseFloat(SpecialWasteResults)
         ]);
-    }
+    };
 
     //method which runs the calculations for the sum of the results on the second page
     const handleUpdateTotalResultOnSecondPage = () => {
         setSecondTotalResults([
           parseFloat(BeefLambResults) + parseFloat(OtherMeatResults) + parseFloat(LobsterFarmedPrawnResults) + parseFloat(FishResults) + parseFloat(MilkYogurtResults) + parseFloat(CheeseResults) + parseFloat(LocalFruitVegetablesResults) + parseFloat(FreightFruitVegetablesResults) + parseFloat(OtherDriedFoodResults) + parseFloat(BeerKegsResults) + parseFloat(BeerCansResults) + parseFloat(BeerBottlesResults) + parseFloat(LowBeerKegsResults) + parseFloat(LowBeerCansResults) + parseFloat(LowBeerBottlesResults) + parseFloat(SoftDrinksResults) + parseFloat(WineResults) + parseFloat(SpiritsResults)
         ]);
-    }
+    };
 
     //useEffect which runs when a result on the second page is updated to update the total result on the second page
     useEffect(() => {
@@ -179,7 +179,7 @@ const CarbonCalculator = () => {
         setThirdTotalResults([
           parseFloat(CompanyGoodsDeliveryResults) + parseFloat(ContractedGoodsDeliveryResults) + parseFloat(TravelResults) + parseFloat(UKFlightsResults) + parseFloat(InternationalFlightsResults) + parseFloat(StaffCommuteResults) + parseFloat(KitchenEquipmentResults) + parseFloat(BuildingRepairResults) + parseFloat(CleaningProductsResults) + parseFloat(ITMarketingResults) + parseFloat(MainsWaterResults) + parseFloat(SewageResults)
         ]);
-    }
+    };
 
     //useEffect which runs when a result on the third page is updated to update the total result on the third page
     useEffect(() => {
@@ -192,7 +192,7 @@ const CarbonCalculator = () => {
     const handlePageOneSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      let dataCopy = {}
+      let dataCopy = {};
       data.forEach((value, key) => {
         dataCopy[key] = (value * calculatorConstants[key]).toFixed(2);
       });
@@ -200,7 +200,7 @@ const CarbonCalculator = () => {
       setFirstView(false);
       setSecondView(true);
       setThirdView(false);
-    }
+    };
     
     /*method which handles the submission of the form on the second page
     This data is stored in the secondData state variable
@@ -208,7 +208,7 @@ const CarbonCalculator = () => {
     const handlePageTwoSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      let dataCopy = {}
+      let dataCopy = {};
       data.forEach((value, key) => {
         dataCopy[key] = (value * calculatorConstants[key]).toFixed(2);
       });
@@ -216,7 +216,7 @@ const CarbonCalculator = () => {
       setFirstView(false);
       setSecondView(false);
       setThirdView(true);
-    }
+    };
 
     //method where the final submission form is created and submitted and all the form data from all three pages is appended to the final submission form
     const handleSubmit = (event) => {
@@ -254,11 +254,11 @@ const CarbonCalculator = () => {
       //append user id to the form data
       finalConcatenatedFormData.append("user",localStorage.user);
 
-      fetch('/brewdog/calculator/', {
-          method: 'POST',
+      fetch("/brewdog/calculator/", {
+          method: "POST",
           body: finalConcatenatedFormData,
-          headers : {"Authorization": "Token "+localStorage.token , 'X-FRONTEND-REQUEST': 'true'},
-          credentials: 'include'
+          headers : {"Authorization": "Token "+localStorage.token , "X-FRONTEND-REQUEST": "true"},
+          credentials: "include"
       }).then(response => {
           if (response.ok) {
             console.log(response);
@@ -273,14 +273,14 @@ const CarbonCalculator = () => {
       })
       .then(data => {
         console.log(data);
-        console.log(data['id']);
-        navigate(`/myresults/${data['id']}`);
+        console.log(data["id"]);
+        navigate(`/myresults/${data["id"]}`);
       })
       .catch(error => {
         console.log(error);
-        alert('Error saving data, please try again later');
+        alert("Error saving data, please try again later");
       });
-    }
+    };
 
     return (
         <div className="calc container-fluid bodycontent">
@@ -291,7 +291,6 @@ const CarbonCalculator = () => {
         spacing={2} 
         className="stack">
         <form method="POST" 
-        credentials="include" 
         onSubmit={handlePageOneSubmit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
@@ -406,7 +405,7 @@ const CarbonCalculator = () => {
                 <td><label>Grid Electricity (Low Carbon Supplier): (kWh)</label></td>
                 <td><input type="number" name="Electricity" min="0"  step= "0.01"
                 data-testid="electricity-input"
-                onChange={event => {setElectricity(event.target.value); setElectricityResults((event.target.value * calculatorConstants.Electricity).toFixed(2))}} value={Electricity} 
+                onChange={event => {setElectricity(event.target.value); setElectricityResults((event.target.value * calculatorConstants.Electricity).toFixed(2));}} value={Electricity} 
                 /></td>
                 <td>{calculatorConstants.Electricity}</td>
                 <td
@@ -423,7 +422,7 @@ const CarbonCalculator = () => {
                 data-testid="wf-landfill-input"
                 min="0"
                 step= "0.01"
-                onChange={event => {setWFLandfill(event.target.value); setWFLandfillResults((event.target.value * calculatorConstants.WFLandfill).toFixed(2))}} value={WFLandfill}
+                onChange={event => {setWFLandfill(event.target.value); setWFLandfillResults((event.target.value * calculatorConstants.WFLandfill).toFixed(2));}} value={WFLandfill}
                 /></td>
                 <td>{calculatorConstants.WFLandfill}</td>
                 <td
@@ -437,7 +436,7 @@ const CarbonCalculator = () => {
                 data-testid="wf-reuse-input"
                 min="0"
                 step= "0.01"
-                onChange={event => {setWFReuse(event.target.value); setWFReuseResults((event.target.value * calculatorConstants.WFReuse).toFixed(2))}} value={WFReuse}
+                onChange={event => {setWFReuse(event.target.value); setWFReuseResults((event.target.value * calculatorConstants.WFReuse).toFixed(2));}} value={WFReuse}
                 /></td>
                 <td>{calculatorConstants.WFReuse}</td>
                 <td
@@ -451,7 +450,7 @@ const CarbonCalculator = () => {
                 data-testid="wf-charity-input"
                 min="0"
                 step= "0.01"
-                onChange={event => {setWFCharity(event.target.value); setWFCharityResults((event.target.value * calculatorConstants.WFCharity).toFixed(2))}} value={WFCharity}
+                onChange={event => {setWFCharity(event.target.value); setWFCharityResults((event.target.value * calculatorConstants.WFCharity).toFixed(2));}} value={WFCharity}
                 /></td>
                 <td>{calculatorConstants.WFCharity}</td>
                 <td
@@ -468,7 +467,7 @@ const CarbonCalculator = () => {
                 step= "0.01"
                 name="BottleRecycling" 
                 data-testid="bottle-recycling-input"
-                onChange={event => {setBottleRecycling(event.target.value); setBottleRecyclingResults((event.target.value * calculatorConstants.BottleRecycling).toFixed(2))}} value={BottleRecycling}
+                onChange={event => {setBottleRecycling(event.target.value); setBottleRecyclingResults((event.target.value * calculatorConstants.BottleRecycling).toFixed(2));}} value={BottleRecycling}
                 /></td>
                 <td>{calculatorConstants.BottleRecycling}</td>
                 <td
@@ -482,7 +481,7 @@ const CarbonCalculator = () => {
                 step= "0.01"
                 name="AluminiumRecycling" 
                 data-testid="aluminium-recycling-input"
-                onChange={event => {setAluminiumRecycling(event.target.value); setAluminiumRecyclingResults((event.target.value * calculatorConstants.AluminiumRecycling).toFixed(2))}} value={AluminiumRecycling}
+                onChange={event => {setAluminiumRecycling(event.target.value); setAluminiumRecyclingResults((event.target.value * calculatorConstants.AluminiumRecycling).toFixed(2));}} value={AluminiumRecycling}
                 /></td>
                 <td>{calculatorConstants.AluminiumRecycling}</td>
                 <td
@@ -496,7 +495,7 @@ const CarbonCalculator = () => {
                 step= "0.01"
                 name="GWLandfill" 
                 data-testid="gw-landfill-input"
-                onChange={event => {setGWLandfill(event.target.value); setGWLandfillResults((event.target.value * calculatorConstants.GWLandfill).toFixed(2))}} value={GWLandfill}
+                onChange={event => {setGWLandfill(event.target.value); setGWLandfillResults((event.target.value * calculatorConstants.GWLandfill).toFixed(2));}} value={GWLandfill}
                 /></td>
                 <td>{calculatorConstants.GWLandfill}</td>
                 <td
@@ -510,7 +509,7 @@ const CarbonCalculator = () => {
                 step= "0.01"
                 name="GWRecycling" 
                 data-testid="gw-recycling-input"
-                onChange={event => {setGWRecycling(event.target.value); setGWRecyclingResults((event.target.value * calculatorConstants.GWRecycling).toFixed(2))}} value={GWRecycling}
+                onChange={event => {setGWRecycling(event.target.value); setGWRecyclingResults((event.target.value * calculatorConstants.GWRecycling).toFixed(2));}} value={GWRecycling}
                 /></td>
                 <td>{calculatorConstants.GWRecycling}</td>
                 <td
@@ -524,7 +523,7 @@ const CarbonCalculator = () => {
                 step= "0.01"
                 name="SpecialWaste" 
                 data-testid="special-waste-input"
-                onChange={event => {setSpecialWaste(event.target.value); setSpecialWasteResults((event.target.value * calculatorConstants.SpecialWaste).toFixed(2))}} value={SpecialWaste}
+                onChange={event => {setSpecialWaste(event.target.value); setSpecialWasteResults((event.target.value * calculatorConstants.SpecialWaste).toFixed(2));}} value={SpecialWaste}
                 /></td>
                 <td>{calculatorConstants.SpecialWaste}</td>
                 <td
@@ -547,8 +546,7 @@ const CarbonCalculator = () => {
           <Stack direction="column" 
         spacing={2} 
         className="stack">
-        <form method="POST" 
-        credentials="include" 
+        <form method="POST"
         onSubmit={handlePageTwoSubmit}>
           <input type="hidden" 
           name="csrfmiddlewaretoken" 
@@ -577,7 +575,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="BeefLamb" 
                       data-testid="beef-lamb-input"
-                      onChange={(event) => {setBeefLamb(event.target.value); setBeefLambResults((event.target.value * calculatorConstants.BeefLamb).toFixed(2))}} value={BeefLamb}
+                      onChange={(event) => {setBeefLamb(event.target.value); setBeefLambResults((event.target.value * calculatorConstants.BeefLamb).toFixed(2));}} value={BeefLamb}
                       />
                     </td>
                     <td
@@ -595,7 +593,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="OtherMeat"
                       data-testid="other-meat-input"
-                      onChange={(event) => {setOtherMeat(event.target.value); setOtherMeatResults((event.target.value * calculatorConstants.OtherMeat).toFixed(2))}} value={OtherMeat}
+                      onChange={(event) => {setOtherMeat(event.target.value); setOtherMeatResults((event.target.value * calculatorConstants.OtherMeat).toFixed(2));}} value={OtherMeat}
                       />
                     </td>
                     <td>{calculatorConstants.OtherMeat}</td>
@@ -611,7 +609,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="LobsterFarmedPrawn"
                       data-testid="lobster-farmed-prawn-input"
-                      onChange={(event) => {setLobsterFarmedPrawn(event.target.value); setLobsterFarmedPrawnResults((event.target.value * calculatorConstants.LobsterFarmedPrawn).toFixed(2))}} value={LobsterFarmedPrawn}
+                      onChange={(event) => {setLobsterFarmedPrawn(event.target.value); setLobsterFarmedPrawnResults((event.target.value * calculatorConstants.LobsterFarmedPrawn).toFixed(2));}} value={LobsterFarmedPrawn}
                       />
                     </td>
                     <td>{calculatorConstants.LobsterFarmedPrawn}</td>
@@ -627,7 +625,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="Fish"
                       data-testid="fish-input"
-                      onChange={(event) => {setFish(event.target.value); setFishResults((event.target.value * calculatorConstants.Fish).toFixed(2))}} value={Fish}
+                      onChange={(event) => {setFish(event.target.value); setFishResults((event.target.value * calculatorConstants.Fish).toFixed(2));}} value={Fish}
                       />
                     </td>
                     <td>{calculatorConstants.Fish}</td>
@@ -643,7 +641,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="MilkYogurt"
                       data-testid="milk-input"
-                      onChange={(event) => {setMilkYogurt(event.target.value); setMilkYogurtResults((event.target.value * calculatorConstants.MilkYogurt).toFixed(2))}} value={MilkYogurt}
+                      onChange={(event) => {setMilkYogurt(event.target.value); setMilkYogurtResults((event.target.value * calculatorConstants.MilkYogurt).toFixed(2));}} value={MilkYogurt}
                       />
                     </td>
                     <td>{calculatorConstants.MilkYogurt}</td>
@@ -659,7 +657,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="Cheese"
                       data-testid="cheese-input"
-                      onChange={(event) => {setCheese(event.target.value); setCheeseResults((event.target.value * calculatorConstants.Cheese).toFixed(2))}} value={Cheese}
+                      onChange={(event) => {setCheese(event.target.value); setCheeseResults((event.target.value * calculatorConstants.Cheese).toFixed(2));}} value={Cheese}
                       />
                     </td>
                     <td>{calculatorConstants.Cheese}</td>
@@ -675,7 +673,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="LocalFruitVegetables"
                       data-testid="local-fruit-vegetables-input"
-                      onChange={(event) => {setLocalFruitVegetables(event.target.value); setLocalFruitVegetablesResults((event.target.value * calculatorConstants.LocalFruitVegetables).toFixed(2))}} value={LocalFruitVegetables}
+                      onChange={(event) => {setLocalFruitVegetables(event.target.value); setLocalFruitVegetablesResults((event.target.value * calculatorConstants.LocalFruitVegetables).toFixed(2));}} value={LocalFruitVegetables}
                       />
                     </td>
                     <td>{calculatorConstants.LocalFruitVegetables}</td>
@@ -691,7 +689,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="FreightFruitVegetables"
                       data-testid="freight-fruit-vegetables-input"
-                      onChange={(event) => {setFreightFruitVegetables(event.target.value); setFreightFruitVegetablesResults((event.target.value * calculatorConstants.FreightFruitVegetables).toFixed(2))}} value={FreightFruitVegetables}
+                      onChange={(event) => {setFreightFruitVegetables(event.target.value); setFreightFruitVegetablesResults((event.target.value * calculatorConstants.FreightFruitVegetables).toFixed(2));}} value={FreightFruitVegetables}
                       />
                     </td>
                     <td>{calculatorConstants.FreightFruitVegetables}</td>
@@ -707,7 +705,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="OtherDriedFood"
                       data-testid="other-dried-food-input"
-                      onChange={(event) => {setOtherDriedFood(event.target.value); setOtherDriedFoodResults((event.target.value * calculatorConstants.OtherDriedFood).toFixed(2))}} value={OtherDriedFood}
+                      onChange={(event) => {setOtherDriedFood(event.target.value); setOtherDriedFoodResults((event.target.value * calculatorConstants.OtherDriedFood).toFixed(2));}} value={OtherDriedFood}
                       />
                     </td>
                     <td>{calculatorConstants.OtherDriedFood}</td>
@@ -723,7 +721,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="BeerKegs"
                       data-testid="beer-kegs-input"
-                      onChange={(event) => {setBeerKegs(event.target.value); setBeerKegsResults((event.target.value * calculatorConstants.BeerKegs).toFixed(2))}} value={BeerKegs}
+                      onChange={(event) => {setBeerKegs(event.target.value); setBeerKegsResults((event.target.value * calculatorConstants.BeerKegs).toFixed(2));}} value={BeerKegs}
                       />
                     </td>
                     <td>{calculatorConstants.BeerKegs}</td>
@@ -739,7 +737,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="BeerCans"
                       data-testid="beer-cans-input"
-                      onChange={(event) => {setBeerCans(event.target.value); setBeerCansResults((event.target.value * calculatorConstants.BeerCans).toFixed(2))}} value={BeerCans}
+                      onChange={(event) => {setBeerCans(event.target.value); setBeerCansResults((event.target.value * calculatorConstants.BeerCans).toFixed(2));}} value={BeerCans}
                       />
                     </td>
                     <td>{calculatorConstants.BeerCans}</td>
@@ -755,7 +753,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="BeerBottles"
                       data-testid="beer-bottles-input"
-                      onChange={(event) => {setBeerBottles(event.target.value); setBeerBottlesResults((event.target.value * calculatorConstants.BeerBottles).toFixed(2))}} value={BeerBottles}
+                      onChange={(event) => {setBeerBottles(event.target.value); setBeerBottlesResults((event.target.value * calculatorConstants.BeerBottles).toFixed(2));}} value={BeerBottles}
                       />
                     </td>
                     <td>{calculatorConstants.BeerBottles}</td>
@@ -771,7 +769,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="LowBeerKegs"
                       data-testid="low-beer-kegs-input"
-                      onChange={(event) => {setLowBeerKegs(event.target.value); setLowBeerKegsResults((event.target.value * calculatorConstants.LowBeerKegs).toFixed(2))}} value={LowBeerKegs}
+                      onChange={(event) => {setLowBeerKegs(event.target.value); setLowBeerKegsResults((event.target.value * calculatorConstants.LowBeerKegs).toFixed(2));}} value={LowBeerKegs}
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerKegs}</td>
@@ -787,7 +785,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="LowBeerCans"
                       data-testid="low-beer-cans-input"
-                      onChange={(event) => {setLowBeerCans(event.target.value); setLowBeerCansResults((event.target.value * calculatorConstants.LowBeerCans).toFixed(2))}} value={LowBeerCans}
+                      onChange={(event) => {setLowBeerCans(event.target.value); setLowBeerCansResults((event.target.value * calculatorConstants.LowBeerCans).toFixed(2));}} value={LowBeerCans}
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerCans}</td>
@@ -803,7 +801,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="LowBeerBottles"
                       data-testid="low-beer-bottles-input"
-                      onChange={(event) => {setLowBeerBottles(event.target.value); setLowBeerBottlesResults((event.target.value * calculatorConstants.LowBeerBottles).toFixed(2))}} value={LowBeerBottles}
+                      onChange={(event) => {setLowBeerBottles(event.target.value); setLowBeerBottlesResults((event.target.value * calculatorConstants.LowBeerBottles).toFixed(2));}} value={LowBeerBottles}
                       />
                     </td>
                     <td>{calculatorConstants.LowBeerBottles}</td>
@@ -819,7 +817,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="SoftDrinks"
                       data-testid="soft-drinks-input"
-                      onChange={(event) => {setSoftDrinks(event.target.value); setSoftDrinksResults((event.target.value * calculatorConstants.SoftDrinks).toFixed(2))}} value={SoftDrinks}
+                      onChange={(event) => {setSoftDrinks(event.target.value); setSoftDrinksResults((event.target.value * calculatorConstants.SoftDrinks).toFixed(2));}} value={SoftDrinks}
                       />
                     </td>
                     <td>{calculatorConstants.SoftDrinks}</td>
@@ -835,7 +833,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="Wine"
                       data-testid="wine-input"
-                      onChange={(event) => {setWine(event.target.value); setWineResults((event.target.value * calculatorConstants.Wine).toFixed(2))}} value={Wine}
+                      onChange={(event) => {setWine(event.target.value); setWineResults((event.target.value * calculatorConstants.Wine).toFixed(2));}} value={Wine}
                       />
                     </td>
                     <td>{calculatorConstants.Wine}</td>
@@ -851,7 +849,7 @@ const CarbonCalculator = () => {
                       step="0.01"
                       name="Spirits"
                       data-testid="spirits-input"
-                      onChange={(event) => {setSpirits(event.target.value); setSpiritsResults((event.target.value * calculatorConstants.Spirits).toFixed(2))}} value={Spirits}
+                      onChange={(event) => {setSpirits(event.target.value); setSpiritsResults((event.target.value * calculatorConstants.Spirits).toFixed(2));}} value={Spirits}
                       />
                     </td>
                     <td>{calculatorConstants.Spirits}</td>
@@ -885,7 +883,6 @@ const CarbonCalculator = () => {
               spacing={2}
               className="stack">
               <form method="POST"
-              credentials="include"
               onSubmit={handleSubmit}>
                 <input type="hidden"
                 name="csrfmiddlewaretoken"
@@ -914,7 +911,7 @@ const CarbonCalculator = () => {
                             min="0"
                             name="CompanyGoodsDelivery"
                             data-testid="company-goods-delivery-input"
-                            onChange={(event) => {setCompanyGoodsDelivery(event.target.value); setCompanyGoodsDeliveryResults((event.target.value * calculatorConstants.CompanyGoodsDelivery).toFixed(2))}} value={CompanyGoodsDelivery}
+                            onChange={(event) => {setCompanyGoodsDelivery(event.target.value); setCompanyGoodsDeliveryResults((event.target.value * calculatorConstants.CompanyGoodsDelivery).toFixed(2));}} value={CompanyGoodsDelivery}
                             />
                           </td>
                           <td
@@ -932,7 +929,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="ContractedGoodsDelivery"
                             data-testid="contracted-goods-delivery-input"
-                            onChange={(event) => {setContractedGoodsDelivery(event.target.value); setContractedGoodsDeliveryResults((event.target.value * calculatorConstants.ContractedGoodsDelivery).toFixed(2))}} value={ContractedGoodsDelivery}
+                            onChange={(event) => {setContractedGoodsDelivery(event.target.value); setContractedGoodsDeliveryResults((event.target.value * calculatorConstants.ContractedGoodsDelivery).toFixed(2));}} value={ContractedGoodsDelivery}
                             />
                           </td>
                           <td>{calculatorConstants.ContractedGoodsDelivery}</td>
@@ -948,7 +945,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="Travel"
                             data-testid="travel-input"
-                            onChange={(event) => {setTravel(event.target.value); setTravelResults((event.target.value * calculatorConstants.Travel).toFixed(2))}} value={Travel}
+                            onChange={(event) => {setTravel(event.target.value); setTravelResults((event.target.value * calculatorConstants.Travel).toFixed(2));}} value={Travel}
                             />
                           </td>
                           <td>{calculatorConstants.Travel}</td>
@@ -964,7 +961,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="UKFlights"
                             data-testid="uk-flights-input"
-                            onChange={(event) => {setUKFlights(event.target.value); setUKFlightsResults((event.target.value * calculatorConstants.UKFlights).toFixed(2))}} value={UKFlights}
+                            onChange={(event) => {setUKFlights(event.target.value); setUKFlightsResults((event.target.value * calculatorConstants.UKFlights).toFixed(2));}} value={UKFlights}
                             />
                           </td>
                           <td>{calculatorConstants.UKFlights}</td>
@@ -980,7 +977,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="InternationalFlights"
                             data-testid="international-flights-input"
-                            onChange={(event) => {setInternationalFlights(event.target.value); setInternationalFlightsResults((event.target.value * calculatorConstants.InternationalFlights).toFixed(2))}} value={InternationalFlights}
+                            onChange={(event) => {setInternationalFlights(event.target.value); setInternationalFlightsResults((event.target.value * calculatorConstants.InternationalFlights).toFixed(2));}} value={InternationalFlights}
                             />
                           </td>
                           <td>{calculatorConstants.InternationalFlights}</td>
@@ -996,7 +993,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="StaffCommute"
                             data-testid="staff-commute-input"
-                            onChange={(event) => {setStaffCommute(event.target.value); setStaffCommuteResults((event.target.value * calculatorConstants.StaffCommute).toFixed(2))}} value={StaffCommute}
+                            onChange={(event) => {setStaffCommute(event.target.value); setStaffCommuteResults((event.target.value * calculatorConstants.StaffCommute).toFixed(2));}} value={StaffCommute}
                             />
                           </td>
                           <td>{calculatorConstants.StaffCommute}</td>
@@ -1015,7 +1012,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="KitchenEquipment"
                             data-testid="kitchen-equipment-input"
-                            onChange={(event) => {setKitchenEquipment(event.target.value); setKitchenEquipmentResults((event.target.value * calculatorConstants.KitchenEquipment).toFixed(2))}} value={KitchenEquipment}
+                            onChange={(event) => {setKitchenEquipment(event.target.value); setKitchenEquipmentResults((event.target.value * calculatorConstants.KitchenEquipment).toFixed(2));}} value={KitchenEquipment}
                             />
                           </td>
                           <td>{calculatorConstants.KitchenEquipment}</td>
@@ -1031,7 +1028,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="BuildingRepair"
                             data-testid="building-repair-input"
-                            onChange={(event) => {setBuildingRepair(event.target.value); setBuildingRepairResults((event.target.value * calculatorConstants.BuildingRepair).toFixed(2))}} value={BuildingRepair}
+                            onChange={(event) => {setBuildingRepair(event.target.value); setBuildingRepairResults((event.target.value * calculatorConstants.BuildingRepair).toFixed(2));}} value={BuildingRepair}
                             />
                           </td>
                           <td>{calculatorConstants.BuildingRepair}</td>
@@ -1047,7 +1044,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="CleaningProducts"
                             data-testid="cleaning-products-input"
-                            onChange={(event) => {setCleaningProducts(event.target.value); setCleaningProductsResults((event.target.value * calculatorConstants.CleaningProducts).toFixed(2))}} value={CleaningProducts}
+                            onChange={(event) => {setCleaningProducts(event.target.value); setCleaningProductsResults((event.target.value * calculatorConstants.CleaningProducts).toFixed(2));}} value={CleaningProducts}
                             />
                           </td>
                           <td>{calculatorConstants.CleaningProducts}</td>
@@ -1063,7 +1060,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="ITMarketing"
                             data-testid="it-marketing-input"
-                            onChange={(event) => {setITMarketing(event.target.value); setITMarketingResults((event.target.value * calculatorConstants.ITMarketing).toFixed(2))}} value={ITMarketing}
+                            onChange={(event) => {setITMarketing(event.target.value); setITMarketingResults((event.target.value * calculatorConstants.ITMarketing).toFixed(2));}} value={ITMarketing}
                             />
                           </td>
                           <td>{calculatorConstants.ITMarketing}</td>
@@ -1079,7 +1076,7 @@ const CarbonCalculator = () => {
                             step="0.01"
                             name="MainsWater"
                             data-testid="mains-water-input"
-                            onChange={(event) => {setMainsWater(event.target.value); setMainsWaterResults((event.target.value * calculatorConstants.MainsWater).toFixed(2))}} value={MainsWater}
+                            onChange={(event) => {setMainsWater(event.target.value); setMainsWaterResults((event.target.value * calculatorConstants.MainsWater).toFixed(2));}} value={MainsWater}
                             />
                           </td>
                           <td>{calculatorConstants.MainsWater}</td>
@@ -1095,7 +1092,7 @@ const CarbonCalculator = () => {
                             data-testid="sewage-input"
                             min="0"
                             step="0.01"
-                            onChange={(event) => {setSewage(event.target.value); setSewageResults((event.target.value * calculatorConstants.Sewage).toFixed(2))}} value={Sewage}
+                            onChange={(event) => {setSewage(event.target.value); setSewageResults((event.target.value * calculatorConstants.Sewage).toFixed(2));}} value={Sewage}
                             />
                           </td>
                           <td>{calculatorConstants.Sewage}</td>
@@ -1138,5 +1135,5 @@ const CarbonCalculator = () => {
         )}
         </div>
         );
-    }
+    };
 export default CarbonCalculator;

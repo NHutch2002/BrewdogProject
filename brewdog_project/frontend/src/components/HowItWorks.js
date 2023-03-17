@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../static/css/base.css";
 import "../../static/css/howitworks.css";
 import HowItWorks1 from "../../static/images/howitworks1.png";
@@ -100,6 +100,6 @@ const HowItWorks = () => {
             </div>
         </div>
     );   
-}
+};
 
 export default HowItWorks;
