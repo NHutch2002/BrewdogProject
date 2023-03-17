@@ -50,7 +50,7 @@ To test the backend of the web application, run these steps in order:
 
 - Open a Command Prompt window.
 - Run `cd *folder_name*/sh15-main/brewdog_project` where folder_name is the name of the directory in which the project is located.
-- Then finally run `python manage.py test` to test the Django backend of the project.
+- Then finally run `python manage.py test brewdog_api` to test the Django backend of the project.
 
 ### Testing Frontend
 
