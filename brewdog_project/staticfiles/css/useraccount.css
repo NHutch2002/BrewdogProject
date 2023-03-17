@@ -42,7 +42,7 @@ form.account_form h2 {
     color: black;
     font-size: 16px;
 }
-form.account_form button[type="submit"] {
+form.account_form .button[type="submit"] {
     font-size: large;
     background-color: black!important;
     border-radius: 20px;
@@ -50,10 +50,9 @@ form.account_form button[type="submit"] {
     margin-top: 20px;
     /* transition: 0.2s ease-in-out; */
 }
-form.account_form button[type="submit"]:hover {
-    background-color: black!important;
-    box-shadow: none;
-    transform: scale(1.01);
+form.account_form .button[type="submit"]:hover {
+    background-color: white!important;
+    color: #111 !important;
 }
 form.account_form button[type="submit"].btn-primary.btn-block.ripple-effect:active {
     background-color: #34D19F!important;
