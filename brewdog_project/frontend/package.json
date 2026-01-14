@@ -20,7 +20,7 @@
         "mdbreact": "^4.6.1",
         "node.js": "^0.0.1-security",
         "react-icons": "^4.7.1",
-        "react-router-dom": "^6.8.1",
+        "react-router-dom": "^6.30.3",
         "react-scripts": "^5.0.1",
         "recharts": "^2.4.3"
     },
